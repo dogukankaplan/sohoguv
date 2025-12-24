@@ -1,0 +1,74 @@
+APP_NAME="Soho Güvenlik Sistemleri"
+APP_ENV=production
+APP_KEY=base64:EPbGre6lo6pKm6TX1O1T5fPKGZpP9qPoIj6ZKD4Ff0o=
+APP_DEBUG=false
+APP_TIMEZONE=Europe/Istanbul
+APP_URL=https://sohoguvenliksistemleri.com.tr
+
+APP_LOCALE=tr
+APP_FALLBACK_LOCALE=tr
+APP_FAKER_LOCALE=tr_TR
+
+APP_MAINTENANCE_DRIVER=file
+# APP_MAINTENANCE_STORE=database
+
+PHP_CLI_SERVER_WORKERS=4
+
+BCRYPT_ROUNDS=12
+
+LOG_CHANNEL=stack
+LOG_STACK=single
+LOG_DEPRECATIONS_CHANNEL=null
+LOG_LEVEL=error
+
+# Database Configuration
+DB_CONNECTION=mysql
+DB_HOST=127.0.0.1
+DB_PORT=3306
+DB_DATABASE=sohoguvenliksist_soho_d
+DB_USERNAME=sohoguvenliksist_soho_dodo
+DB_PASSWORD=Soho#!35
+
+# Session & Cookie Settings
+SESSION_DRIVER=database
+SESSION_LIFETIME=120
+SESSION_ENCRYPT=false
+SESSION_PATH=/
+SESSION_DOMAIN=.sohoguvenliksistemleri.com.tr
+
+BROADCAST_CONNECTION=log
+FILESYSTEM_DISK=local
+QUEUE_CONNECTION=database
+
+# Cache Settings
+CACHE_DRIVER=file
+CACHE_PREFIX=
+
+# Redis
+REDIS_CLIENT=phpredis
+REDIS_HOST=127.0.0.1
+REDIS_PASSWORD=null
+REDIS_PORT=6379
+
+# Mail Settings
+MAIL_MAILER=smtp
+MAIL_HOST=mail.sohoguvenliksistemleri.com.tr
+MAIL_PORT=587
+MAIL_USERNAME=noreply@sohoguvenliksistemleri.com.tr
+MAIL_PASSWORD=your_mail_password
+MAIL_ENCRYPTION=tls
+MAIL_FROM_ADDRESS="noreply@sohoguvenliksistemleri.com.tr"
+MAIL_FROM_NAME="${APP_NAME}"
+
+# Vite (Production)
+VITE_APP_NAME="${APP_NAME}"
+
+# Frontend URL
+FRONTEND_URL=https://sohoguvenliksistemleri.com.tr
+
+# CORS & Sanctum Settings
+SANCTUM_STATEFUL_DOMAINS=sohoguvenliksistemleri.com.tr,www.sohoguvenliksistemleri.com.tr
+
+# Admin
+ADMIN_EMAIL=admin@sohoguvenliksistemleri.com.tr
+ADMIN_PASSWORD=change_this_password_after_first_login

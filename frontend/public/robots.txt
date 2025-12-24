@@ -1,0 +1,11 @@
+# SOHO Güvenlik - www.sohoguvenlik.com
+
+User-agent: *
+Allow: /
+
+# Sitemaps
+Sitemap: https://www.sohoguvenlik.com/api/public/sitemap.xml
+
+# İndekslenmesin
+Disallow: /admin/
+Disallow: /api/admin/
