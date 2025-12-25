@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use App\Models\Service;
 use App\Models\Client;
 use App\Models\Testimonial;
+use App\Models\Stat;
+use App\Models\Feature;
+use App\Models\HeroSection;
 
 class HomeController extends Controller
 {
@@ -17,6 +20,28 @@ class HomeController extends Controller
             ->take(3)
             ->get();
 
-        return view('home', compact('services', 'clients', 'testimonials'));
+        // Dynamic content from admin panel
+        $stats = Stat::where('is_active', true)->orderBy('order')->get();
+        $whySohoFeatures = Feature::where('section', 'why_soho')
+            ->where('is_active', true)
+            ->orderBy('order')
+            ->get();
+        $whyUsFeatures = Feature::where('section', 'why_us')
+            ->where('is_active', true)
+            ->orderBy('order')
+            ->get();
+        $hero = HeroSection::where('page', 'home')
+            ->where('is_active', true)
+            ->first();
+
+        return view('home', compact(
+            'services',
+            'clients',
+            'testimonials',
+            'stats',
+            'whySohoFeatures',
+            'whyUsFeatures',
+            'hero'
+        ));
     }
 }
