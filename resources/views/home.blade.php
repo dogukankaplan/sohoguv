@@ -126,6 +126,78 @@
             </div>
         </div>
 
+        <!-- Client Logos (@if($clients->count() > 0)) -->
+        @if(isset($clients) && $clients->count() > 0)
+            <div class="relative py-16 bg-slate-950 border-y border-white/5">
+                <div class="mx-auto max-w-7xl px-6 lg:px-8">
+                    <p class="text-center text-sm font-semibold text-slate-500 mb-10">Güvenilen Firmalar</p>
+                    <div class="grid grid-cols-2 gap-8 md:grid-cols-4 lg:grid-cols-6">
+                        @foreach($clients->take(6) as $client)
+                            <div class="col-span-1 flex justify-center items-center">
+                                @if($client->logo)
+                                    <img src="{{ Storage::url($client->logo) }}" alt="{{ $client->name }}"
+                                        class="max-h-12 w-full object-contain opacity-50 hover:opacity-100 transition-opacity grayscale hover:grayscale-0">
+                                @else
+                                    <span class="text-slate-600 text-sm">{{ $client->name }}</span>
+                                @endif
+                            </div>
+                        @endforeach
+                    </div>
+                </div>
+            </div>
+        @endif
+
+        <!-- Testimonials -->
+        @if(isset($testimonials) && $testimonials->count() > 0)
+            <div class="relative py-24 bg-slate-900">
+                <div class="mx-auto max-w-7xl px-6 lg:px-8">
+                    <div class="mx-auto max-w-2xl text-center mb-16">
+                        <h2 class="text-base font-bold text-soho-purple tracking-widest uppercase">Müşteri Yorumları</h2>
+                        <p class="mt-4 text-4xl font-bold tracking-tight text-white">Müşteri Memnuniyeti #1</p>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                        @foreach($testimonials as $testimonial)
+                            <div class="bg-slate-800/50 rounded-3xl p-8 border border-slate-700">
+                                <div class="flex items-center gap-1 mb-6">
+                                    @for($i = 1; $i <= 5; $i++)
+                                        <svg class="w-5 h-5 {{ $i <= $testimonial->rating ? 'text-yellow-400' : 'text-slate-600' }}"
+                                            fill="currentColor" viewBox="0 0 20 20">
+                                            <path
+                                                d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                                        </svg>
+                                    @endfor
+                                </div>
+
+                                <p class="text-slate-300 leading-relaxed mb-6">"{{ $testimonial->content }}"</p>
+
+                                <div class="flex items-center gap-4 pt-6 border-t border-slate-700">
+                                    @if($testimonial->photo)
+                                        <img src="{{ Storage::url($testimonial->photo) }}" alt="{{ $testimonial->name }}"
+                                            class="w-12 h-12 rounded-full object-cover">
+                                    @else
+                                        <div
+                                            class="w-12 h-12 rounded-full bg-gradient-to-br from-soho-teal to-soho-purple flex items-center justify-center">
+                                            <span class="text-lg font-bold text-white">{{ substr($testimonial->name, 0, 1) }}</span>
+                                        </div>
+                                    @endif
+
+                                    <div>
+                                        <p class="font-semibold text-white">{{ $testimonial->name }}</p>
+                                        @if($testimonial->role || $testimonial->company)
+                                            <p class="text-sm text-slate-400">
+                                                {{ $testimonial->role }}@if($testimonial->role && $testimonial->company),
+                                                @endif{{ $testimonial->company }}</p>
+                                        @endif
+                                    </div>
+                                </div>
+                            </div>
+                        @endforeach
+                    </div>
+                </div>
+            </div>
+        @endif
+
         <!-- Why Us Section -->
         <div class="relative py-24 sm:py-32 bg-slate-950">
             <div class="mx-auto max-w-7xl px-6 lg:px-8">
@@ -138,7 +210,7 @@
                     <dl class="grid max-w-xl grid-cols-1 gap-x-8 gap-y-16 lg:max-w-none lg:grid-cols-3">
                         <div class="flex flex-col">
                             <dt class="flex items-center gap-x-3 text-base font-semibold leading-7 text-white">
-                                <svg class="h-5 w-5 flex-none text-soho-teal" viewBox="0 0 20 20" fill="currentColor"
+                                <svg class="h-5 w-5 flex-none text-soho-teal" viewBox="0 0 20 20" fill="current Color"
                                     aria-hidden="true">
                                     <path fill-rule="evenodd"
                                         d="M10 1a4.5 4.5 0 00-4.5 4.5V9H5a2 2 0 00-2 2v6a2 2 0 002 2h10a2 2 0 002-2v-6a2 2 0 00-2-2h-.5V5.5A4.5 4.5 0 0010 1zm3 8V5.5a3 3 0 10-6 0V9h6z"

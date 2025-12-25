@@ -82,11 +82,15 @@
                     </div>
 
                     <!-- Static Links -->
-                    <a href="#"
+                    <a href="{{ route('about') }}"
                         class="inline-flex items-center border-b-2 border-transparent px-1 pt-1 text-sm font-medium text-slate-300 hover:text-white hover:border-soho-purple transition-all duration-200">
                         Hakkımızda
                     </a>
-                    <a href="#"
+                    <a href="{{ route('references') }}"
+                        class="inline-flex items-center border-b-2 border-transparent px-1 pt-1 text-sm font-medium text-slate-300 hover:text-white hover:border-soho-purple transition-all duration-200">
+                        Referanslar
+                    </a>
+                    <a href="{{ route('contact') }}"
                         class="inline-flex items-center border-b-2 border-transparent px-1 pt-1 text-sm font-medium text-slate-300 hover:text-white hover:border-soho-purple transition-all duration-200">
                         İletişim
                     </a>
@@ -146,9 +150,11 @@
                 Talebi</a>
 
             <div class="px-3 py-2 text-xs font-bold text-slate-500 uppercase tracking-widest mt-4">Kurumsal</div>
-            <a href="#"
+            <a href="{{ route('about') }}"
                 class="block rounded-lg px-3 py-2 text-base font-medium text-slate-300 hover:bg-white/5 hover:text-soho-purple">Hakkımızda</a>
-            <a href="#"
+            <a href="{{ route('references') }}"
+                class="block rounded-lg px-3 py-2 text-base font-medium text-slate-300 hover:bg-white/5 hover:text-soho-purple">Referanslar</a>
+            <a href="{{ route('contact') }}"
                 class="block rounded-lg px-3 py-2 text-base font-medium text-slate-300 hover:bg-white/5 hover:text-soho-purple">İletişim</a>
         </div>
     </div>
