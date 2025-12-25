@@ -14,7 +14,7 @@
                 <div class="hidden sm:ml-12 sm:flex sm:space-x-8">
                     <a href="{{ route('home') }}"
                         class="inline-flex items-center border-b-2 border-transparent px-1 pt-1 text-sm font-medium text-slate-300 hover:text-white hover:border-soho-teal transition-all duration-200">
-                        Ana Sayfa
+                        {{ setting('page_home', 'Ana Sayfa') }}
                     </a>
 
                     <!-- Services Dropdown -->
@@ -22,7 +22,7 @@
                         @mouseenter="open = true" @mouseleave="open = false">
                         <button
                             class="inline-flex items-center text-sm font-medium text-slate-300 hover:text-white focus:outline-none transition-colors duration-200 group">
-                            <span>Servisler</span>
+                            <span>{{ setting('page_services', 'Hizmetler') }}</span>
                             <svg class="ml-2 -mr-0.5 h-4 w-4 text-slate-500 group-hover:text-soho-teal transition-colors"
                                 xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2"
                                 stroke="currentColor">
@@ -84,15 +84,15 @@
                     <!-- Static Links -->
                     <a href="{{ route('about') }}"
                         class="inline-flex items-center border-b-2 border-transparent px-1 pt-1 text-sm font-medium text-slate-300 hover:text-white hover:border-soho-purple transition-all duration-200">
-                        Hakkımızda
+                        {{ setting('page_about', 'Hakkımızda') }}
                     </a>
                     <a href="{{ route('references') }}"
                         class="inline-flex items-center border-b-2 border-transparent px-1 pt-1 text-sm font-medium text-slate-300 hover:text-white hover:border-soho-purple transition-all duration-200">
-                        Referanslar
+                        {{ setting('page_references', 'Referanslar') }}
                     </a>
                     <a href="{{ route('contact') }}"
                         class="inline-flex items-center border-b-2 border-transparent px-1 pt-1 text-sm font-medium text-slate-300 hover:text-white hover:border-soho-purple transition-all duration-200">
-                        İletişim
+                        {{ setting('page_contact', 'İletişim') }}
                     </a>
                 </div>
             </div>
@@ -101,7 +101,7 @@
             <div class="hidden sm:flex items-center">
                 <a href="{{ route('requests.fault') }}"
                     class="ml-6 inline-flex items-center rounded-lg bg-indigo-600 px-5 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 transition-colors">
-                    Destek Al
+                    {{ setting('btn_quote', 'Destek Al') }}
                 </a>
             </div>
 

@@ -41,26 +41,26 @@
             <div class="xl:grid xl:grid-cols-3 xl:gap-8 border-b border-slate-800 pb-12 mb-12">
                 <div class="space-y-8">
                     <span class="text-2xl font-black tracking-tight text-white flex items-center gap-1">
-                        @if(isset($globalSettings['logo']) && $globalSettings['logo'])
-                        <img src="{{ Storage::url($globalSettings['logo']) }}" alt="SOHO" class="h-8">
+                        @if(setting('logo'))
+                        <img src="{{ Storage::url(setting('logo')) }}" alt="{{ setting('site_name', 'SOHO') }}" class="h-8">
                         @else
                         SOHO<span class="text-soho-teal text-3xl">.</span>
                         @endif
                     </span>
                     <p class="text-sm leading-6 text-slate-400">
-                        Güvenlik ve teknoloji altyapılarınız için profesyonel çözümler.
+                        {{ setting('footer_about', 'Güvenlik ve teknoloji altyapılarınız için profesyonel çözümler.') }}
                     </p>
                 </div>
                 <div class="mt-16 xl:col-span-2 xl:mt-0">
-                    <h3 class="text-sm font-semibold leading-6 text-white">Bültenimize Abone Olun</h3>
-                    <p class="mt-2 text-sm leading-6 text-slate-400">E-posta ile güncellemelerden haberdar olun.</p>
+                    <h3 class="text-sm font-semibold leading-6 text-white">{{ setting('footer_newsletter_title', 'Bültenimize Abone Olun') }}</h3>
+                    <p class="mt-2 text-sm leading-6 text-slate-400">{{ setting('footer_newsletter_desc', 'E-posta ile güncellemelerden haberdar olun.') }}</p>
                     <form action="{{ route('newsletter.subscribe') }}" method="POST" class="mt-6 sm:flex sm:max-w-md">
                         @csrf
-                        <label for="email-address" class="sr-only">E-posta adresi</label>
-                        <input type="email" name="email" id="email-address" autocomplete="email" required class="w-full min-w-0 appearance-none rounded-xl border-0 bg-slate-900 px-4 py-3 text-base text-white shadow-sm ring-1 ring-inset ring-slate-700 placeholder:text-slate-500 focus:ring-2 focus:ring-inset focus:ring-soho-teal sm:w-64 sm:text-sm sm:leading-6" placeholder="E-posta adresiniz">
+                        <label for="email-address" class="sr-only">{{ setting('placeholder_email', 'E-posta adresi') }}</label>
+                        <input type="email" name="email" id="email-address" autocomplete="email" required class="w-full min-w-0 appearance-none rounded-xl border-0 bg-slate-900 px-4 py-3 text-base text-white shadow-sm ring-1 ring-inset ring-slate-700 placeholder:text-slate-500 focus:ring-2 focus:ring-inset focus:ring-soho-teal sm:w-64 sm:text-sm sm:leading-6" placeholder="{{ setting('placeholder_email', 'E-posta adresiniz') }}">
                         <div class="mt-4 sm:ml-4 sm:mt-0 sm:flex-shrink-0">
                             <button type="submit" class="flex w-full items-center justify-center rounded-xl bg-gradient-to-r from-soho-teal to-soho-purple px-6 py-3 text-sm font-semibold text-white shadow-sm hover:from-soho-purple hover:to-soho-teal focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-soho-teal transition-all">
-                                Abone Ol
+                                {{ setting('btn_subscribe', 'Abone Ol') }}
                             </button>
                         </div>
                     </form>
@@ -72,14 +72,14 @@
                 <div>
                     <h3 class="text-sm font-semibold leading-6 text-white">Kurumsal</h3>
                     <ul role="list" class="mt-6 space-y-4">
-                        <li><a href="{{ route('about') }}" class="text-sm leading-6 text-slate-400 hover:text-soho-teal transition">Hakkımızda</a></li>
-                        <li><a href="{{ route('references') }}" class="text-sm leading-6 text-slate-400 hover:text-soho-teal transition">Referanslar</a></li>
-                        <li><a href="{{ route('contact') }}" class="text-sm leading-6 text-slate-400 hover:text-soho-teal transition">İletişim</a></li>
+                        <li><a href="{{ route('about') }}" class="text-sm leading-6 text-slate-400 hover:text-soho-teal transition">{{ setting('page_about', 'Hakkımızda') }}</a></li>
+                        <li><a href="{{ route('references') }}" class="text-sm leading-6 text-slate-400 hover:text-soho-teal transition">{{ setting('page_references', 'Referanslar') }}</a></li>
+                        <li><a href="{{ route('contact') }}" class="text-sm leading-6 text-slate-400 hover:text-soho-teal transition">{{ setting('page_contact', 'İletişim') }}</a></li>
                     </ul>
                 </div>
                 
                 <div>
-                    <h3 class="text-sm font-semibold leading-6 text-white">Hizmetler</h3>
+                    <h3 class="text-sm font-semibold leading-6 text-white">{{ setting('page_services', 'Hizmetler') }}</h3>
                     <ul role="list" class="mt-6 space-y-4">
                         @if(isset($globalServices))
                             @foreach($globalServices->take(4) as $service)
@@ -99,17 +99,17 @@
                 </div>
                 
                 <div>
-                    <h3 class="text-sm font-semibold leading-6 text-white">İletişim</h3>
+                    <h3 class="text-sm font-semibold leading-6 text-white">{{ setting('page_contact', 'İletişim') }}</h3>
                     <ul role="list" class="mt-6 space-y-4">
-                        <li class="text-sm leading-6 text-slate-400">{{ $globalSettings['phone'] ?? '+90 (555) 123 45 67' }}</li>
-                        <li class="text-sm leading-6 text-slate-400">{{ $globalSettings['email'] ?? 'info@sohoguvenlik.com' }}</li>
-                        <li class="text-sm leading-6 text-slate-400">{{ $globalSettings['address'] ?? 'İstanbul, Türkiye' }}</li>
+                        <li class="text-sm leading-6 text-slate-400">{{ setting('phone', '+90 (555) 123 45 67') }}</li>
+                        <li class="text-sm leading-6 text-slate-400">{{ setting('email', 'info@sohoguvenlik.com') }}</li>
+                        <li class="text-sm leading-6 text-slate-400">{{ setting('address', 'İstanbul, Türkiye') }}</li>
                     </ul>
                 </div>
             </div>
             
             <div class="mt-16 border-t border-slate-800 pt-8 sm:mt-20 lg:mt-24 flex flex-col sm:flex-row justify-between items-center">
-                <p class="text-xs leading-5 text-slate-500">&copy; {{ date('Y') }} SOHO Güvenlik Sistemleri. Tüm hakları saklıdır.</p>
+                <p class="text-xs leading-5 text-slate-500">{{ str_replace('[YEAR]', date('Y'), setting('copyright', '© [YEAR] SOHO Güvenlik Sistemleri. Tüm hakları saklıdır.')) }}</p>
                 
                 <div class="flex space-x-6 mt-4 sm:mt-0">
                     @if(isset($globalSettings['facebook']) && $globalSettings['facebook'])
