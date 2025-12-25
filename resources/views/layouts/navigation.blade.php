@@ -1,76 +1,83 @@
-<nav x-data="{ open: false }" class="bg-white/80 backdrop-blur-md sticky top-0 z-50 border-b border-gray-100">
+<nav x-data="{ open: false, scrolled: false }" @scroll.window="scrolled = (window.pageYOffset > 20)"
+    :class="{ 'bg-white/80 backdrop-blur-md shadow-sm': scrolled, 'bg-transparent': !scrolled }"
+    class="fixed top-0 w-full z-50 transition-all duration-300 border-b border-transparent"
+    :style="scrolled ? 'border-color: rgba(226, 232, 240, 0.8)' : ''">
     <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <div class="flex h-16 justify-between">
+        <div class="flex h-20 justify-between items-center transition-all duration-300" :class="{ 'h-16': scrolled }">
             <div class="flex">
                 <div class="flex flex-shrink-0 items-center">
-                    <a href="{{ route('home') }}" class="text-2xl font-bold tracking-tighter text-gray-900">
-                        SOHO<span class="text-indigo-600">.</span>
+                    <a href="{{ route('home') }}"
+                        class="text-2xl font-bold tracking-tighter text-slate-900 flex items-center gap-1 group">
+                        SOHO<span
+                            class="text-indigo-600 group-hover:rotate-12 transition-transform duration-300 text-3xl">.</span>
                     </a>
                 </div>
-                <div class="hidden sm:ml-6 sm:flex sm:space-x-8">
+                <div class="hidden sm:ml-10 sm:flex sm:space-x-8">
                     <a href="{{ route('home') }}"
-                        class="inline-flex items-center border-b-2 border-transparent px-1 pt-1 text-sm font-medium text-gray-500 hover:border-gray-300 hover:text-gray-700">
+                        class="inline-flex items-center border-b-2 border-transparent px-1 pt-1 text-sm font-medium text-slate-500 hover:text-slate-900 hover:border-indigo-500 transition-all duration-200">
                         Ana Sayfa
                     </a>
 
                     <!-- Services Dropdown -->
                     <div class="relative inline-flex items-center px-1 pt-1" x-data="{ open: false }"
-                        @click.away="open = false">
-                        <button @click="open = ! open"
-                            class="inline-flex items-center text-sm font-medium text-gray-500 hover:text-gray-900 focus:outline-none">
+                        @mouseenter="open = true" @mouseleave="open = false">
+                        <button
+                            class="inline-flex items-center text-sm font-medium text-slate-500 hover:text-slate-900 focus:outline-none transition-colors duration-200 group">
                             <span>Servisler</span>
-                            <svg class="ml-2 -mr-0.5 h-4 w-4" xmlns="http://www.w3.org/2000/svg" fill="none"
-                                viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                            <svg class="ml-2 -mr-0.5 h-4 w-4 text-slate-400 group-hover:text-slate-600 transition-colors"
+                                xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2"
+                                stroke="currentColor">
                                 <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
                             </svg>
                         </button>
                         <div x-show="open" x-transition:enter="transition ease-out duration-200"
-                            x-transition:enter-start="opacity-0 translate-y-1"
-                            x-transition:enter-end="opacity-100 translate-y-0"
+                            x-transition:enter-start="opacity-0 translate-y-2 scale-95"
+                            x-transition:enter-end="opacity-100 translate-y-0 scale-100"
                             x-transition:leave="transition ease-in duration-150"
-                            x-transition:leave-start="opacity-100 translate-y-0"
-                            x-transition:leave-end="opacity-0 translate-y-1"
-                            class="absolute left-0 top-full z-10 mt-1 w-56 origin-top-left rounded-xl bg-white p-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none"
+                            x-transition:leave-start="opacity-100 translate-y-0 scale-100"
+                            x-transition:leave-end="opacity-0 translate-y-2 scale-95"
+                            class="absolute left-0 top-full z-10 mt-1 w-64 origin-top-left rounded-2xl bg-white p-2 shadow-xl ring-1 ring-black ring-opacity-5 focus:outline-none backdrop-blur-xl"
                             style="display: none;">
                             @if(isset($globalServices) && $globalServices->count() > 0)
                                 @foreach($globalServices as $service)
                                     <a href="{{ route('services.show', $service->slug) }}"
-                                        class="block rounded-lg px-4 py-2 text-sm text-gray-700 hover:bg-gray-50">
+                                        class="block rounded-xl px-4 py-3 text-sm text-slate-600 hover:bg-slate-50 hover:text-indigo-600 transition-colors duration-150">
                                         {{ $service->title }}
                                     </a>
                                 @endforeach
                             @else
-                                <span class="block px-4 py-2 text-sm text-gray-500">Servis bulunamadı</span>
+                                <span class="block px-4 py-3 text-sm text-slate-500 italic">Servis bulunamadı</span>
                             @endif
                         </div>
                     </div>
 
                     <!-- Requests Dropdown -->
                     <div class="relative inline-flex items-center px-1 pt-1" x-data="{ open: false }"
-                        @click.away="open = false">
-                        <button @click="open = ! open"
-                            class="inline-flex items-center text-sm font-medium text-gray-500 hover:text-gray-900 focus:outline-none">
+                        @mouseenter="open = true" @mouseleave="open = false">
+                        <button
+                            class="inline-flex items-center text-sm font-medium text-slate-500 hover:text-slate-900 focus:outline-none transition-colors duration-200 group">
                             <span>Talepler</span>
-                            <svg class="ml-2 -mr-0.5 h-4 w-4" xmlns="http://www.w3.org/2000/svg" fill="none"
-                                viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                            <svg class="ml-2 -mr-0.5 h-4 w-4 text-slate-400 group-hover:text-slate-600 transition-colors"
+                                xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2"
+                                stroke="currentColor">
                                 <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
                             </svg>
                         </button>
                         <div x-show="open" x-transition:enter="transition ease-out duration-200"
-                            x-transition:enter-start="opacity-0 translate-y-1"
-                            x-transition:enter-end="opacity-100 translate-y-0"
+                            x-transition:enter-start="opacity-0 translate-y-2 scale-95"
+                            x-transition:enter-end="opacity-100 translate-y-0 scale-100"
                             x-transition:leave="transition ease-in duration-150"
-                            x-transition:leave-start="opacity-100 translate-y-0"
-                            x-transition:leave-end="opacity-0 translate-y-1"
-                            class="absolute left-0 top-full z-10 mt-1 w-56 origin-top-left rounded-xl bg-white p-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none"
+                            x-transition:leave-start="opacity-100 translate-y-0 scale-100"
+                            x-transition:leave-end="opacity-0 translate-y-2 scale-95"
+                            class="absolute left-0 top-full z-10 mt-1 w-56 origin-top-left rounded-2xl bg-white p-2 shadow-xl ring-1 ring-black ring-opacity-5 focus:outline-none"
                             style="display: none;">
                             <a href="{{ route('requests.fault') }}"
-                                class="block rounded-lg px-4 py-2 text-sm text-gray-700 hover:bg-gray-50">
-                                Arıza Talebi
+                                class="flex items-center gap-2 rounded-xl px-4 py-3 text-sm text-slate-600 hover:bg-red-50 hover:text-red-600 transition-colors duration-150">
+                                <span class="w-1.5 h-1.5 rounded-full bg-red-500"></span> Arıza Talebi
                             </a>
                             <a href="{{ route('requests.inventory') }}"
-                                class="block rounded-lg px-4 py-2 text-sm text-gray-700 hover:bg-gray-50">
-                                Envanter Talebi
+                                class="flex items-center gap-2 rounded-xl px-4 py-3 text-sm text-slate-600 hover:bg-amber-50 hover:text-amber-600 transition-colors duration-150">
+                                <span class="w-1.5 h-1.5 rounded-full bg-amber-500"></span> Envanter Talebi
                             </a>
                         </div>
                     </div>
@@ -80,7 +87,7 @@
             <!-- Mobile Menu Button -->
             <div class="-mr-2 flex items-center sm:hidden">
                 <button @click="open = ! open"
-                    class="inline-flex items-center justify-center rounded-md p-2 text-gray-400 hover:bg-gray-100 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500">
+                    class="inline-flex items-center justify-center rounded-xl p-2 text-slate-400 hover:bg-slate-100 hover:text-slate-500 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500 transition-colors">
                     <span class="sr-only">Menüyü aç/kapa</span>
                     <svg class="h-6 w-6" stroke="currentColor" fill="none" viewBox="0 0 24 24">
                         <path :class="{'hidden': open, 'inline-flex': ! open }" class="inline-flex"
@@ -95,26 +102,30 @@
     </div>
 
     <!-- Mobile Menu -->
-    <div :class="{'block': open, 'hidden': ! open}" class="hidden sm:hidden bg-white border-b border-gray-200">
-        <div class="space-y-1 pb-3 pt-2">
+    <div x-show="open" x-transition:enter="transition ease-out duration-200"
+        x-transition:enter-start="opacity-0 -translate-y-2" x-transition:enter-end="opacity-100 translate-y-0"
+        x-transition:leave="transition ease-in duration-150" x-transition:leave-start="opacity-100 translate-y-0"
+        x-transition:leave-end="opacity-0 -translate-y-2"
+        class="sm:hidden bg-white/95 backdrop-blur-md border-b border-slate-200 absolute w-full shadow-lg">
+        <div class="space-y-1 pb-4 pt-2 px-4">
             <a href="{{ route('home') }}"
-                class="block border-l-4 border-transparent py-2 pl-3 pr-4 text-base font-medium text-gray-500 hover:border-gray-300 hover:bg-gray-50 hover:text-gray-700">Ana
+                class="block rounded-lg px-3 py-2 text-base font-medium text-slate-600 hover:bg-slate-50 hover:text-indigo-600">Ana
                 Sayfa</a>
 
-            <div class="px-3 py-2 text-xs font-semibold text-gray-400 uppercase tracking-wider">Servisler</div>
+            <div class="px-3 py-2 text-xs font-bold text-slate-400 uppercase tracking-widest mt-4">Hizmetlerimiz</div>
             @if(isset($globalServices))
                 @foreach($globalServices as $service)
                     <a href="{{ route('services.show', $service->slug) }}"
-                        class="block border-l-4 border-transparent py-2 pl-3 pr-4 text-base font-medium text-gray-500 hover:border-gray-300 hover:bg-gray-50 hover:text-gray-700 sm:pl-5">{{ $service->title }}</a>
+                        class="block rounded-lg px-3 py-2 text-base font-medium text-slate-600 hover:bg-slate-50 hover:text-indigo-600 pl-6 border-l-2 border-transparent hover:border-indigo-500">{{ $service->title }}</a>
                 @endforeach
             @endif
 
-            <div class="px-3 py-2 text-xs font-semibold text-gray-400 uppercase tracking-wider mt-2">Talepler</div>
+            <div class="px-3 py-2 text-xs font-bold text-slate-400 uppercase tracking-widest mt-4">Talep Yönetimi</div>
             <a href="{{ route('requests.fault') }}"
-                class="block border-l-4 border-transparent py-2 pl-3 pr-4 text-base font-medium text-gray-500 hover:border-gray-300 hover:bg-gray-50 hover:text-gray-700">Arıza
+                class="block rounded-lg px-3 py-2 text-base font-medium text-slate-600 hover:bg-red-50 hover:text-red-700">Arıza
                 Talebi</a>
             <a href="{{ route('requests.inventory') }}"
-                class="block border-l-4 border-transparent py-2 pl-3 pr-4 text-base font-medium text-gray-500 hover:border-gray-300 hover:bg-gray-50 hover:text-gray-700">Envanter
+                class="block rounded-lg px-3 py-2 text-base font-medium text-slate-600 hover:bg-amber-50 hover:text-amber-700">Envanter
                 Talebi</a>
         </div>
     </div>

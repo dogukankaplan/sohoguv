@@ -1,102 +1,145 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="relative bg-white overflow-hidden">
+    <div class="relative overflow-hidden bg-white">
+        <!-- Abstract Background Shapes -->
+        <div class="absolute inset-0 z-0 pointer-events-none">
+            <div
+                class="absolute -top-40 -right-40 w-[600px] h-[600px] rounded-full bg-indigo-50/50 blur-3xl opacity-60 mix-blend-multiply animate-blob">
+            </div>
+            <div
+                class="absolute top-40 -left-40 w-[600px] h-[600px] rounded-full bg-blue-50/50 blur-3xl opacity-60 mix-blend-multiply animate-blob animation-delay-2000">
+            </div>
+            <div
+                class="absolute -bottom-40 left-1/2 w-[600px] h-[600px] rounded-full bg-purple-50/50 blur-3xl opacity-60 mix-blend-multiply animate-blob animation-delay-4000">
+            </div>
+        </div>
+
         <!-- Hero Section -->
-        <div class="pt-16 pb-80 sm:pt-24 sm:pb-40 lg:pt-40 lg:pb-48">
-            <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 sm:static">
-                <div class="sm:max-w-lg">
-                    <h1 class="text-4xl font font-extrabold tracking-tight text-gray-900 sm:text-6xl">
-                        SOHO Güvenlik Sistemleri
-                    </h1>
-                    <p class="mt-4 text-xl text-gray-500">
-                        Kurumsal güvenlik ve teknoloji altyapınız için profesyonel, uçtan uca çözümler.
-                    </p>
-                    <div class="mt-10">
-                        <a href="#services"
-                            class="inline-block rounded-md border border-transparent bg-indigo-600 px-8 py-3 text-center font-medium text-white hover:bg-indigo-700 transition">
-                            Hizmetlerimizi İnceleyin
-                        </a>
-                    </div>
-                </div>
-                <div class="mt-10">
-                    <!-- Decorative image grid/hero image could go here -->
-                    <div aria-hidden="true"
-                        class="pointer-events-none lg:absolute lg:inset-y-0 lg:max-w-7xl lg:mx-auto lg:w-full">
-                        <div
-                            class="absolute transform sm:left-1/2 sm:top-0 sm:translate-x-8 lg:left-1/2 lg:top-1/2 lg:-translate-y-1/2 lg:translate-x-8">
-                            <!-- Abstract shape or relevant professional image -->
-                            <div class="flex items-center space-x-6 lg:space-x-8 opacity-20">
-                                <div class="grid flex-shrink-0 grid-cols-1 gap-y-6 lg:gap-y-8">
-                                    <div
-                                        class="h-64 w-44 overflow-hidden rounded-lg bg-gray-100 sm:opacity-0 lg:opacity-100">
-                                    </div>
-                                    <div class="h-64 w-44 overflow-hidden rounded-lg bg-indigo-50"></div>
-                                </div>
-                                <div class="grid flex-shrink-0 grid-cols-1 gap-y-6 lg:gap-y-8">
-                                    <div class="h-64 w-44 overflow-hidden rounded-lg bg-gray-100"></div>
-                                    <div class="h-64 w-44 overflow-hidden rounded-lg bg-indigo-50"></div>
-                                    <div class="h-64 w-44 overflow-hidden rounded-lg bg-gray-100"></div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+        <div class="relative z-10 pt-20 pb-32 sm:pt-32 sm:pb-40 lg:pb-48">
+            <div class="mx-auto max-w-7xl px-6 lg:px-8 text-center">
+                <h1 class="text-5xl font-extrabold tracking-tight text-slate-900 sm:text-7xl mb-8 drop-shadow-sm">
+                    Geleceğin Güvenlik <br>
+                    <span class="text-transparent bg-clip-text bg-gradient-to-r from-indigo-600 to-blue-500">Çözümleri
+                        Burada.</span>
+                </h1>
+                <p class="mt-6 text-lg leading-8 text-slate-600 max-w-2xl mx-auto font-medium">
+                    Kurumsal altyapınız için uçtan uca, yönetilebilir ve akıllı güvenlik sistemleri.
+                    SOHO ile teknolojiyi güvenliğe dönüştürün.
+                </p>
+                <div class="mt-12 flex items-center justify-center gap-x-6">
+                    <a href="#services"
+                        class="rounded-full bg-slate-900 px-8 py-3.5 text-sm font-semibold text-white shadow-lg shadow-indigo-500/20 hover:bg-slate-800 hover:scale-105 transition-all duration-300 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
+                        Keşfetmeye Başla
+                    </a>
+                    <a href="{{ route('requests.fault') }}"
+                        class="text-sm font-semibold leading-6 text-slate-900 flex items-center gap-2 hover:text-indigo-600 transition-colors">
+                        Arıza Bildir <span aria-hidden="true">→</span>
+                    </a>
                 </div>
             </div>
         </div>
 
-        <!-- Features / Services Grid -->
-        <div id="services" class="bg-gray-50 py-24 sm:py-32">
+        <!-- Services Section -->
+        <div id="services" class="relative z-10 py-24 sm:py-32 bg-slate-50/50 backdrop-blur-sm">
             <div class="mx-auto max-w-7xl px-6 lg:px-8">
-                <div class="mx-auto max-w-2xl text-center">
-                    <h2 class="text-base font-semibold leading-7 text-indigo-600">Uzmanlık Alanlarımız</h2>
-                    <p class="mt-2 text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">Teknoloji ve Güvenlik
-                        Çözümleri</p>
+                <div class="mx-auto max-w-2xl text-center mb-16">
+                    <h2 class="text-base font-semibold leading-7 text-indigo-600 uppercase tracking-wide">Hizmetlerimiz</h2>
+                    <p class="mt-2 text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">Teknolojiyi Sizin İçin
+                        Yönetiyoruz</p>
                 </div>
-                <div class="mx-auto mt-16 grid max-w-2xl grid-cols-1 gap-x-8 gap-y-20 lg:mx-0 lg:max-w-none lg:grid-cols-3">
+
+                <div class="mx-auto grid max-w-2xl grid-cols-1 gap-x-8 gap-y-12 lg:mx-0 lg:max-w-none lg:grid-cols-3">
                     @forelse($services as $service)
                         <article
-                            class="flex flex-col items-start justify-between bg-white rounded-2xl p-6 shadow-sm hover:shadow-md transition duration-300">
-                            <div class="relative w-full">
+                            class="flex flex-col items-start justify-between bg-white rounded-3xl p-2 shadow-sm ring-1 ring-slate-200/50 hover:shadow-2xl hover:shadow-indigo-500/10 hover:-translate-y-1 transition-all duration-300 group h-full">
+                            <div class="relative w-full overflow-hidden rounded-2xl aspect-[16/9]">
                                 @if($service->image)
                                     <img src="{{ Storage::url($service->image) }}" alt="{{ $service->title }}"
-                                        class="aspect-[16/9] w-full rounded-2xl bg-gray-100 object-cover sm:aspect-[2/1] lg:aspect-[3/2]">
+                                        class="absolute inset-0 h-full w-full object-cover transition-transform duration-500 group-hover:scale-110">
                                 @else
                                     <div
-                                        class="aspect-[16/9] w-full rounded-2xl bg-gray-100 sm:aspect-[2/1] lg:aspect-[3/2] flex items-center justify-center text-gray-300">
-                                        <svg class="h-12 w-12" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                            <path stroke-line-cap="round" stroke-linejoin="round" stroke-width="1"
+                                        class="absolute inset-0 bg-gradient-to-br from-slate-100 to-slate-200 flex items-center justify-center text-slate-300 group-hover:scale-110 transition-transform duration-500">
+                                        <svg class="h-12 w-12 opacity-50" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                            <path stroke-line-cap="round" stroke-linejoin="round" stroke-width="1.5"
                                                 d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
                                         </svg>
                                     </div>
                                 @endif
-                            </div>
-                            <div class="max-w-xl">
-                                <div class="mt-8 flex items-center gap-x-4 text-xs">
-                                    <span class="text-gray-500">{{ $service->created_at->format('d.m.Y') }}</span>
-                                    <a href="{{ route('services.show', $service->slug) }}"
-                                        class="relative z-10 rounded-full bg-gray-50 px-3 py-1.5 font-medium text-gray-600 hover:bg-gray-100">Hizmet</a>
+                                <div
+                                    class="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                                 </div>
-                                <div class="group relative">
-                                    <h3 class="mt-3 text-lg font-semibold leading-6 text-gray-900 group-hover:text-gray-600">
-                                        <a href="{{ route('services.show', $service->slug) }}">
-                                            <span class="absolute inset-0"></span>
-                                            {{ $service->title }}
-                                        </a>
-                                    </h3>
-                                    <p class="mt-5 line-clamp-3 text-sm leading-6 text-gray-600">
-                                        {{ Str::limit(strip_tags($service->content), 120) }}
-                                    </p>
+                            </div>
+                            <div class="max-w-xl p-6 flex flex-col flex-grow">
+                                <div class="flex items-center gap-x-4 text-xs mb-4">
+                                    <span
+                                        class="text-slate-500 bg-slate-100 px-3 py-1 rounded-full font-medium">{{ $service->created_at->translatedFormat('d F Y') }}</span>
+                                </div>
+                                <h3
+                                    class="text-xl font-bold leading-6 text-slate-900 group-hover:text-indigo-600 transition-colors duration-200 mb-3">
+                                    <a href="{{ route('services.show', $service->slug) }}">
+                                        <span class="absolute inset-0"></span>
+                                        {{ $service->title }}
+                                    </a>
+                                </h3>
+                                <p class="mt-2 line-clamp-3 text-sm leading-6 text-slate-600 flex-grow">
+                                    {{ Str::limit(strip_tags($service->content), 120) }}
+                                </p>
+                                <div
+                                    class="mt-6 flex items-center text-indigo-600 font-semibold text-sm group-hover:translate-x-1 transition-transform duration-200">
+                                    Detayları İncele <svg class="w-4 h-4 ml-1" fill="none" viewBox="0 0 24 24"
+                                        stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                            d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                                    </svg>
                                 </div>
                             </div>
                         </article>
                     @empty
-                        <div class="col-span-3 text-center text-gray-500 py-12">
-                            Henüz hizmet eklenmemiş.
+                        <div
+                            class="col-span-3 flex flex-col items-center justify-center text-center py-20 bg-slate-50 rounded-3xl border-2 border-dashed border-slate-200">
+                            <svg class="h-12 w-12 text-slate-400 mb-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
+                                    d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" />
+                            </svg>
+                            <h3 class="mt-2 text-sm font-semibold text-slate-900">Henüz hizmet bulunmuyor</h3>
+                            <p class="mt-1 text-sm text-slate-500">Admin panelinden yeni hizmetler ekleyebilirsiniz.</p>
                         </div>
                     @endforelse
                 </div>
             </div>
         </div>
     </div>
+
+    <style>
+        @keyframes blob {
+            0% {
+                transform: translate(0px, 0px) scale(1);
+            }
+
+            33% {
+                transform: translate(30px, -50px) scale(1.1);
+            }
+
+            66% {
+                transform: translate(-20px, 20px) scale(0.9);
+            }
+
+            100% {
+                transform: translate(0px, 0px) scale(1);
+            }
+        }
+
+        .animate-blob {
+            animation: blob 7s infinite;
+        }
+
+        .animation-delay-2000 {
+            animation-delay: 2s;
+        }
+
+        .animation-delay-4000 {
+            animation-delay: 4s;
+        }
+    </style>
 @endsection
