@@ -126,7 +126,7 @@
             </div>
         </div>
 
-        <!-- Client Logos (@if($clients->count() > 0)) -->
+        <!-- Client Logos -->
         @if(isset($clients) && $clients->count() > 0)
             <div class="relative py-16 bg-slate-950 border-y border-white/5">
                 <div class="mx-auto max-w-7xl px-6 lg:px-8">
@@ -186,8 +186,8 @@
                                         <p class="font-semibold text-white">{{ $testimonial->name }}</p>
                                         @if($testimonial->role || $testimonial->company)
                                             <p class="text-sm text-slate-400">
-                                                {{ $testimonial->role }}@if($testimonial->role && $testimonial->company),
-                                                @endif{{ $testimonial->company }}</p>
+                                                @if($testimonial->role){{ $testimonial->role }}@endif@if($testimonial->role && $testimonial->company),
+                                                @endif@if($testimonial->company){{ $testimonial->company }}@endif</p>
                                         @endif
                                     </div>
                                 </div>
@@ -210,7 +210,7 @@
                     <dl class="grid max-w-xl grid-cols-1 gap-x-8 gap-y-16 lg:max-w-none lg:grid-cols-3">
                         <div class="flex flex-col">
                             <dt class="flex items-center gap-x-3 text-base font-semibold leading-7 text-white">
-                                <svg class="h-5 w-5 flex-none text-soho-teal" viewBox="0 0 20 20" fill="current Color"
+                                <svg class="h-5 w-5 flex-none text-soho-teal" viewBox="0 0 20 20" fill="currentColor"
                                     aria-hidden="true">
                                     <path fill-rule="evenodd"
                                         d="M10 1a4.5 4.5 0 00-4.5 4.5V9H5a2 2 0 00-2 2v6a2 2 0 002 2h10a2 2 0 002-2v-6a2 2 0 00-2-2h-.5V5.5A4.5 4.5 0 0010 1zm3 8V5.5a3 3 0 10-6 0V9h6z"
