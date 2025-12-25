@@ -20,7 +20,7 @@
             <div class="absolute bottom-0 left-0 w-full pb-16 pt-12">
                 <div class="mx-auto max-w-7xl px-6 lg:px-8">
                     <nav class="flex mb-4 text-sm font-medium text-slate-300 animate-fade-in-up">
-                        <a href="{{ route('home') }}" class="hover:text-white transition-colors">Ana Sayfa</a>
+                        <a href="{{ route('home') }}" class="hover:text-white transition-colors">{{ setting('page_home', 'Ana Sayfa') }}</a>
                         <span class="mx-2">/</span>
                         <span class="text-white">{{ $service->title }}</span>
                     </nav>
@@ -45,7 +45,7 @@
                 <!-- Sidebar / CTA -->
                 <div class="space-y-8">
                     <div class="rounded-3xl bg-slate-50 p-8 border border-slate-100 shadow-sm sticky top-24">
-                        <h3 class="text-xl font-bold text-slate-900 mb-6">Hızlı İşlemler</h3>
+                        <h3 class="text-xl font-bold text-slate-900 mb-6">{{ setting('sidebar_actions_title', 'Hızlı İşlemler') }}</h3>
 
                         <div class="space-y-4">
                             <div
@@ -55,13 +55,12 @@
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                             d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
                                     </svg>
-                                    <h4 class="font-semibold text-slate-900">Teknik Destek</h4>
+                                    <h4 class="font-semibold text-slate-900">{{ setting('sidebar_support_title', 'Teknik Destek') }}</h4>
                                 </div>
-                                <p class="text-sm text-slate-500 mb-4">Bir sorun mu yaşıyorsunuz? Teknik ekibimize bildirin.
+                                <p class="text-sm text-slate-500 mb-4">{{ setting('sidebar_support_desc', 'Bir sorun mu yaşıyorsunuz? Teknik ekibimize bildirin.') }}
                                 </p>
                                 <a href="{{ route('requests.fault') }}"
-                                    class="block w-full text-center rounded-xl bg-indigo-50 px-4 py-2 text-sm font-semibold text-indigo-600 hover:bg-indigo-100 transition-colors">Arıza
-                                    Kaydı Oluştur</a>
+                                    class="block w-full text-center rounded-xl bg-indigo-50 px-4 py-2 text-sm font-semibold text-indigo-600 hover:bg-indigo-100 transition-colors">{{ setting('btn_create_fault', 'Arıza Kaydı Oluştur') }}</a>
                             </div>
 
                             <div
@@ -71,12 +70,11 @@
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                             d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4" />
                                     </svg>
-                                    <h4 class="font-semibold text-slate-900">Envanter Talebi</h4>
+                                    <h4 class="font-semibold text-slate-900">{{ setting('sidebar_inventory_title', 'Envanter Talebi') }}</h4>
                                 </div>
-                                <p class="text-sm text-slate-500 mb-4">Yeni donanım veya yazılım ihtiyacınız mı var?</p>
+                                <p class="text-sm text-slate-500 mb-4">{{ setting('sidebar_inventory_desc', 'Yeni donanım veya yazılım ihtiyacınız mı var?') }}</p>
                                 <a href="{{ route('requests.inventory') }}"
-                                    class="block w-full text-center rounded-xl bg-amber-50 px-4 py-2 text-sm font-semibold text-amber-600 hover:bg-amber-100 transition-colors">Talep
-                                    Oluştur</a>
+                                    class="block w-full text-center rounded-xl bg-amber-50 px-4 py-2 text-sm font-semibold text-amber-600 hover:bg-amber-100 transition-colors">{{ setting('btn_create_request', 'Talep Oluştur') }}</a>
                             </div>
                         </div>
                     </div>

@@ -10,8 +10,9 @@
 
         <div class="max-w-xl w-full">
             <div class="text-center mb-10">
-                <h2 class="text-3xl font-bold tracking-tight text-white mb-2">Teknik Destek Formu</h2>
-                <p class="text-indigo-100">Arızayı detaylandırın, çözüm üretelim.</p>
+                <h2 class="text-3xl font-bold tracking-tight text-white mb-2">
+                    {{ setting('fault_form_title', 'Teknik Destek Formu') }}</h2>
+                <p class="text-indigo-100">{{ setting('fault_form_desc', 'Arızayı detaylandırın, çözüm üretelim.') }}</p>
             </div>
 
             <div class="bg-white rounded-3xl shadow-2xl overflow-hidden ring-1 ring-slate-900/5">
@@ -32,8 +33,8 @@
 
                     <div class="space-y-5">
                         <div>
-                            <label for="name" class="block text-sm font-semibold text-slate-700 mb-1">Ad Soyad /
-                                Firma</label>
+                            <label for="name"
+                                class="block text-sm font-semibold text-slate-700 mb-1">{{ setting('label_name_company', 'Ad Soyad / Firma') }}</label>
                             <input type="text" name="name" id="name" required
                                 class="block w-full rounded-xl border-slate-200 bg-slate-50 px-4 py-3 text-slate-900 placeholder-slate-400 focus:border-indigo-500 focus:bg-white focus:ring-2 focus:ring-indigo-200 transition-all duration-200"
                                 placeholder="Örn: Ahmet Yılmaz">
@@ -41,8 +42,8 @@
                         </div>
 
                         <div>
-                            <label for="contact_info" class="block text-sm font-semibold text-slate-700 mb-1">İletişim
-                                Bilgileri</label>
+                            <label for="contact_info"
+                                class="block text-sm font-semibold text-slate-700 mb-1">{{ setting('label_contact_info', 'İletişim Bilgileri') }}</label>
                             <input type="text" name="contact_info" id="contact_info" required
                                 class="block w-full rounded-xl border-slate-200 bg-slate-50 px-4 py-3 text-slate-900 placeholder-slate-400 focus:border-indigo-500 focus:bg-white focus:ring-2 focus:ring-indigo-200 transition-all duration-200"
                                 placeholder="0555 555 5555 veya email@sirket.com">
@@ -51,8 +52,8 @@
                         </div>
 
                         <div>
-                            <label for="details" class="block text-sm font-semibold text-slate-700 mb-1">Arıza
-                                Detayı</label>
+                            <label for="details"
+                                class="block text-sm font-semibold text-slate-700 mb-1">{{ setting('label_fault_details', 'Arıza Detayı') }}</label>
                             <textarea name="details" id="details" rows="5" required
                                 class="block w-full rounded-xl border-slate-200 bg-slate-50 px-4 py-3 text-slate-900 placeholder-slate-400 focus:border-indigo-500 focus:bg-white focus:ring-2 focus:ring-indigo-200 transition-all duration-200"
                                 placeholder="Yaşadığınız sorunu detaylı bir şekilde açıklayınız..."></textarea>
@@ -63,7 +64,7 @@
                     <div class="pt-2">
                         <button type="submit"
                             class="w-full rounded-xl bg-indigo-600 px-4 py-3.5 text-sm font-semibold text-white shadow-lg shadow-indigo-500/30 hover:bg-indigo-700 hover:scale-[1.02] active:scale-[0.98] transition-all duration-200 flex items-center justify-center gap-2">
-                            <span>Gönder ve Talep Oluştur</span>
+                            <span>{{ setting('btn_submit_request', 'Gönder ve Talep Oluştur') }}</span>
                             <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                     d="M14 5l7 7m0 0l-7 7m7-7H3" />

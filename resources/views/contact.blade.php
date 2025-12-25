@@ -5,17 +5,17 @@
         <div class="mx-auto max-w-7xl px-6 lg:px-8">
             <div class="mx-auto max-w-2xl text-center mb-16">
                 <h1 class="text-4xl font-bold tracking-tight sm:text-5xl mb-4">
-                    <span
-                        class="text-transparent bg-clip-text bg-gradient-to-r from-soho-teal to-soho-purple">İletişime</span>
-                    Geçin
+                    {!! setting('contact_hero_title', '<span class="text-transparent bg-clip-text bg-gradient-to-r from-soho-teal to-soho-purple">İletişime</span> Geçin') !!}
                 </h1>
-                <p class="text-lg text-slate-400">Sorularınız için bize ulaşın. En kısa sürede size dönüş yapacağız.</p>
+                <p class="text-lg text-slate-400">
+                    {{ setting('contact_hero_desc', 'Sorularınız için bize ulaşın. En kısa sürede size dönüş yapacağız.') }}
+                </p>
             </div>
 
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
                 <!-- Contact Form -->
                 <div class="bg-slate-800/50 rounded-3xl p-10 border border-slate-700">
-                    <h2 class="text-2xl font-bold mb-6">Mesaj Gönderin</h2>
+                    <h2 class="text-2xl font-bold mb-6">{{ setting('contact_form_title', 'Mesaj Gönderin') }}</h2>
 
                     @if(session('success'))
                         <div class="mb-6 rounded-xl bg-green-500/10 border border-green-500/30 p-4">
@@ -61,7 +61,7 @@
 
                         <button type="submit"
                             class="w-full rounded-xl bg-gradient-to-r from-soho-teal to-soho-purple px-6 py-4 text-sm font-bold text-white shadow-lg hover:shadow-soho-purple/50 transition-all duration-300 hover:scale-105">
-                            Mesajı Gönder
+                            {{ setting('btn_submit', 'Mesajı Gönder') }}
                         </button>
                     </form>
                 </div>
@@ -78,8 +78,8 @@
                                 </svg>
                             </div>
                             <div>
-                                <h3 class="font-bold mb-2">Telefon</h3>
-                                <p class="text-slate-400">{{ $globalSettings['phone'] ?? '+90 (555) 123 45 67' }}</p>
+                                <h3 class="font-bold mb-2">{{ setting('label_phone', 'Telefon') }}</h3>
+                                <p class="text-slate-400">{{ setting('phone', '+90 (555) 123 45 67') }}</p>
                             </div>
                         </div>
                     </div>
@@ -94,8 +94,8 @@
                                 </svg>
                             </div>
                             <div>
-                                <h3 class="font-bold mb-2">E-posta</h3>
-                                <p class="text-slate-400">{{ $globalSettings['email'] ?? 'info@sohoguvenlik.com' }}</p>
+                                <h3 class="font-bold mb-2">{{ setting('label_email', 'E-posta') }}</h3>
+                                <p class="text-slate-400">{{ setting('email', 'info@sohoguvenlik.com') }}</p>
                             </div>
                         </div>
                     </div>
@@ -112,8 +112,8 @@
                                 </svg>
                             </div>
                             <div>
-                                <h3 class="font-bold mb-2">Adres</h3>
-                                <p class="text-slate-400">{{ $globalSettings['address'] ?? 'İstanbul, Türkiye' }}</p>
+                                <h3 class="font-bold mb-2">{{ setting('label_address', 'Adres') }}</h3>
+                                <p class="text-slate-400">{{ setting('address', 'İstanbul, Türkiye') }}</p>
                             </div>
                         </div>
                     </div>

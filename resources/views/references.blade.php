@@ -6,11 +6,10 @@
         <div class="relative pt-32 pb-20">
             <div class="mx-auto max-w-7xl px-6 lg:px-8 text-center">
                 <h1 class="text-5xl font-black tracking-tight sm:text-6xl mb-6">
-                    <span
-                        class="text-transparent bg-clip-text bg-gradient-to-r from-soho-teal to-soho-purple">Referanslarımız</span>
+                    {!! setting('references_hero_title', '<span class="text-transparent bg-clip-text bg-gradient-to-r from-soho-teal to-soho-purple">Referanslarımız</span>') !!}
                 </h1>
                 <p class="mt-6 text-lg leading-8 text-slate-400 max-w-2xl mx-auto">
-                    Türkiye'nin önde gelen kurumlarına hizmet vermenin gururunu yaşıyoruz.
+                    {{ setting('references_hero_desc', "Türkiye'nin önde gelen kurumlarına hizmet vermenin gururunu yaşıyoruz.") }}
                 </p>
             </div>
         </div>
@@ -19,7 +18,7 @@
         @if($clients->count() > 0)
             <div class="py-24 bg-slate-950">
                 <div class="mx-auto max-w-7xl px-6 lg:px-8">
-                    <h2 class="text-3xl font-bold text-center mb-16">Güvenilir İş Ortaklarımız</h2>
+                    <h2 class="text-3xl font-bold text-center mb-16">{{ setting('clients_title', 'Güvenilir İş Ortaklarımız') }}</h2>
 
                     <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
                         @foreach($clients as $client)
@@ -44,8 +43,8 @@
             <div class="py-24 bg-slate-900">
                 <div class="mx-auto max-w-7xl px-6 lg:px-8">
                     <div class="mx-auto max-w-2xl text-center mb-16">
-                        <h2 class="text-base font-bold text-soho-teal tracking-widest uppercase">Müşteri Yorumları</h2>
-                        <p class="mt-4 text-4xl font-bold tracking-tight text-white">Size En İyisini Sunuyoruz</p>
+                        <h2 class="text-base font-bold text-soho-teal tracking-widest uppercase">{{ setting('testimonials_subtitle', 'Müşteri Yorumları') }}</h2>
+                        <p class="mt-4 text-4xl font-bold tracking-tight text-white">{{ setting('testimonials_title', 'Size En İyisini Sunuyoruz') }}</p>
                     </div>
 
                     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -102,7 +101,7 @@
         @if($clients->count() === 0 && $testimonials->count() === 0)
             <div class="py-24">
                 <div class="mx-auto max-w-2xl text-center">
-                    <p class="text-slate-500">Referanslar yakında eklenecek.</p>
+                    <p class="text-slate-500">{{ setting('msg_no_clients', 'Referanslar yakında eklenecek.') }}</p>
                 </div>
             </div>
         @endif

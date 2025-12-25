@@ -6,15 +6,10 @@
         <div class="relative pt-32 pb-20">
             <div class="mx-auto max-w-7xl px-6 lg:px-8 text-center">
                 <h1 class="text-5xl font-black tracking-tight sm:text-6xl mb-6">
-                    <span
-                        class="text-transparent bg-clip-text bg-gradient-to-r from-soho-teal to-soho-purple">Güvenlik</span>
-                    ve <span
-                        class="text-transparent bg-clip-text bg-gradient-to-r from-soho-purple to-soho-teal">Teknolojiyi</span><br>
-                    Birleştiriyoruz
+                    {!! setting('about_hero_title', '<span class="text-transparent bg-clip-text bg-gradient-to-r from-soho-teal to-soho-purple">Güvenlik</span> ve <span class="text-transparent bg-clip-text bg-gradient-to-r from-soho-purple to-soho-teal">Teknolojiyi</span><br>Birleştiriyoruz') !!}
                 </h1>
                 <p class="mt-6 text-lg leading-8 text-slate-400 max-w-2xl mx-auto">
-                    SOHO Güvenlik Sistemleri olarak, sektörde 15 yıldır müşterilerimize en iyi hizmeti sunmanın gururunu
-                    yaşıyoruz.
+                    {{ setting('about_hero_desc', 'SOHO Güvenlik Sistemleri olarak, sektörde 15 yıldır müşterilerimize en iyi hizmeti sunmanın gururunu yaşıyoruz.') }}
                 </p>
             </div>
         </div>
@@ -30,10 +25,9 @@
                                     d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
                             </svg>
                         </div>
-                        <h2 class="text-2xl font-bold mb-4">Misyonumuz</h2>
+                        <h2 class="text-2xl font-bold mb-4">{{ setting('mission_title', 'Misyonumuz') }}</h2>
                         <p class="text-slate-400 leading-relaxed">
-                            Kurumsal güvenlik ve teknoloji altyapılarını en yüksek standartlarda hizmet vererek
-                            güçlendirmek, müşterilerimizin iş sürekliliğini ve güvenliğini garanti altına almak.
+                            {{ setting('mission_desc', 'Kurumsal güvenlik ve teknoloji altyapılarını en yüksek standartlarda hizmet vererek güçlendirmek, müşterilerimizin iş sürekliliğini ve güvenliğini garanti altına almak.') }}
                         </p>
                     </div>
 
@@ -46,10 +40,9 @@
                                     d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
                             </svg>
                         </div>
-                        <h2 class="text-2xl font-bold mb-4">Vizyonumuz</h2>
+                        <h2 class="text-2xl font-bold mb-4">{{ setting('vision_title', 'Vizyonumuz') }}</h2>
                         <p class="text-slate-400 leading-relaxed">
-                            Türkiye'nin güvenlik ve teknoloji sektöründe lider firma olmak, innovative çözümlerimizle
-                            müşterilerimize katma değer yaratmaya devam etmek.
+                            {{ setting('vision_desc', "Türkiye'nin güvenlik ve teknoloji sektöründe lider firma olmak, innovative çözümlerimizle müşterilerimize katma değer yaratmaya devam etmek.") }}
                         </p>
                     </div>
                 </div>
@@ -61,8 +54,10 @@
             <div class="py-24 bg-slate-900">
                 <div class="mx-auto max-w-7xl px-6 lg:px-8">
                     <div class="mx-auto max-w-2xl text-center mb-16">
-                        <h2 class="text-base font-bold text-soho-teal tracking-widest uppercase">Ekibimiz</h2>
-                        <p class="mt-4 text-4xl font-bold tracking-tight text-white">Uzman Kadromuz</p>
+                        <h2 class="text-base font-bold text-soho-teal tracking-widest uppercase">
+                            {{ setting('team_subtitle', 'Ekibimiz') }}</h2>
+                        <p class="mt-4 text-4xl font-bold tracking-tight text-white">
+                            {{ setting('team_title', 'Uzman Kadromuz') }}</p>
                     </div>
 
                     <div class="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3">
@@ -97,7 +92,8 @@
         <div class="py-24 bg-slate-950">
             <div class="mx-auto max-w-7xl px-6 lg:px-8">
                 <div class="mx-auto max-w-2xl text-center mb-16">
-                    <h2 class="text-4xl font-bold tracking-tight text-white">Değerlerimiz</h2>
+                    <h2 class="text-4xl font-bold tracking-tight text-white">{{ setting('values_title', 'Değerlerimiz') }}
+                    </h2>
                 </div>
 
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -105,24 +101,26 @@
                         <div class="w-16 h-16 rounded-full bg-soho-teal/20 flex items-center justify-center mx-auto mb-4">
                             <span class="text-2xl font-bold text-soho-teal">01</span>
                         </div>
-                        <h3 class="text-xl font-bold text-white mb-3">Güvenilirlik</h3>
-                        <p class="text-slate-400">Müşteri memnuniyeti odaklı, şeffaf ve dürüst iş anlayışı</p>
+                        <h3 class="text-xl font-bold text-white mb-3">{{ setting('value_1_title', 'Güvenilirlik') }}</h3>
+                        <p class="text-slate-400">
+                            {{ setting('value_1_desc', 'Müşteri memnuniyeti odaklı, şeffaf ve dürüst iş anlayışı') }}</p>
                     </div>
 
                     <div class="text-center">
                         <div class="w-16 h-16 rounded-full bg-soho-purple/20 flex items-center justify-center mx-auto mb-4">
                             <span class="text-2xl font-bold text-soho-purple">02</span>
                         </div>
-                        <h3 class="text-xl font-bold text-white mb-3">Kalite</h3>
-                        <p class="text-slate-400">En son teknolojiler ve uluslararası standartlar</p>
+                        <h3 class="text-xl font-bold text-white mb-3">{{ setting('value_2_title', 'Kalite') }}</h3>
+                        <p class="text-slate-400">
+                            {{ setting('value_2_desc', 'En son teknolojiler ve uluslararası standartlar') }}</p>
                     </div>
 
                     <div class="text-center">
                         <div class="w-16 h-16 rounded-full bg-soho-teal/20 flex items-center justify-center mx-auto mb-4">
                             <span class="text-2xl font-bold text-soho-teal">03</span>
                         </div>
-                        <h3 class="text-xl font-bold text-white mb-3">İnovasyon</h3>
-                        <p class="text-slate-400">Sürekli gelişim ve yenilikçi çözümler</p>
+                        <h3 class="text-xl font-bold text-white mb-3">{{ setting('value_3_title', 'İnovasyon') }}</h3>
+                        <p class="text-slate-400">{{ setting('value_3_desc', 'Sürekli gelişim ve yenilikçi çözümler') }}</p>
                     </div>
                 </div>
             </div>
