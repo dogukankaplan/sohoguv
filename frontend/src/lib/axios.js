@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const api = axios.create({
-  baseURL: 'https://api.sohoguvenliksistemleri.com.tr/api',
+  baseURL: 'http://37.148.213.126/api',
   headers: {  
     'Content-Type': 'application/json',
     'Accept': 'application/json',
