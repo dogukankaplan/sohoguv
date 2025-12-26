@@ -66,15 +66,15 @@
                 </div>
 
                 {{-- Customer Section --}}
-                <div style="margin-bottom: 20px; background: #f5f5f5; padding: 12px; border: 1px solid #ddd;">
+                <div style="margin-bottom: 20px; padding: 12px 0; border-bottom: 1px solid #ddd;">
                     <div style="font-size: 11px; font-weight: 700; margin-bottom: 8px;">MÜŞTERİ</div>
                     <div style="margin-bottom: 5px;">
                         <input type="text" id="customer-name" placeholder="HIKVISION 4LU AHD SET"
-                            style="width: 100%; border: 1px solid #ccc; padding: 4px 6px; font-size: 11px; font-weight: 600; background: white;">
+                            style="width: 100%; border: none; border-bottom: 1px solid #ccc; padding: 4px 0; font-size: 11px; font-weight: 600; background: transparent;">
                     </div>
                     <div>
                         <input type="text" id="customer-location" placeholder="aydın/kuşadası"
-                            style="width: 100%; border: 1px solid #ccc; padding: 4px 6px; font-size: 9px; background: white;">
+                            style="width: 100%; border: none; padding: 4px 0; font-size: 9px; background: transparent;">
                     </div>
                 </div>
 
@@ -203,24 +203,24 @@
             newRow.className = 'product-row';
             newRow.style.borderBottom = '1px solid #e5e5e5';
             newRow.innerHTML = `
-                <td style="padding: 4px;">
-                    <input type="text" class="product-name" placeholder="Ürün adı" style="width: 100%; border: none; font-size: 9px; padding: 2px;">
-                </td>
-                <td style="padding: 4px; text-align: center;">
-                    <input type="number" class="quantity" value="1" min="1" style="width: 35px; border: none; text-align: center; font-size: 9px; padding: 2px;">
-                    <span style="font-size: 9px; margin-left: 2px;">Adet</span>
-                </td>
-                <td style="padding: 4px; text-align: right;">
-                    <input type="number" class="unit-price" value="0" step="0.01" style="width: 50px; border: none; text-align: right; font-size: 9px; padding: 2px;">
-                    <span style="font-size: 9px; margin-left: 2px;">$</span>
-                </td>
-                <td style="padding: 4px; text-align: right;">
-                    <span style="font-size: 9px;">%20</span>
-                </td>
-                <td style="padding: 4px; text-align: right; font-weight: 600;">
-                    <span class="row-total">0,00 $</span>
-                </td>
-            `;
+                    <td style="padding: 4px;">
+                        <input type="text" class="product-name" placeholder="Ürün adı" style="width: 100%; border: none; font-size: 9px; padding: 2px;">
+                    </td>
+                    <td style="padding: 4px; text-align: center;">
+                        <input type="number" class="quantity" value="1" min="1" style="width: 35px; border: none; text-align: center; font-size: 9px; padding: 2px;">
+                        <span style="font-size: 9px; margin-left: 2px;">Adet</span>
+                    </td>
+                    <td style="padding: 4px; text-align: right;">
+                        <input type="number" class="unit-price" value="0" step="0.01" style="width: 50px; border: none; text-align: right; font-size: 9px; padding: 2px;">
+                        <span style="font-size: 9px; margin-left: 2px;">$</span>
+                    </td>
+                    <td style="padding: 4px; text-align: right;">
+                        <span style="font-size: 9px;">%20</span>
+                    </td>
+                    <td style="padding: 4px; text-align: right; font-weight: 600;">
+                        <span class="row-total">0,00 $</span>
+                    </td>
+                `;
 
             tbody.appendChild(newRow);
 
