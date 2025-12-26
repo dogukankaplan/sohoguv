@@ -1,233 +1,254 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="bg-white min-h-screen py-6">
-    <div class="max-w-4xl mx-auto px-4">
-        {{-- Action Buttons --}}
-        <div class="mb-4 flex justify-end gap-3 no-print">
-            <button onclick="window.print()" class="px-6 py-2 bg-neutral-500 text-white rounded hover:bg-neutral-600 text-sm font-medium">
-                Yazdır
-            </button>
-            <button onclick="generatePDF()" class="px-6 py-2 bg-primary-500 text-white rounded hover:bg-primary-600 text-sm font-medium">
-                PDF Oluştur
-            </button>
-        </div>
+    <div class="bg-white min-h-screen py-6">
+        <div class="max-w-4xl mx-auto px-4">
+            {{-- Action Buttons --}}
+            <div style="margin-bottom: 16px; display: flex; justify-content: flex-end; gap: 12px;">
+                <button onclick="window.print()"
+                    style="padding: 8px 24px; background-color: #6B7280; color: white; border-radius: 4px; border: none; cursor: pointer; font-size: 14px; font-weight: 500;">
+                    Yazdır
+                </button>
+                <button onclick="generatePDF()"
+                    style="padding: 8px 24px; background-color: #0A1628; color: white; border-radius: 4px; border: none; cursor: pointer; font-size: 14px; font-weight: 500;">
+                    PDF Oluştur
+                </button>
+            </div>
 
-        {{-- Quote Document --}}
-        <div class="bg-white shadow-sm" id="quote-content" style="padding: 40px; font-family: Arial, sans-serif;">
-            {{-- Header --}}
-            <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 30px;">
-                {{-- Left: Logo & Company Info --}}
-                <div style="flex: 1;">
-                    @if(isset($siteIdentity->logo) && $siteIdentity->logo)
-                        <img src="{{ Storage::url($siteIdentity->logo) }}" alt="Logo" style="height: 40px; width: auto; margin-bottom: 15px;">
-                    @else
-                        <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 15px;">
-                            <div style="width: 35px; height: 35px; background: linear-gradient(135deg, #3B82F6 0%, #8B5CF6 100%); border-radius: 8px;"></div>
-                            <span style="font-size: 22px; font-weight: 900; color: #0A1628;">soho</span>
+            {{-- Quote Document --}}
+            <div class="bg-white shadow-sm" id="quote-content" style="padding: 40px; font-family: Arial, sans-serif;">
+                {{-- Header --}}
+                <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 30px;">
+                    {{-- Left: Logo & Company Info --}}
+                    <div style="flex: 1;">
+                        @if(isset($siteIdentity->logo) && $siteIdentity->logo)
+                            <img src="{{ Storage::url($siteIdentity->logo) }}" alt="Logo"
+                                style="height: 40px; width: auto; margin-bottom: 15px;">
+                        @else
+                            <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 15px;">
+                                <div
+                                    style="width: 35px; height: 35px; background: linear-gradient(135deg, #3B82F6 0%, #8B5CF6 100%); border-radius: 8px;">
+                                </div>
+                                <span style="font-size: 22px; font-weight: 900; color: #0A1628;">soho</span>
+                            </div>
+                        @endif
+
+                        <div style="font-size: 9px; line-height: 1.4; color: #000;">
+                            <p style="margin: 0 0 2px 0; font-weight: 600; font-size: 10px;">SOHO GÜVENLİK BİLGİSAYAR VE
+                                ELEKTRONİK PAZARLAMA LTD.ŞTİ.</p>
+                            <p style="margin: 0 0 2px 0;">İpek iş merkezi Bornova İZMİR</p>
+                            <p style="margin: 0 0 2px 0;">Operasyon Merkezi: 7014 sokak no: 25/A</p>
+                            <p style="margin: 6px 0 2px 0;">İzmir / Bornova</p>
+                            <p style="margin: 0 0 2px 0;">05306878335</p>
+                            <p style="margin: 0 0 2px 0;">05541820731</p>
+                            <p style="margin: 6px 0 2px 0;">V.D: Karşıyaka</p>
+                            <p style="margin: 0;">7721726850</p>
                         </div>
-                    @endif
-                    
-                    <div style="font-size: 9px; line-height: 1.4; color: #000;">
-                        <p style="margin: 0 0 2px 0; font-weight: 600; font-size: 10px;">SOHO GÜVENLİK BİLGİSAYAR VE ELEKTRONİK PAZARLAMA LTD.ŞTİ.</p>
-                        <p style="margin: 0 0 2px 0;">İpek iş merkezi Bornova İZMİR</p>
-                        <p style="margin: 0 0 2px 0;">Operasyon Merkezi: 7014 sokak no: 25/A</p>
-                        <p style="margin: 6px 0 2px 0;">İzmir / Bornova</p>
-                        <p style="margin: 0 0 2px 0;">05306878335</p>
-                        <p style="margin: 0 0 2px 0;">05541820731</p>
-                        <p style="margin: 6px 0 2px 0;">V.D: Karşıyaka</p>
-                        <p style="margin: 0;">7721726850</p>
+                    </div>
+
+                    {{-- Right: Title --}}
+                    <div style="text-align: right;">
+                        <h1 style="font-size: 48px; font-weight: 900; color: #000; margin: 0; letter-spacing: 3px;">TEKLİF
+                        </h1>
                     </div>
                 </div>
 
-                {{-- Right: Title --}}
-                <div style="text-align: right;">
-                    <h1 style="font-size: 48px; font-weight: 900; color: #000; margin: 0; letter-spacing: 3px;">TEKLİF</h1>
-                </div>
-            </div>
-
-            {{-- Date --}}
-            <div style="margin-bottom: 15px; padding: 8px 0; border-top: 1px solid #ddd; border-bottom: 1px solid #ddd;">
-                <div style="font-size: 10px;">
-                    <span style="font-weight: 600;">TARIH:</span>
-                    <input type="date" value="{{ date('Y-m-d') }}" style="border: none; font-size: 10px; margin-left: 5px; outline: none;" onchange="updateDate(this.value)">
-                </div>
-            </div>
-
-            {{-- Customer Section --}}
-            <div style="margin-bottom: 20px; background: #f5f5f5; padding: 12px; border: 1px solid #ddd;">
-                <div style="font-size: 11px; font-weight: 700; margin-bottom: 8px;">MÜŞTERİ</div>
-                <div style="margin-bottom: 5px;">
-                    <input type="text" id="customer-name" placeholder="HIKVISION 4LU AHD SET" style="width: 100%; border: 1px solid #ccc; padding: 4px 6px; font-size: 11px; font-weight: 600; background: white;">
-                </div>
-                <div>
-                    <input type="text" id="customer-location" placeholder="aydın/kuşadası" style="width: 100%; border: 1px solid #ccc; padding: 4px 6px; font-size: 9px; background: white;">
-                </div>
-            </div>
-
-            {{-- Products Table --}}
-            <table style="width: 100%; border-collapse: collapse; font-size: 9px; margin-bottom: 15px;">
-                <thead>
-                    <tr style="border-bottom: 2px solid #000;">
-                        <th style="text-align: left; padding: 6px 4px; font-weight: 600;">Hizmet / Ürün</th>
-                        <th style="text-align: center; padding: 6px 4px; font-weight: 600; width: 60px;">Miktar</th>
-                        <th style="text-align: right; padding: 6px 4px; font-weight: 600; width: 80px;">Br. Fiyat</th>
-                        <th style="text-align: right; padding: 6px 4px; font-weight: 600; width: 50px;">KDV</th>
-                        <th style="text-align: right; padding: 6px 4px; font-weight: 600; width: 90px;">Toplam</th>
-                    </tr>
-                </thead>
-                <tbody id="product-rows">
-                    <tr class="product-row" style="border-bottom: 1px solid #e5e5e5;">
-                        <td style="padding: 4px;">
-                            <input type="text" class="product-name" placeholder="Hikvision 2mp bullet camera" style="width: 100%; border: none; font-size: 9px; padding: 2px;">
-                        </td>
-                        <td style="padding: 4px; text-align: center;">
-                            <input type="number" class="quantity" value="4" min="1" style="width: 35px; border: none; text-align: center; font-size: 9px; padding: 2px;">
-                            <span style="font-size: 9px; margin-left: 2px;">Adet</span>
-                        </td>
-                        <td style="padding: 4px; text-align: right;">
-                            <input type="number" class="unit-price" value="25" step="0.01" style="width: 50px; border: none; text-align: right; font-size: 9px; padding: 2px;">
-                            <span style="font-size: 9px; margin-left: 2px;">$</span>
-                        </td>
-                        <td style="padding: 4px; text-align: right;">
-                            <span style="font-size: 9px;">%20</span>
-                        </td>
-                        <td style="padding: 4px; text-align: right; font-weight: 600;">
-                            <span class="row-total">100,00 $</span>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
-
-            {{-- Add Row --}}
-            <div style="margin-bottom: 25px;" class="no-print">
-                <button onclick="addRow()" style="font-size: 10px; color: #3B82F6; background: none; border: none; cursor: pointer; font-weight: 600;">+ Satır Ekle</button>
-            </div>
-
-            {{-- Totals --}}
-            <div style="display: flex; justify-content: flex-end;">
-                <div style="width: 280px;">
-                    <div style="display: flex; justify-content: space-between; padding: 6px 0; border-top: 1px solid #ddd; font-size: 10px;">
-                        <span style="font-weight: 600;">ARA TOPLAM</span>
-                        <span id="subtotal" style="font-weight: 600;">234,00 $</span>
+                {{-- Date --}}
+                <div
+                    style="margin-bottom: 15px; padding: 8px 0; border-top: 1px solid #ddd; border-bottom: 1px solid #ddd;">
+                    <div style="font-size: 10px;">
+                        <span style="font-weight: 600;">TARIH:</span>
+                        <input type="date" value="{{ date('Y-m-d') }}"
+                            style="border: none; font-size: 10px; margin-left: 5px; outline: none;"
+                            onchange="updateDate(this.value)">
                     </div>
-                    <div style="display: flex; justify-content: space-between; padding: 6px 0; font-size: 10px;">
-                        <span style="font-weight: 600;">BRÜT TOPLAM</span>
-                        <span id="gross-total" style="font-weight: 600;">234,00 $</span>
+                </div>
+
+                {{-- Customer Section --}}
+                <div style="margin-bottom: 20px; background: #f5f5f5; padding: 12px; border: 1px solid #ddd;">
+                    <div style="font-size: 11px; font-weight: 700; margin-bottom: 8px;">MÜŞTERİ</div>
+                    <div style="margin-bottom: 5px;">
+                        <input type="text" id="customer-name" placeholder="HIKVISION 4LU AHD SET"
+                            style="width: 100%; border: 1px solid #ccc; padding: 4px 6px; font-size: 11px; font-weight: 600; background: white;">
                     </div>
-                    <div style="display: flex; justify-content: space-between; padding: 6px 0; font-size: 10px;">
-                        <span style="font-weight: 600;">TOPLAM K.D.V</span>
-                        <span id="total-vat" style="font-weight: 600;">46,80 $</span>
+                    <div>
+                        <input type="text" id="customer-location" placeholder="aydın/kuşadası"
+                            style="width: 100%; border: 1px solid #ccc; padding: 4px 6px; font-size: 9px; background: white;">
                     </div>
-                    <div style="display: flex; justify-content: space-between; padding: 8px 0; border-top: 2px solid #000; font-size: 11px;">
-                        <span style="font-weight: 700;">GENEL TOPLAM</span>
-                        <span id="grand-total" style="font-weight: 700;">280,80 $</span>
+                </div>
+
+                {{-- Products Table --}}
+                <table style="width: 100%; border-collapse: collapse; font-size: 9px; margin-bottom: 15px;">
+                    <thead>
+                        <tr style="border-bottom: 2px solid #000;">
+                            <th style="text-align: left; padding: 6px 4px; font-weight: 600;">Hizmet / Ürün</th>
+                            <th style="text-align: center; padding: 6px 4px; font-weight: 600; width: 60px;">Miktar</th>
+                            <th style="text-align: right; padding: 6px 4px; font-weight: 600; width: 80px;">Br. Fiyat</th>
+                            <th style="text-align: right; padding: 6px 4px; font-weight: 600; width: 50px;">KDV</th>
+                            <th style="text-align: right; padding: 6px 4px; font-weight: 600; width: 90px;">Toplam</th>
+                        </tr>
+                    </thead>
+                    <tbody id="product-rows">
+                        <tr class="product-row" style="border-bottom: 1px solid #e5e5e5;">
+                            <td style="padding: 4px;">
+                                <input type="text" class="product-name" placeholder="Hikvision 2mp bullet camera"
+                                    style="width: 100%; border: none; font-size: 9px; padding: 2px;">
+                            </td>
+                            <td style="padding: 4px; text-align: center;">
+                                <input type="number" class="quantity" value="4" min="1"
+                                    style="width: 35px; border: none; text-align: center; font-size: 9px; padding: 2px;">
+                                <span style="font-size: 9px; margin-left: 2px;">Adet</span>
+                            </td>
+                            <td style="padding: 4px; text-align: right;">
+                                <input type="number" class="unit-price" value="25" step="0.01"
+                                    style="width: 50px; border: none; text-align: right; font-size: 9px; padding: 2px;">
+                                <span style="font-size: 9px; margin-left: 2px;">$</span>
+                            </td>
+                            <td style="padding: 4px; text-align: right;">
+                                <span style="font-size: 9px;">%20</span>
+                            </td>
+                            <td style="padding: 4px; text-align: right; font-weight: 600;">
+                                <span class="row-total">100,00 $</span>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                {{-- Add Row --}}
+                <div style="margin-bottom: 25px;" class="no-print">
+                    <button onclick="addRow()"
+                        style="font-size: 10px; color: #3B82F6; background: none; border: none; cursor: pointer; font-weight: 600;">+
+                        Satır Ekle</button>
+                </div>
+
+                {{-- Totals --}}
+                <div style="display: flex; justify-content: flex-end;">
+                    <div style="width: 280px;">
+                        <div
+                            style="display: flex; justify-content: space-between; padding: 6px 0; border-top: 1px solid #ddd; font-size: 10px;">
+                            <span style="font-weight: 600;">ARA TOPLAM</span>
+                            <span id="subtotal" style="font-weight: 600;">234,00 $</span>
+                        </div>
+                        <div style="display: flex; justify-content: space-between; padding: 6px 0; font-size: 10px;">
+                            <span style="font-weight: 600;">BRÜT TOPLAM</span>
+                            <span id="gross-total" style="font-weight: 600;">234,00 $</span>
+                        </div>
+                        <div style="display: flex; justify-content: space-between; padding: 6px 0; font-size: 10px;">
+                            <span style="font-weight: 600;">TOPLAM K.D.V</span>
+                            <span id="total-vat" style="font-weight: 600;">46,80 $</span>
+                        </div>
+                        <div
+                            style="display: flex; justify-content: space-between; padding: 8px 0; border-top: 2px solid #000; font-size: 11px;">
+                            <span style="font-weight: 700;">GENEL TOPLAM</span>
+                            <span id="grand-total" style="font-weight: 700;">280,80 $</span>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
 
-{{-- Scripts --}}
-<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+    {{-- Scripts --}}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
 
-<style>
-@media print {
-    .no-print {
-        display: none !important;
-    }
-    body {
-        margin: 0;
-        padding: 0;
-    }
-    #quote-content {
-        box-shadow: none !important;
-        margin: 0 !important;
-        padding: 20mm !important;
-    }
-}
-</style>
+    <style>
+        @media print {
+            .no-print {
+                display: none !important;
+            }
 
-<script>
-function formatNumber(num) {
-    return num.toFixed(2).replace('.', ',');
-}
+            body {
+                margin: 0;
+                padding: 0;
+            }
 
-function calculateTotals() {
-    let subtotal = 0;
-    
-    document.querySelectorAll('.product-row').forEach(row => {
-        const quantity = parseFloat(row.querySelector('.quantity').value) || 0;
-        const unitPrice = parseFloat(row.querySelector('.unit-price').value) || 0;
-        const rowTotal = quantity * unitPrice;
-        
-        row.querySelector('.row-total').textContent = formatNumber(rowTotal) + ' $';
-        subtotal += rowTotal;
-    });
-    
-    const vat = subtotal * 0.20;
-    const grandTotal = subtotal + vat;
-    
-    document.getElementById('subtotal').textContent = formatNumber(subtotal) + ' $';
-    document.getElementById('gross-total').textContent = formatNumber(subtotal) + ' $';
-    document.getElementById('total-vat').textContent = formatNumber(vat) + ' $';
-    document.getElementById('grand-total').textContent = formatNumber(grandTotal) + ' $';
-}
+            #quote-content {
+                box-shadow: none !important;
+                margin: 0 !important;
+                padding: 20mm !important;
+            }
+        }
+    </style>
 
-function addRow() {
-    const tbody = document.getElementById('product-rows');
-    const newRow = document.createElement('tr');
-    newRow.className = 'product-row';
-    newRow.style.borderBottom = '1px solid #e5e5e5';
-    newRow.innerHTML = `
-        <td style="padding: 4px;">
-            <input type="text" class="product-name" placeholder="Ürün adı" style="width: 100%; border: none; font-size: 9px; padding: 2px;">
-        </td>
-        <td style="padding: 4px; text-align: center;">
-            <input type="number" class="quantity" value="1" min="1" style="width: 35px; border: none; text-align: center; font-size: 9px; padding: 2px;">
-            <span style="font-size: 9px; margin-left: 2px;">Adet</span>
-        </td>
-        <td style="padding: 4px; text-align: right;">
-            <input type="number" class="unit-price" value="0" step="0.01" style="width: 50px; border: none; text-align: right; font-size: 9px; padding: 2px;">
-            <span style="font-size: 9px; margin-left: 2px;">$</span>
-        </td>
-        <td style="padding: 4px; text-align: right;">
-            <span style="font-size: 9px;">%20</span>
-        </td>
-        <td style="padding: 4px; text-align: right; font-weight: 600;">
-            <span class="row-total">0,00 $</span>
-        </td>
-    `;
-    
-    tbody.appendChild(newRow);
-    
-    // Add event listeners
-    newRow.querySelector('.quantity').addEventListener('input', calculateTotals);
-    newRow.querySelector('.unit-price').addEventListener('input', calculateTotals);
-}
+    <script>
+        function formatNumber(num) {
+            return num.toFixed(2).replace('.', ',');
+        }
 
-function generatePDF() {
-    const element = document.getElementById('quote-content');
-    const opt = {
-        margin: 10,
-        filename: 'teklif-' + new Date().toISOString().slice(0,10) + '.pdf',
-        image: { type: 'jpeg', quality: 0.98 },
-        html2canvas: { scale: 2, useCORS: true },
-        jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' }
-    };
-    
-    html2pdf().set(opt).from(element).save();
-}
+        function calculateTotals() {
+            let subtotal = 0;
 
-// Initialize
-document.addEventListener('DOMContentLoaded', function() {
-    calculateTotals();
-    
-    // Add event listeners to initial row
-    document.querySelectorAll('.quantity, .unit-price').forEach(input => {
-        input.addEventListener('input', calculateTotals);
-    });
-});
-</script>
+            document.querySelectorAll('.product-row').forEach(row => {
+                const quantity = parseFloat(row.querySelector('.quantity').value) || 0;
+                const unitPrice = parseFloat(row.querySelector('.unit-price').value) || 0;
+                const rowTotal = quantity * unitPrice;
+
+                row.querySelector('.row-total').textContent = formatNumber(rowTotal) + ' $';
+                subtotal += rowTotal;
+            });
+
+            const vat = subtotal * 0.20;
+            const grandTotal = subtotal + vat;
+
+            document.getElementById('subtotal').textContent = formatNumber(subtotal) + ' $';
+            document.getElementById('gross-total').textContent = formatNumber(subtotal) + ' $';
+            document.getElementById('total-vat').textContent = formatNumber(vat) + ' $';
+            document.getElementById('grand-total').textContent = formatNumber(grandTotal) + ' $';
+        }
+
+        function addRow() {
+            const tbody = document.getElementById('product-rows');
+            const newRow = document.createElement('tr');
+            newRow.className = 'product-row';
+            newRow.style.borderBottom = '1px solid #e5e5e5';
+            newRow.innerHTML = `
+            <td style="padding: 4px;">
+                <input type="text" class="product-name" placeholder="Ürün adı" style="width: 100%; border: none; font-size: 9px; padding: 2px;">
+            </td>
+            <td style="padding: 4px; text-align: center;">
+                <input type="number" class="quantity" value="1" min="1" style="width: 35px; border: none; text-align: center; font-size: 9px; padding: 2px;">
+                <span style="font-size: 9px; margin-left: 2px;">Adet</span>
+            </td>
+            <td style="padding: 4px; text-align: right;">
+                <input type="number" class="unit-price" value="0" step="0.01" style="width: 50px; border: none; text-align: right; font-size: 9px; padding: 2px;">
+                <span style="font-size: 9px; margin-left: 2px;">$</span>
+            </td>
+            <td style="padding: 4px; text-align: right;">
+                <span style="font-size: 9px;">%20</span>
+            </td>
+            <td style="padding: 4px; text-align: right; font-weight: 600;">
+                <span class="row-total">0,00 $</span>
+            </td>
+        `;
+
+            tbody.appendChild(newRow);
+
+            // Add event listeners
+            newRow.querySelector('.quantity').addEventListener('input', calculateTotals);
+            newRow.querySelector('.unit-price').addEventListener('input', calculateTotals);
+        }
+
+        function generatePDF() {
+            const element = document.getElementById('quote-content');
+            const opt = {
+                margin: 10,
+                filename: 'teklif-' + new Date().toISOString().slice(0, 10) + '.pdf',
+                image: { type: 'jpeg', quality: 0.98 },
+                html2canvas: { scale: 2, useCORS: true },
+                jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' }
+            };
+
+            html2pdf().set(opt).from(element).save();
+        }
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', function () {
+            calculateTotals();
+
+            // Add event listeners to initial row
+            document.querySelectorAll('.quantity, .unit-price').forEach(input => {
+                input.addEventListener('input', calculateTotals);
+            });
+        });
+    </script>
 @endsection
