@@ -104,7 +104,7 @@
                 <div class="space-y-8">
                     <span class="text-2xl font-black tracking-tight text-white flex items-center gap-2">
                         @if(isset($siteIdentity->logo) && $siteIdentity->logo)
-                        <img src="{{ Storage::url($siteIdentity->logo) }}" alt="{{ $siteIdentity->site_name ?? 'SOHO' }}" class="h-8">
+                        <img src="{{ Storage::url($siteIdentity->logo) }}" alt="{{ $siteIdentity->site_name ?? 'SOHO' }}" class="h-12 w-auto">
                         @else
                         <span>SOHO</span>
                         <span class="text-secondary-500">Güvenlik</span>
