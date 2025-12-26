@@ -1,252 +1,233 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="bg-white min-h-screen py-8">
-        <div class="max-w-5xl mx-auto px-4">
-            {{-- Toolbar for Print/Save --}}
-            <div class="mb-4 flex justify-end gap-2 no-print">
-                <button onclick="window.print()" class="btn-primary px-4 py-2 text-sm">
-                    <svg class="w-4 h-4 inline mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                            d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z" />
-                    </svg>
-                    Yazdır
-                </button>
+<div class="bg-white min-h-screen py-6">
+    <div class="max-w-4xl mx-auto px-4">
+        {{-- Action Buttons --}}
+        <div class="mb-4 flex justify-end gap-3 no-print">
+            <button onclick="window.print()" class="px-6 py-2 bg-neutral-500 text-white rounded hover:bg-neutral-600 text-sm font-medium">
+                Yazdır
+            </button>
+            <button onclick="generatePDF()" class="px-6 py-2 bg-primary-500 text-white rounded hover:bg-primary-600 text-sm font-medium">
+                PDF Oluştur
+            </button>
+        </div>
+
+        {{-- Quote Document --}}
+        <div class="bg-white shadow-sm" id="quote-content" style="padding: 40px; font-family: Arial, sans-serif;">
+            {{-- Header --}}
+            <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 30px;">
+                {{-- Left: Logo & Company Info --}}
+                <div style="flex: 1;">
+                    @if(isset($siteIdentity->logo) && $siteIdentity->logo)
+                        <img src="{{ Storage::url($siteIdentity->logo) }}" alt="Logo" style="height: 40px; width: auto; margin-bottom: 15px;">
+                    @else
+                        <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 15px;">
+                            <div style="width: 35px; height: 35px; background: linear-gradient(135deg, #3B82F6 0%, #8B5CF6 100%); border-radius: 8px;"></div>
+                            <span style="font-size: 22px; font-weight: 900; color: #0A1628;">soho</span>
+                        </div>
+                    @endif
+                    
+                    <div style="font-size: 9px; line-height: 1.4; color: #000;">
+                        <p style="margin: 0 0 2px 0; font-weight: 600; font-size: 10px;">SOHO GÜVENLİK BİLGİSAYAR VE ELEKTRONİK PAZARLAMA LTD.ŞTİ.</p>
+                        <p style="margin: 0 0 2px 0;">İpek iş merkezi Bornova İZMİR</p>
+                        <p style="margin: 0 0 2px 0;">Operasyon Merkezi: 7014 sokak no: 25/A</p>
+                        <p style="margin: 6px 0 2px 0;">İzmir / Bornova</p>
+                        <p style="margin: 0 0 2px 0;">05306878335</p>
+                        <p style="margin: 0 0 2px 0;">05541820731</p>
+                        <p style="margin: 6px 0 2px 0;">V.D: Karşıyaka</p>
+                        <p style="margin: 0;">7721726850</p>
+                    </div>
+                </div>
+
+                {{-- Right: Title --}}
+                <div style="text-align: right;">
+                    <h1 style="font-size: 48px; font-weight: 900; color: #000; margin: 0; letter-spacing: 3px;">TEKLİF</h1>
+                </div>
             </div>
 
-            {{-- Quote Document --}}
-            <div class="bg-white border border-neutral-200 shadow-sm p-8" id="quote-document">
-                {{-- Header --}}
-                <div class="flex justify-between items-start mb-8">
-                    {{-- Company Info --}}
-                    <div class="flex-1">
-                        <div class="mb-4">
-                            @if(isset($siteIdentity->logo) && $siteIdentity->logo)
-                                <img src="{{ Storage::url($siteIdentity->logo) }}"
-                                    alt="{{ $siteIdentity->site_name ?? 'SOHO' }}" class="h-12 w-auto">
-                            @else
-                                <div class="flex items-center gap-2">
-                                    <div class="w-10 h-10 bg-gradient-to-br from-secondary-500 to-accent-500 rounded-lg"></div>
-                                    <span class="text-2xl font-black text-primary-500">soho</span>
-                                </div>
-                            @endif
-                        </div>
-                        <div class="text-xs space-y-0.5 text-neutral-600">
-                            <p class="font-semibold text-sm">
-                                {{ $siteIdentity->site_name ?? 'SOHO GÜVENLİK BİLGİSAYAR VE ELEKTRONİK PAZARLAMA LTD.ŞTİ.' }}
-                            </p>
-                            <p>{{ setting('company_address', 'İpek iş merkezi Bornova İZMİR') }}</p>
-                            <p>Operasyon Merkezi: {{ setting('operation_address', '7014 sokak no: 25/A') }}</p>
-                            <p class="mt-2">{{ setting('city', 'İzmir') }} / {{ setting('district', 'Bornova') }}</p>
-                            <p>{{ setting('phone', '05306878335') }}</p>
-                            <p>{{ setting('phone2', '05541820731') }}</p>
-                            <p class="mt-2">V.D: {{ setting('tax_office', 'Karşıyaka') }}</p>
-                            <p>{{ setting('tax_number', '7721726850') }}</p>
-                        </div>
-                    </div>
-
-                    {{-- Quote Title --}}
-                    <div class="text-right">
-                        <h1 class="text-4xl font-black text-primary-500 tracking-wider">TEKLİF</h1>
-                    </div>
+            {{-- Date --}}
+            <div style="margin-bottom: 15px; padding: 8px 0; border-top: 1px solid #ddd; border-bottom: 1px solid #ddd;">
+                <div style="font-size: 10px;">
+                    <span style="font-weight: 600;">TARIH:</span>
+                    <input type="date" value="{{ date('Y-m-d') }}" style="border: none; font-size: 10px; margin-left: 5px; outline: none;" onchange="updateDate(this.value)">
                 </div>
+            </div>
 
-                {{-- Customer Info --}}
-                <div class="mb-6 border-t border-b border-neutral-200 py-3">
-                    <div class="text-sm">
-                        <div class="mb-2">
-                            <span class="font-semibold">TARIH:</span>
-                            <span contenteditable="true" class="editable px-1">{{ date('Y-m-d') }}</span>
-                        </div>
-                    </div>
+            {{-- Customer Section --}}
+            <div style="margin-bottom: 20px; background: #f5f5f5; padding: 12px; border: 1px solid #ddd;">
+                <div style="font-size: 11px; font-weight: 700; margin-bottom: 8px;">MÜŞTERİ</div>
+                <div style="margin-bottom: 5px;">
+                    <input type="text" id="customer-name" placeholder="HIKVISION 4LU AHD SET" style="width: 100%; border: 1px solid #ccc; padding: 4px 6px; font-size: 11px; font-weight: 600; background: white;">
                 </div>
-
-                <div class="mb-6 bg-neutral-50 p-3 border border-neutral-200">
-                    <div class="font-semibold text-sm mb-2">MÜŞTERİ</div>
-                    <div class="text-sm mb-1">
-                        <input type="text" placeholder="Müşteri Adı"
-                            class="w-full px-2 py-1 border border-neutral-300 rounded text-sm font-semibold">
-                    </div>
-                    <div class="text-xs text-neutral-600">
-                        <input type="text" placeholder="Şehir/İlçe"
-                            class="w-full px-2 py-1 border border-neutral-300 rounded text-xs">
-                    </div>
+                <div>
+                    <input type="text" id="customer-location" placeholder="aydın/kuşadası" style="width: 100%; border: 1px solid #ccc; padding: 4px 6px; font-size: 9px; background: white;">
                 </div>
+            </div>
 
-                {{-- Products Table --}}
-                <table class="w-full text-xs mb-6">
-                    <thead>
-                        <tr class="border-b-2 border-neutral-300">
-                            <th class="text-left py-2 font-semibold">Hizmet / Ürün</th>
-                            <th class="text-center py-2 font-semibold w-20">Miktar</th>
-                            <th class="text-right py-2 font-semibold w-24">Br. Fiyat</th>
-                            <th class="text-right py-2 font-semibold w-16">KDV</th>
-                            <th class="text-right py-2 font-semibold w-28">Toplam</th>
-                        </tr>
-                    </thead>
-                    <tbody id="quote-items">
-                        {{-- Initial Row --}}
-                        <tr class="border-b border-neutral-100 quote-row">
-                            <td class="py-1.5">
-                                <input type="text" placeholder="Ürün/Hizmet adı"
-                                    class="w-full px-1 border-0 focus:border-b focus:border-secondary-500 text-xs outline-none">
-                            </td>
-                            <td class="py-1.5 text-center">
-                                <input type="number" value="1"
-                                    class="quantity w-16 px-1 text-center border-0 focus:border-b focus:border-secondary-500 text-xs outline-none">
-                                <span class="text-xs text-neutral-500 ml-1">Adet</span>
-                            </td>
-                            <td class="py-1.5 text-right">
-                                <input type="number" value="0" step="0.01"
-                                    class="unit-price w-20 px-1 text-right border-0 focus:border-b focus:border-secondary-500 text-xs outline-none">
-                                <span class="text-xs text-neutral-500 ml-1">$</span>
-                            </td>
-                            <td class="py-1.5 text-right">
-                                <input type="number" value="20"
-                                    class="vat-rate w-12 px-1 text-right border-0 focus:border-b focus:border-secondary-500 text-xs outline-none">
-                                <span class="text-xs text-neutral-500 ml-1">%</span>
-                            </td>
-                            <td class="py-1.5 text-right font-semibold row-total">0,00 $</td>
-                        </tr>
-                    </tbody>
-                </table>
+            {{-- Products Table --}}
+            <table style="width: 100%; border-collapse: collapse; font-size: 9px; margin-bottom: 15px;">
+                <thead>
+                    <tr style="border-bottom: 2px solid #000;">
+                        <th style="text-align: left; padding: 6px 4px; font-weight: 600;">Hizmet / Ürün</th>
+                        <th style="text-align: center; padding: 6px 4px; font-weight: 600; width: 60px;">Miktar</th>
+                        <th style="text-align: right; padding: 6px 4px; font-weight: 600; width: 80px;">Br. Fiyat</th>
+                        <th style="text-align: right; padding: 6px 4px; font-weight: 600; width: 50px;">KDV</th>
+                        <th style="text-align: right; padding: 6px 4px; font-weight: 600; width: 90px;">Toplam</th>
+                    </tr>
+                </thead>
+                <tbody id="product-rows">
+                    <tr class="product-row" style="border-bottom: 1px solid #e5e5e5;">
+                        <td style="padding: 4px;">
+                            <input type="text" class="product-name" placeholder="Hikvision 2mp bullet camera" style="width: 100%; border: none; font-size: 9px; padding: 2px;">
+                        </td>
+                        <td style="padding: 4px; text-align: center;">
+                            <input type="number" class="quantity" value="4" min="1" style="width: 35px; border: none; text-align: center; font-size: 9px; padding: 2px;">
+                            <span style="font-size: 9px; margin-left: 2px;">Adet</span>
+                        </td>
+                        <td style="padding: 4px; text-align: right;">
+                            <input type="number" class="unit-price" value="25" step="0.01" style="width: 50px; border: none; text-align: right; font-size: 9px; padding: 2px;">
+                            <span style="font-size: 9px; margin-left: 2px;">$</span>
+                        </td>
+                        <td style="padding: 4px; text-align: right;">
+                            <span style="font-size: 9px;">%20</span>
+                        </td>
+                        <td style="padding: 4px; text-align: right; font-weight: 600;">
+                            <span class="row-total">100,00 $</span>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
 
-                {{-- Add Row Button --}}
-                <div class="mb-6 no-print">
-                    <button onclick="addQuoteRow()"
-                        class="text-xs text-secondary-500 hover:text-secondary-600 font-semibold">
-                        + Satır Ekle
-                    </button>
-                </div>
+            {{-- Add Row --}}
+            <div style="margin-bottom: 25px;" class="no-print">
+                <button onclick="addRow()" style="font-size: 10px; color: #3B82F6; background: none; border: none; cursor: pointer; font-weight: 600;">+ Satır Ekle</button>
+            </div>
 
-                {{-- Totals --}}
-                <div class="flex justify-end">
-                    <div class="w-80 space-y-1.5 text-xs">
-                        <div class="flex justify-between py-1.5 border-t border-neutral-200">
-                            <span class="font-semibold">ARA TOPLAM</span>
-                            <span id="subtotal" class="font-semibold">0,00 $</span>
-                        </div>
-                        <div class="flex justify-between py-1.5">
-                            <span class="font-semibold">BRÜT TOPLAM</span>
-                            <span id="gross-total" class="font-semibold">0,00 $</span>
-                        </div>
-                        <div class="flex justify-between py-1.5">
-                            <span class="font-semibold">TOPLAM K.D.V</span>
-                            <span id="total-vat" class="font-semibold">0,00 $</span>
-                        </div>
-                        <div class="flex justify-between py-2 border-t-2 border-neutral-300 text-sm">
-                            <span class="font-bold">GENEL TOPLAM</span>
-                            <span id="grand-total" class="font-bold">0,00 $</span>
-                        </div>
+            {{-- Totals --}}
+            <div style="display: flex; justify-content: flex-end;">
+                <div style="width: 280px;">
+                    <div style="display: flex; justify-content: space-between; padding: 6px 0; border-top: 1px solid #ddd; font-size: 10px;">
+                        <span style="font-weight: 600;">ARA TOPLAM</span>
+                        <span id="subtotal" style="font-weight: 600;">234,00 $</span>
                     </div>
-                </div>
-
-                {{-- Footer Notes --}}
-                <div class="mt-8 pt-6 border-t border-neutral-200 text-xs text-neutral-600">
-                    <p class="mb-2"><strong>Not:</strong> Bu teklif 15 gün geçerlidir.</p>
-                    <p>Fiyatlarımıza KDV dahil değildir.</p>
+                    <div style="display: flex; justify-content: space-between; padding: 6px 0; font-size: 10px;">
+                        <span style="font-weight: 600;">BRÜT TOPLAM</span>
+                        <span id="gross-total" style="font-weight: 600;">234,00 $</span>
+                    </div>
+                    <div style="display: flex; justify-content: space-between; padding: 6px 0; font-size: 10px;">
+                        <span style="font-weight: 600;">TOPLAM K.D.V</span>
+                        <span id="total-vat" style="font-weight: 600;">46,80 $</span>
+                    </div>
+                    <div style="display: flex; justify-content: space-between; padding: 8px 0; border-top: 2px solid #000; font-size: 11px;">
+                        <span style="font-weight: 700;">GENEL TOPLAM</span>
+                        <span id="grand-total" style="font-weight: 700;">280,80 $</span>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
+</div>
 
-    <style>
-        @media print {
-            .no-print {
-                display: none !important;
-            }
+{{-- Scripts --}}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
 
-            body {
-                print-color-adjust: exact;
-                -webkit-print-color-adjust: exact;
-            }
+<style>
+@media print {
+    .no-print {
+        display: none !important;
+    }
+    body {
+        margin: 0;
+        padding: 0;
+    }
+    #quote-content {
+        box-shadow: none !important;
+        margin: 0 !important;
+        padding: 20mm !important;
+    }
+}
+</style>
 
-            #quote-document {
-                box-shadow: none !important;
-                border: none !important;
-            }
-        }
+<script>
+function formatNumber(num) {
+    return num.toFixed(2).replace('.', ',');
+}
 
-        .editable:focus {
-            outline: 1px dashed #cbd5e0;
-            background-color: #fefce8;
-        }
-    </style>
+function calculateTotals() {
+    let subtotal = 0;
+    
+    document.querySelectorAll('.product-row').forEach(row => {
+        const quantity = parseFloat(row.querySelector('.quantity').value) || 0;
+        const unitPrice = parseFloat(row.querySelector('.unit-price').value) || 0;
+        const rowTotal = quantity * unitPrice;
+        
+        row.querySelector('.row-total').textContent = formatNumber(rowTotal) + ' $';
+        subtotal += rowTotal;
+    });
+    
+    const vat = subtotal * 0.20;
+    const grandTotal = subtotal + vat;
+    
+    document.getElementById('subtotal').textContent = formatNumber(subtotal) + ' $';
+    document.getElementById('gross-total').textContent = formatNumber(subtotal) + ' $';
+    document.getElementById('total-vat').textContent = formatNumber(vat) + ' $';
+    document.getElementById('grand-total').textContent = formatNumber(grandTotal) + ' $';
+}
 
-    <script>
-        function addQuoteRow() {
-            const tbody = document.getElementById('quote-items');
-            const newRow = tbody.querySelector('.quote-row').cloneNode(true);
+function addRow() {
+    const tbody = document.getElementById('product-rows');
+    const newRow = document.createElement('tr');
+    newRow.className = 'product-row';
+    newRow.style.borderBottom = '1px solid #e5e5e5';
+    newRow.innerHTML = `
+        <td style="padding: 4px;">
+            <input type="text" class="product-name" placeholder="Ürün adı" style="width: 100%; border: none; font-size: 9px; padding: 2px;">
+        </td>
+        <td style="padding: 4px; text-align: center;">
+            <input type="number" class="quantity" value="1" min="1" style="width: 35px; border: none; text-align: center; font-size: 9px; padding: 2px;">
+            <span style="font-size: 9px; margin-left: 2px;">Adet</span>
+        </td>
+        <td style="padding: 4px; text-align: right;">
+            <input type="number" class="unit-price" value="0" step="0.01" style="width: 50px; border: none; text-align: right; font-size: 9px; padding: 2px;">
+            <span style="font-size: 9px; margin-left: 2px;">$</span>
+        </td>
+        <td style="padding: 4px; text-align: right;">
+            <span style="font-size: 9px;">%20</span>
+        </td>
+        <td style="padding: 4px; text-align: right; font-weight: 600;">
+            <span class="row-total">0,00 $</span>
+        </td>
+    `;
+    
+    tbody.appendChild(newRow);
+    
+    // Add event listeners
+    newRow.querySelector('.quantity').addEventListener('input', calculateTotals);
+    newRow.querySelector('.unit-price').addEventListener('input', calculateTotals);
+}
 
-            // Clear input values
-            newRow.querySelectorAll('input').forEach(input => {
-                if (input.classList.contains('quantity')) {
-                    input.value = '1';
-                } else if (input.classList.contains('vat-rate')) {
-                    input.value = '20';
-                } else if (input.classList.contains('unit-price')) {
-                    input.value = '0';
-                } else {
-                    input.value = '';
-                }
-            });
-            newRow.querySelector('.row-total').textContent = '0,00 $';
+function generatePDF() {
+    const element = document.getElementById('quote-content');
+    const opt = {
+        margin: 10,
+        filename: 'teklif-' + new Date().toISOString().slice(0,10) + '.pdf',
+        image: { type: 'jpeg', quality: 0.98 },
+        html2canvas: { scale: 2, useCORS: true },
+        jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' }
+    };
+    
+    html2pdf().set(opt).from(element).save();
+}
 
-            tbody.appendChild(newRow);
-            attachCalculationListeners(newRow);
-        }
-
-        function formatCurrency(value) {
-            return new Intl.NumberFormat('tr-TR', {
-                minimumFractionDigits: 2,
-                maximumFractionDigits: 2
-            }).format(value) + ' $';
-        }
-
-        function calculateRowTotal(row) {
-            const quantity = parseFloat(row.querySelector('.quantity').value) || 0;
-            const unitPrice = parseFloat(row.querySelector('.unit-price').value) || 0;
-            const total = quantity * unitPrice;
-            row.querySelector('.row-total').textContent = formatCurrency(total);
-            calculateGrandTotal();
-        }
-
-        function calculateGrandTotal() {
-            let subtotal = 0;
-            let totalVat = 0;
-
-            document.querySelectorAll('.quote-row').forEach(row => {
-                const quantity = parseFloat(row.querySelector('.quantity').value) || 0;
-                const unitPrice = parseFloat(row.querySelector('.unit-price').value) || 0;
-                const vatRate = parseFloat(row.querySelector('.vat-rate').value) || 0;
-
-                const rowTotal = quantity * unitPrice;
-                const rowVat = rowTotal * (vatRate / 100);
-
-                subtotal += rowTotal;
-                totalVat += rowVat;
-            });
-
-            const grossTotal = subtotal;
-            const grandTotal = grossTotal + totalVat;
-
-            document.getElementById('subtotal').textContent = formatCurrency(subtotal);
-            document.getElementById('gross-total').textContent = formatCurrency(grossTotal);
-            document.getElementById('total-vat').textContent = formatCurrency(totalVat);
-            document.getElementById('grand-total').textContent = formatCurrency(grandTotal);
-        }
-
-        function attachCalculationListeners(row) {
-            row.querySelectorAll('input.quantity, input.unit-price, input.vat-rate').forEach(input => {
-                input.addEventListener('input', () => calculateRowTotal(row));
-            });
-        }
-
-        // Initialize calculation listeners on existing rows
-        document.addEventListener('DOMContentLoaded', () => {
-            document.querySelectorAll('.quote-row').forEach(row => {
-                attachCalculationListeners(row);
-            });
-        });
-    </script>
+// Initialize
+document.addEventListener('DOMContentLoaded', function() {
+    calculateTotals();
+    
+    // Add event listeners to initial row
+    document.querySelectorAll('.quantity, .unit-price').forEach(input => {
+        input.addEventListener('input', calculateTotals);
+    });
+});
+</script>
 @endsection
