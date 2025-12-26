@@ -12,18 +12,12 @@
     <link rel="preconnect" href="https://fonts.bunny.net">
     <link href="https://fonts.bunny.net/css?family=inter:400,500,600,700&display=swap" rel="stylesheet" />
 
-    <!-- Static Assets -->
-    <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">
-    <script src="{{ asset('assets/js/app.js') }}" defer></script>
+    <!-- Alpine.js for dropdowns -->
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
 
-    <!-- Inline Styles for Apple-like Feel if Vite not compiled -->
-    <style>
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
-            -webkit-font-smoothing: antialiased;
-            -moz-osx-font-smoothing: grayscale;
-        }
-    </style>
+    <!-- Vite Assets -->
+    @vite(['resources/css/app.css'])
+
 </head>
 
 <body class="h-full flex flex-col">
