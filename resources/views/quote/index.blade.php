@@ -24,13 +24,13 @@
                     <div style="flex: 1;">
                         @if(isset($siteIdentity->logo) && $siteIdentity->logo)
                             <img src="{{ Storage::url($siteIdentity->logo) }}" alt="Logo"
-                                style="height: 40px; width: auto; margin-bottom: 15px;">
+                                style="height: 60px; width: auto; margin-bottom: 15px;">
                         @else
                             <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 15px;">
                                 <div
-                                    style="width: 35px; height: 35px; background: linear-gradient(135deg, #3B82F6 0%, #8B5CF6 100%); border-radius: 8px;">
+                                    style="width: 45px; height: 45px; background: linear-gradient(135deg, #3B82F6 0%, #8B5CF6 100%); border-radius: 8px;">
                                 </div>
-                                <span style="font-size: 22px; font-weight: 900; color: #0A1628;">soho</span>
+                                <span style="font-size: 26px; font-weight: 900; color: #0A1628;">soho</span>
                             </div>
                         @endif
 
@@ -38,13 +38,13 @@
                             <p style="margin: 0 0 2px 0; font-weight: 600; font-size: 10px;">SOHO GÜVENLİK BİLGİSAYAR VE
                                 ELEKTRONİK PAZARLAMA LTD.ŞTİ.</p>
                             <p style="margin: 0 0 2px 0;">İpek iş merkezi Bornova İZMİR</p>
-                            <p style="margin: 0 0 2px 0;">Güvenlik Bilgisayar Ve Ele.Sis.Paz.Tic.Ltd.Şti.</p>
-                            <p style="margin: 0 0 2px 0;">IBAN: TR43 0015 7000 0000 0160 4230 85</p>
-                            <p style="margin: 0 0 2px 0;">Banka adı: Enpara Bank A.Ş.</p>
                             <p style="margin: 0 0 2px 0;">Operasyon Merkezi: 7014 sokak no: 25/A</p>
                             <p style="margin: 6px 0 2px 0;">İzmir / Bornova</p>
                             <p style="margin: 0 0 2px 0;">05306878335</p>
                             <p style="margin: 0 0 2px 0;">05541820731</p>
+                            <p style="margin: 6px 0 2px 0; font-weight: 600;">Soho Güvenlik Bilgisayar Ve Ele.Sis.Paz.Tic.Ltd.Şti.</p>
+                            <p style="margin: 0 0 2px 0;">Banka adı: Enpara Bank A.Ş.</p>
+                            <p style="margin: 0 0 2px 0;">IBAN: TR43 0015 7000 0000 0160 4230 85</p>
                             <p style="margin: 6px 0 2px 0;">V.D: Karşıyaka</p>
                             <p style="margin: 0;">7721726850</p>
                         </div>
