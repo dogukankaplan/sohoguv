@@ -120,38 +120,37 @@
 
 
 
-                {{-- Totals --}}
-                <div style="display: flex; justify-content: flex-end;">
-                    <div style="width: 280px;">
-                        <div
-                            style="display: flex; justify-content: space-between; padding: 6px 0; border-top: 1px solid #ddd; font-size: 10px;">
-                            <span style="font-weight: 600;">ARA TOPLAM</span>
-                            <span id="subtotal" style="font-weight: 600;">234,00 $</span>
-                        </div>
-                        <div style="display: flex; justify-content: space-between; padding: 6px 0; font-size: 10px;">
-                            <span style="font-weight: 600;">BRÜT TOPLAM</span>
-                            <span id="gross-total" style="font-weight: 600;">234,00 $</span>
-                        </div>
-                        <div style="display: flex; justify-content: space-between; padding: 6px 0; font-size: 10px;">
-                            <span style="font-weight: 600;">TOPLAM K.D.V</span>
-                            <span id="total-vat" style="font-weight: 600;">46,80 $</span>
-                        </div>
-                        <div
-                            style="display: flex; justify-content: space-between; padding: 8px 0; border-top: 2px solid #000; font-size: 11px;">
-                            <span style="font-weight: 700;">GENEL TOPLAM</span>
-                            <span id="grand-total" style="font-weight: 700;">280,80 $</span>
-                        </div>
+                {{-- Bottom Section: Notes & Totals --}}
+                <div
+                    style="display: flex; justify-content: space-between; align-items: flex-end; margin-top: 30px; border-top: 1px solid #000; padding-top: 15px;">
+                    {{-- Left: Notes --}}
+                    <div id="notes-container" style="flex: 1; padding-right: 40px;">
+                        <div style="font-size: 10px; font-weight: 700; color: #000; margin-bottom: 4px;">NOTLAR:</div>
+                        <div contenteditable="true" id="quote-note"
+                            style="font-size: 10px; color: #333; outline: none; border: none; min-width: 200px; padding: 2px 0; border-bottom: 1px dashed transparent;"
+                            onfocus="if(this.innerText==='İsteğe bağlı not ekleyebilirsiniz...') this.innerText=''; this.style.borderBottom='1px dashed #ccc'"
+                            onblur="if(this.innerText==='') this.innerText='İsteğe bağlı not ekleyebilirsiniz...'; this.style.borderBottom='1px dashed transparent'">
+                            İsteğe bağlı not ekleyebilirsiniz...</div>
                     </div>
-                    {{-- Notes Section --}}
-                    <div style="margin-top: 40px; border-top: 1px solid #ddd; padding-top: 15px;">
-                        <div style="font-size: 11px; font-weight: 700; margin-bottom: 8px;">NOTLAR / AÇIKLAMA</div>
-                        <div contenteditable="true"
-                            style="font-size: 10px; color: #333; line-height: 1.6; min-height: 60px; outline: none; border: 1px dashed transparent; padding: 5px;"
-                            onfocus="this.style.border='1px dashed #ccc'"
-                            onblur="this.style.border='1px dashed transparent'">
-                            • Bu teklif hazırlandığı tarihten itibaren 15 gün geçerlidir.<br>
-                            • Fiyatlarımıza KDV dahil değildir.<br>
-                            • Ödeme şartları: İş başlangıcında %50, iş bitiminde %50 nakit veya havale.
+
+                    {{-- Right: Totals --}}
+                    <div style="width: 240px;">
+                        <div style="display: flex; justify-content: space-between; padding: 4px 0; font-size: 10px;">
+                            <span style="font-weight: 600;">ARA TOPLAM</span>
+                            <span id="subtotal" style="font-weight: 600;">0,00 $</span>
+                        </div>
+                        <div style="display: flex; justify-content: space-between; padding: 4px 0; font-size: 10px;">
+                            <span style="font-weight: 600;">BRÜT TOPLAM</span>
+                            <span id="gross-total" style="font-weight: 600;">0,00 $</span>
+                        </div>
+                        <div style="display: flex; justify-content: space-between; padding: 4px 0; font-size: 10px;">
+                            <span style="font-weight: 600;">TOPLAM K.D.V</span>
+                            <span id="total-vat" style="font-weight: 600;">0,00 $</span>
+                        </div>
+                        <div
+                            style="display: flex; justify-content: space-between; padding: 6px 0; border-top: 2px solid #000; font-size: 11px; margin-top: 4px;">
+                            <span style="font-weight: 700;">GENEL TOPLAM</span>
+                            <span id="grand-total" style="font-weight: 700;">0,00 $</span>
                         </div>
                     </div>
                 </div>
@@ -218,24 +217,24 @@
                 newRow.className = 'product-row';
                 newRow.style.borderBottom = '1px solid #e5e5e5';
                 newRow.innerHTML = `
-                                        <td style="padding: 4px;">
-                                            <input type="text" class="product-name" placeholder="Ürün adı" style="width: 100%; border: none; font-size: 9px; padding: 2px;">
-                                        </td>
-                                        <td style="padding: 4px; text-align: center;">
-                                            <input type="number" class="quantity" value="1" min="1" style="width: 35px; border: none; text-align: center; font-size: 9px; padding: 2px;">
-                                            <span style="font-size: 9px; margin-left: 2px;">Adet</span>
-                                        </td>
-                                        <td style="padding: 4px; text-align: right;">
-                                            <input type="number" class="unit-price" value="0" step="0.01" style="width: 50px; border: none; text-align: right; font-size: 9px; padding: 2px;">
-                                            <span style="font-size: 9px; margin-left: 2px;">$</span>
-                                        </td>
-                                        <td style="padding: 4px; text-align: right;">
-                                            <span style="font-size: 9px;">%20</span>
-                                        </td>
-                                        <td style="padding: 4px; text-align: right; font-weight: 600;">
-                                            <span class="row-total">0,00 $</span>
-                                        </td>
-                                    `;
+                                            <td style="padding: 4px;">
+                                                <input type="text" class="product-name" placeholder="Ürün adı" style="width: 100%; border: none; font-size: 9px; padding: 2px;">
+                                            </td>
+                                            <td style="padding: 4px; text-align: center;">
+                                                <input type="number" class="quantity" value="1" min="1" style="width: 35px; border: none; text-align: center; font-size: 9px; padding: 2px;">
+                                                <span style="font-size: 9px; margin-left: 2px;">Adet</span>
+                                            </td>
+                                            <td style="padding: 4px; text-align: right;">
+                                                <input type="number" class="unit-price" value="0" step="0.01" style="width: 50px; border: none; text-align: right; font-size: 9px; padding: 2px;">
+                                                <span style="font-size: 9px; margin-left: 2px;">$</span>
+                                            </td>
+                                            <td style="padding: 4px; text-align: right;">
+                                                <span style="font-size: 9px;">%20</span>
+                                            </td>
+                                            <td style="padding: 4px; text-align: right; font-weight: 600;">
+                                                <span class="row-total">0,00 $</span>
+                                            </td>
+                                        `;
 
                 tbody.appendChild(newRow);
 
@@ -246,6 +245,16 @@
 
             function generatePDF() {
                 const element = document.getElementById('quote-content');
+                const notesContainer = document.getElementById('notes-container');
+                const noteContent = document.getElementById('quote-note');
+
+                // Hide notes if it's the placeholder or empty
+                let notesHidden = false;
+                if (noteContent && (noteContent.innerText.trim() === '' || noteContent.innerText.trim() === 'İsteğe bağlı not ekleyebilirsiniz...')) {
+                    notesContainer.style.visibility = 'hidden';
+                    notesHidden = true;
+                }
+
                 const opt = {
                     margin: 10,
                     filename: 'teklif-' + new Date().toISOString().slice(0, 10) + '.pdf',
@@ -254,7 +263,11 @@
                     jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' }
                 };
 
-                html2pdf().set(opt).from(element).save();
+                html2pdf().set(opt).from(element).save().then(() => {
+                    if (notesHidden) {
+                        notesContainer.style.visibility = 'visible';
+                    }
+                });
             }
 
             // Initialize
