@@ -6,34 +6,39 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ isset($title) ? $title . ' | ' : '' }}{{ setting('site_name', 'SOHO Güvenlik Sistemleri') }} | İzmir Kamera & Alarm Sistemleri</title>
+    <title>{{ isset($title) ? $title . ' | ' : '' }}{{ $siteIdentity->site_name ?? setting('site_name', 'SOHO Güvenlik Sistemleri') }} | İzmir Kamera & Alarm Sistemleri</title>
     <meta name="description" content="{{ isset($description) ? $description : setting('meta_description', 'İzmir güvenlik sistemleri, kamera sistemleri, hırsız alarmı ve yangın ihbar sistemleri. Profesyonel kurulum ve 7/24 teknik destek hizmeti.') }}">
     <meta name="keywords" content="{{ setting('meta_keywords', 'izmir güvenlik sistemleri, izmir kamera sistemleri, alarm sistemleri izmir, güvenlik kamerası, hırsız alarmı, yangın alarmı, akıllı ev sistemleri, soho güvenlik') }}">
-    <meta name="author" content="SOHO Güvenlik Sistemleri">
+    <meta name="author" content="{{ $siteIdentity->site_name ?? 'SOHO Güvenlik Sistemleri' }}">
     <meta name="robots" content="index, follow">
     <link rel="canonical" href="{{ url()->current() }}">
+
+    <!-- Favicon -->
+    @if(isset($siteIdentity->favicon) && $siteIdentity->favicon)
+    <link rel="icon" type="image/png" href="{{ Storage::url($siteIdentity->favicon) }}">
+    @endif
 
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
     <meta property="og:url" content="{{ url()->current() }}">
-    <meta property="og:title" content="{{ isset($title) ? $title . ' | ' : '' }}{{ setting('site_name', 'SOHO Güvenlik Sistemleri') }}">
+    <meta property="og:title" content="{{ isset($title) ? $title . ' | ' : '' }}{{ $siteIdentity->site_name ?? setting('site_name', 'SOHO Güvenlik Sistemleri') }}">
     <meta property="og:description" content="{{ isset($description) ? $description : setting('meta_description', 'İzmir güvenlik sistemleri çözümleri. Ev ve iş yeri güvenliği için profesyonel kamera ve alarm sistemleri.') }}">
-    <meta property="og:image" content="{{ setting('logo') ? Storage::url(setting('logo')) : asset('images/og-image.jpg') }}">
+    <meta property="og:image" content="{{ (isset($siteIdentity->logo) && $siteIdentity->logo) ? Storage::url($siteIdentity->logo) : asset('images/og-image.jpg') }}">
 
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image">
     <meta property="twitter:url" content="{{ url()->current() }}">
-    <meta property="twitter:title" content="{{ isset($title) ? $title . ' | ' : '' }}{{ setting('site_name', 'SOHO Güvenlik Sistemleri') }}">
+    <meta property="twitter:title" content="{{ isset($title) ? $title . ' | ' : '' }}{{ $siteIdentity->site_name ?? setting('site_name', 'SOHO Güvenlik Sistemleri') }}">
     <meta property="twitter:description" content="{{ isset($description) ? $description : setting('meta_description', 'İzmir profesyonel güvenlik ve kamera sistemleri çözümleri.') }}">
-    <meta property="twitter:image" content="{{ setting('logo') ? Storage::url(setting('logo')) : asset('images/og-image.jpg') }}">
+    <meta property="twitter:image" content="{{ (isset($siteIdentity->logo) && $siteIdentity->logo) ? Storage::url($siteIdentity->logo) : asset('images/og-image.jpg') }}">
 
     <!-- Schema.org JSON-LD -->
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
       "@type": "LocalBusiness",
-      "name": "{{ setting('site_name', 'SOHO Güvenlik Sistemleri') }}",
-      "image": "{{ setting('logo') ? Storage::url(setting('logo')) : '' }}",
+      "name": "{{ $siteIdentity->site_name ?? setting('site_name', 'SOHO Güvenlik Sistemleri') }}",
+      "image": "{{ (isset($siteIdentity->logo) && $siteIdentity->logo) ? Storage::url($siteIdentity->logo) : '' }}",
       "telephone": "{{ setting('phone', '+90 (555) 123 45 67') }}",
       "email": "{{ setting('email', 'info@sohoguvenlik.com') }}",
       "address": {
@@ -98,8 +103,8 @@
             <div class="xl:grid xl:grid-cols-3 xl:gap-8 border-b border-primary-400 pb-12 mb-12">
                 <div class="space-y-8">
                     <span class="text-2xl font-black tracking-tight text-white flex items-center gap-2">
-                        @if(setting('logo'))
-                        <img src="{{ Storage::url(setting('logo')) }}" alt="{{ setting('site_name', 'SOHO') }}" class="h-8">
+                        @if(isset($siteIdentity->logo) && $siteIdentity->logo)
+                        <img src="{{ Storage::url($siteIdentity->logo) }}" alt="{{ $siteIdentity->site_name ?? 'SOHO' }}" class="h-8">
                         @else
                         <span>SOHO</span>
                         <span class="text-secondary-500">Güvenlik</span>

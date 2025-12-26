@@ -33,8 +33,17 @@ class AppServiceProvider extends ServiceProvider
             } else {
                 \Illuminate\Support\Facades\View::share('globalSettings', collect([]));
             }
+
+            // Share site identity
+            if (\Illuminate\Support\Facades\Schema::hasTable('site_identities')) {
+                \Illuminate\Support\Facades\View::share('siteIdentity', \App\Models\SiteIdentity::first());
+            } else {
+                \Illuminate\Support\Facades\View::share('siteIdentity', null);
+            }
         } catch (\Exception $e) {
             \Illuminate\Support\Facades\View::share('globalServices', collect([]));
+            \Illuminate\Support\Facades\View::share('globalSettings', collect([]));
+            \Illuminate\Support\Facades\View::share('siteIdentity', null);
         }
     }
 }
