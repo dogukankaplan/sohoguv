@@ -7,18 +7,25 @@ use App\Models\Setting;
 use Filament\Actions;
 use Filament\Forms;
 use Filament\Forms\Form;
-use Filament\Resources\Pages\ManageRecords;
+use Filament\Resources\Pages\Page;
 use Filament\Notifications\Notification;
 
-class ManageSettings extends ManageRecords
+class ManageSettings extends Page
 {
     protected static string $resource = SettingResource::class;
+    protected static string $view = 'filament.resources.setting-resource.pages.manage-settings';
+
+    public ?array $data = [];
+
+    public function mount(): void
+    {
+        // Load all settings into form data
+        $settings = Setting::pluck('value', 'key')->toArray();
+        $this->form->fill($settings);
+    }
 
     public function form(Form $form): Form
     {
-        // Get all settings as key-value pairs
-        $settings = Setting::pluck('value', 'key')->toArray();
-
         return $form
             ->schema([
                 Forms\Components\Tabs::make('Settings')
@@ -28,25 +35,21 @@ class ManageSettings extends ManageRecords
                             ->schema([
                                 Forms\Components\TextInput::make('site_name')
                                     ->label('Site Adı')
-                                    ->default($settings['site_name'] ?? 'SOHO Güvenlik Sistemleri')
-                                    ->columnSpanFull(),
+                                    ->default('SOHO Güvenlik Sistemleri'),
 
                                 Forms\Components\TextInput::make('site_tagline')
                                     ->label('Site Sloganı')
-                                    ->default($settings['site_tagline'] ?? 'Güvenliği Sanata Dönüştürüyoruz')
-                                    ->columnSpanFull(),
+                                    ->default('Güvenliği Sanata Dönüştürüyoruz'),
 
                                 Forms\Components\FileUpload::make('logo')
                                     ->label('Site Logosu')
                                     ->image()
-                                    ->directory('settings')
-                                    ->default($settings['logo'] ?? null),
+                                    ->directory('settings'),
 
                                 Forms\Components\FileUpload::make('favicon')
                                     ->label('Favicon')
                                     ->image()
-                                    ->directory('settings')
-                                    ->default($settings['favicon'] ?? null),
+                                    ->directory('settings'),
                             ]),
 
                         // İletişim
@@ -55,16 +58,16 @@ class ManageSettings extends ManageRecords
                                 Forms\Components\TextInput::make('phone')
                                     ->label('Telefon')
                                     ->tel()
-                                    ->default($settings['phone'] ?? '+90 (555) 123 45 67'),
+                                    ->default('+90 (555) 123 45 67'),
 
                                 Forms\Components\TextInput::make('email')
                                     ->label('E-posta')
                                     ->email()
-                                    ->default($settings['email'] ?? 'info@sohoguvenlik.com'),
+                                    ->default('info@sohoguvenlik.com'),
 
                                 Forms\Components\Textarea::make('address')
                                     ->label('Adres')
-                                    ->default($settings['address'] ?? 'İstanbul, Türkiye')
+                                    ->default('İstanbul, Türkiye')
                                     ->rows(2)
                                     ->columnSpanFull(),
                             ]),
@@ -74,19 +77,82 @@ class ManageSettings extends ManageRecords
                             ->schema([
                                 Forms\Components\TextInput::make('facebook')
                                     ->label('Facebook')
-                                    ->url()
-                                    ->default($settings['facebook'] ?? null),
+                                    ->url(),
 
                                 Forms\Components\TextInput::make('instagram')
                                     ->label('Instagram')
-                                    ->url()
-                                    ->default($settings['instagram'] ?? null),
+                                    ->url(),
 
                                 Forms\Components\TextInput::make('linkedin')
                                     ->label('LinkedIn')
-                                    ->url()
-                                    ->default($settings['linkedin'] ?? null),
+                                    ->url(),
+
+                                Forms\Components\TextInput::make('twitter')
+                                    ->label('Twitter/X')
+                                    ->url(),
                             ]),
+
+                        // Footer
+                        Forms\Components\Tabs\Tab::make('Footer')
+                            ->schema([
+                                Forms\Components\Textarea::make('footer_about')
+                                    ->label('Hakkımızda Metni')
+                                    ->default('Güvenlik ve teknoloji altyapılarınız için profesyonel çözümler.')
+                                    ->rows(2)
+                                    ->columnSpanFull(),
+
+                                Forms\Components\TextInput::make('copyright')
+                                    ->label('Copyright Metni')
+                                    ->default('© [YEAR] SOHO Güvenlik Sistemleri. Tüm hakları saklıdır.')
+                                    ->helperText('[YEAR] otomatik yıl olarak değişir')
+                                    ->columnSpanFull(),
+                            ]),
+
+                        // Butonlar
+                        Forms\Components\Tabs\Tab::make('Butonlar')
+                            ->schema([
+                                Forms\Components\TextInput::make('btn_explore')
+                                    ->label('Keşfet Butonu')
+                                    ->default('Keşfetmeye Başla'),
+
+                                Forms\Components\TextInput::make('btn_contact')
+                                    ->label('İletişim Butonu')
+                                    ->default('İletişime Geç'),
+
+                                Forms\Components\TextInput::make('btn_quote')
+                                    ->label('Teklif Al Butonu')
+                                    ->default('Teklif Al'),
+
+                                Forms\Components\TextInput::make('btn_submit')
+                                    ->label('Gönder Butonu')
+                                    ->default('Gönder'),
+                            ])
+                            ->columns(2),
+
+                        // Sayfa Başlıkları
+                        Forms\Components\Tabs\Tab::make('Sayfa Başlıkları')
+                            ->schema([
+                                Forms\Components\TextInput::make('page_home')
+                                    ->label('Ana Sayfa')
+                                    ->default('Ana Sayfa'),
+
+                                Forms\Components\TextInput::make('page_about')
+                                    ->label('Hakkımızda')
+                                    ->default('Hakkımızda'),
+
+                                Forms\Components\TextInput::make('page_contact')
+                                    ->label('İletişim')
+                                    ->default('İletişim'),
+
+                                Forms\Components\TextInput::make('page_services')
+                                    ->label('Hizmetler')
+                                    ->default('Hizmetlerimiz'),
+
+                                Forms\Components\TextInput::make('page_references')
+                                    ->label('Referanslar')
+                                    ->default('Referanslarımız'),
+                            ])
+                            ->columns(2),
                     ])
                     ->columnSpanFull()
                     ->persistTabInQueryString(),
@@ -94,13 +160,12 @@ class ManageSettings extends ManageRecords
             ->statePath('data');
     }
 
-    protected function getHeaderActions(): array
+    protected function getFormActions(): array
     {
         return [
             Actions\Action::make('save')
                 ->label('Kaydet')
-                ->action('save')
-                ->color('primary'),
+                ->submit('save'),
         ];
     }
 
@@ -116,7 +181,7 @@ class ManageSettings extends ManageRecords
         }
 
         Notification::make()
-            ->title('Ayarlar kaydedildi')
+            ->title('Ayarlar başarıyla kaydedildi')
             ->success()
             ->send();
     }
