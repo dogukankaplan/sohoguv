@@ -160,12 +160,12 @@
                         </div>
                     </div>
                 </div>
-                {{-- Add Row --}}
-                <div style="margin-top: 15px; margin-bottom: 25px;" class="no-print">
-                    <button onclick="addRow()"
-                        style="font-size: 10px; color: #3B82F6; background: none; border: none; cursor: pointer; font-weight: 600;">+
-                        Satır Ekle</button>
-                </div>
+            </div>
+            {{-- Add Row --}}
+            <div style="margin-top: 15px; margin-bottom: 25px;" class="no-print">
+                <button onclick="addRow()"
+                    style="font-size: 10px; color: #3B82F6; background: none; border: none; cursor: pointer; font-weight: 600;">+
+                    Satır Ekle</button>
             </div>
         </div>
 
