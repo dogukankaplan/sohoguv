@@ -10,6 +10,10 @@ class ServiceController extends Controller
     public function show($slug)
     {
         $service = Service::where('slug', $slug)->firstOrFail();
-        return view('services.show', compact('service'));
+
+        $title = $service->title . ' - İzmir Kamera ve Güvenlik Sistemleri';
+        $description = \Illuminate\Support\Str::limit(strip_tags($service->description), 160);
+
+        return view('services.show', compact('service', 'title', 'description'));
     }
 }

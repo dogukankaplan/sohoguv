@@ -6,8 +6,71 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'SOHO Güvenlik') }}</title>
+    <title>{{ isset($title) ? $title . ' | ' : '' }}{{ setting('site_name', 'SOHO Güvenlik Sistemleri') }} | İzmir Kamera & Alarm Sistemleri</title>
+    <meta name="description" content="{{ isset($description) ? $description : setting('meta_description', 'İzmir güvenlik sistemleri, kamera sistemleri, hırsız alarmı ve yangın ihbar sistemleri. Profesyonel kurulum ve 7/24 teknik destek hizmeti.') }}">
+    <meta name="keywords" content="{{ setting('meta_keywords', 'izmir güvenlik sistemleri, izmir kamera sistemleri, alarm sistemleri izmir, güvenlik kamerası, hırsız alarmı, yangın alarmı, akıllı ev sistemleri, soho güvenlik') }}">
+    <meta name="author" content="SOHO Güvenlik Sistemleri">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="{{ url()->current() }}">
 
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="{{ url()->current() }}">
+    <meta property="og:title" content="{{ isset($title) ? $title . ' | ' : '' }}{{ setting('site_name', 'SOHO Güvenlik Sistemleri') }}">
+    <meta property="og:description" content="{{ isset($description) ? $description : setting('meta_description', 'İzmir güvenlik sistemleri çözümleri. Ev ve iş yeri güvenliği için profesyonel kamera ve alarm sistemleri.') }}">
+    <meta property="og:image" content="{{ setting('logo') ? Storage::url(setting('logo')) : asset('images/og-image.jpg') }}">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="{{ url()->current() }}">
+    <meta property="twitter:title" content="{{ isset($title) ? $title . ' | ' : '' }}{{ setting('site_name', 'SOHO Güvenlik Sistemleri') }}">
+    <meta property="twitter:description" content="{{ isset($description) ? $description : setting('meta_description', 'İzmir profesyonel güvenlik ve kamera sistemleri çözümleri.') }}">
+    <meta property="twitter:image" content="{{ setting('logo') ? Storage::url(setting('logo')) : asset('images/og-image.jpg') }}">
+
+    <!-- Schema.org JSON-LD -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "LocalBusiness",
+      "name": "{{ setting('site_name', 'SOHO Güvenlik Sistemleri') }}",
+      "image": "{{ setting('logo') ? Storage::url(setting('logo')) : '' }}",
+      "telephone": "{{ setting('phone', '+90 (555) 123 45 67') }}",
+      "email": "{{ setting('email', 'info@sohoguvenlik.com') }}",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "{{ setting('address', 'İzmir') }}",
+        "addressLocality": "İzmir",
+        "addressRegion": "İzmir",
+        "addressCountry": "TR"
+      },
+      "url": "{{ url('/') }}",
+      "priceRange": "$$",
+      "openingHoursSpecification": {
+        "@type": "OpeningHoursSpecification",
+        "dayOfWeek": [
+          "Monday",
+          "Tuesday",
+          "Wednesday",
+          "Thursday",
+          "Friday"
+        ],
+        "opens": "09:00",
+        "closes": "18:00"
+      },
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": "38.4192",
+        "longitude": "27.1287"
+      },
+      "sameAs": [
+        "{{ setting('facebook') }}",
+        "{{ setting('instagram') }}",
+        "{{ setting('linkedin') }}",
+        "{{ setting('twitter') }}"
+      ]
+    }
+    </script>
+    
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.bunny.net">
     <link href="https://fonts.bunny.net/css?family=inter:400,500,600,700&display=swap" rel="stylesheet" />

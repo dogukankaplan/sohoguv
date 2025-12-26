@@ -23,3 +23,8 @@ Route::post('/newsletter', [NewsletterController::class, 'subscribe'])->name('ne
 Route::get('/ariza-talebi', [RequestController::class, 'fault'])->name('requests.fault');
 Route::get('/envanter-talebi', [RequestController::class, 'inventory'])->name('requests.inventory');
 Route::post('/talepler', [RequestController::class, 'store'])->name('requests.store');
+
+Route::get('/sitemap.xml', function () {
+    $services = \App\Models\Service::all();
+    return response()->view('sitemap', compact('services'))->header('Content-Type', 'text/xml');
+});

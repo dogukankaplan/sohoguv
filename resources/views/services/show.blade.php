@@ -2,6 +2,22 @@
 
 @section('content')
     <div class="bg-neutral-bg pb-16 lg:pb-24">
+        <script type="application/ld+json">
+        {
+          "@context": "https://schema.org",
+          "@type": "Service",
+          "name": "{{ $service->title }}",
+          "provider": {
+            "@type": "LocalBusiness",
+            "name": "{{ setting('site_name', 'SOHO Güvenlik Sistemleri') }}"
+          },
+          "areaServed": {
+            "@type": "City",
+            "name": "İzmir"
+          },
+          "description": "{{ isset($description) ? $description : Str::limit(strip_tags($service->description), 160) }}"
+        }
+        </script>
         {{-- Hero / Header --}}
         <div class="relative h-[50vh] min-h-[400px] w-full overflow-hidden bg-white">
             @if($service->image)

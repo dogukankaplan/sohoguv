@@ -3,10 +3,10 @@
 @section('content')
     <div class="bg-neutral-bg">
         @php
-            $heroTitle = $hero->title ?? setting('hero_title', 'Güvenliğiniz Bizim <span class="gradient-text">Önceliğimiz</span>');
-            $heroSubtitle = $hero->subtitle ?? setting('hero_subtitle', 'SOHO Güvenlik Sistemleri olarak, kurumsal altyapınızı en üst düzeyde koruyoruz. Teknoloji ve güvenliği bir araya getirerek size huzur sunuyoruz.');
-            $heroBadge = $hero->badge_text ?? setting('hero_badge', 'Türkiye\'nin Güvenilir Güvenlik Çözümü');
-            $heroCtaText = $hero->cta_text ?? setting('btn_explore', 'Hizmetlerimizi Keşfedin');
+            $heroTitle = $hero->title ?? setting('hero_title', 'İzmir <span class="gradient-text">Güvenlik ve Kamera</span> Sistemleri');
+            $heroSubtitle = $hero->subtitle ?? setting('hero_subtitle', 'SOHO Güvenlik Sistemleri olarak, İzmir ve Ege bölgesinde kurumsal altyapınızı en üst düzeyde koruyoruz. Profesyonel kamera, alarm ve güvenlik çözümleri.');
+            $heroBadge = $hero->badge_text ?? setting('hero_badge', 'İzmir\'in En Güvenilir Güvenlik Çözümü');
+            $heroCtaText = $hero->cta_text ?? setting('btn_explore', 'İzmir Güvenlik Hizmetleri');
             $heroCtaUrl = $hero->cta_url ?? '#services';
             $heroBg = $hero && $hero->background_image ? Storage::url($hero->background_image) : null;
         @endphp
@@ -244,13 +244,13 @@
             <div class="container-custom">
                 <div class="max-w-2xl mx-auto text-center mb-16">
                     <h2 class="text-sm font-bold text-secondary-500 uppercase tracking-wider mb-3">
-                        {{ setting('why_soho_subtitle', 'Neden SOHO?') }}
+                        {{ setting('why_soho_subtitle', 'Neden SOHO Güvenlik?') }}
                     </h2>
                     <h3 class="heading-lg mb-4">
-                        {{ setting('why_soho_title', 'Güvenlik Standartlarını Yeniden Belirliyoruz') }}
+                        {{ setting('why_soho_title', 'İzmir\'de Güvenlik Standartlarını Belirliyoruz') }}
                     </h3>
                     <p class="text-body">
-                        {{ setting('why_soho_desc', 'Sıradan güvenlik çözümlerinin ötesine geçerek, işletmeniz için en verimli ve estetik çözümleri sunuyoruz.') }}
+                        {{ setting('why_soho_desc', 'İzmir güvenlik sistemleri sektöründe, sıradan çözümlerin ötesine geçerek işletmeniz için en verimli kamera ve alarm sistemlerini sunuyoruz.') }}
                     </p>
                 </div>
 
@@ -277,10 +277,10 @@
             <div class="container-custom">
                 <div class="max-w-2xl mx-auto text-center mb-16">
                     <h2 class="text-sm font-bold text-accent-500 uppercase tracking-wider mb-3">
-                        {{ setting('services_subtitle', 'Hizmetlerimiz') }}
+                        {{ setting('services_subtitle', 'İzmir Güvenlik Hizmetleri') }}
                     </h2>
                     <h3 class="heading-lg">
-                        {{ setting('services_title', 'Uçtan Uca Çözümler') }}
+                        {{ setting('services_title', 'Uçtan Uca Kamera ve Güvenlik Çözümleri') }}
                     </h3>
                 </div>
 
@@ -324,10 +324,10 @@
                 <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
                     <div>
                         <h2 class="heading-lg mb-6">
-                            {{ setting('why_us_title', 'Neden SOHO?') }}
+                            {{ setting('why_us_title', 'Neden SOHO Güvenlik İzmir?') }}
                         </h2>
                         <p class="text-body mb-8">
-                            {{ setting('why_us_desc', 'Tecrübemiz ve uzman ekibimizle güvenliğinizi en üst seviyeye taşıyoruz.') }}
+                            {{ setting('why_us_desc', 'İzmir\'deki tecrübemiz ve uzman teknik ekibimizle güvenlik kamerası ve alarm sistemlerinizi en üst seviyeye taşıyoruz. Profesyonel kurulum ve satış sonrası destek.') }}
                         </p>
 
                         @if(isset($whyUsFeatures) && count($whyUsFeatures) > 0)

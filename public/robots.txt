@@ -1,2 +1,8 @@
 User-agent: *
-Disallow:
+Allow: /
+Disallow: /admin
+Disallow: /nova
+Disallow: /telescope
+Disallow: /horizon
+
+Sitemap: https://sohoguvenliksistemleri.com.tr/sitemap.xml
