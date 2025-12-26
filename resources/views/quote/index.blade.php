@@ -1,10 +1,11 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="bg-white min-h-screen py-6">
+    <div class="bg-white min-h-screen" style="padding-top: 120px; padding-bottom: 24px;">
         <div class="max-w-4xl mx-auto px-4">
             {{-- Action Buttons --}}
-            <div style="margin-bottom: 16px; display: flex; justify-content: flex-end; gap: 12px;">
+            <div
+                style="margin-bottom: 16px; display: flex; justify-content: flex-end; gap: 12px; position: relative; z-index: 10;">
                 <button onclick="window.print()"
                     style="padding: 8px 24px; background-color: #6B7280; color: white; border-radius: 4px; border: none; cursor: pointer; font-size: 14px; font-weight: 500;">
                     Yazdır
@@ -202,24 +203,24 @@
             newRow.className = 'product-row';
             newRow.style.borderBottom = '1px solid #e5e5e5';
             newRow.innerHTML = `
-            <td style="padding: 4px;">
-                <input type="text" class="product-name" placeholder="Ürün adı" style="width: 100%; border: none; font-size: 9px; padding: 2px;">
-            </td>
-            <td style="padding: 4px; text-align: center;">
-                <input type="number" class="quantity" value="1" min="1" style="width: 35px; border: none; text-align: center; font-size: 9px; padding: 2px;">
-                <span style="font-size: 9px; margin-left: 2px;">Adet</span>
-            </td>
-            <td style="padding: 4px; text-align: right;">
-                <input type="number" class="unit-price" value="0" step="0.01" style="width: 50px; border: none; text-align: right; font-size: 9px; padding: 2px;">
-                <span style="font-size: 9px; margin-left: 2px;">$</span>
-            </td>
-            <td style="padding: 4px; text-align: right;">
-                <span style="font-size: 9px;">%20</span>
-            </td>
-            <td style="padding: 4px; text-align: right; font-weight: 600;">
-                <span class="row-total">0,00 $</span>
-            </td>
-        `;
+                <td style="padding: 4px;">
+                    <input type="text" class="product-name" placeholder="Ürün adı" style="width: 100%; border: none; font-size: 9px; padding: 2px;">
+                </td>
+                <td style="padding: 4px; text-align: center;">
+                    <input type="number" class="quantity" value="1" min="1" style="width: 35px; border: none; text-align: center; font-size: 9px; padding: 2px;">
+                    <span style="font-size: 9px; margin-left: 2px;">Adet</span>
+                </td>
+                <td style="padding: 4px; text-align: right;">
+                    <input type="number" class="unit-price" value="0" step="0.01" style="width: 50px; border: none; text-align: right; font-size: 9px; padding: 2px;">
+                    <span style="font-size: 9px; margin-left: 2px;">$</span>
+                </td>
+                <td style="padding: 4px; text-align: right;">
+                    <span style="font-size: 9px;">%20</span>
+                </td>
+                <td style="padding: 4px; text-align: right; font-weight: 600;">
+                    <span class="row-total">0,00 $</span>
+                </td>
+            `;
 
             tbody.appendChild(newRow);
 
