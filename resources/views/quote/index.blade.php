@@ -142,118 +142,129 @@
                             <span id="grand-total" style="font-weight: 700;">280,80 $</span>
                         </div>
                     </div>
+                    {{-- Notes Section --}}
+                    <div style="margin-top: 40px; border-top: 1px solid #ddd; padding-top: 15px;">
+                        <div style="font-size: 11px; font-weight: 700; margin-bottom: 8px;">NOTLAR / AÇIKLAMA</div>
+                        <div contenteditable="true"
+                            style="font-size: 10px; color: #333; line-height: 1.6; min-height: 60px; outline: none; border: 1px dashed transparent; padding: 5px;"
+                            onfocus="this.style.border='1px dashed #ccc'"
+                            onblur="this.style.border='1px dashed transparent'">
+                            • Bu teklif hazırlandığı tarihten itibaren 15 gün geçerlidir.<br>
+                            • Fiyatlarımıza KDV dahil değildir.<br>
+                            • Ödeme şartları: İş başlangıcında %50, iş bitiminde %50 nakit veya havale.
+                        </div>
+                    </div>
+                </div>
+                {{-- Add Row --}}
+                <div style="margin-top: 15px; margin-bottom: 25px;" class="no-print">
+                    <button onclick="addRow()"
+                        style="font-size: 10px; color: #3B82F6; background: none; border: none; cursor: pointer; font-weight: 600;">+
+                        Satır Ekle</button>
                 </div>
             </div>
-            {{-- Add Row --}}
-            <div style="margin-top: 15px; margin-bottom: 25px;" class="no-print">
-                <button onclick="addRow()"
-                    style="font-size: 10px; color: #3B82F6; background: none; border: none; cursor: pointer; font-weight: 600;">+
-                    Satır Ekle</button>
-            </div>
         </div>
-    </div>
 
-    {{-- Scripts --}}
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+        {{-- Scripts --}}
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
 
-    <style>
-        @media print {
-            .no-print {
-                display: none !important;
+        <style>
+            @media print {
+                .no-print {
+                    display: none !important;
+                }
+
+                body {
+                    margin: 0;
+                    padding: 0;
+                }
+
+                #quote-content {
+                    box-shadow: none !important;
+                    margin: 0 !important;
+                    padding: 20mm !important;
+                }
+            }
+        </style>
+
+        <script>
+            function formatNumber(num) {
+                return num.toFixed(2).replace('.', ',');
             }
 
-            body {
-                margin: 0;
-                padding: 0;
+            function calculateTotals() {
+                let subtotal = 0;
+
+                document.querySelectorAll('.product-row').forEach(row => {
+                    const quantity = parseFloat(row.querySelector('.quantity').value) || 0;
+                    const unitPrice = parseFloat(row.querySelector('.unit-price').value) || 0;
+                    const rowTotal = quantity * unitPrice;
+
+                    row.querySelector('.row-total').textContent = formatNumber(rowTotal) + ' $';
+                    subtotal += rowTotal;
+                });
+
+                const vat = subtotal * 0.20;
+                const grandTotal = subtotal + vat;
+
+                document.getElementById('subtotal').textContent = formatNumber(subtotal) + ' $';
+                document.getElementById('gross-total').textContent = formatNumber(subtotal) + ' $';
+                document.getElementById('total-vat').textContent = formatNumber(vat) + ' $';
+                document.getElementById('grand-total').textContent = formatNumber(grandTotal) + ' $';
             }
 
-            #quote-content {
-                box-shadow: none !important;
-                margin: 0 !important;
-                padding: 20mm !important;
+            function addRow() {
+                const tbody = document.getElementById('product-rows');
+                const newRow = document.createElement('tr');
+                newRow.className = 'product-row';
+                newRow.style.borderBottom = '1px solid #e5e5e5';
+                newRow.innerHTML = `
+                                        <td style="padding: 4px;">
+                                            <input type="text" class="product-name" placeholder="Ürün adı" style="width: 100%; border: none; font-size: 9px; padding: 2px;">
+                                        </td>
+                                        <td style="padding: 4px; text-align: center;">
+                                            <input type="number" class="quantity" value="1" min="1" style="width: 35px; border: none; text-align: center; font-size: 9px; padding: 2px;">
+                                            <span style="font-size: 9px; margin-left: 2px;">Adet</span>
+                                        </td>
+                                        <td style="padding: 4px; text-align: right;">
+                                            <input type="number" class="unit-price" value="0" step="0.01" style="width: 50px; border: none; text-align: right; font-size: 9px; padding: 2px;">
+                                            <span style="font-size: 9px; margin-left: 2px;">$</span>
+                                        </td>
+                                        <td style="padding: 4px; text-align: right;">
+                                            <span style="font-size: 9px;">%20</span>
+                                        </td>
+                                        <td style="padding: 4px; text-align: right; font-weight: 600;">
+                                            <span class="row-total">0,00 $</span>
+                                        </td>
+                                    `;
+
+                tbody.appendChild(newRow);
+
+                // Add event listeners
+                newRow.querySelector('.quantity').addEventListener('input', calculateTotals);
+                newRow.querySelector('.unit-price').addEventListener('input', calculateTotals);
             }
-        }
-    </style>
 
-    <script>
-        function formatNumber(num) {
-            return num.toFixed(2).replace('.', ',');
-        }
+            function generatePDF() {
+                const element = document.getElementById('quote-content');
+                const opt = {
+                    margin: 10,
+                    filename: 'teklif-' + new Date().toISOString().slice(0, 10) + '.pdf',
+                    image: { type: 'jpeg', quality: 0.98 },
+                    html2canvas: { scale: 2, useCORS: true, logging: false },
+                    jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' }
+                };
 
-        function calculateTotals() {
-            let subtotal = 0;
+                html2pdf().set(opt).from(element).save();
+            }
 
-            document.querySelectorAll('.product-row').forEach(row => {
-                const quantity = parseFloat(row.querySelector('.quantity').value) || 0;
-                const unitPrice = parseFloat(row.querySelector('.unit-price').value) || 0;
-                const rowTotal = quantity * unitPrice;
+            // Initialize
+            document.addEventListener('DOMContentLoaded', function () {
+                calculateTotals();
 
-                row.querySelector('.row-total').textContent = formatNumber(rowTotal) + ' $';
-                subtotal += rowTotal;
+                // Add event listeners to initial row
+                document.querySelectorAll('.quantity, .unit-price').forEach(input => {
+                    input.addEventListener('input', calculateTotals);
+                });
             });
-
-            const vat = subtotal * 0.20;
-            const grandTotal = subtotal + vat;
-
-            document.getElementById('subtotal').textContent = formatNumber(subtotal) + ' $';
-            document.getElementById('gross-total').textContent = formatNumber(subtotal) + ' $';
-            document.getElementById('total-vat').textContent = formatNumber(vat) + ' $';
-            document.getElementById('grand-total').textContent = formatNumber(grandTotal) + ' $';
-        }
-
-        function addRow() {
-            const tbody = document.getElementById('product-rows');
-            const newRow = document.createElement('tr');
-            newRow.className = 'product-row';
-            newRow.style.borderBottom = '1px solid #e5e5e5';
-            newRow.innerHTML = `
-                                    <td style="padding: 4px;">
-                                        <input type="text" class="product-name" placeholder="Ürün adı" style="width: 100%; border: none; font-size: 9px; padding: 2px;">
-                                    </td>
-                                    <td style="padding: 4px; text-align: center;">
-                                        <input type="number" class="quantity" value="1" min="1" style="width: 35px; border: none; text-align: center; font-size: 9px; padding: 2px;">
-                                        <span style="font-size: 9px; margin-left: 2px;">Adet</span>
-                                    </td>
-                                    <td style="padding: 4px; text-align: right;">
-                                        <input type="number" class="unit-price" value="0" step="0.01" style="width: 50px; border: none; text-align: right; font-size: 9px; padding: 2px;">
-                                        <span style="font-size: 9px; margin-left: 2px;">$</span>
-                                    </td>
-                                    <td style="padding: 4px; text-align: right;">
-                                        <span style="font-size: 9px;">%20</span>
-                                    </td>
-                                    <td style="padding: 4px; text-align: right; font-weight: 600;">
-                                        <span class="row-total">0,00 $</span>
-                                    </td>
-                                `;
-
-            tbody.appendChild(newRow);
-
-            // Add event listeners
-            newRow.querySelector('.quantity').addEventListener('input', calculateTotals);
-            newRow.querySelector('.unit-price').addEventListener('input', calculateTotals);
-        }
-
-        function generatePDF() {
-            const element = document.getElementById('quote-content');
-            const opt = {
-                margin: 10,
-                filename: 'teklif-' + new Date().toISOString().slice(0, 10) + '.pdf',
-                image: { type: 'jpeg', quality: 0.98 },
-                html2canvas: { scale: 2, useCORS: true, logging: false },
-                jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' }
-            };
-
-            html2pdf().set(opt).from(element).save();
-        }
-
-        // Initialize
-        document.addEventListener('DOMContentLoaded', function () {
-            calculateTotals();
-
-            // Add event listeners to initial row
-            document.querySelectorAll('.quantity, .unit-price').forEach(input => {
-                input.addEventListener('input', calculateTotals);
-            });
-        });
-    </script>
+        </script>
 @endsection
