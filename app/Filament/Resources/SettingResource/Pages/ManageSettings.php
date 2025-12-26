@@ -19,18 +19,30 @@ class ManageSettings extends Page
 
     public function mount(): void
     {
-        // Load all settings into form data
-        $settings = Setting::pluck('value', 'key')->toArray();
+        try {
+            // Load all settings into form data
+            $settings = Setting::pluck('value', 'key')->toArray();
 
-        // Decode JSON values for FileUpload fields
-        foreach ($settings as $key => $value) {
-            $decoded = json_decode($value, true);
-            if (json_last_error() === JSON_ERROR_NONE && is_array($decoded)) {
-                $settings[$key] = $decoded;
+            // Decode JSON values for FileUpload fields and ensure proper types
+            $processedSettings = [];
+            foreach ($settings as $key => $value) {
+                // Try to decode JSON
+                $decoded = json_decode($value, true);
+                if (json_last_error() === JSON_ERROR_NONE && is_array($decoded)) {
+                    $processedSettings[$key] = $decoded;
+                } else {
+                    // Keep as string
+                    $processedSettings[$key] = $value;
+                }
             }
-        }
 
-        $this->form->fill($settings);
+            $this->form->fill($processedSettings);
+        } catch (\Exception $e) {
+            Notification::make()
+                ->title('Ayarlar yüklenirken hata oluştu')
+                ->danger()
+                ->send();
+        }
     }
 
     public function form(Form $form): Form
@@ -53,12 +65,14 @@ class ManageSettings extends Page
                                 Forms\Components\FileUpload::make('logo')
                                     ->label('Site Logosu')
                                     ->image()
-                                    ->directory('settings'),
+                                    ->directory('settings')
+                                    ->nullable(),
 
                                 Forms\Components\FileUpload::make('favicon')
                                     ->label('Favicon')
                                     ->image()
-                                    ->directory('settings'),
+                                    ->directory('settings')
+                                    ->nullable(),
                             ]),
 
                         // İletişim
@@ -86,19 +100,23 @@ class ManageSettings extends Page
                             ->schema([
                                 Forms\Components\TextInput::make('facebook')
                                     ->label('Facebook')
-                                    ->url(),
+                                    ->url()
+                                    ->nullable(),
 
                                 Forms\Components\TextInput::make('instagram')
                                     ->label('Instagram')
-                                    ->url(),
+                                    ->url()
+                                    ->nullable(),
 
                                 Forms\Components\TextInput::make('linkedin')
                                     ->label('LinkedIn')
-                                    ->url(),
+                                    ->url()
+                                    ->nullable(),
 
                                 Forms\Components\TextInput::make('twitter')
                                     ->label('Twitter/X')
-                                    ->url(),
+                                    ->url()
+                                    ->nullable(),
                             ]),
 
                         // Footer
@@ -180,31 +198,39 @@ class ManageSettings extends Page
 
     public function save(): void
     {
-        $data = $this->form->getState();
+        try {
+            $data = $this->form->getState();
 
-        foreach ($data as $key => $value) {
-            // Skip null or empty values
-            if ($value === null || $value === '') {
-                continue;
+            foreach ($data as $key => $value) {
+                // Skip completely null or empty values
+                if ($value === null || $value === '' || $value === []) {
+                    continue;
+                }
+
+                // Convert arrays (from FileUpload) to JSON string
+                if (is_array($value)) {
+                    $value = json_encode($value);
+                }
+
+                // Ensure value is a string (cast safely)
+                $value = is_string($value) ? $value : (string) $value;
+
+                Setting::updateOrCreate(
+                    ['key' => $key],
+                    ['value' => $value]
+                );
             }
 
-            // Convert arrays (from FileUpload) to JSON
-            if (is_array($value)) {
-                $value = json_encode($value);
-            }
+            Notification::make()
+                ->title('Ayarlar başarıyla kaydedildi')
+                ->success()
+                ->send();
 
-            // Ensure value is a string
-            $value = (string) $value;
-
-            Setting::updateOrCreate(
-                ['key' => $key],
-                ['value' => $value]
-            );
+        } catch (\Exception $e) {
+            Notification::make()
+                ->title('Hata: ' . $e->getMessage())
+                ->danger()
+                ->send();
         }
-
-        Notification::make()
-            ->title('Ayarlar başarıyla kaydedildi')
-            ->success()
-            ->send();
     }
 }
