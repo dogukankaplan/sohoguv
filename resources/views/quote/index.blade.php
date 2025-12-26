@@ -38,6 +38,9 @@
                             <p style="margin: 0 0 2px 0; font-weight: 600; font-size: 10px;">SOHO GÜVENLİK BİLGİSAYAR VE
                                 ELEKTRONİK PAZARLAMA LTD.ŞTİ.</p>
                             <p style="margin: 0 0 2px 0;">İpek iş merkezi Bornova İZMİR</p>
+                            <p style="margin: 0 0 2px 0;">Güvenlik Bilgisayar Ve Ele.Sis.Paz.Tic.Ltd.Şti.</p>
+                            <p style="margin: 0 0 2px 0;">IBAN: TR43 0015 7000 0000 0160 4230 85</p>
+                            <p style="margin: 0 0 2px 0;">Banka adı: Enpara Bank A.Ş.</p>
                             <p style="margin: 0 0 2px 0;">Operasyon Merkezi: 7014 sokak no: 25/A</p>
                             <p style="margin: 6px 0 2px 0;">İzmir / Bornova</p>
                             <p style="margin: 0 0 2px 0;">05306878335</p>
@@ -128,9 +131,12 @@
                         <div style="font-size: 10px; font-weight: 700; color: #000; margin-bottom: 4px;">NOTLAR:</div>
                         <div contenteditable="true" id="quote-note"
                             style="font-size: 10px; color: #333; outline: none; border: none; min-width: 200px; padding: 2px 0; border-bottom: 1px dashed transparent;"
-                            onfocus="if(this.innerText==='İsteğe bağlı not ekleyebilirsiniz...') this.innerText=''; this.style.borderBottom='1px dashed #ccc'"
-                            onblur="if(this.innerText==='') this.innerText='İsteğe bağlı not ekleyebilirsiniz...'; this.style.borderBottom='1px dashed transparent'">
-                            İsteğe bağlı not ekleyebilirsiniz...</div>
+                            onfocus="if(this.innerText==='Yukarıda vermiş olduğumuz teklifimiz KDV HARİÇ olarak hesaplanmıştır...') this.innerText=''; this.style.borderBottom='1px dashed #ccc'"
+                            onblur="if(this.innerText==='') this.innerText='Yukarıda vermiş olduğumuz teklifimiz KDV HARİÇ olarak hesaplanmıştır...'; this.style.borderBottom='1px dashed transparent'">
+                            Yukarıda vermiş olduğumuz teklifimiz KDV HARİÇ olarak hesaplanmıştır. Şirket politikası gereği
+                            50.000 TL üstü projelerde , Projenin tamamının %50’si peşin olarak proje başlangıcında
+                            alınmaktadır. Kalan ödeme tutarı proje teslim zamanı tahsil edilmektedir. Projelerimize
+                            yol,yemek ve konaklama ücretleri DAHİLDİR.</div>
                     </div>
 
                     {{-- Right: Totals --}}
@@ -217,24 +223,24 @@
                 newRow.className = 'product-row';
                 newRow.style.borderBottom = '1px solid #e5e5e5';
                 newRow.innerHTML = `
-                                            <td style="padding: 4px;">
-                                                <input type="text" class="product-name" placeholder="Ürün adı" style="width: 100%; border: none; font-size: 9px; padding: 2px;">
-                                            </td>
-                                            <td style="padding: 4px; text-align: center;">
-                                                <input type="number" class="quantity" value="1" min="1" style="width: 35px; border: none; text-align: center; font-size: 9px; padding: 2px;">
-                                                <span style="font-size: 9px; margin-left: 2px;">Adet</span>
-                                            </td>
-                                            <td style="padding: 4px; text-align: right;">
-                                                <input type="number" class="unit-price" value="0" step="0.01" style="width: 50px; border: none; text-align: right; font-size: 9px; padding: 2px;">
-                                                <span style="font-size: 9px; margin-left: 2px;">$</span>
-                                            </td>
-                                            <td style="padding: 4px; text-align: right;">
-                                                <span style="font-size: 9px;">%20</span>
-                                            </td>
-                                            <td style="padding: 4px; text-align: right; font-weight: 600;">
-                                                <span class="row-total">0,00 $</span>
-                                            </td>
-                                        `;
+                                                <td style="padding: 4px;">
+                                                    <input type="text" class="product-name" placeholder="Ürün adı" style="width: 100%; border: none; font-size: 9px; padding: 2px;">
+                                                </td>
+                                                <td style="padding: 4px; text-align: center;">
+                                                    <input type="number" class="quantity" value="1" min="1" style="width: 35px; border: none; text-align: center; font-size: 9px; padding: 2px;">
+                                                    <span style="font-size: 9px; margin-left: 2px;">Adet</span>
+                                                </td>
+                                                <td style="padding: 4px; text-align: right;">
+                                                    <input type="number" class="unit-price" value="0" step="0.01" style="width: 50px; border: none; text-align: right; font-size: 9px; padding: 2px;">
+                                                    <span style="font-size: 9px; margin-left: 2px;">$</span>
+                                                </td>
+                                                <td style="padding: 4px; text-align: right;">
+                                                    <span style="font-size: 9px;">%20</span>
+                                                </td>
+                                                <td style="padding: 4px; text-align: right; font-weight: 600;">
+                                                    <span class="row-total">0,00 $</span>
+                                                </td>
+                                            `;
 
                 tbody.appendChild(newRow);
 
