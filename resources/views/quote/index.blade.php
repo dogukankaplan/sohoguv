@@ -66,16 +66,19 @@
                 </div>
 
                 {{-- Customer Section --}}
-                <div style="margin-bottom: 20px; padding: 12px 0; border-bottom: 1px solid #ddd;">
-                    <div style="font-size: 11px; font-weight: 700; margin-bottom: 8px;">MÜŞTERİ</div>
-                    <div style="margin-bottom: 5px;">
+                <div style="margin-bottom: 25px; border-top: 1px solid #000; padding-top: 10px;">
+                    <div
+                        style="font-size: 11px; font-weight: 700; margin-bottom: 10px; border-bottom: 1px solid #000; width: fit-content; padding-bottom: 2px;">
+                        MÜŞTERİ</div>
+                    <div style="margin-bottom: 8px;">
                         <input type="text" id="customer-name" placeholder="HIKVISION 4LU AHD SET"
-                            style="width: 100%; border: none; border-bottom: 1px solid #ccc; padding: 4px 0; font-size: 11px; font-weight: 600; background: transparent;">
+                            style="width: 100%; border: none; padding: 2px 0; font-size: 11px; font-weight: 700; background: transparent; color: #000; outline: none;">
                     </div>
-                    <div>
+                    <div style="margin-bottom: 15px;">
                         <input type="text" id="customer-location" placeholder="aydın/kuşadası"
-                            style="width: 100%; border: none; padding: 4px 0; font-size: 9px; background: transparent;">
+                            style="width: 100%; border: none; padding: 2px 0; font-size: 10px; background: transparent; color: #000; outline: none;">
                     </div>
+                    <div style="border-bottom: 1px solid #ddd; width: 100%;"></div>
                 </div>
 
                 {{-- Products Table --}}
@@ -115,12 +118,7 @@
                     </tbody>
                 </table>
 
-                {{-- Add Row --}}
-                <div style="margin-bottom: 25px;" class="no-print">
-                    <button onclick="addRow()"
-                        style="font-size: 10px; color: #3B82F6; background: none; border: none; cursor: pointer; font-weight: 600;">+
-                        Satır Ekle</button>
-                </div>
+
 
                 {{-- Totals --}}
                 <div style="display: flex; justify-content: flex-end;">
@@ -145,6 +143,12 @@
                         </div>
                     </div>
                 </div>
+            </div>
+            {{-- Add Row --}}
+            <div style="margin-top: 15px; margin-bottom: 25px;" class="no-print">
+                <button onclick="addRow()"
+                    style="font-size: 10px; color: #3B82F6; background: none; border: none; cursor: pointer; font-weight: 600;">+
+                    Satır Ekle</button>
             </div>
         </div>
     </div>
@@ -203,24 +207,24 @@
             newRow.className = 'product-row';
             newRow.style.borderBottom = '1px solid #e5e5e5';
             newRow.innerHTML = `
-                    <td style="padding: 4px;">
-                        <input type="text" class="product-name" placeholder="Ürün adı" style="width: 100%; border: none; font-size: 9px; padding: 2px;">
-                    </td>
-                    <td style="padding: 4px; text-align: center;">
-                        <input type="number" class="quantity" value="1" min="1" style="width: 35px; border: none; text-align: center; font-size: 9px; padding: 2px;">
-                        <span style="font-size: 9px; margin-left: 2px;">Adet</span>
-                    </td>
-                    <td style="padding: 4px; text-align: right;">
-                        <input type="number" class="unit-price" value="0" step="0.01" style="width: 50px; border: none; text-align: right; font-size: 9px; padding: 2px;">
-                        <span style="font-size: 9px; margin-left: 2px;">$</span>
-                    </td>
-                    <td style="padding: 4px; text-align: right;">
-                        <span style="font-size: 9px;">%20</span>
-                    </td>
-                    <td style="padding: 4px; text-align: right; font-weight: 600;">
-                        <span class="row-total">0,00 $</span>
-                    </td>
-                `;
+                                    <td style="padding: 4px;">
+                                        <input type="text" class="product-name" placeholder="Ürün adı" style="width: 100%; border: none; font-size: 9px; padding: 2px;">
+                                    </td>
+                                    <td style="padding: 4px; text-align: center;">
+                                        <input type="number" class="quantity" value="1" min="1" style="width: 35px; border: none; text-align: center; font-size: 9px; padding: 2px;">
+                                        <span style="font-size: 9px; margin-left: 2px;">Adet</span>
+                                    </td>
+                                    <td style="padding: 4px; text-align: right;">
+                                        <input type="number" class="unit-price" value="0" step="0.01" style="width: 50px; border: none; text-align: right; font-size: 9px; padding: 2px;">
+                                        <span style="font-size: 9px; margin-left: 2px;">$</span>
+                                    </td>
+                                    <td style="padding: 4px; text-align: right;">
+                                        <span style="font-size: 9px;">%20</span>
+                                    </td>
+                                    <td style="padding: 4px; text-align: right; font-weight: 600;">
+                                        <span class="row-total">0,00 $</span>
+                                    </td>
+                                `;
 
             tbody.appendChild(newRow);
 
@@ -235,7 +239,7 @@
                 margin: 10,
                 filename: 'teklif-' + new Date().toISOString().slice(0, 10) + '.pdf',
                 image: { type: 'jpeg', quality: 0.98 },
-                html2canvas: { scale: 2, useCORS: true },
+                html2canvas: { scale: 2, useCORS: true, logging: false },
                 jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' }
             };
 
