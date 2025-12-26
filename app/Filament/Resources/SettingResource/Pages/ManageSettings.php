@@ -183,10 +183,18 @@ class ManageSettings extends Page
         $data = $this->form->getState();
 
         foreach ($data as $key => $value) {
+            // Skip null or empty values
+            if ($value === null || $value === '') {
+                continue;
+            }
+
             // Convert arrays (from FileUpload) to JSON
             if (is_array($value)) {
                 $value = json_encode($value);
             }
+
+            // Ensure value is a string
+            $value = (string) $value;
 
             Setting::updateOrCreate(
                 ['key' => $key],
