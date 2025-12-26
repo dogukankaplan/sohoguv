@@ -21,6 +21,15 @@ class ManageSettings extends Page
     {
         // Load all settings into form data
         $settings = Setting::pluck('value', 'key')->toArray();
+
+        // Decode JSON values for FileUpload fields
+        foreach ($settings as $key => $value) {
+            $decoded = json_decode($value, true);
+            if (json_last_error() === JSON_ERROR_NONE && is_array($decoded)) {
+                $settings[$key] = $decoded;
+            }
+        }
+
         $this->form->fill($settings);
     }
 
@@ -174,6 +183,11 @@ class ManageSettings extends Page
         $data = $this->form->getState();
 
         foreach ($data as $key => $value) {
+            // Convert arrays (from FileUpload) to JSON
+            if (is_array($value)) {
+                $value = json_encode($value);
+            }
+
             Setting::updateOrCreate(
                 ['key' => $key],
                 ['value' => $value]
