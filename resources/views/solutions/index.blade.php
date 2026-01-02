@@ -15,16 +15,12 @@
 
         <div class="container-custom relative z-10 text-center animate-fade-in">
             <h1 class="font-bold text-gray-900 mb-6 leading-tight">
-                @if($heroSection && $heroSection->subtitle)
-                <span class="block text-4xl lg:text-6xl mb-2">{{ $heroSection->subtitle }}</span>
-                @endif
+                <span class="block text-4xl lg:text-6xl mb-2">Kurumsal</span>
                 <span
-                    class="block text-5xl lg:text-7xl bg-clip-text text-transparent bg-gradient-to-r from-cyan-600 to-purple-600">
-                    {{ $heroSection->title ?? 'Çözümlerimiz' }}
-                </span>
+                    class="block text-5xl lg:text-7xl bg-clip-text text-transparent bg-gradient-to-r from-cyan-600 to-purple-600">Çözümlerimiz</span>
             </h1>
             <p class="text-xl text-gray-600 max-w-3xl mx-auto font-light leading-relaxed">
-                {{ $heroSection->content ?? '' }}
+                İşletmenizin ihtiyaçlarına özel, uçtan uca entegre güvenlik ve teknoloji altyapıları tasarlıyoruz.
             </p>
         </div>
     </section>
@@ -116,20 +112,20 @@
                 <div class="p-4">
                     <div
                         class="text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-b from-white to-gray-400 mb-2">
-                        {{ setting('solutions_stat_1_value', '500+') }}</div>
-                    <div class="text-gray-400 font-medium">{{ setting('solutions_stat_1_label', 'Tamamlanan Proje') }}</div>
+                        500+</div>
+                    <div class="text-gray-400 font-medium">Tamamlanan Proje</div>
                 </div>
                 <div class="p-4">
                     <div
                         class="text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-b from-white to-gray-400 mb-2">
-                        {{ setting('solutions_stat_2_value', '%98') }}</div>
-                    <div class="text-gray-400 font-medium">{{ setting('solutions_stat_2_label', 'Müşteri Memnuniyeti') }}</div>
+                        %98</div>
+                    <div class="text-gray-400 font-medium">Müşteri Memnuniyeti</div>
                 </div>
                 <div class="p-4">
                     <div
                         class="text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-b from-white to-gray-400 mb-2">
-                        {{ setting('solutions_stat_3_value', '24/7') }}</div>
-                    <div class="text-gray-400 font-medium">{{ setting('solutions_stat_3_label', 'Kesintisiz Destek') }}</div>
+                        24/7</div>
+                    <div class="text-gray-400 font-medium">Kesintisiz Destek</div>
                 </div>
             </div>
         </div>
@@ -142,8 +138,9 @@
                 class="bg-white rounded-[3rem] p-12 md:p-20 text-center shadow-xl border border-gray-100 relative overflow-hidden">
                 <div class="absolute top-0 left-0 w-full h-2 bg-gradient-to-r from-cyan-500 via-purple-500 to-amber-500">
                 </div>
-                <h2 class="text-4xl lg:text-5xl font-bold text-gray-900 mb-6">{{ $ctaSection->title ?? 'Projeniz İçin Hazırız' }}</h2>
-                <p class="text-xl text-gray-600 max-w-2xl mx-auto mb-10">{{ $ctaSection->content ?? 'Kurumsal ihtiyaçlarınız için yanınızdayız.' }}</p>
+                <h2 class="text-4xl lg:text-5xl font-bold text-gray-900 mb-6">Projeniz İçin Hazırız</h2>
+                <p class="text-xl text-gray-600 max-w-2xl mx-auto mb-10">Kurumsal güvenlik ve teknoloji ihtiyaçlarınız için
+                    ücretsiz keşif ve danışmanlık hizmetimizden yararlanın.</p>
                 <a href="{{ route('contact') }}"
                     class="inline-flex items-center px-10 py-5 rounded-full bg-gray-900 text-white font-bold hover:bg-cyan-600 transition-colors shadow-lg hover:shadow-cyan-500/30 transform hover:-translate-y-1">
                     Bize Ulaşın
