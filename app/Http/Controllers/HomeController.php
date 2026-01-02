@@ -13,39 +13,37 @@ class HomeController extends Controller
 {
     public function index()
     {
+        // 1. Sections - Try DB first, fallback to hardcoded
         try {
-            // Attempt to fetch dynamic sections if table exists
-            $sections = \App\Models\Section::where('is_active', true)
-                ->orderBy('order')
-                ->get();
+            $sections = \App\Models\Section::where('is_active', true)->orderBy('order')->get();
 
             if ($sections->isEmpty()) {
                 throw new \Exception('No sections found');
             }
         } catch (\Exception $e) {
-            // Fallback to hardcoded sections structure if DB is empty or migration not run
             $sections = collect([
                 (object) [
                     'type' => 'hero',
-                    'title' => setting('hero_title', 'GÜVENLİĞİNİZ BİZİM İŞİMİZ'),
-                    'subtitle' => setting('hero_subtitle', 'SOHO Güvenlik Sistemleri ile eviniz ve iş yeriniz güvende.'),
+                    'title' => setting('hero_title', 'SOHO GÜVENLİK'),
+                    'subtitle' => setting('hero_subtitle', 'Yeni nesil güvenlik teknolojileri ile geleceğinizi koruma altına alın.'),
                     'content' => null,
-                    'image' => null
+                    'image' => null,
+                    'bg_color' => 'bg-white'
                 ],
                 (object) ['type' => 'stats'],
                 (object) ['type' => 'services'],
                 (object) ['type' => 'features'],
                 (object) ['type' => 'clients'],
+                (object) ['type' => 'testimonials'],
                 (object) ['type' => 'cta'],
             ]);
         }
 
-        // Other existing data
-        $services = \App\Models\Service::where('is_active', true)->orderBy('order')->take(6)->get();
-        $clients = \App\Models\Client::orderBy('order')->get();
-        $testimonials = \App\Models\Testimonial::where('is_active', true)->orderBy('order')->get();
+        // 2. Auxiliary Data - Use rescue to safely return empty collection if table/column missing
+        $services = rescue(fn() => \App\Models\Service::where('is_active', true)->orderBy('order')->take(6)->get(), collect());
+        $clients = rescue(fn() => \App\Models\Client::orderBy('order')->get(), collect());
+        $testimonials = rescue(fn() => \App\Models\Testimonial::where('is_active', true)->orderBy('order')->get(), collect());
 
-        // Pass to view
         return view('home', compact('sections', 'services', 'clients', 'testimonials'));
     }
 }
