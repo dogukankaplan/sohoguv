@@ -16,5 +16,11 @@ class Service extends Model
         'image',
         'seo_title',
         'seo_description',
+        'is_active',
+        'order',
+    ];
+
+    protected $casts = [
+        'is_active' => 'boolean',
     ];
 }
