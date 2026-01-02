@@ -8,6 +8,9 @@ use App\Models\Testimonial;
 use App\Models\Stat;
 use App\Models\Feature;
 use App\Models\HeroSection;
+use App\Models\Section;
+
+use Illuminate\Support\Facades\Log;
 
 class HomeController extends Controller
 {
@@ -15,12 +18,14 @@ class HomeController extends Controller
     {
         // 1. Sections - Try DB first, fallback to hardcoded
         try {
-            $sections = \App\Models\Section::where('is_active', true)->orderBy('order')->get();
+            $sections = Section::where('is_active', true)->orderBy('order')->get();
 
             if ($sections->isEmpty()) {
-                throw new \Exception('No sections found');
+                throw new \Exception('No sections found in database');
             }
         } catch (\Exception $e) {
+            Log::error('HomeController Error [Sections]: ' . $e->getMessage());
+
             $sections = collect([
                 (object) [
                     'type' => 'hero',
@@ -39,10 +44,27 @@ class HomeController extends Controller
             ]);
         }
 
-        // 2. Auxiliary Data - Use rescue to safely return empty collection if table/column missing
-        $services = rescue(fn() => \App\Models\Service::where('is_active', true)->orderBy('order')->take(6)->get(), collect());
-        $clients = rescue(fn() => \App\Models\Client::orderBy('order')->get(), collect());
-        $testimonials = rescue(fn() => \App\Models\Testimonial::where('is_active', true)->orderBy('order')->get(), collect());
+        // 2. Auxiliary Data - Use try-catch for logging
+        $services = collect();
+        try {
+            $services = Service::where('is_active', true)->orderBy('order')->take(6)->get();
+        } catch (\Exception $e) {
+            Log::error('HomeController Error [Services]: ' . $e->getMessage());
+        }
+
+        $clients = collect();
+        try {
+            $clients = Client::orderBy('order')->get();
+        } catch (\Exception $e) {
+            Log::error('HomeController Error [Clients]: ' . $e->getMessage());
+        }
+
+        $testimonials = collect();
+        try {
+            $testimonials = Testimonial::where('is_active', true)->orderBy('order')->get();
+        } catch (\Exception $e) {
+            Log::error('HomeController Error [Testimonials]: ' . $e->getMessage());
+        }
 
         return view('home', compact('sections', 'services', 'clients', 'testimonials'));
     }
