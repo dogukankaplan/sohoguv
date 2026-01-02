@@ -1,14 +1,14 @@
 <!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}" class="h-full bg-neutral-bg antialiased">
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}" class="h-full scroll-smooth">
 
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ isset($title) ? $title . ' | ' : '' }}{{ $siteIdentity->site_name ?? setting('site_name', 'SOHO Güvenlik Sistemleri') }} | İzmir Kamera & Alarm Sistemleri</title>
-    <meta name="description" content="{{ isset($description) ? $description : setting('meta_description', 'İzmir güvenlik sistemleri, kamera sistemleri, hırsız alarmı ve yangın ihbar sistemleri. Profesyonel kurulum ve 7/24 teknik destek hizmeti.') }}">
-    <meta name="keywords" content="{{ setting('meta_keywords', 'izmir güvenlik sistemleri, izmir kamera sistemleri, alarm sistemleri izmir, güvenlik kamerası, hırsız alarmı, yangın alarmı, akıllı ev sistemleri, soho güvenlik') }}">
+    <title>{{ isset($title) ? $title . ' | ' : '' }}{{ $siteIdentity->site_name ?? setting('site_name', 'SOHO Güvenlik Sistemleri') }} | Türkiye Geneli Güvenlik Çözümleri</title>
+    <meta name="description" content="{{ isset($description) ? $description : setting('meta_description', 'Türkiye genelinde güvenlik sistemleri, kamera sistemleri, hırsız alarmı ve yangın ihbar sistemleri. Profesyonel kurulum ve 7/24 teknik destek hizmeti.') }}">
+    <meta name="keywords" content="{{ setting('meta_keywords', 'güvenlik sistemleri türkiye, kamera sistemleri, alarm sistemleri, güvenlik kamerası, hırsız alarmı, yangın alarmı, akıllı ev sistemleri, soho güvenlik') }}">
     <meta name="author" content="{{ $siteIdentity->site_name ?? 'SOHO Güvenlik Sistemleri' }}">
     <meta name="robots" content="index, follow">
     <link rel="canonical" href="{{ url()->current() }}">
@@ -22,51 +22,30 @@
     <meta property="og:type" content="website">
     <meta property="og:url" content="{{ url()->current() }}">
     <meta property="og:title" content="{{ isset($title) ? $title . ' | ' : '' }}{{ $siteIdentity->site_name ?? setting('site_name', 'SOHO Güvenlik Sistemleri') }}">
-    <meta property="og:description" content="{{ isset($description) ? $description : setting('meta_description', 'İzmir güvenlik sistemleri çözümleri. Ev ve iş yeri güvenliği için profesyonel kamera ve alarm sistemleri.') }}">
+    <meta property="og:description" content="{{ isset($description) ? $description : setting('meta_description', 'Türkiye genelinde güvenlik sistemleri çözümleri. Ev ve iş yeri güvenliği için profesyonel kamera ve alarm sistemleri.') }}">
     <meta property="og:image" content="{{ (isset($siteIdentity->logo) && $siteIdentity->logo) ? Storage::url($siteIdentity->logo) : asset('images/og-image.jpg') }}">
 
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image">
     <meta property="twitter:url" content="{{ url()->current() }}">
     <meta property="twitter:title" content="{{ isset($title) ? $title . ' | ' : '' }}{{ $siteIdentity->site_name ?? setting('site_name', 'SOHO Güvenlik Sistemleri') }}">
-    <meta property="twitter:description" content="{{ isset($description) ? $description : setting('meta_description', 'İzmir profesyonel güvenlik ve kamera sistemleri çözümleri.') }}">
+    <meta property="twitter:description" content="{{ isset($description) ? $description : setting('meta_description', 'Türkiye genelinde profesyonel güvenlik ve kamera sistemleri çözümleri.') }}">
     <meta property="twitter:image" content="{{ (isset($siteIdentity->logo) && $siteIdentity->logo) ? Storage::url($siteIdentity->logo) : asset('images/og-image.jpg') }}">
 
     <!-- Schema.org JSON-LD -->
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
-      "@type": "LocalBusiness",
+      "@type": "Organization",
       "name": "{{ $siteIdentity->site_name ?? setting('site_name', 'SOHO Güvenlik Sistemleri') }}",
       "image": "{{ (isset($siteIdentity->logo) && $siteIdentity->logo) ? Storage::url($siteIdentity->logo) : '' }}",
       "telephone": "{{ setting('phone', '+90 (555) 123 45 67') }}",
       "email": "{{ setting('email', 'info@sohoguvenlik.com') }}",
       "address": {
         "@type": "PostalAddress",
-        "streetAddress": "{{ setting('address', 'İzmir') }}",
-        "addressLocality": "İzmir",
-        "addressRegion": "İzmir",
         "addressCountry": "TR"
       },
       "url": "{{ url('/') }}",
-      "priceRange": "$$",
-      "openingHoursSpecification": {
-        "@type": "OpeningHoursSpecification",
-        "dayOfWeek": [
-          "Monday",
-          "Tuesday",
-          "Wednesday",
-          "Thursday",
-          "Friday"
-        ],
-        "opens": "09:00",
-        "closes": "18:00"
-      },
-      "geo": {
-        "@type": "GeoCoordinates",
-        "latitude": "38.4192",
-        "longitude": "27.1287"
-      },
       "sameAs": [
         "{{ setting('facebook') }}",
         "{{ setting('instagram') }}",
@@ -76,11 +55,12 @@
     }
     </script>
     
-    <!-- Fonts -->
-    <link rel="preconnect" href="https://fonts.bunny.net">
-    <link href="https://fonts.bunny.net/css?family=inter:400,500,600,700&display=swap" rel="stylesheet" />
+    <!-- Fonts - Lexend Deca -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lexend+Deca:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
 
-    <!-- Alpine.js for dropdowns -->
+    <!-- Alpine.js -->
     <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
 
     <!-- Vite Assets -->
@@ -88,113 +68,102 @@
 
 </head>
 
-<body class="h-full flex flex-col">
+<body class="min-h: -full flex flex-col bg-white text-gray-900">
     @include('layouts.navigation')
 
     <main class="flex-grow">
         @yield('content')
     </main>
 
-    <footer class="bg-primary-500 border-t border-primary-400" aria-labelledby="footer-heading">
-        <h2 id="footer-heading" class="sr-only">Footer</h2>
-        
-        <div class="container-custom pb-8 pt-16 sm:pt-24 lg:pt-32">
-            <!-- Newsletter -->
-            <div class="xl:grid xl:grid-cols-3 xl:gap-8 border-b border-primary-400 pb-12 mb-12">
-                <div class="space-y-8">
-                    <span class="text-2xl font-black tracking-tight text-white flex items-center gap-2">
+    <!-- Footer -->
+    <footer class="bg-gray-50 border-t border-gray-200">
+        <div class="container-custom section-padding-sm">
+            <!-- Top Section -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16">
+                <!-- Company Info -->
+                <div class="space-y-6">
+                    <div class="flex items-center gap-2">
                         @if(isset($siteIdentity->logo) && $siteIdentity->logo)
-                        <img src="{{ Storage::url($siteIdentity->logo) }}" alt="{{ $siteIdentity->site_name ?? 'SOHO' }}" class="h-12 w-auto">
+                        <img src="{{ Storage::url($siteIdentity->logo) }}" alt="{{ $siteIdentity->site_name ?? 'SOHO' }}" class="h-10 w-auto">
                         @else
-                        <span>SOHO</span>
-                        <span class="text-secondary-500">Güvenlik</span>
+                        <span class="text-2xl font-bold text-gray-900">SOHO</span>
                         @endif
-                    </span>
-                    <p class="text-sm leading-6 text-primary-100">
-                        {{ setting('footer_about', 'Güvenlik ve teknoloji altyapılarınız için profesyonel çözümler.') }}
+                    </div>
+                    <p class="text-sm text-gray-600 leading-relaxed">
+                        {{ setting('footer_about', 'Güvenlik ve teknoloji altyapılarınız için profesyonel çözümler sunuyoruz.') }}
                     </p>
+                    <!-- Social Media -->
+                    <div class="flex gap-4">
+                        @if(isset($globalSettings['facebook']) && $globalSettings['facebook'])
+                        <a href="{{ $globalSettings['facebook'] }}" class="text-gray-400 hover:text-cyan-500 transition" target="_blank" aria-label="Facebook">
+                            <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12z"/></svg>
+                        </a>
+                        @endif
+                        @if(isset($globalSettings['instagram']) && $globalSettings['instagram'])
+                        <a href="{{ $globalSettings['instagram'] }}" class="text-gray-400 hover:text-magenta-500 transition" target="_blank" aria-label="Instagram">
+                            <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M12.315 2c2.43 0 2.784.013 3.808.06 1.064.049 1.791.218 2.427.465a4.902 4.902 0 011.772 1.153 4.902 4.902 0 011.153 1.772c.247.636.416 1.363.465 2.427.048 1.067.06 1.407.06 4.123v.08c0 2.643-.012 2.987-.06 4.043-.049 1.064-.218 1.791-.465 2.427a4.902 4.902 0 01-1.153 1.772 4.902 4.902 0 01-1.772 1.153c-.636.247-1.363.416-2.427.465-1.067.048-1.407.06-4.123.06h-.08c-2.643 0-2.987-.012-4.043-.06-1.064-.049-1.791-.218-2.427-.465a4.902 4.902 0 01-1.772-1.153 4.902 4.902 0 01-1.153-1.772c-.247-.636-.416-1.363-.465-2.427-.047-1.024-.06-1.379-.06-3.808v-.63c0-2.43.013-2.784.06-3.808.049-1.064.218-1.791.465-2.427a4.902 4.902 0 011.153-1.772A4.902 4.902 0 015.45 2.525c.636-.247 1.363-.416 2.427-.465C8.901 2.013 9.256 2 11.685 2h.63zm-.081 1.802h-.468c-2.456 0-2.784.011-3.807.058-.975.045-1.504.207-1.857.344-.467.182-.8.398-1.15.748-.35.35-.566.683-.748 1.15-.137.353-.3.882-.344 1.857-.047 1.023-.058 1.351-.058 3.807v.468c0 2.456.011 2.784.058 3.807.045.975.207 1.504.344 1.857.182.466.399.8.748 1.15.35.35.683.566 1.15.748.353.137.882.3 1.857.344 1.054.048 1.37.058 4.041.058h.08c2.597 0 2.917-.01 3.96-.058.976-.045 1.505-.207 1.858-.344.466-.182.8-.398 1.15-.748.35-.35.566-.683.748-1.15.137-.353.3-.882.344-1.857.048-1.055.058-1.37.058-4.041v-.08c0-2.597-.01-2.917-.058-3.96-.045-.976-.207-1.505-.344-1.858a3.097 3.097 0 00-.748-1.15 3.098 3.098 0 00-1.15-.748c-.353-.137-.882-.3-1.857-.344-1.023-.047-1.351-.058-3.807-.058zM12 6.865a5.135 5.135 0 110 10.27 5.135 5.135 0 010-10.27zm0 1.802a3.333 3.333 0 100 6.666 3.333 3.333 0 000-6.666zm5.338-3.205a1.2 1.2 0 110 2.4 1.2 1.2 0 010-2.4z"/></svg>
+                        </a>
+                        @endif
+                        @if(isset($globalSettings['linkedin']) && $globalSettings['linkedin'])
+                        <a href="{{ $globalSettings['linkedin'] }}" class="text-gray-400 hover:text-purple-500 transition" target="_blank" aria-label="LinkedIn">
+                            <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+                        </a>
+                        @endif
+                    </div>
                 </div>
-                <div class="mt-16 xl:col-span-2 xl:mt-0">
-                    <h3 class="text-sm font-semibold leading-6 text-white">{{ setting('footer_newsletter_title', 'Bültenimize Abone Olun') }}</h3>
-                    <p class="mt-2 text-sm leading-6 text-primary-100">{{ setting('footer_newsletter_desc', 'E-posta ile güncellemelerden haberdar olun.') }}</p>
-                    <form action="{{ route('newsletter.subscribe') }}" method="POST" class="mt-6 sm:flex sm:max-w-md">
-                        @csrf
-                        <label for="email-address" class="sr-only">{{ setting('placeholder_email', 'E-posta adresi') }}</label>
-                        <input type="email" name="email" id="email-address" autocomplete="email" required class="w-full min-w-0 appearance-none rounded-lg border-0 bg-white px-4 py-3 text-base text-primary-500 shadow-sm placeholder:text-neutral-medium focus:ring-2 focus:ring-secondary-500 sm:w-64 sm:text-sm sm:leading-6" placeholder="{{ setting('placeholder_email', 'E-posta adresiniz') }}">
-                        <div class="mt-4 sm:ml-4 sm:mt-0 sm:flex-shrink-0">
-                            <button type="submit" class="btn-accent w-full sm:w-auto">
-                                {{ setting('btn_subscribe', 'Abone Ol') }}
-                            </button>
-                        </div>
-                    </form>
-                </div>
-            </div>
-            
-            <!-- Links -->
-            <div class="grid grid-cols-2 gap-8 xl:grid-cols-4">
+
+                <!-- Services -->
                 <div>
-                    <h3 class="text-sm font-semibold leading-6 text-white">Kurumsal</h3>
-                    <ul role="list" class="mt-6 space-y-4">
-                        <li><a href="{{ route('about') }}" class="text-sm leading-6 text-primary-100 hover:text-white transition">{{ setting('page_about', 'Hakkımızda') }}</a></li>
-                        <li><a href="{{ route('references') }}" class="text-sm leading-6 text-primary-100 hover:text-white transition">{{ setting('page_references', 'Referanslar') }}</a></li>
-                        <li><a href="{{ route('contact') }}" class="text-sm leading-6 text-primary-100 hover:text-white transition">{{ setting('page_contact', 'İletişim') }}</a></li>
-                    </ul>
-                </div>
-                
-                <div>
-                    <h3 class="text-sm font-semibold leading-6 text-white">{{ setting('page_services', 'Hizmetler') }}</h3>
-                    <ul role="list" class="mt-6 space-y-4">
+                    <h3 class="text-sm font-bold text-gray-900 uppercase tracking-wider mb-6">{{ setting('page_services', 'Hizmetler') }}</h3>
+                    <ul class="space-y-3">
                         @if(isset($globalServices))
-                            @foreach($globalServices->take(4) as $service)
-                            <li><a href="{{ route('services.show', $service->slug) }}" class="text-sm leading-6 text-primary-100 hover:text-white transition">{{ $service->title }}</a></li>
+                            @foreach($globalServices->take(5) as $service)
+                            <li><a href="{{ route('services.show', $service->slug) }}" class="text-sm text-gray-600 hover:text-cyan-500 transition">{{ $service->title }}</a></li>
                             @endforeach
                         @endif
                     </ul>
                 </div>
-                
+
+                <!-- Pages -->
                 <div>
-                    <h3 class="text-sm font-semibold leading-6 text-white">Destek</h3>
-                    <ul role="list" class="mt-6 space-y-4">
-                        <li><a href="{{ route('requests.fault') }}" class="text-sm leading-6 text-primary-100 hover:text-white transition">Arıza Talebi</a></li>
-                        <li><a href="{{ route('requests.inventory') }}" class="text-sm leading-6 text-primary-100 hover:text-white transition">Envanter Talebi</a></li>
-                        <li><a href="{{ route('contact') }}" class="text-sm leading-6 text-primary-100 hover:text-white transition">İletişim Formu</a></li>
+                    <h3 class="text-sm font-bold text-gray-900 uppercase tracking-wider mb-6">Kurumsal</h3>
+                    <ul class="space-y-3">
+                        <li><a href="{{ route('about') }}" class="text-sm text-gray-600 hover:text-cyan-500 transition">{{ setting('page_about', 'Hakkımızda') }}</a></li>
+                        <li><a href="{{ route('references') }}" class="text-sm text-gray-600 hover:text-cyan-500 transition">{{ setting('page_references', 'Referanslar') }}</a></li>
+                        <li><a href="{{ route('contact') }}" class="text-sm text-gray-600 hover:text-cyan-500 transition">{{ setting('page_contact', 'İletişim') }}</a></li>
+                        <li><a href="{{ route('requests.fault') }}" class="text-sm text-gray-600 hover:text-cyan-500 transition">Arıza Talebi</a></li>
+                        <li><a href="{{ route('requests.inventory') }}" class="text-sm text-gray-600 hover:text-cyan-500 transition">Envanter Talebi</a></li>
                     </ul>
                 </div>
-                
+
+                <!-- Contact -->
                 <div>
-                    <h3 class="text-sm font-semibold leading-6 text-white">{{ setting('page_contact', 'İletişim') }}</h3>
-                    <ul role="list" class="mt-6 space-y-4">
-                        <li class="text-sm leading-6 text-primary-100">{{ setting('phone', '+90 (555) 123 45 67') }}</li>
-                        <li class="text-sm leading-6 text-primary-100">{{ setting('email', 'info@sohoguvenlik.com') }}</li>
-                        <li class="text-sm leading-6 text-primary-100">{{ setting('address', 'İstanbul, Türkiye') }}</li>
+                    <h3 class="text-sm font-bold text-gray-900 uppercase tracking-wider mb-6">{{ setting('page_contact', 'İletişim') }}</h3>
+                    <ul class="space-y-3">
+                        <li class="flex items-start gap-2">
+                            <svg class="w-5 h-5 text-cyan-500 mt-0.5 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/>
+                            </svg>
+                            <span class="text-sm text-gray-600">{{ setting('phone', '+90 (555) 123 45 67') }}</span>
+                        </li>
+                        <li class="flex items-start gap-2">
+                            <svg class="w-5 h-5 text-cyan-500 mt-0.5 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
+                            </svg>
+                            <span class="text-sm text-gray-600">{{ setting('email', 'info@sohoguvenlik.com') }}</span>
+                        </li>
                     </ul>
                 </div>
             </div>
-            
-            <div class="mt-16 border-t border-primary-400 pt-8 sm:mt-20 lg:mt-24 flex flex-col sm:flex-row justify-between items-center">
-                <p class="text-xs leading-5 text-primary-200">{{ str_replace('[YEAR]', date('Y'), setting('copyright', '© [YEAR] SOHO Güvenlik Sistemleri. Tüm hakları saklıdır.')) }}</p>
-                
-                <div class="flex space-x-6 mt-4 sm:mt-0">
-                    @if(isset($globalSettings['facebook']) && $globalSettings['facebook'])
-                    <a href="{{ $globalSettings['facebook'] }}" class="text-primary-200 hover:text-white transition" target="_blank">
-                        <span class="sr-only">Facebook</span>
-                        <svg class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24"><path d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12z"/></svg>
-                    </a>
-                    @endif
-                    
-                    @if(isset($globalSettings['instagram']) && $globalSettings['instagram'])
-                    <a href="{{ $globalSettings['instagram'] }}" class="text-primary-200 hover:text-white transition" target="_blank">
-                        <span class="sr-only">Instagram</span>
-                        <svg class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24"><path d="M12.315 2c2.43 0 2.784.013 3.808.06 1.064.049 1.791.218 2.427.465a4.902 4.902 0 011.772 1.153 4.902 4.902 0 011.153 1.772c.247.636.416 1.363.465 2.427.048 1.067.06 1.407.06 4.123v.08c0 2.643-.012 2.987-.06 4.043-.049 1.064-.218 1.791-.465 2.427a4.902 4.902 0 01-1.153 1.772 4.902 4.902 0 01-1.772 1.153c-.636.247-1.363.416-2.427.465-1.067.048-1.407.06-4.123.06h-.08c-2.643 0-2.987-.012-4.043-.06-1.064-.049-1.791-.218-2.427-.465a4.902 4.902 0 01-1.772-1.153 4.902 4.902 0 01-1.153-1.772c-.247-.636-.416-1.363-.465-2.427-.047-1.024-.06-1.379-.06-3.808v-.63c0-2.43.013-2.784.06-3.808.049-1.064.218-1.791.465-2.427a4.902 4.902 0 011.153-1.772A4.902 4.902 0 015.45 2.525c.636-.247 1.363-.416 2.427-.465C8.901 2.013 9.256 2 11.685 2h.63zm-.081 1.802h-.468c-2.456 0-2.784.011-3.807.058-.975.045-1.504.207-1.857.344-.467.182-.8.398-1.15.748-.35.35-.566.683-.748 1.15-.137.353-.3.882-.344 1.857-.047 1.023-.058 1.351-.058 3.807v.468c0 2.456.011 2.784.058 3.807.045.975.207 1.504.344 1.857.182.466.399.8.748 1.15.35.35.683.566 1.15.748.353.137.882.3 1.857.344 1.054.048 1.37.058 4.041.058h.08c2.597 0 2.917-.01 3.96-.058.976-.045 1.505-.207 1.858-.344.466-.182.8-.398 1.15-.748.35-.35.566-.683.748-1.15.137-.353.3-.882.344-1.857.048-1.055.058-1.37.058-4.041v-.08c0-2.597-.01-2.917-.058-3.96-.045-.976-.207-1.505-.344-1.858a3.097 3.097 0 00-.748-1.15 3.098 3.098 0 00-1.15-.748c-.353-.137-.882-.3-1.857-.344-1.023-.047-1.351-.058-3.807-.058zM12 6.865a5.135 5.135 0 110 10.27 5.135 5.135 0 010-10.27zm0 1.802a3.333 3.333 0 100 6.666 3.333 3.333 0 000-6.666zm5.338-3.205a1.2 1.2 0 110 2.4 1.2 1.2 0 010-2.4z"/></svg>
-                    </a>
-                    @endif
-                    
-                    @if(isset($globalSettings['linkedin']) && $globalSettings['linkedin'])
-                    <a href="{{ $globalSettings['linkedin'] }}" class="text-primary-200 hover:text-white transition" target="_blank">
-                        <span class="sr-only">LinkedIn</span>
-                        <svg class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
-                    </a>
-                    @endif
+
+            <!-- Bottom Section -->
+            <div class="pt-8 border-t border-gray-200 flex flex-col md:flex-row justify-between items-center gap-4">
+                <p class="text-sm text-gray-500">
+                    {{ str_replace('[YEAR]', date('Y'), setting('copyright', '© [YEAR] SOHO Güvenlik Sistemleri. Tüm hakları saklıdır.')) }}
+                </p>
+                <div class="flex gap-6">
+                    <a href="#" class="text-sm text-gray-500 hover:text-gray-900 transition">Gizlilik Politikası</a>
+                    <a href="#" class="text-sm text-gray-500 hover:text-gray-900 transition">Kullanım Koşulları</a>
                 </div>
             </div>
         </div>

@@ -1,289 +1,297 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="bg-white min-h-screen" style="padding-top: 120px; padding-bottom: 24px;">
-        <div class="max-w-4xl mx-auto px-4">
+    <div class="bg-gray-50 min-h-screen py-32 print:py-0 print:bg-white">
+        <div class="container-custom max-w-5xl">
             {{-- Action Buttons --}}
-            <div
-                style="margin-bottom: 16px; display: flex; justify-content: flex-end; gap: 12px; position: relative; z-index: 10;">
-                <button onclick="window.print()"
-                    style="padding: 8px 24px; background-color: #6B7280; color: white; border-radius: 4px; border: none; cursor: pointer; font-size: 14px; font-weight: 500;">
+            <div class="flex justify-end gap-4 mb-8 print:hidden">
+                <button onclick="window.print()" class="btn-white text-sm py-2 px-6">
+                    <svg class="w-4 h-4 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z" />
+                    </svg>
                     Yazdır
                 </button>
-                <button onclick="generatePDF()"
-                    style="padding: 8px 24px; background-color: #0A1628; color: white; border-radius: 4px; border: none; cursor: pointer; font-size: 14px; font-weight: 500;">
+                <button onclick="generatePDF()" class="btn-gradient-primary text-sm py-2 px-6">
+                    <svg class="w-4 h-4 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
+                    </svg>
                     PDF Oluştur
                 </button>
             </div>
 
             {{-- Quote Document --}}
-            <div class="bg-white shadow-sm" id="quote-content" style="padding: 40px; font-family: Arial, sans-serif;">
+            <div id="quote-content" class="bg-white rounded-3xl shadow-soft p-12 print:shadow-none print:p-0">
                 {{-- Header --}}
-                <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 30px;">
+                <div class="flex justify-between items-start mb-12 border-b border-gray-100 pb-12">
                     {{-- Left: Logo & Company Info --}}
-                    <div style="flex: 1;">
+                    <div class="space-y-6">
                         @if(isset($siteIdentity->logo) && $siteIdentity->logo)
-                            <img src="{{ Storage::url($siteIdentity->logo) }}" alt="Logo"
-                                style="height: 60px; width: auto; margin-bottom: 15px;">
+                            <img src="{{ Storage::url($siteIdentity->logo) }}" alt="Logo" class="h-16 w-auto">
                         @else
-                            <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 15px;">
-                                <div
-                                    style="width: 45px; height: 45px; background: linear-gradient(135deg, #3B82F6 0%, #8B5CF6 100%); border-radius: 8px;">
-                                </div>
-                                <span style="font-size: 26px; font-weight: 900; color: #0A1628;">soho</span>
+                            <div class="flex items-center gap-3">
+                                <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-cyan-500 to-magenta-500"></div>
+                                <span class="text-3xl font-bold tracking-tight text-gray-900">SOHO<span
+                                        class="text-gradient">Güvenlik</span></span>
                             </div>
                         @endif
 
-                        <div style="font-size: 9px; line-height: 1.4; color: #000;">
-                            <p style="margin: 0 0 2px 0; font-weight: 600; font-size: 10px;">SOHO GÜVENLİK BİLGİSAYAR VE
-                                ELEKTRONİK PAZARLAMA LTD.ŞTİ.</p>
-                            <p style="margin: 0 0 2px 0;">İpek iş merkezi Bornova İZMİR</p>
-                            <p style="margin: 0 0 2px 0;">Operasyon Merkezi: 7014 sokak no: 25/A</p>
-                            <p style="margin: 6px 0 2px 0;">İzmir / Bornova</p>
-                            <p style="margin: 0 0 2px 0;">05306878335</p>
-                            <p style="margin: 0 0 2px 0;">05541820731</p>
-                            <p style="margin: 6px 0 2px 0; font-weight: 600;">Soho Güvenlik Bilgisayar Ve Ele.Sis.Paz.Tic.Ltd.Şti.</p>
-                            <p style="margin: 0 0 2px 0;">Banka adı: Enpara Bank A.Ş.</p>
-                            <p style="margin: 0 0 2px 0;">IBAN: TR43 0015 7000 0000 0160 4230 85</p>
-                            <p style="margin: 6px 0 2px 0;">V.D: Karşıyaka</p>
-                            <p style="margin: 0;">7721726850</p>
+                        <div class="text-xs text-gray-500 space-y-1">
+                            <p class="font-bold text-gray-900 uppercase">SOHO Güvenlik Bilgisayar ve Ele. Sis. Paz. Tic.
+                                Ltd. Şti.</p>
+                            <p>İpek İş Merkezi, Bornova, İZMİR</p>
+                            <p>Operasyon Merkezi: 7014 Sokak No: 25/A</p>
+                            <p class="pt-2"><span class="font-semibold text-gray-700">Tel:</span> 0530 687 83 35 / 0554 182
+                                07 31</p>
+                            <p class="font-semibold text-gray-900 pt-2">Banka Bilgileri:</p>
+                            <p>Enpara Bank A.Ş. - TR43 0015 7000 0000 0160 4230 85</p>
+                            <p>V.D: Karşıyaka - V.No: 7721726850</p>
                         </div>
                     </div>
 
                     {{-- Right: Title --}}
-                    <div style="text-align: right;">
-                        <h1 style="font-size: 48px; font-weight: 900; color: #000; margin: 0; letter-spacing: 3px;">TEKLİF
-                        </h1>
-                    </div>
-                </div>
-
-                {{-- Date --}}
-                <div
-                    style="margin-bottom: 15px; padding: 8px 0; border-top: 1px solid #ddd; border-bottom: 1px solid #ddd;">
-                    <div style="font-size: 10px;">
-                        <span style="font-weight: 600;">TARIH:</span>
-                        <input type="date" value="{{ date('Y-m-d') }}"
-                            style="border: none; font-size: 10px; margin-left: 5px; outline: none;"
-                            onchange="updateDate(this.value)">
+                    <div class="text-right">
+                        <h1 class="text-6xl font-bold text-gray-900 tracking-tight opacity-10 uppercase">Teklif</h1>
+                        <div class="mt-4 inline-flex items-center bg-gray-50 rounded-lg p-2 border border-gray-200">
+                            <span class="text-xs font-bold text-gray-500 mr-2 uppercase">Tarih:</span>
+                            <input type="date" value="{{ date('Y-m-d') }}"
+                                class="bg-transparent border-none text-xs font-semibold text-gray-900 focus:ring-0 p-0"
+                                onchange="updateDate(this.value)">
+                        </div>
                     </div>
                 </div>
 
                 {{-- Customer Section --}}
-                <div style="margin-bottom: 25px; border-top: 1px solid #000; padding-top: 10px;">
-                    <div
-                        style="font-size: 11px; font-weight: 700; margin-bottom: 10px; border-bottom: 1px solid #000; width: fit-content; padding-bottom: 2px;">
-                        MÜŞTERİ</div>
-                    <div style="margin-bottom: 8px;">
-                        <input type="text" id="customer-name" placeholder="HIKVISION 4LU AHD SET"
-                            style="width: 100%; border: none; padding: 2px 0; font-size: 11px; font-weight: 700; background: transparent; color: #000; outline: none;">
-                    </div>
-                    <div style="margin-bottom: 15px;">
-                        <input type="text" id="customer-location" placeholder="aydın/kuşadası"
-                            style="width: 100%; border: none; padding: 2px 0; font-size: 10px; background: transparent; color: #000; outline: none;">
-                    </div>
-                    <div style="border-bottom: 1px solid #ddd; width: 100%;"></div>
+                <div class="mb-12 bg-gray-50 rounded-2xl p-6 border border-gray-100">
+                    <div class="text-xs font-bold text-cyan-600 uppercase tracking-wider mb-2">Sayın Müşteri</div>
+                    <input type="text" id="customer-name" placeholder="Müşteri / Firma Adı Giriniz"
+                        class="w-full bg-transparent border-none text-xl font-bold text-gray-900 placeholder-gray-300 focus:ring-0 p-0 mb-1">
+                    <input type="text" id="customer-location" placeholder="Lokasyon / Adres"
+                        class="w-full bg-transparent border-none text-sm text-gray-500 placeholder-gray-300 focus:ring-0 p-0">
                 </div>
 
                 {{-- Products Table --}}
-                <table style="width: 100%; border-collapse: collapse; font-size: 9px; margin-bottom: 15px;">
-                    <thead>
-                        <tr style="border-bottom: 2px solid #000;">
-                            <th style="text-align: left; padding: 6px 4px; font-weight: 600;">Hizmet / Ürün</th>
-                            <th style="text-align: center; padding: 6px 4px; font-weight: 600; width: 60px;">Miktar</th>
-                            <th style="text-align: right; padding: 6px 4px; font-weight: 600; width: 80px;">Br. Fiyat</th>
-                            <th style="text-align: right; padding: 6px 4px; font-weight: 600; width: 50px;">KDV</th>
-                            <th style="text-align: right; padding: 6px 4px; font-weight: 600; width: 90px;">Toplam</th>
-                        </tr>
-                    </thead>
-                    <tbody id="product-rows">
-                        <tr class="product-row" style="border-bottom: 1px solid #e5e5e5;">
-                            <td style="padding: 4px;">
-                                <input type="text" class="product-name" placeholder="Hikvision 2mp bullet camera"
-                                    style="width: 100%; border: none; font-size: 9px; padding: 2px;">
-                            </td>
-                            <td style="padding: 4px; text-align: center;">
-                                <input type="number" class="quantity" value="4" min="1"
-                                    style="width: 35px; border: none; text-align: center; font-size: 9px; padding: 2px;">
-                                <span style="font-size: 9px; margin-left: 2px;">Adet</span>
-                            </td>
-                            <td style="padding: 4px; text-align: right;">
-                                <input type="number" class="unit-price" value="25" step="0.01"
-                                    style="width: 50px; border: none; text-align: right; font-size: 9px; padding: 2px;">
-                                <span style="font-size: 9px; margin-left: 2px;">$</span>
-                            </td>
-                            <td style="padding: 4px; text-align: right;">
-                                <span style="font-size: 9px;">%20</span>
-                            </td>
-                            <td style="padding: 4px; text-align: right; font-weight: 600;">
-                                <span class="row-total">100,00 $</span>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
+                <div class="mb-12">
+                    <table class="w-full">
+                        <thead>
+                            <tr class="border-b-2 border-gray-100">
+                                <th class="text-left py-4 text-xs font-bold text-gray-500 uppercase tracking-wider pl-4">
+                                    Hizmet / Ürün Açıklaması</th>
+                                <th class="text-center py-4 text-xs font-bold text-gray-500 uppercase tracking-wider w-24">
+                                    Miktar</th>
+                                <th class="text-right py-4 text-xs font-bold text-gray-500 uppercase tracking-wider w-32">
+                                    Birim Fiyat</th>
+                                <th class="text-right py-4 text-xs font-bold text-gray-500 uppercase tracking-wider w-20">
+                                    KDV</th>
+                                <th
+                                    class="text-right py-4 text-xs font-bold text-gray-500 uppercase tracking-wider w-32 pr-4">
+                                    Toplam</th>
+                            </tr>
+                        </thead>
+                        <tbody id="product-rows" class="divide-y divide-gray-50">
+                            <tr class="product-row group hover:bg-gray-50 transition">
+                                <td class="p-2">
+                                    <input type="text"
+                                        class="product-name w-full bg-transparent border-none text-sm text-gray-700 focus:ring-0 pl-2 rounded-lg"
+                                        placeholder="Ürün veya hizmet adını giriniz">
+                                </td>
+                                <td class="p-2">
+                                    <div
+                                        class="flex items-center justify-center bg-white rounded-lg border border-gray-200 h-8 w-20 mx-auto">
+                                        <input type="number"
+                                            class="quantity w-10 text-center border-none text-xs p-0 focus:ring-0" value="1"
+                                            min="1">
+                                        <span class="text-[10px] text-gray-400 select-none mr-1">Ad.</span>
+                                    </div>
+                                </td>
+                                <td class="p-2">
+                                    <div class="flex items-center justify-end">
+                                        <input type="number"
+                                            class="unit-price w-20 text-right border-none text-sm focus:ring-0 p-0"
+                                            value="0" step="0.01">
+                                        <span class="text-xs text-gray-400 ml-1 select-none">$</span>
+                                    </div>
+                                </td>
+                                <td class="p-2 text-right">
+                                    <span class="text-xs text-gray-400 select-none">%20</span>
+                                </td>
+                                <td class="p-2 text-right pr-4 font-semibold text-gray-900">
+                                    <span class="row-total">0,00 $</span>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
 
-
-
-                {{-- Bottom Section: Notes & Totals --}}
-                <div
-                    style="display: flex; justify-content: space-between; align-items: flex-end; margin-top: 30px; border-top: 1px solid #000; padding-top: 15px;">
-                    {{-- Left: Notes --}}
-                    <div id="notes-container" style="flex: 1; padding-right: 40px;">
-                        <div style="font-size: 10px; font-weight: 700; color: #000; margin-bottom: 4px;">NOTLAR:</div>
+                {{-- Bottom Section --}}
+                <div class="flex flex-col md:flex-row justify-between items-end gap-12 pt-8 border-t border-gray-100">
+                    {{-- Notes --}}
+                    <div id="notes-container" class="flex-1 w-full md:w-auto">
+                        <div class="text-xs font-bold text-gray-400 uppercase tracking-wider mb-2">Notlar & Şartlar</div>
                         <div contenteditable="true" id="quote-note"
-                            style="font-size: 10px; color: #333; outline: none; border: none; min-width: 200px; padding: 2px 0; border-bottom: 1px dashed transparent;"
-                            onfocus="if(this.innerText==='Yukarıda vermiş olduğumuz teklifimiz KDV HARİÇ olarak hesaplanmıştır...') this.innerText=''; this.style.borderBottom='1px dashed #ccc'"
-                            onblur="if(this.innerText==='') this.innerText='Yukarıda vermiş olduğumuz teklifimiz KDV HARİÇ olarak hesaplanmıştır...'; this.style.borderBottom='1px dashed transparent'">
+                            class="text-xs text-gray-500 leading-relaxed outline-none border-b border-transparent focus:border-cyan-300 transition py-2 empty:before:content-[attr(placeholder)] empty:before:text-gray-300"
+                            placeholder="Not eklemek için buraya tıklayın...">
                             Yukarıda vermiş olduğumuz teklifimiz KDV HARİÇ olarak hesaplanmıştır. Şirket politikası gereği
-                            50.000 TL üstü projelerde , Projenin tamamının %50’si peşin olarak proje başlangıcında
-                            alınmaktadır. Kalan ödeme tutarı proje teslim zamanı tahsil edilmektedir. Projelerimize
-                            yol,yemek ve konaklama ücretleri DAHİLDİR.</div>
+                            50.000 TL üstü projelerde, projenin tamamının %50’si peşin olarak proje başlangıcında
+                            alınmaktadır. Kalan ödeme tutarı proje teslim zamanı tahsil edilmektedir. Projelerimize yol,
+                            yemek ve konaklama ücretleri DAHİLDİR.
+                        </div>
                     </div>
 
-                    {{-- Right: Totals --}}
-                    <div style="width: 240px;">
-                        <div style="display: flex; justify-content: space-between; padding: 4px 0; font-size: 10px;">
-                            <span style="font-weight: 600;">ARA TOPLAM</span>
-                            <span id="subtotal" style="font-weight: 600;">0,00 $</span>
-                        </div>
-                        <div style="display: flex; justify-content: space-between; padding: 4px 0; font-size: 10px;">
-                            <span style="font-weight: 600;">BRÜT TOPLAM</span>
-                            <span id="gross-total" style="font-weight: 600;">0,00 $</span>
-                        </div>
-                        <div style="display: flex; justify-content: space-between; padding: 4px 0; font-size: 10px;">
-                            <span style="font-weight: 600;">TOPLAM K.D.V</span>
-                            <span id="total-vat" style="font-weight: 600;">0,00 $</span>
-                        </div>
-                        <div
-                            style="display: flex; justify-content: space-between; padding: 6px 0; border-top: 2px solid #000; font-size: 11px; margin-top: 4px;">
-                            <span style="font-weight: 700;">GENEL TOPLAM</span>
-                            <span id="grand-total" style="font-weight: 700;">0,00 $</span>
+                    {{-- Totals --}}
+                    <div class="w-full md:w-80 bg-gray-50 rounded-2xl p-6">
+                        <div class="space-y-3">
+                            <div class="flex justify-between text-sm">
+                                <span class="text-gray-500">Ara Toplam</span>
+                                <span id="subtotal" class="font-semibold text-gray-900">0,00 $</span>
+                            </div>
+                            <div class="flex justify-between text-sm">
+                                <span class="text-gray-500">KDV (%20)</span>
+                                <span id="total-vat" class="font-semibold text-gray-900">0,00 $</span>
+                            </div>
+                            <div class="pt-4 mt-2 border-t border-gray-200">
+                                <div class="flex justify-between items-center">
+                                    <span class="text-base font-bold text-gray-900">Genel Toplam</span>
+                                    <span id="grand-total"
+                                        class="text-2xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-cyan-600 to-magenta-600">0,00
+                                        $</span>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-            {{-- Add Row --}}
-            <div style="margin-top: 15px; margin-bottom: 25px;" class="no-print">
+
+            {{-- Add Row Button --}}
+            <div class="mt-8 text-center print:hidden">
                 <button onclick="addRow()"
-                    style="font-size: 10px; color: #3B82F6; background: none; border: none; cursor: pointer; font-weight: 600;">+
-                    Satır Ekle</button>
+                    class="inline-flex items-center gap-2 text-sm font-semibold text-cyan-600 hover:text-cyan-700 transition px-4 py-2 rounded-full hover:bg-cyan-50">
+                    <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
+                    </svg>
+                    Yeni Satır Ekle
+                </button>
             </div>
         </div>
+    </div>
 
-        {{-- Scripts --}}
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+    {{-- Scripts --}}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
 
-        <style>
-            @media print {
-                .no-print {
-                    display: none !important;
-                }
-
-                body {
-                    margin: 0;
-                    padding: 0;
-                }
-
-                #quote-content {
-                    box-shadow: none !important;
-                    margin: 0 !important;
-                    padding: 20mm !important;
-                }
-            }
-        </style>
-
-        <script>
-            function formatNumber(num) {
-                return num.toFixed(2).replace('.', ',');
+    <style>
+        @media print {
+            @page {
+                margin: 0;
             }
 
-            function calculateTotals() {
-                let subtotal = 0;
-
-                document.querySelectorAll('.product-row').forEach(row => {
-                    const quantity = parseFloat(row.querySelector('.quantity').value) || 0;
-                    const unitPrice = parseFloat(row.querySelector('.unit-price').value) || 0;
-                    const rowTotal = quantity * unitPrice;
-
-                    row.querySelector('.row-total').textContent = formatNumber(rowTotal) + ' $';
-                    subtotal += rowTotal;
-                });
-
-                const vat = subtotal * 0.20;
-                const grandTotal = subtotal + vat;
-
-                document.getElementById('subtotal').textContent = formatNumber(subtotal) + ' $';
-                document.getElementById('gross-total').textContent = formatNumber(subtotal) + ' $';
-                document.getElementById('total-vat').textContent = formatNumber(vat) + ' $';
-                document.getElementById('grand-total').textContent = formatNumber(grandTotal) + ' $';
+            body {
+                margin: 0;
+                padding: 0;
+                -webkit-print-color-adjust: exact;
+                background: white !important;
             }
 
-            function addRow() {
-                const tbody = document.getElementById('product-rows');
-                const newRow = document.createElement('tr');
-                newRow.className = 'product-row';
-                newRow.style.borderBottom = '1px solid #e5e5e5';
-                newRow.innerHTML = `
-                                                <td style="padding: 4px;">
-                                                    <input type="text" class="product-name" placeholder="Ürün adı" style="width: 100%; border: none; font-size: 9px; padding: 2px;">
-                                                </td>
-                                                <td style="padding: 4px; text-align: center;">
-                                                    <input type="number" class="quantity" value="1" min="1" style="width: 35px; border: none; text-align: center; font-size: 9px; padding: 2px;">
-                                                    <span style="font-size: 9px; margin-left: 2px;">Adet</span>
-                                                </td>
-                                                <td style="padding: 4px; text-align: right;">
-                                                    <input type="number" class="unit-price" value="0" step="0.01" style="width: 50px; border: none; text-align: right; font-size: 9px; padding: 2px;">
-                                                    <span style="font-size: 9px; margin-left: 2px;">$</span>
-                                                </td>
-                                                <td style="padding: 4px; text-align: right;">
-                                                    <span style="font-size: 9px;">%20</span>
-                                                </td>
-                                                <td style="padding: 4px; text-align: right; font-weight: 600;">
-                                                    <span class="row-total">0,00 $</span>
-                                                </td>
-                                            `;
-
-                tbody.appendChild(newRow);
-
-                // Add event listeners
-                newRow.querySelector('.quantity').addEventListener('input', calculateTotals);
-                newRow.querySelector('.unit-price').addEventListener('input', calculateTotals);
+            .print\:hidden {
+                display: none !important;
             }
 
-            function generatePDF() {
-                const element = document.getElementById('quote-content');
-                const notesContainer = document.getElementById('notes-container');
-                const noteContent = document.getElementById('quote-note');
-
-                // Hide notes if it's the placeholder or empty
-                let notesHidden = false;
-                if (noteContent && (noteContent.innerText.trim() === '' || noteContent.innerText.trim() === 'İsteğe bağlı not ekleyebilirsiniz...')) {
-                    notesContainer.style.visibility = 'hidden';
-                    notesHidden = true;
-                }
-
-                const opt = {
-                    margin: 10,
-                    filename: 'teklif-' + new Date().toISOString().slice(0, 10) + '.pdf',
-                    image: { type: 'jpeg', quality: 0.98 },
-                    html2canvas: { scale: 2, useCORS: true, logging: false },
-                    jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' }
-                };
-
-                html2pdf().set(opt).from(element).save().then(() => {
-                    if (notesHidden) {
-                        notesContainer.style.visibility = 'visible';
-                    }
-                });
+            .print\:shadow-none {
+                box-shadow: none !important;
             }
 
-            // Initialize
-            document.addEventListener('DOMContentLoaded', function () {
-                calculateTotals();
+            .print\:py-0 {
+                padding-top: 0 !important;
+                padding-bottom: 0 !important;
+            }
 
-                // Add event listeners to initial row
-                document.querySelectorAll('.quantity, .unit-price').forEach(input => {
-                    input.addEventListener('input', calculateTotals);
-                });
+            .print\:bg-white {
+                background-color: white !important;
+            }
+        }
+    </style>
+
+    <script>
+        function formatNumber(num) {
+            return num.toFixed(2).replace('.', ',').replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+        }
+
+        function calculateTotals() {
+            let subtotal = 0;
+
+            document.querySelectorAll('.product-row').forEach(row => {
+                const quantity = parseFloat(row.querySelector('.quantity').value) || 0;
+                const unitPrice = parseFloat(row.querySelector('.unit-price').value) || 0;
+                const rowTotal = quantity * unitPrice;
+
+                row.querySelector('.row-total').textContent = formatNumber(rowTotal) + ' $';
+                subtotal += rowTotal;
             });
-        </script>
+
+            const vat = subtotal * 0.20;
+            const grandTotal = subtotal + vat;
+
+            document.getElementById('subtotal').textContent = formatNumber(subtotal) + ' $';
+            document.getElementById('total-vat').textContent = formatNumber(vat) + ' $';
+            document.getElementById('grand-total').textContent = formatNumber(grandTotal) + ' $';
+        }
+
+        function addRow() {
+            const tbody = document.getElementById('product-rows');
+            const newRow = document.createElement('tr');
+            newRow.className = 'product-row group hover:bg-gray-50 transition border-t border-gray-50';
+            newRow.innerHTML = `
+                <td class="p-2">
+                    <input type="text" class="product-name w-full bg-transparent border-none text-sm text-gray-700 focus:ring-0 pl-2 rounded-lg" placeholder="Ürün adı">
+                </td>
+                <td class="p-2">
+                    <div class="flex items-center justify-center bg-white rounded-lg border border-gray-200 h-8 w-20 mx-auto">
+                        <input type="number" class="quantity w-10 text-center border-none text-xs p-0 focus:ring-0" value="1" min="1">
+                        <span class="text-[10px] text-gray-400 select-none mr-1">Ad.</span>
+                    </div>
+                </td>
+                <td class="p-2">
+                    <div class="flex items-center justify-end">
+                        <input type="number" class="unit-price w-20 text-right border-none text-sm focus:ring-0 p-0" value="0" step="0.01">
+                        <span class="text-xs text-gray-400 ml-1 select-none">$</span>
+                    </div>
+                </td>
+                <td class="p-2 text-right">
+                    <span class="text-xs text-gray-400 select-none">%20</span>
+                </td>
+                <td class="p-2 text-right pr-4 font-semibold text-gray-900">
+                    <span class="row-total">0,00 $</span>
+                </td>
+            `;
+
+            tbody.appendChild(newRow);
+
+            // Add event listeners
+            newRow.querySelector('.quantity').addEventListener('input', calculateTotals);
+            newRow.querySelector('.unit-price').addEventListener('input', calculateTotals);
+        }
+
+        function generatePDF() {
+            const element = document.getElementById('quote-content');
+            const opt = {
+                margin: 0,
+                filename: 'soho-teklif-' + new Date().toISOString().slice(0, 10) + '.pdf',
+                image: { type: 'jpeg', quality: 0.98 },
+                html2canvas: { scale: 2, useCORS: true, logging: false },
+                jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' }
+            };
+
+            html2pdf().set(opt).from(element).save();
+        }
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', function () {
+            calculateTotals();
+
+            // Add event listeners to initial row
+            document.querySelectorAll('.quantity, .unit-price').forEach(input => {
+                input.addEventListener('input', calculateTotals);
+            });
+        });
+    </script>
 @endsection

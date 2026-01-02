@@ -1,101 +1,136 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="bg-neutral-bg pb-16 lg:pb-24">
-        <script type="application/ld+json">
-        {
-          "@context": "https://schema.org",
-          "@type": "Service",
-          "name": "{{ $service->title }}",
-          "provider": {
-            "@type": "LocalBusiness",
-            "name": "{{ setting('site_name', 'SOHO Güvenlik Sistemleri') }}"
-          },
-          "areaServed": {
-            "@type": "City",
-            "name": "İzmir"
-          },
-          "description": "{{ isset($description) ? $description : Str::limit(strip_tags($service->description), 160) }}"
-        }
-        </script>
-        {{-- Hero / Header --}}
-        <div class="relative h-[50vh] min-h-[400px] w-full overflow-hidden bg-white">
-            @if($service->image)
-                <img class="absolute inset-0 h-full w-full object-cover" src="{{ Storage::url($service->image) }}"
-                    alt="{{ $service->title }}">
-                <div class="absolute inset-0 bg-gradient-to-t from-white via-white/60 to-primary-500/80"></div>
-            @else
-                <div class="absolute inset-0 bg-gradient-to-br from-primary-500 to-secondary-500 flex items-center justify-center">
-                    <svg class="h-32 w-32 text-white opacity-20" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1"
-                            d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" />
-                    </svg>
-                </div>
-                <div class="absolute inset-0 bg-gradient-to-t from-white via-white/20 to-transparent"></div>
-            @endif
+    <div class="bg-white min-h-screen">
+        {{-- Hero --}}
+        <section class="relative py-20 bg-gradient-subtle overflow-hidden">
+            {{-- Background Elements --}}
+            <div
+                class="absolute top-0 right-0 w-96 h-96 bg-cyan-100 rounded-full opacity-20 blur-3xl translate-x-1/2 -translate-y-1/2">
+            </div>
 
-            <div class="absolute bottom-0 left-0 w-full pb-16 pt-12">
-                <div class="container-custom">
-                    <nav class="flex mb-4 text-sm font-medium text-neutral-medium">
-                        <a href="{{ route('home') }}" class="hover:text-secondary-500 transition-colors">{{ setting('page_home', 'Ana Sayfa') }}</a>
-                        <span class="mx-2">/</span>
-                        <span class="text-primary-500 font-semibold">{{ $service->title }}</span>
-                    </nav>
-                    <h1 class="text-4xl font-bold tracking-tight text-primary-500 sm:text-5xl md:text-6xl">
-                        {{ $service->title }}
+            <div class="container-custom relative z-10">
+                <div class="max-w-4xl mx-auto text-center space-y-6 animate-fade-in">
+                    <a href="{{ route('home') }}#services"
+                        class="inline-flex items-center gap-2 text-sm font-semibold text-cyan-600 hover:text-cyan-700 transition">
+                        <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+                        </svg>
+                        Hizmetlere Dön
+                    </a>
+
+                    <h1 class="heading-hero">
+                        {!! str_replace(' ', ' <span class="text-gradient">', $service->title) . '</span>' !!}
                     </h1>
                 </div>
             </div>
-        </div>
+        </section>
 
         {{-- Content --}}
-        <div class="container-custom -mt-12 relative z-10">
-            <div class="grid grid-cols-1 lg:grid-cols-3 gap-12">
-                {{-- Article --}}
-                <div class="lg:col-span-2 card p-8 sm:p-12">
-                    <div class="prose prose-lg max-w-none text-neutral-medium">
-                        {!! $service->content !!}
-                    </div>
-                </div>
-
-                {{-- Sidebar / CTA --}}
-                <div class="space-y-6">
-                    <div class="card p-8 sticky top-24">
-                        <h3 class="text-xl font-bold text-primary-500 mb-6">{{ setting('sidebar_actions_title', 'Hızlı İşlemler') }}</h3>
-
-                        <div class="space-y-4">
-                            <div class="border border-neutral-light rounded-lg p-6 hover:border-secondary-500 transition-colors">
-                                <div class="flex items-center gap-3 mb-3 text-secondary-500">
-                                    <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                            d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
-                                    </svg>
-                                    <h4 class="font-semibold text-primary-500">{{ setting('sidebar_support_title', 'Teknik Destek') }}</h4>
-                                </div>
-                                <p class="text-sm text-neutral-medium mb-4">{{ setting('sidebar_support_desc', 'Bir sorun mu yaşıyorsunuz? Teknik ekibimize bildirin.') }}
-                                </p>
-                                <a href="{{ route('requests.fault') }}" class="btn-primary w-full text-center text-sm">
-                                    {{ setting('btn_create_fault', 'Arıza Kaydı Oluştur') }}
-                                </a>
+        <section class="section-padding bg-white">
+            <div class="container-custom">
+                <div class="grid lg:grid-cols-3 gap-12">
+                    {{-- Main Content --}}
+                    <div class="lg:col-span-2 space-y-8 animate-slide-up">
+                        @if($service->image)
+                            <div class="rounded-4xl overflow-hidden shadow-soft aspect-video relative group">
+                                <img src="{{ Storage::url($service->image) }}" alt="{{ $service->title }}"
+                                    class="w-full h-full object-cover group-hover:scale-105 transition duration-700">
+                                <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-60"></div>
                             </div>
+                        @endif
 
-                            <div class="border border-neutral-light rounded-lg p-6 hover:border-accent-500 transition-colors">
-                                <div class="flex items-center gap-3 mb-3 text-accent-500">
-                                    <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <div class="prose prose-lg prose-gray max-w-none">
+                            {!! $service->content !!}
+                        </div>
+
+                        {{-- CTA Box --}}
+                        <div class="card-gradient-border mt-12">
+                            <div class="flex flex-col md:flex-row items-center gap-8 text-center md:text-left">
+                                <div class="icon-circle-gradient flex-shrink-0">
+                                    <svg class="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                            d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4" />
+                                            d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
                                     </svg>
-                                    <h4 class="font-semibold text-primary-500">{{ setting('sidebar_inventory_title', 'Envanter Talebi') }}</h4>
                                 </div>
-                                <p class="text-sm text-neutral-medium mb-4">{{ setting('sidebar_inventory_desc', 'Yeni donanım veya yazılım ihtiyacınız mı var?') }}</p>
-                                <a href="{{ route('requests.inventory') }}" class="btn-accent w-full text-center text-sm">
-                                    {{ setting('btn_create_request', 'Talep Oluştur') }}
+                                <div class="flex-grow">
+                                    <h3 class="heading-md mb-2">Bu Hizmet İçin Teklif Alın</h3>
+                                    <p class="text-gray-600">Projenize özel çözümler ve fiyatlandırma için bizimle iletişime
+                                        geçin.</p>
+                                </div>
+                                <a href="{{ route('quote') }}" class="btn-gradient-primary flex-shrink-0">
+                                    Teklif İste
+                                    <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                            d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                                    </svg>
                                 </a>
                             </div>
                         </div>
                     </div>
+
+                    {{-- Sidebar --}}
+                    <div class="space-y-8 animate-slide-up animate-delay-200">
+                        {{-- Quick Contact --}}
+                        <div class="card-modern bg-gray-50">
+                            <h3 class="heading-sm mb-6">İletişim</h3>
+                            <div class="space-y-4">
+                                <a href="tel:{{ setting('phone') }}"
+                                    class="flex items-center gap-3 p-4 rounded-2xl bg-white border border-gray-200 hover:border-cyan-500 transition group">
+                                    <div
+                                        class="w-10 h-10 rounded-full bg-cyan-50 flex items-center justify-center group-hover:bg-cyan-500 transition">
+                                        <svg class="w-5 h-5 text-cyan-600 group-hover:text-white transition" fill="none"
+                                            viewBox="0 0 24 24" stroke="currentColor">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+                                        </svg>
+                                    </div>
+                                    <span class="font-medium text-gray-900">Hemen Ara</span>
+                                </a>
+                                <a href="{{ route('contact') }}"
+                                    class="flex items-center gap-3 p-4 rounded-2xl bg-white border border-gray-200 hover:border-magenta-500 transition group">
+                                    <div
+                                        class="w-10 h-10 rounded-full bg-magenta-50 flex items-center justify-center group-hover:bg-magenta-500 transition">
+                                        <svg class="w-5 h-5 text-magenta-600 group-hover:text-white transition" fill="none"
+                                            viewBox="0 0 24 24" stroke="currentColor">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                                        </svg>
+                                    </div>
+                                    <span class="font-medium text-gray-900">Mesaj Gönder</span>
+                                </a>
+                            </div>
+                        </div>
+
+                        {{-- Other Services --}}
+                        @php
+                            $otherServices = \App\Models\Service::where('id', '!=', $service->id)->take(5)->get();
+                        @endphp
+                        @if($otherServices->count() > 0)
+                            <div class="card-modern">
+                                <h3 class="heading-sm mb-6">Diğer Hizmetler</h3>
+                                <div class="space-y-4">
+                                    @foreach($otherServices as $other)
+                                        <a href="{{ route('services.show', $other->slug) }}" class="block group">
+                                            <div
+                                                class="flex items-center justify-between p-3 rounded-xl hover:bg-gray-50 transition">
+                                                <span
+                                                    class="text-gray-700 font-medium group-hover:text-cyan-600 transition">{{ $other->title }}</span>
+                                                <svg class="w-4 h-4 text-gray-400 group-hover:text-cyan-500 group-hover:translate-x-1 transition"
+                                                    fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                        d="M9 5l7 7-7 7" />
+                                                </svg>
+                                            </div>
+                                        </a>
+                                    @endforeach
+                                </div>
+                            </div>
+                        @endif
+                    </div>
                 </div>
             </div>
-        </div>
+        </section>
     </div>
 @endsection
