@@ -170,6 +170,11 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
 
 <style>
+    /* Force hide elements during JS PDF generation */
+    .pdf-mode .print\:hidden {
+        display: none !important;
+    }
+
     @media print {
         @page { margin: 0; }
         body { margin: 0; padding: 0; -webkit-print-color-adjust: exact; background: white !important; }
