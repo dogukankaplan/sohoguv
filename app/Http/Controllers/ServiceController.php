@@ -16,7 +16,10 @@ class ServiceController extends Controller
     public function solutions()
     {
         $services = Service::where('is_active', true)->orderBy('order')->get();
-        return view('solutions.index', compact('services'));
+        $heroSection = \App\Models\Section::where('type', 'solutions_hero')->first();
+        $ctaSection = \App\Models\Section::where('type', 'solutions_cta')->first();
+
+        return view('solutions.index', compact('services', 'heroSection', 'ctaSection'));
     }
 
     public function show($slug)
