@@ -150,7 +150,7 @@ class ManageSolutions extends Page implements HasForms
             ->send();
     }
 
-    protected function getFormActions(): array
+    public function getFormActions(): array
     {
         return [
             Action::make('save')
