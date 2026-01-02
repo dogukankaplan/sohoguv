@@ -26,6 +26,8 @@
                     class="text-sm font-medium text-gray-700 hover:text-cyan-500 transition">Ana Sayfa</a>
                 <a href="{{ route('about') }}"
                     class="text-sm font-medium text-gray-700 hover:text-cyan-500 transition">{{ setting('page_about', 'Hakkımızda') }}</a>
+                <a href="{{ route('solutions.index') }}"
+                    class="text-sm font-medium text-gray-700 hover:text-cyan-500 transition">Çözümler</a>
 
                 <!-- Services Dropdown -->
                 <div x-data="{ open: false }" @mouseenter="open = true" @mouseleave="open = false" class="relative">
@@ -142,6 +144,8 @@
                 class="block text-base font-medium text-gray-700 hover:text-cyan-500 transition">Ana Sayfa</a>
             <a href="{{ route('about') }}"
                 class="block text-base font-medium text-gray-700 hover:text-cyan-500 transition">{{ setting('page_about', 'Hakkımızda') }}</a>
+            <a href="{{ route('solutions.index') }}"
+                class="block text-base font-medium text-gray-700 hover:text-cyan-500 transition">Çözümler</a>
 
             <!-- Mobile Services -->
             <div>
