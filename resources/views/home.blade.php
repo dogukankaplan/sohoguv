@@ -18,11 +18,11 @@
                         <div class="space-y-8 text-center lg:text-left animate-slide-up">
                             <h1 class="font-bold tracking-tight text-gray-900 leading-tight">
                                 <span class="block text-5xl lg:text-7xl bg-clip-text text-transparent bg-gradient-to-b from-gray-900 to-gray-600 pb-2">
-                                    {{ $section->title ?? 'SOHO GÜVENLİK' }}
+                                    {{ $section->title ?? setting('hero_title', 'SOHO GÜVENLİK') }}
                                 </span>
                             </h1>
                             <p class="text-xl lg:text-2xl text-gray-600 max-w-2xl mx-auto lg:mx-0 font-light leading-relaxed">
-                                {{ $section->subtitle ?? 'Yeni nesil güvenlik teknolojileri ile geleceğinizi koruma altına alın.' }}
+                                {{ $section->subtitle ?? setting('hero_subtitle', 'Yeni nesil güvenlik teknolojileri ile geleceğinizi koruma altına alın.') }}
                                 {!! $section->content !!}
                             </p>
                             
@@ -99,10 +99,10 @@
                     <div class="grid grid-cols-2 md:grid-cols-4 divide-x divide-gray-200/50">
                         @php
                             $stats = [
-                                ['value' => '15+', 'label' => 'Yıllık Tecrübe'],
-                                ['value' => '1000+', 'label' => 'Mutlu Müşteri'],
-                                ['value' => '50+', 'label' => 'Uzman Personel'],
-                                ['value' => '81', 'label' => 'İlde Hizmet'],
+                                ['value' => setting('stat_1_value', '15+'), 'label' => setting('stat_1_label', 'Yıllık Tecrübe')],
+                                ['value' => setting('stat_2_value', '1000+'), 'label' => setting('stat_2_label', 'Mutlu Müşteri')],
+                                ['value' => setting('stat_3_value', '50+'), 'label' => setting('stat_3_label', 'Uzman Personel')],
+                                ['value' => setting('stat_4_value', '81'), 'label' => setting('stat_4_label', 'İlde Hizmet')],
                             ];
                         @endphp
                         @foreach($stats as $stat)

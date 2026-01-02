@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use App\Models\Service;
 use App\Models\Client;
 use App\Models\Testimonial;
+use App\Models\Stat;
+use App\Models\Feature;
+use App\Models\HeroSection;
 
 class HomeController extends Controller
 {
@@ -24,8 +27,8 @@ class HomeController extends Controller
             $sections = collect([
                 (object) [
                     'type' => 'hero',
-                    'title' => 'SOHO GÜVENLİK',
-                    'subtitle' => 'SOHO Güvenlik Sistemleri ile eviniz ve iş yeriniz güvende.',
+                    'title' => setting('hero_title', 'GÜVENLİĞİNİZ BİZİM İŞİMİZ'),
+                    'subtitle' => setting('hero_subtitle', 'SOHO Güvenlik Sistemleri ile eviniz ve iş yeriniz güvende.'),
                     'content' => null,
                     'image' => null
                 ],
@@ -37,24 +40,10 @@ class HomeController extends Controller
             ]);
         }
 
-        // Other existing data with safe database querying
-        try {
-            $services = \App\Models\Service::where('is_active', true)->orderBy('order')->take(6)->get();
-        } catch (\Exception $e) {
-            $services = collect();
-        }
-
-        try {
-            $clients = \App\Models\Client::orderBy('order')->get();
-        } catch (\Exception $e) {
-            $clients = collect();
-        }
-
-        try {
-            $testimonials = \App\Models\Testimonial::where('is_active', true)->orderBy('order')->get();
-        } catch (\Exception $e) {
-            $testimonials = collect();
-        }
+        // Other existing data
+        $services = \App\Models\Service::where('is_active', true)->orderBy('order')->take(6)->get();
+        $clients = \App\Models\Client::orderBy('order')->get();
+        $testimonials = \App\Models\Testimonial::where('is_active', true)->orderBy('order')->get();
 
         // Pass to view
         return view('home', compact('sections', 'services', 'clients', 'testimonials'));
