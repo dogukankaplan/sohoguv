@@ -208,6 +208,16 @@
             .print\:bg-white {
                 background-color: white !important;
             }
+
+            /* Gradient Text Fix for Print/PDF */
+            .text-gradient,
+            .bg-clip-text,
+            #grand-total {
+                background: none !important;
+                -webkit-text-fill-color: #0891B2 !important;
+                /* solid cyan-600 */
+                color: #0891B2 !important;
+            }
         }
     </style>
 
@@ -273,19 +283,49 @@
 
         function generatePDF() {
             const element = document.getElementById('quote-content');
+
+            // Add temporary class to handle gradient text fix specifically for html2pdf
+            element.classList.add('pdf-mode');
+
+            // Add inline style to grand-total to force solid color during capture
+            const grandTotal = document.getElementById('grand-total');
+            const originalStyle = grandTotal.getAttribute('style');
+            grandTotal.style.background = 'none';
+            grandTotal.style.webkitTextFillColor = '#0891B2';
+            grandTotal.style.color = '#0891B2';
+
             const opt = {
                 margin: 0,
                 filename: 'soho-teklif-' + new Date().toISOString().slice(0, 10) + '.pdf',
-                image: { type: 'jpeg', quality: 0.98 },
-                html2canvas: { scale: 2, useCORS: true, logging: false },
-                jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' }
+                image: {
+                    type: 'jpeg',
+                    quality: 0.98
+                },
+                html2canvas: {
+                    scale: 2,
+                    useCORS: true,
+                    logging: false
+                },
+                jsPDF: {
+                    unit: 'mm',
+                    format: 'a4',
+                    orientation: 'portrait'
+                }
             };
 
-            html2pdf().set(opt).from(element).save();
+            html2pdf().set(opt).from(element).save().then(() => {
+                // Revert changes
+                element.classList.remove('pdf-mode');
+                if (originalStyle) {
+                    grandTotal.setAttribute('style', originalStyle);
+                } else {
+                    grandTotal.removeAttribute('style');
+                }
+            });
         }
 
         // Initialize
-        document.addEventListener('DOMContentLoaded', function () {
+        document.addEventListener('DOMContentLoaded', function() {
             calculateTotals();
 
             // Add event listeners to initial row

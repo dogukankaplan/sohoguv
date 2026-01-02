@@ -54,6 +54,51 @@
                     </div>
                 </div>
 
+                <!-- Support Dropdown -->
+                <div x-data="{ open: false }" @mouseenter="open = true" @mouseleave="open = false" class="relative">
+                    <button
+                        class="text-sm font-medium text-gray-700 hover:text-cyan-500 transition inline-flex items-center gap-1">
+                        Destek
+                        <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                        </svg>
+                    </button>
+
+                    <div x-show="open" x-transition:enter="transition ease-out duration-200"
+                        x-transition:enter-start="opacity-0 translate-y-4"
+                        x-transition:enter-end="opacity-100 translate-y-0"
+                        x-transition:leave="transition ease-in duration-150"
+                        x-transition:leave-start="opacity-100 translate-y-0"
+                        x-transition:leave-end="opacity-0 translate-y-4"
+                        class="absolute left-0 mt-6 w-64 bg-white rounded-2xl shadow-strong border border-gray-100 py-4"
+                        style="display: none;">
+                        <a href="{{ route('requests.fault') }}"
+                            class="block px-6 py-3 text-sm text-gray-700 hover:bg-gray-50 hover:text-cyan-500 transition flex items-center gap-2">
+                            <svg class="w-4 h-4 text-cyan-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+                            </svg>
+                            Arıza Bildir
+                        </a>
+                        <a href="{{ route('requests.inventory') }}"
+                            class="block px-6 py-3 text-sm text-gray-700 hover:bg-gray-50 hover:text-amber-500 transition flex items-center gap-2">
+                            <svg class="w-4 h-4 text-amber-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4" />
+                            </svg>
+                            Envanter Talebi
+                        </a>
+                        <a href="{{ route('quote') }}"
+                            class="block px-6 py-3 text-sm text-gray-700 hover:bg-gray-50 hover:text-purple-500 transition flex items-center gap-2">
+                            <svg class="w-4 h-4 text-purple-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                            </svg>
+                            Hızlı Teklif
+                        </a>
+                    </div>
+                </div>
+
                 <a href="{{ route('references') }}"
                     class="text-sm font-medium text-gray-700 hover:text-cyan-500 transition">{{ setting('page_references', 'Referanslar') }}</a>
                 <a href="{{ route('contact') }}"
@@ -101,7 +146,8 @@
             <!-- Mobile Services -->
             <div>
                 <p class="text-sm font-bold text-gray-900 uppercase tracking-wider mb-2">
-                    {{ setting('page_services', 'Hizmetler') }}</p>
+                    {{ setting('page_services', 'Hizmetler') }}
+                </p>
                 <div class="pl-4 space-y-2">
                     @foreach($globalServices as $service)
                         <a href="{{ route('services.show', $service->slug) }}"
@@ -109,6 +155,37 @@
                             {{ $service->title }}
                         </a>
                     @endforeach
+                </div>
+            </div>
+
+            <!-- Mobile Support -->
+            <div>
+                <p class="text-sm font-bold text-gray-900 uppercase tracking-wider mb-2">Destek</p>
+                <div class="pl-4 space-y-2">
+                    <a href="{{ route('requests.fault') }}"
+                        class="block text-sm text-gray-600 hover:text-cyan-500 transition flex items-center gap-2">
+                        <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+                        </svg>
+                        Arıza Bildir
+                    </a>
+                    <a href="{{ route('requests.inventory') }}"
+                        class="block text-sm text-gray-600 hover:text-amber-500 transition flex items-center gap-2">
+                        <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4" />
+                        </svg>
+                        Envanter Talebi
+                    </a>
+                    <a href="{{ route('quote') }}"
+                        class="block text-sm text-gray-600 hover:text-purple-500 transition flex items-center gap-2">
+                        <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                        </svg>
+                        Hızlı Teklif
+                    </a>
                 </div>
             </div>
 

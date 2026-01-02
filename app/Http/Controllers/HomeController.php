@@ -13,35 +13,39 @@ class HomeController extends Controller
 {
     public function index()
     {
-        $services = Service::latest()->take(6)->get();
-        $clients = Client::where('is_active', true)->orderBy('order')->get();
-        $testimonials = Testimonial::where('is_active', true)
-            ->where('is_featured', true)
-            ->take(3)
-            ->get();
+        try {
+            // Attempt to fetch dynamic sections if table exists
+            $sections = \App\Models\Section::where('is_active', true)
+                ->orderBy('order')
+                ->get();
 
-        // Dynamic content from admin panel
-        $stats = Stat::where('is_active', true)->orderBy('order')->get();
-        $whySohoFeatures = Feature::where('section', 'why_soho')
-            ->where('is_active', true)
-            ->orderBy('order')
-            ->get();
-        $whyUsFeatures = Feature::where('section', 'why_us')
-            ->where('is_active', true)
-            ->orderBy('order')
-            ->get();
-        $hero = HeroSection::where('page', 'home')
-            ->where('is_active', true)
-            ->first();
+            if ($sections->isEmpty()) {
+                throw new \Exception('No sections found');
+            }
+        } catch (\Exception $e) {
+            // Fallback to hardcoded sections structure if DB is empty or migration not run
+            $sections = collect([
+                (object) [
+                    'type' => 'hero',
+                    'title' => setting('hero_title', 'GÜVENLİĞİNİZ BİZİM İŞİMİZ'),
+                    'subtitle' => setting('hero_subtitle', 'SOHO Güvenlik Sistemleri ile eviniz ve iş yeriniz güvende.'),
+                    'content' => null,
+                    'image' => null
+                ],
+                (object) ['type' => 'stats'],
+                (object) ['type' => 'services'],
+                (object) ['type' => 'features'],
+                (object) ['type' => 'clients'],
+                (object) ['type' => 'cta'],
+            ]);
+        }
 
-        return view('home', compact(
-            'services',
-            'clients',
-            'testimonials',
-            'stats',
-            'whySohoFeatures',
-            'whyUsFeatures',
-            'hero'
-        ));
+        // Other existing data
+        $services = \App\Models\Service::where('is_active', true)->orderBy('order')->take(6)->get();
+        $clients = \App\Models\Client::orderBy('order')->get();
+        $testimonials = \App\Models\Testimonial::where('is_active', true)->orderBy('order')->get();
+
+        // Pass to view
+        return view('home', compact('sections', 'services', 'clients', 'testimonials'));
     }
 }
