@@ -3,11 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Service;
+use App\Models\Service;
 use App\Models\Client;
 use App\Models\Testimonial;
-use App\Models\Stat;
-use App\Models\Feature;
-use App\Models\HeroSection;
 
 class HomeController extends Controller
 {

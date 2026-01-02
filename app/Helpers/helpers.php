@@ -14,7 +14,8 @@ if (!function_exists('setting')) {
 
         if ($settings === null) {
             try {
-                $settings = \App\Models\Setting::pluck('value', 'key')->toArray();
+                // Use DB directly to avoid Model issues if migration is missing
+                $settings = \Illuminate\Support\Facades\DB::table('settings')->pluck('value', 'key')->toArray();
             } catch (\Exception $e) {
                 $settings = [];
             }
