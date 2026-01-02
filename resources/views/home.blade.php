@@ -16,8 +16,8 @@
                 <div class="container-custom relative z-10">
                     <div class="grid lg:grid-cols-2 gap-16 items-center">
                         <div class="space-y-8 text-center lg:text-left animate-slide-up">
-                            <h1 class="font-bold tracking-tight text-gray-900 leading-none">
-                                <span class="block text-[64px] lg:text-[100px] xl:text-[120px] bg-clip-text text-transparent bg-gradient-to-b from-gray-900 to-gray-600 pb-4">
+                            <h1 class="font-bold tracking-tight text-gray-900 leading-tight">
+                                <span class="block text-5xl lg:text-7xl bg-clip-text text-transparent bg-gradient-to-b from-gray-900 to-gray-600 pb-2">
                                     {{ $section->title ?? setting('hero_title', 'SOHO GÜVENLİK') }}
                                 </span>
                             </h1>
