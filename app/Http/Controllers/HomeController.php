@@ -24,8 +24,8 @@ class HomeController extends Controller
             $sections = collect([
                 (object) [
                     'type' => 'hero',
-                    'title' => setting('hero_title', 'GÜVENLİĞİNİZ BİZİM İŞİMİZ'),
-                    'subtitle' => setting('hero_subtitle', 'SOHO Güvenlik Sistemleri ile eviniz ve iş yeriniz güvende.'),
+                    'title' => 'SOHO GÜVENLİK',
+                    'subtitle' => 'SOHO Güvenlik Sistemleri ile eviniz ve iş yeriniz güvende.',
                     'content' => null,
                     'image' => null
                 ],
