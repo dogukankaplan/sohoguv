@@ -40,10 +40,24 @@ class HomeController extends Controller
             ]);
         }
 
-        // Other existing data
-        $services = \App\Models\Service::where('is_active', true)->orderBy('order')->take(6)->get();
-        $clients = \App\Models\Client::orderBy('order')->get();
-        $testimonials = \App\Models\Testimonial::where('is_active', true)->orderBy('order')->get();
+        // Other existing data with safe database querying
+        try {
+            $services = \App\Models\Service::where('is_active', true)->orderBy('order')->take(6)->get();
+        } catch (\Exception $e) {
+            $services = collect();
+        }
+
+        try {
+            $clients = \App\Models\Client::orderBy('order')->get();
+        } catch (\Exception $e) {
+            $clients = collect();
+        }
+
+        try {
+            $testimonials = \App\Models\Testimonial::where('is_active', true)->orderBy('order')->get();
+        } catch (\Exception $e) {
+            $testimonials = collect();
+        }
 
         // Pass to view
         return view('home', compact('sections', 'services', 'clients', 'testimonials'));

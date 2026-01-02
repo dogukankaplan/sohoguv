@@ -13,7 +13,11 @@ if (!function_exists('setting')) {
         static $settings = null;
 
         if ($settings === null) {
-            $settings = \App\Models\Setting::pluck('value', 'key')->toArray();
+            try {
+                $settings = \App\Models\Setting::pluck('value', 'key')->toArray();
+            } catch (\Exception $e) {
+                $settings = [];
+            }
         }
 
         return $settings[$key] ?? $default;
