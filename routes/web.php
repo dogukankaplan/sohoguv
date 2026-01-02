@@ -13,6 +13,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', [HomeController::class, 'index'])->name('home');
 
 Route::get('/hizmet/{slug}', [ServiceController::class, 'show'])->name('services.show');
+Route::get('/hizmetler', [ServiceController::class, 'index'])->name('services.index');
 
 Route::get('/hakkimizda', [AboutController::class, 'index'])->name('about');
 Route::get('/iletisim', [ContactController::class, 'index'])->name('contact');
