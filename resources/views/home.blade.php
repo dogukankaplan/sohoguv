@@ -153,7 +153,7 @@ class="relative w-full h-[400px] sm:h-[500px] lg:h-[600px] overflow-hidden bg-sl
                             </div>
 
                             {{-- Main Headline - Bold & Impactful --}}
-                            <h1 class="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-bold leading-[1.1] tracking-tight text-slate-900 animate-slide-up">
+                            <h1 class="text-2xl sm:text-3xl lg:text-4xl xl:text-5xl font-bold leading-[1.1] tracking-tight text-slate-900 animate-slide-up">
                                 <span class="block">{{ $section->title ?? setting('hero_title', 'Güvenliğiniz,') }}</span>
                                 <span class="block mt-2 bg-gradient-to-r from-brand-600 via-accent-600 to-brand-700 bg-clip-text text-transparent">
                                     Bizim İşimiz
