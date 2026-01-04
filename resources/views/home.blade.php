@@ -7,26 +7,26 @@
         @case('hero')
             {{-- Hero Section --}}
             <div class="relative min-h-screen flex items-center justify-center overflow-hidden bg-white pt-20">
-                {{-- Dynamic Background Elements --}}
-                <div class="absolute inset-0 pointer-events-none">
-                    <div class="absolute top-0 right-0 w-[800px] h-[800px] bg-gradient-to-br from-cyan-100/40 to-cyan-50/0 rounded-full blur-3xl translate-x-1/3 -translate-y-1/4 animate-float"></div>
-                    <div class="absolute bottom-0 left-0 w-[600px] h-[600px] bg-gradient-to-tr from-purple-100/40 to-purple-50/0 rounded-full blur-3xl -translate-x-1/3 translate-y-1/4 animate-float" style="animation-delay: -2s;"></div>
+                {{-- Dynamic Background Elements - HIDDEN ON MOBILE --}}
+                <div class="absolute inset-0 pointer-events-none hidden lg:block">
+                    <div class="absolute top-0 right-0 w-[800px] h-[800px] bg-gradient-to-br from-brand-100/30 to-brand-50/0 rounded-full blur-3xl translate-x-1/3 -translate-y-1/4 animate-float"></div>
+                    <div class="absolute bottom-0 left-0 w-[600px] h-[600px] bg-gradient-to-tr from-accent-100/30 to-accent-50/0 rounded-full blur-3xl -translate-x-1/3 translate-y-1/4 animate-float" style="animation-delay: -2s;"></div>
                 </div>
 
                 <div class="container-custom relative z-10">
-                    <div class="grid lg:grid-cols-2 gap-16 items-center">
-                        <div class="space-y-8 text-center lg:text-left animate-slide-up">
-                            <h1 class="font-bold tracking-tight text-gray-900 leading-tight">
-                                <span class="block text-5xl lg:text-7xl bg-clip-text text-transparent bg-gradient-to-b from-gray-900 to-gray-600 pb-2">
+                    <div class="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+                        <div class="space-y-6 lg:space-y-8 text-center lg:text-left animate-slide-up">
+                            <h1 class="font-bold tracking-tight text-slate-900 leading-tight">
+                                <span class="block text-4xl sm:text-5xl lg:text-6xl xl:text-7xl bg-clip-text text-transparent bg-gradient-to-b from-slate-900 to-slate-600 pb-2">
                                     {{ $section->title ?? setting('hero_title', 'SOHO GÜVENLİK') }}
                                 </span>
                             </h1>
-                            <p class="text-xl lg:text-2xl text-gray-600 max-w-2xl mx-auto lg:mx-0 font-light leading-relaxed">
+                            <p class="text-lg sm:text-xl lg:text-2xl text-slate-600 max-w-2xl mx-auto lg:mx-0 font-light leading-relaxed">
                                 {{ $section->subtitle ?? setting('hero_subtitle', 'Yeni nesil güvenlik teknolojileri ile geleceğinizi koruma altına alın.') }}
                                 {!! $section->content !!}
                             </p>
                             
-                            <div class="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start pt-4">
+                            <div class="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center lg:justify-start pt-2 lg:pt-4">
                                 <a href="{{ route('contact') }}" class="btn-gradient-primary group">
                                     <span>Hemen Teklif Alın</span>
                                     <svg class="w-5 h-5 group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -35,17 +35,17 @@
                                 </a>
                                 <a href="{{ route('services.index') }}" class="btn-outline group">
                                     <span>Çözümlerimiz</span>
-                                    <svg class="w-5 h-5 group-hover:translate-x-1 transition-transform text-cyan-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <svg class="w-5 h-5 group-hover:translate-x-1 transition-transform text-brand-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
                                     </svg>
                                 </a>
                             </div>
 
                             {{-- Trust Indicators --}}
-                            <div class="pt-12 flex items-center justify-center lg:justify-start gap-8 opacity-60 grayscale hover:grayscale-0 transition duration-500">
+                            <div class="pt-8 lg:pt-12 flex flex-wrap items-center justify-center lg:justify-start gap-4 lg:gap-8 opacity-60 grayscale hover:grayscale-0 transition duration-500">
                                 <div class="flex items-center gap-2">
                                     <div class="w-2 h-2 rounded-full bg-green-500"></div>
-                                    <span class="text-sm font-medium text-gray-500">7/24 Aktif Sistemler</span>
+                                    <span class="text-xs sm:text-sm font-medium text-slate-500">7/24 Aktif Sistemler</span>
                                 </div>
                                 <div class="flex items-center gap-2">
                                     <div class="w-2 h-2 rounded-full bg-cyan-500"></div>
