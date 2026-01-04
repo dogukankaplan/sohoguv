@@ -94,19 +94,21 @@ export default {
       },
       fontFamily: {
         sans: [
-          'Lexend Deca',
-          'Inter',
-          'ui-sans-serif',
-          'system-ui',
           '-apple-system',
           'BlinkMacSystemFont',
+          'SF Pro Display',
+          'SF Pro Text',
           'Segoe UI',
-          'Roboto',
           'Helvetica Neue',
           'Arial',
           'sans-serif'
         ],
-        display: ['Lexend Deca', 'sans-serif'],
+        display: [
+          'SF Pro Display',
+          '-apple-system',
+          'BlinkMacSystemFont',
+          'sans-serif'
+        ],
       },
       fontSize: {
         // Display sizes for hero sections  
