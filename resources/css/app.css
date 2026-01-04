@@ -199,12 +199,12 @@
   
   /* Gradient Text */
   .text-gradient {
-    @apply bg-gradient-to-r from-cyan-500 via-purple-500 to-magenta-500 
+    @apply bg-gradient-to-r from-brand-600 via-accent-600 to-brand-700 
            bg-clip-text text-transparent;
   }
   
-  .text-gradient-cyan {
-    @apply bg-gradient-to-r from-cyan-400 to-cyan-600 
+  .text-gradient-accent {
+    @apply bg-gradient-to-r from-accent-400 to-accent-600 
            bg-clip-text text-transparent;
   }
   
