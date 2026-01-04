@@ -23,8 +23,8 @@ class ServiceController extends Controller
     {
         $service = Service::where('slug', $slug)->firstOrFail();
 
-        $title = $service->title . ' - İzmir Kamera ve Güvenlik Sistemleri';
-        $description = \Illuminate\Support\Str::limit(strip_tags($service->description), 160);
+        $title = $service->title . ' - Güvenlik Sistemleri Çözümleri';
+        $description = \Illuminate\Support\Str::limit(strip_tags($service->content), 160);
 
         return view('services.show', compact('service', 'title', 'description'));
     }

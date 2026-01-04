@@ -9,7 +9,7 @@ class QuoteController extends Controller
     public function index()
     {
         $title = 'Teklif Oluştur';
-        $description = 'İzmir güvenlik sistemleri teklif formu';
+        $description = 'Türkiye geneli güvenlik sistemleri teklif formu';
 
         return view('quote.index', compact('title', 'description'));
     }

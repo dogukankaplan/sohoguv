@@ -41,8 +41,8 @@ class SettingsSeeder extends Seeder
             ['key' => 'placeholder_message', 'value' => 'Mesajınız'],
 
             // SEO
-            ['key' => 'meta_description', 'value' => 'İzmir\'de güvenlik sistemleri, kamera sistemleri ve alarm sistemleri konusunda uzman ekibimizle hizmetinizdeyiz.'],
-            ['key' => 'meta_keywords', 'value' => 'güvenlik kamera, alarm sistemi, izmir güvenlik, kamera sistemi'],
+            ['key' => 'meta_description', 'value' => 'Türkiye genelinde güvenlik sistemleri, kamera sistemleri ve alarm sistemleri konusunda uzman ekibimizle hizmetinizdeyiz.'],
+            ['key' => 'meta_keywords', 'value' => 'güvenlik kamera, alarm sistemi, türkiye güvenlik, kamera sistemi'],
 
             // Sayfa Başlıkları
             ['key' => 'page_home', 'value' => 'Ana Sayfa'],
