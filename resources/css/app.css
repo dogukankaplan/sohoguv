@@ -171,30 +171,30 @@
   /* Typography Styles */
   .heading-xl {
     @apply text-4xl md:text-5xl lg:text-6xl 
-           font-bold text-gray-900 leading-tight;
+           font-bold text-slate-900 leading-tight;
   }
   
   .heading-lg {
     @apply text-3xl md:text-4xl lg:text-5xl
-           font-bold text-gray-900 leading-tight;
+           font-bold text-slate-900 leading-tight;
   }
   
   .heading-md {
     @apply text-2xl md:text-3xl lg:text-4xl
-           font-bold text-gray-900;
+           font-bold text-slate-900;
   }
   
   .heading-sm {
     @apply text-xl md:text-2xl
-           font-bold text-gray-900;
+           font-bold text-slate-900;
   }
   
   .text-body {
-    @apply text-base md:text-lg text-gray-600 leading-relaxed;
+    @apply text-base md:text-lg text-slate-600 leading-relaxed;
   }
   
   .text-body-lg {
-    @apply text-lg md:text-xl text-gray-600 leading-relaxed;
+    @apply text-lg md:text-xl text-slate-600 leading-relaxed;
   }
   
   /* Gradient Text */
@@ -208,21 +208,21 @@
            bg-clip-text text-transparent;
   }
   
-  /* Form Inputs - Pill Style */
+  /* Form Inputs - Modern Style */
   .input-pill {
-    @apply w-full px-6 py-4 rounded-pill
-           border-2 border-gray-200 
-           focus:border-cyan-500 focus:ring-4 focus:ring-cyan-100
+    @apply w-full px-6 py-4 rounded-2xl
+           border-2 border-slate-200 
+           focus:border-brand-500 focus:ring-4 focus:ring-brand-100
            transition-all duration-200
-           text-gray-900 placeholder-gray-400;
+           text-slate-900 placeholder-slate-400;
   }
   
   .textarea-modern {
     @apply w-full px-6 py-4 rounded-3xl
-           border-2 border-gray-200 
-           focus:border-cyan-500 focus:ring-4 focus:ring-cyan-100
+           border-2 border-slate-200 
+           focus:border-brand-500 focus:ring-4 focus:ring-brand-100
            transition-all duration-200
-           text-gray-900 placeholder-gray-400
+           text-slate-900 placeholder-slate-400
            resize-none;
   }
   
@@ -230,26 +230,26 @@
   .icon-circle {
     @apply w-16 h-16 rounded-full
            flex items-center justify-center
-           bg-gradient-to-br from-cyan-50 to-purple-50
-           border-2 border-gray-100;
+           bg-gradient-to-br from-brand-50 to-accent-50
+           border-2 border-slate-100;
   }
   
   .icon-circle-gradient {
     @apply w-16 h-16 rounded-full
            flex items-center justify-center
-           bg-gradient-to-br from-cyan-500 to-magenta-500
+           bg-gradient-to-br from-brand-500 to-accent-500
            text-white;
   }
   
   /* Stats/Counter Styles */
   .stat-number {
     @apply text-5xl md:text-6xl font-bold 
-           bg-gradient-to-r from-cyan-600 to-purple-600 
+           bg-gradient-to-r from-brand-600 to-accent-600 
            bg-clip-text text-transparent;
   }
   
   .stat-label {
-    @apply text-sm md:text-base text-gray-600 font-medium uppercase tracking-wide;
+    @apply text-sm md:text-base text-slate-600 font-medium uppercase tracking-wide;
   }
 }
 
