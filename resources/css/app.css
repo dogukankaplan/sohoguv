@@ -8,7 +8,7 @@
   }
   
   body {
-    @apply font-sans antialiased bg-white text-gray-900;
+    @apply font-sans antialiased bg-white text-slate-900;
   }
   
   h1, h2, h3, h4, h5, h6 {
@@ -134,22 +134,22 @@
   /* Modern Card Styles */
   .card-modern {
     @apply bg-white rounded-4xl p-8 
-           shadow-soft hover:shadow-medium transition-all duration-300
-           border border-gray-100;
+           shadow-sm hover:shadow-md transition-all duration-300
+           border border-slate-100;
   }
   
   .card-glass {
     @apply bg-white/80 backdrop-blur-lg rounded-4xl p-8
-           shadow-soft hover:shadow-medium transition-all duration-300
-           border border-gray-200/50;
+           shadow-sm hover:shadow-md transition-all duration-300
+           border border-slate-200/50;
   }
   
   .card-gradient-border {
     @apply bg-white rounded-4xl p-8
            relative overflow-hidden
-           shadow-soft hover:shadow-medium transition-all duration-300;
+           shadow-sm hover:shadow-md transition-all duration-300;
     background-image: linear-gradient(white, white), 
-                      linear-gradient(135deg, #06B6D4, #A855F7, #D946EF);
+                      linear-gradient(135deg, #3B82F6, #14B8A6, #F59E0B);
     background-origin: border-box;
     background-clip: padding-box, border-box;
     border: 2px solid transparent;
