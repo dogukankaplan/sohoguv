@@ -286,6 +286,21 @@
                 </section>
             @endif
             @break
+            
+        @default
+            {{-- Handle any unknown section types as custom content --}}
+            @if($section->content || $section->title)
+                <section class="section-padding {{ $section->bg_color ?? 'bg-white' }}">
+                    <div class="container-custom">
+                         @if($section->title) <h2 class="heading-xl text-center mb-8">{{ $section->title }}</h2> @endif
+                         @if($section->content)
+                         <div class="prose prose-lg mx-auto max-w-4xl text-gray-600">
+                             {!! $section->content !!}
+                         </div>
+                         @endif
+                    </div>
+                </section>
+            @endif
 
     @endswitch
 @endforeach
