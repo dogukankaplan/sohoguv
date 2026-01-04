@@ -120,29 +120,29 @@
             {{-- Services Section --}}
             <section class="section-padding relative overflow-hidden">
                 <div class="container-custom">
-                    <div class="text-center max-w-3xl mx-auto mb-20">
-                        <h2 class="heading-hero-xl mb-6">
+                    <div class="text-center max-w-3xl mx-auto mb-12 lg:mb-20">
+                        <h2 class="text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-bold mb-4 lg:mb-6">
                             <span class="text-gradient">Akıllı Çözümlerimiz</span>
                         </h2>
-                        <p class="text-body-lg">
+                        <p class="text-base sm:text-lg lg:text-xl text-slate-600">
                             İşletmeniz ve eviniz için en uygun, ölçeklenebilir ve güvenilir teknoloji altyapıları.
                         </p>
                     </div>
 
-                    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8">
                         @foreach($services as $service)
                         <div class="card-gradient-border group">
-                            <div class="p-8">
-                                <div class="w-16 h-16 rounded-2xl bg-gray-50 flex items-center justify-center mb-6 group-hover:bg-cyan-50 transition-colors duration-300">
-                                    <img src="{{ $service->image ? Storage::url($service->image) : 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRz-k3qGvM3g1S-XgE1CgE22gX1jG1k9l5g9g&s' }}" class="w-8 h-8 opacity-60 group-hover:opacity-100 transition-opacity" alt="Icon">
+                            <div class="p-5 sm:p-6 lg:p-8">
+                                <div class="w-12 h-12 sm:w-14 sm:h-14 lg:w-16 lg:h-16 rounded-2xl bg-slate-50 flex items-center justify-center mb-4 lg:mb-6 group-hover:bg-brand-50 transition-colors duration-300">
+                                    <img src="{{ $service->image ? Storage::url($service->image) : 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRz-k3qGvM3g1S-XgE1CgE22gX1jG1k9l5g9g&s' }}" class="w-6 h-6 sm:w-7 sm:h-7 lg:w-8 lg:h-8 opacity-60 group-hover:opacity-100 transition-opacity" alt="Icon">
                                 </div>
-                                <h3 class="text-2xl font-bold text-gray-900 mb-4 group-hover:text-cyan-600 transition-colors">{{ $service->title }}</h3>
-                                <p class="text-gray-600 mb-6 line-clamp-3 leading-relaxed">
+                                <h3 class="text-lg sm:text-xl lg:text-2xl font-bold text-slate-900 mb-3 lg:mb-4 group-hover:text-brand-600 transition-colors">{{ $service->title }}</h3>
+                                <p class="text-sm sm:text-base text-slate-600 mb-4 lg:mb-6 line-clamp-3 leading-relaxed">
                                     {{ Str::limit(strip_tags($service->content), 120) }}
                                 </p>
-                                <a href="{{ route('services.show', $service->slug) }}" class="inline-flex items-center text-sm font-bold text-gray-900 hover:text-cyan-600 transition-colors">
+                                <a href="{{ route('services.show', $service->slug) }}" class="inline-flex items-center text-xs sm:text-sm font-bold text-slate-900 hover:text-brand-600 transition-colors">
                                     Daha Fazla
-                                    <svg class="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <svg class="w-3 h-3 sm:w-4 sm:h-4 ml-2 group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
                                     </svg>
                                 </a>
