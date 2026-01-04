@@ -127,50 +127,165 @@ class="relative w-full h-[400px] sm:h-[500px] lg:h-[600px] overflow-hidden bg-sl
 @foreach($sections as $section)
     @switch($section->type)
         @case('hero')
-            {{-- Hero Section --}}
-            <div class="relative min-h-screen flex items-center justify-center overflow-hidden bg-white pt-20">
-                {{-- Dynamic Background Elements - HIDDEN ON MOBILE --}}
-                <div class="absolute inset-0 pointer-events-none hidden lg:block">
-                    <div class="absolute top-0 right-0 w-[800px] h-[800px] bg-gradient-to-br from-brand-100/30 to-brand-50/0 rounded-full blur-3xl translate-x-1/3 -translate-y-1/4 animate-float"></div>
-                    <div class="absolute bottom-0 left-0 w-[600px] h-[600px] bg-gradient-to-tr from-accent-100/30 to-accent-50/0 rounded-full blur-3xl -translate-x-1/3 translate-y-1/4 animate-float" style="animation-delay: -2s;"></div>
+            {{-- Premium Hero Section - Expert Design --}}
+            <div class="relative min-h-screen flex items-center overflow-hidden bg-gradient-to-br from-slate-50 via-white to-slate-50">
+                
+                {{-- Animated Background Orbs - Subtle & Professional --}}
+                <div class="absolute inset-0 overflow-hidden pointer-events-none">
+                    <div class="absolute top-20 right-[10%] w-96 h-96 bg-brand-400/10 rounded-full blur-3xl animate-float"></div>
+                    <div class="absolute bottom-20 left-[15%] w-80 h-80 bg-accent-400/10 rounded-full blur-3xl animate-float" style="animation-delay: -2s; animation-duration: 8s;"></div>
+                    <div class="absolute top-1/2 right-[30%] w-64 h-64 bg-brand-300/5 rounded-full blur-2xl animate-float" style="animation-delay: -4s; animation-duration: 10s;"></div>
                 </div>
 
-                <div class="container-custom relative z-10">
-                    <div class="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
-                        <div class="space-y-6 lg:space-y-8 text-center lg:text-left animate-slide-up">
-                            <h1 class="font-bold tracking-tight text-slate-900 leading-tight">
-                                <span class="block text-4xl sm:text-5xl lg:text-6xl xl:text-7xl bg-clip-text text-transparent bg-gradient-to-b from-slate-900 to-slate-600 pb-2">
-                                    {{ $section->title ?? setting('hero_title', 'SOHO GÜVENLİK') }}
+                {{-- Grid Pattern Overlay --}}
+                <div class="absolute inset-0 bg-[linear-gradient(to_right,#8080800a_1px,transparent_1px),linear-gradient(to_bottom,#8080800a_1px,transparent_1px)] bg-[size:14px_24px] pointer-events-none"></div>
+
+                <div class="container-custom relative z-10 py-20 lg:py-32">
+                    <div class="grid lg:grid-cols-12 gap-8 lg:gap-16 items-center">
+                        
+                        {{-- Left Content - 7 columns --}}
+                        <div class="lg:col-span-7 space-y-8">
+                            
+                            {{-- Badge/Tag --}}
+                            <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-brand-50 border border-brand-100 text-brand-700 text-sm font-medium animate-slide-down">
+                                <div class="w-2 h-2 rounded-full bg-brand-500 animate-pulse"></div>
+                                <span>Türkiye'nin Güvenlik Lideri</span>
+                            </div>
+
+                            {{-- Main Headline - Bold & Impactful --}}
+                            <h1 class="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-bold leading-[1.1] tracking-tight text-slate-900 animate-slide-up">
+                                <span class="block">{{ $section->title ?? setting('hero_title', 'Güvenliğiniz,') }}</span>
+                                <span class="block mt-2 bg-gradient-to-r from-brand-600 via-accent-600 to-brand-700 bg-clip-text text-transparent">
+                                    Bizim İşimiz
                                 </span>
                             </h1>
-                            <p class="text-lg sm:text-xl lg:text-2xl text-slate-600 max-w-2xl mx-auto lg:mx-0 font-light leading-relaxed">
-                                {{ $section->subtitle ?? setting('hero_subtitle', 'Yeni nesil güvenlik teknolojileri ile geleceğinizi koruma altına alın.') }}
-                                {!! $section->content !!}
+
+                            {{-- Subtitle - Large, Readable --}}
+                            <p class="text-lg sm:text-xl lg:text-2xl text-slate-600 leading-relaxed max-w-2xl animate-slide-up" style="animation-delay: 0.1s;">
+                                {{ $section->subtitle ?? setting('hero_subtitle', 'Yeni nesil güvenlik teknolojileri ile işletmenizi ve evinizi 7/24 koruma altına alın.') }}
                             </p>
-                            
-                            <div class="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center lg:justify-start pt-2 lg:pt-4">
-                                <a href="{{ route('contact') }}" class="btn-gradient-primary group">
-                                    <span>Hemen Teklif Alın</span>
+
+                            {{-- Feature Pills --}}
+                            <div class="flex flex-wrap gap-3 animate-slide-up" style="animation-delay: 0.2s;">
+                                <div class="flex items-center gap-2 px-4 py-2 rounded-xl bg-white border border-slate-200 shadow-sm hover:shadow-md transition-all">
+                                    <svg class="w-5 h-5 text-green-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                                    </svg>
+                                    <span class="text-sm font-medium text-slate-700">24/7 Teknik Destek</span>
+                                </div>
+                                <div class="flex items-center gap-2 px-4 py-2 rounded-xl bg-white border border-slate-200 shadow-sm hover:shadow-md transition-all">
+                                    <svg class="w-5 h-5 text-green-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                                    </svg>
+                                    <span class="text-sm font-medium text-slate-700">81 İlde Hizmet</span>
+                                </div>
+                                <div class="flex items-center gap-2 px-4 py-2 rounded-xl bg-white border border-slate-200 shadow-sm hover:shadow-md transition-all">
+                                    <svg class="w-5 h-5 text-green-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                                    </svg>
+                                    <span class="text-sm font-medium text-slate-700">Garantili Kurulum</span>
+                                </div>
+                            </div>
+
+                            {{-- CTA Buttons - Professional Spacing --}}
+                            <div class="flex flex-col sm:flex-row gap-4 pt-4 animate-slide-up" style="animation-delay: 0.3s;">
+                                <a href="{{ route('contact') }}" class="group inline-flex items-center justify-center gap-2 px-8 py-4 rounded-2xl bg-brand-600 text-white font-semibold text-base hover:bg-brand-700 active:bg-brand-800 transition-all duration-200 shadow-lg hover:shadow-xl hover:shadow-brand-600/20">
+                                    <span>Ücretsiz Keşif</span>
                                     <svg class="w-5 h-5 group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
                                     </svg>
                                 </a>
-                                <a href="{{ route('services.index') }}" class="btn-outline group">
+                                <a href="{{ route('services.index') }}" class="group inline-flex items-center justify-center gap-2 px-8 py-4 rounded-2xl bg-white text-slate-900 font-semibold border border-slate-200 hover:border-slate-300 hover:bg-slate-50 transition-all duration-200 shadow-sm hover:shadow-md">
                                     <span>Çözümlerimiz</span>
-                                    <svg class="w-5 h-5 group-hover:translate-x-1 transition-transform text-brand-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                                    <svg class="w-5 h-5 text-brand-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
                                     </svg>
                                 </a>
                             </div>
 
-                            {{-- Trust Indicators --}}
-                            <div class="pt-8 lg:pt-12 flex flex-wrap items-center justify-center lg:justify-start gap-4 lg:gap-8 opacity-60 grayscale hover:grayscale-0 transition duration-500">
-                                <div class="flex items-center gap-2">
-                                    <div class="w-2 h-2 rounded-full bg-green-500"></div>
-                                    <span class="text-xs sm:text-sm font-medium text-slate-500">7/24 Aktif Sistemler</span>
+                            {{-- Social Proof - Compact Stats --}}
+                            <div class="flex items-center gap-8 pt-8 border-t border-slate-200 animate-slide-up" style="animation-delay: 0.4s;">
+                                <div>
+                                    <div class="text-3xl font-bold text-slate-900">15+</div>
+                                    <div class="text-sm text-slate-600">Yıllık Tecrübe</div>
                                 </div>
-                                <div class="flex items-center gap-2">
-                                    <div class="w-2 h-2 rounded-full bg-cyan-500"></div>
+                                <div class="w-px h-12 bg-slate-200"></div>
+                                <div>
+                                    <div class="text-3xl font-bold text-slate-900">5K+</div>
+                                    <div class="text-sm text-slate-600">Mutlu Müşteri</div>
+                                </div>
+                                <div class="w-px h-12 bg-slate-200"></div>
+                                <div>
+                                    <div class="text-3xl font-bold text-slate-900">%99</div>
+                                    <div class="text-sm text-slate-600">Memnuniyet</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        {{-- Right Visual - 5 columns --}}
+                        <div class="lg:col-span-5 relative animate-scale-in" style="animation-delay: 0.2s;">
+                            <div class="relative">
+                                {{-- Main Image Container with Glassmorphism --}}
+                                <div class="relative rounded-3xl overflow-hidden shadow-2xl">
+                                    <div class="aspect-[4/5] bg-gradient-to-br from-brand-500 to-accent-500">
+                                        @if($section->image)
+                                        <img src="{{ Storage::url($section->image) }}" 
+                                             alt="Hero" 
+                                             class="w-full h-full object-cover mix-blend-overlay opacity-80">
+                                        @else
+                                        {{-- Default Pattern/Icon --}}
+                                        <div class="w-full h-full flex items-center justify-center">
+                                            <svg class="w-48 h-48 text-white/20" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="0.5" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+                                            </svg>
+                                        </div>
+                                        @endif
+                                    </div>
+                                </div>
+
+                                {{-- Floating Stats Card --}}
+                                <div class="absolute -bottom-6 -left-6 bg-white rounded-2xl shadow-xl p-4 border border-slate-100 backdrop-blur-sm animate-float hidden lg:block">
+                                    <div class="flex items-center gap-3">
+                                        <div class="w-12 h-12 rounded-xl bg-green-100 flex items-center justify-center">
+                                            <svg class="w-6 h-6 text-green-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                            </svg>
+                                        </div>
+                                        <div>
+                                            <div class="text-sm font-semibold text-slate-900">7/24 Aktif</div>
+                                            <div class="text-xs text-slate-600">Kesintisiz Hizmet</div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                {{-- Floating Security Badge --}}
+                                <div class="absolute -top-6 -right-6 bg-white rounded-2xl shadow-xl p-4 border border-slate-100 backdrop-blur-sm animate-float hidden lg:block" style="animation-delay: -1s;">
+                                    <div class="flex items-center gap-3">
+                                        <div class="w-12 h-12 rounded-xl bg-brand-100 flex items-center justify-center">
+                                            <svg class="w-6 h-6 text-brand-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+                                            </svg>
+                                        </div>
+                                        <div>
+                                            <div class="text-sm font-semibold text-slate-900">Güvenli</div>
+                                            <div class="text-xs text-slate-600">SSL Sertifikalı</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                {{-- Scroll Indicator --}}
+                <div class="absolute bottom-8 left-1/2 -translate-x-1/2 hidden lg:flex flex-col items-center gap-2 animate-bounce">
+                    <span class="text-xs text-slate-400 uppercase tracking-wide">Keşfet</span>
+                    <svg class="w-6 h-6 text-slate-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3" />
+                    </svg>
+                </div>
+            </div>
+            @break
                                     <span class="text-sm font-medium text-gray-500">Uzman Teknik Destek</span>
                                 </div>
                             </div>

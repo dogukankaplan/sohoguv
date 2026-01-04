@@ -137,33 +137,37 @@ export default {
         'error-glow': '0 0 0 3px rgba(239, 68, 68, 0.1)',
       },
       animation: {
-        // Subtle professional animations
-        'fade-in': 'fadeIn 0.5s cubic-bezier(0.16, 1, 0.3, 1)',
-        'slide-up': 'slideUp 0.6s cubic-bezier(0.16, 1, 0.3, 1)',
-        'slide-down': 'slideDown 0.6s cubic-bezier(0.16, 1, 0.3, 1)',
-        'scale-in': 'scaleIn 0.3s cubic-bezier(0.16, 1, 0.3, 1)',
-        'shimmer': 'shimmer 2s linear infinite',
+        'float': 'float 6s ease-in-out infinite',
+        'glow': 'glow 2s ease-in-out infinite alternate',
+        'slide-up': 'slide-up 0.6s ease-out',
+        'slide-down': 'slide-down 0.6s ease-out',
+        'scale-in': 'scale-in 0.6s ease-out',
+        'fade-in': 'fade-in 0.6s ease-out',
       },
       keyframes: {
-        fadeIn: {
-          '0%': { opacity: '0' },
-          '100%': { opacity: '1' },
+        float: {
+          '0%, 100%': { transform: 'translateY(0px)' },
+          '50%': { transform: 'translateY(-20px)' },
         },
-        slideUp: {
-          '0%': { opacity: '0', transform: 'translateY(24px)' },
+        glow: {
+          '0%': { boxShadow: '0 0 5px currentColor, 0 0 10px currentColor' },
+          '100%': { boxShadow: '0 0 10px currentColor, 0 0 20px currentColor' },
+        },
+        'slide-up': {
+          '0%': { opacity: '0', transform: 'translateY(20px)' },
           '100%': { opacity: '1', transform: 'translateY(0)' },
         },
-        slideDown: {
-          '0%': { opacity: '0', transform: 'translateY(-24px)' },
+        'slide-down': {
+          '0%': { opacity: '0', transform: 'translateY(-20px)' },
           '100%': { opacity: '1', transform: 'translateY(0)' },
         },
-        scaleIn: {
-          '0%': { opacity: '0', transform: 'scale(0.96)' },
+        'scale-in': {
+          '0%': { opacity: '0', transform: 'scale(0.95)' },
           '100%': { opacity: '1', transform: 'scale(1)' },
         },
-        shimmer: {
-          '0%': { backgroundPosition: '-1000px 0' },
-          '100%': { backgroundPosition: '1000px 0' },
+        'fade-in': {
+          '0%': { opacity: '0' },
+          '100%': { opacity: '1' },
         },
       },
       backdropBlur: {
