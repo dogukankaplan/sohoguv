@@ -44,9 +44,11 @@ class SliderResource extends Resource
                             ->label('Slider Görseli')
                             ->image()
                             ->directory('sliders')
-                            ->required()
+                            ->disk('public')
+                            ->visibility('public')
+                            ->imageEditor()
                             ->columnSpanFull()
-                            ->helperText('Önerilen boyut: 1920x800px'),
+                            ->helperText('Önerilen boyut: 1920x800px. JPG, PNG veya WEBP formatında olabilir.'),
                     ]),
 
                 Forms\Components\Section::make('Buton Ayarları')
