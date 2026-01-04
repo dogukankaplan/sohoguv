@@ -354,38 +354,101 @@ class="relative w-full h-[400px] sm:h-[500px] lg:h-[600px] overflow-hidden bg-sl
             @break
 
         @case('services')
-            {{-- Services Section --}}
-            <section class="section-padding relative overflow-hidden">
-                <div class="container-custom">
-                    <div class="text-center max-w-3xl mx-auto mb-12 lg:mb-20">
-                        <h2 class="text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-bold mb-4 lg:mb-6">
-                            <span class="text-gradient">Akıllı Çözümlerimiz</span>
+            {{-- Akıllı Çözümlerimiz - Expert Redesign --}}
+            <section class="relative py-20 lg:py-32 overflow-hidden bg-gradient-to-br from-white via-slate-50/50 to-white">
+                {{-- Background Elements --}}
+                <div class="absolute top-0 right-0 w-[600px] h-[600px] bg-gradient-to-br from-brand-100/20 to-transparent rounded-full blur-3xl"></div>
+                <div class="absolute bottom-0 left-0 w-[500px] h-[500px] bg-gradient-to-tr from-accent-100/20 to-transparent rounded-full blur-3xl"></div>
+
+                <div class="container-custom relative z-10">
+                    {{-- Section Header --}}
+                    <div class="max-w-3xl mx-auto text-center mb-16 lg:mb-20">
+                        <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-brand-50 border border-brand-100 text-brand-700 text-sm font-medium mb-6">
+                            <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
+                            </svg>
+                            <span>Çözümlerimiz</span>
+                        </div>
+                        
+                        <h2 class="text-3xl sm:text-4xl lg:text-5xl font-bold mb-6">
+                            <span class="bg-gradient-to-r from-brand-600 via-accent-600 to-brand-700 bg-clip-text text-transparent">
+                                Akıllı Güvenlik
+                            </span>
+                            <span class="block text-slate-900 mt-2">Çözümleri</span>
                         </h2>
-                        <p class="text-base sm:text-lg lg:text-xl text-slate-600">
-                            İşletmeniz ve eviniz için en uygun, ölçeklenebilir ve güvenilir teknoloji altyapıları.
+                        
+                        <p class="text-lg lg:text-xl text-slate-600 leading-relaxed">
+                            İşletmeniz ve eviniz için en uygun, ölçeklenebilir ve güvenilir teknoloji altyapıları
                         </p>
                     </div>
 
-                    <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8">
-                        @foreach($services as $service)
-                        <div class="card-gradient-border group">
-                            <div class="p-5 sm:p-6 lg:p-8">
-                                <div class="w-12 h-12 sm:w-14 sm:h-14 lg:w-16 lg:h-16 rounded-2xl bg-slate-50 flex items-center justify-center mb-4 lg:mb-6 group-hover:bg-brand-50 transition-colors duration-300">
-                                    <img src="{{ $service->image ? Storage::url($service->image) : 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRz-k3qGvM3g1S-XgE1CgE22gX1jG1k9l5g9g&s' }}" class="w-6 h-6 sm:w-7 sm:h-7 lg:w-8 lg:h-8 opacity-60 group-hover:opacity-100 transition-opacity" alt="Icon">
+                    {{-- Services Bento Grid --}}
+                    <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 lg:gap-6">
+                        @foreach($services as $index => $service)
+                        @php
+                            $colors = [
+                                ['from' => 'brand-500', 'to' => 'brand-700', 'accent' => 'brand'],
+                                ['from' => 'accent-500', 'to' => 'accent-700', 'accent' => 'accent'],
+                                ['from' => 'amber-500', 'to' => 'amber-700', 'accent' => 'amber'],
+                                ['from' => 'brand-600', 'to' => 'accent-600', 'accent' => 'brand'],
+                                ['from' => 'accent-600', 'to' => 'brand-600', 'accent' => 'accent'],
+                                ['from' => 'amber-600', 'to' => 'brand-600', 'accent' => 'amber'],
+                            ];
+                            $color = $colors[$index % 6];
+                        @endphp
+                        
+                        <div class="group relative bg-white rounded-3xl border border-slate-200 hover:border-{{ $color['accent'] }}-300 transition-all duration-300 overflow-hidden hover:shadow-2xl hover:shadow-{{ $color['accent'] }}-500/10">
+                            {{-- Gradient Overlay on Hover --}}
+                            <div class="absolute inset-0 bg-gradient-to-br from-{{ $color['from'] }}/0 to-{{ $color['to'] }}/0 group-hover:from-{{ $color['from'] }}/5 group-hover:to-{{ $color['to'] }}/5 transition-all duration-500"></div>
+                            
+                            <div class="relative p-6 lg:p-8">
+                                {{-- Icon Badge --}}
+                                <div class="relative mb-6">
+                                    <div class="absolute inset-0 bg-gradient-to-br from-{{ $color['from'] }} to-{{ $color['to'] }} rounded-2xl blur-xl opacity-0 group-hover:opacity-20 transition-opacity duration-300"></div>
+                                    <div class="relative w-14 h-14 lg:w-16 lg:h-16 rounded-2xl bg-gradient-to-br from-{{ $color['from'] }}/10 to-{{ $color['to'] }}/10 flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                                        @if($service->image)
+                                        <img src="{{ Storage::url($service->image) }}" class="w-8 h-8 lg:w-10 lg:h-10 opacity-70 group-hover:opacity-100 transition-opacity" alt="{{ $service->title }}">
+                                        @else
+                                        <svg class="w-8 h-8 lg:w-10 lg:h-10 text-{{ $color['accent'] }}-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+                                        </svg>
+                                        @endif
+                                    </div>
                                 </div>
-                                <h3 class="text-lg sm:text-xl lg:text-2xl font-bold text-slate-900 mb-3 lg:mb-4 group-hover:text-brand-600 transition-colors">{{ $service->title }}</h3>
-                                <p class="text-sm sm:text-base text-slate-600 mb-4 lg:mb-6 line-clamp-3 leading-relaxed">
+
+                                {{-- Title --}}
+                                <h3 class="text-xl lg:text-2xl font-bold text-slate-900 mb-3 group-hover:text-{{ $color['accent'] }}-600 transition-colors">
+                                    {{ $service->title }}
+                                </h3>
+
+                                {{-- Description --}}
+                                <p class="text-slate-600 text-sm lg:text-base mb-6 leading-relaxed line-clamp-3">
                                     {{ Str::limit(strip_tags($service->content), 120) }}
                                 </p>
-                                <a href="{{ route('services.show', $service->slug) }}" class="inline-flex items-center text-xs sm:text-sm font-bold text-slate-900 hover:text-brand-600 transition-colors">
-                                    Daha Fazla
-                                    <svg class="w-3 h-3 sm:w-4 sm:h-4 ml-2 group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+
+                                {{-- CTA Link --}}
+                                <a href="{{ route('services.show', $service->slug) }}" class="inline-flex items-center gap-2 text-{{ $color['accent'] }}-600 font-semibold text-sm group-hover:gap-3 transition-all">
+                                    <span>Detaylı İncele</span>
+                                    <svg class="w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
                                     </svg>
                                 </a>
+
+                                {{-- Hover Indicator --}}
+                                <div class="absolute top-4 right-4 w-2 h-2 rounded-full bg-{{ $color['accent'] }}-500 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                             </div>
                         </div>
                         @endforeach
+                    </div>
+
+                    {{-- Bottom CTA --}}
+                    <div class="mt-12 lg:mt-16 text-center">
+                        <a href="{{ route('services.index') }}" class="inline-flex items-center gap-2 px-8 py-4 rounded-2xl bg-slate-900 text-white font-semibold hover:bg-slate-800 transition-all shadow-lg hover:shadow-xl hover:shadow-slate-900/20">
+                            <span>Tüm Çözümleri Görüntüle</span>
+                            <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6" />
+                            </svg>
+                        </a>
                     </div>
                 </div>
             </section>
