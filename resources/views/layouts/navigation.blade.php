@@ -90,7 +90,7 @@
                             </svg>
                             Envanter Talebi
                         </a>
-                        <a href="{{ route('quote') }}"
+                        <a href="{{ route('contact') }}"
                             class="block px-6 py-3 text-sm text-gray-700 hover:bg-gray-50 hover:text-purple-500 transition flex items-center gap-2">
                             <svg class="w-4 h-4 text-purple-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -109,7 +109,7 @@
 
             <!-- CTA Button (Desktop) -->
             <div class="hidden lg:block">
-                <a href="{{ route('quote') }}" class="btn-gradient-primary">
+                <a href="{{ route('contact') }}" class="btn-gradient-primary">
                     Teklif Al
                     <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -182,7 +182,7 @@
                         </svg>
                         Envanter Talebi
                     </a>
-                    <a href="{{ route('quote') }}"
+                    <a href="{{ route('contact') }}"
                         class="block text-sm text-gray-600 hover:text-purple-500 transition flex items-center gap-2">
                         <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -198,7 +198,7 @@
             <a href="{{ route('contact') }}"
                 class="block text-base font-medium text-gray-700 hover:text-cyan-500 transition">{{ setting('page_contact', 'İletişim') }}</a>
 
-            <a href="{{ route('quote') }}" class="btn-gradient-primary w-full justify-center mt-4">
+            <a href="{{ route('contact') }}" class="btn-gradient-primary w-full justify-center mt-4">
                 Teklif Al
                 <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"

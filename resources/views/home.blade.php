@@ -503,7 +503,7 @@ class="relative w-full h-[400px] sm:h-[500px] lg:h-[600px] overflow-hidden bg-sl
                     <h2 class="text-4xl md:text-5xl font-bold text-white mb-8 tracking-tight">Güvenliğiniz İçin Profesyonel Çözüm Zamanı</h2>
                     <p class="text-xl text-cyan-100 mb-12 max-w-2xl mx-auto">Ücretsiz keşif hizmetimizden yararlanın, işletmeniz için en uygun güvenlik altyapısını birlikte planlayalım.</p>
                     <div class="flex flex-col sm:flex-row justify-center gap-4">
-                        <a href="{{ route('quote') }}" class="px-8 py-4 rounded-full bg-white text-gray-900 font-bold hover:bg-gray-50 hover:scale-105 transition transform shadow-lg">Hızlı Teklif Al</a>
+                        <a href="{{ route('contact') }}" class="px-8 py-4 rounded-full bg-white text-gray-900 font-bold hover:bg-gray-50 hover:scale-105 transition transform shadow-lg">Teklif Al</a>
                         <a href="{{ route('contact') }}" class="px-8 py-4 rounded-full border-2 border-white text-white font-bold hover:bg-white/10 transition">İletişime Geç</a>
                     </div>
                 </div>

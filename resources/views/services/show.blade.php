@@ -59,7 +59,7 @@
                                     <p class="text-gray-600">Projenize özel çözümler ve fiyatlandırma için bizimle iletişime
                                         geçin.</p>
                                 </div>
-                                <a href="{{ route('quote') }}" class="btn-gradient-primary flex-shrink-0">
+                                <a href="{{ route('contact') }}" class="btn-gradient-primary flex-shrink-0">
                                     Teklif İste
                                     <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
