@@ -12,6 +12,33 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
 
+// DEBUG ROUTE - Remove after testing
+Route::get('/debug-home', function () {
+    $controller = new \App\Http\Controllers\HomeController();
+    ob_start();
+    try {
+        $result = $controller->index();
+        $viewData = $result->getData();
+        ob_end_clean();
+
+        return response()->json([
+            'success' => true,
+            'sections_count' => $viewData['sections']->count(),
+            'services_count' => $viewData['services']->count(),
+            'clients_count' => $viewData['clients']->count(),
+            'testimonials_count' => $viewData['testimonials']->count(),
+            'sections_types' => $viewData['sections']->pluck('type')->toArray(),
+        ]);
+    } catch (\Exception $e) {
+        ob_end_clean();
+        return response()->json([
+            'success' => false,
+            'error' => $e->getMessage(),
+            'trace' => $e->getTraceAsString()
+        ], 500);
+    }
+});
+
 Route::get('/hizmet/{slug}', [ServiceController::class, 'show'])->name('services.show');
 Route::get('/hizmetler', [ServiceController::class, 'index'])->name('services.index');
 Route::get('/cozumler', [ServiceController::class, 'solutions'])->name('solutions.index');
