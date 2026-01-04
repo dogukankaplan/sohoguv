@@ -2,6 +2,128 @@
 
 @section('content')
 
+{{-- Modern Slider Section --}}
+@if($sliders->isNotEmpty())
+<div x-data="{
+    currentSlide: 0,
+    slides: {{ $sliders->count() }},
+    autoplay: true,
+    interval: null,
+    init() {
+        if (this.autoplay) {
+            this.startAutoplay();
+        }
+    },
+    startAutoplay() {
+        this.interval = setInterval(() => {
+            this.next();
+        }, 5000);
+    },
+    stopAutoplay() {
+        clearInterval(this.interval);
+    },
+    next() {
+        this.currentSlide = (this.currentSlide + 1) % this.slides;
+    },
+    prev() {
+        this.currentSlide = (this.currentSlide - 1 + this.slides) % this.slides;
+    },
+    goTo(index) {
+        this.currentSlide = index;
+        this.stopAutoplay();
+        setTimeout(() => this.startAutoplay(), 10000);
+    }
+}" 
+@mouseenter="stopAutoplay()" 
+@mouseleave="startAutoplay()"
+class="relative w-full h-[400px] sm:h-[500px] lg:h-[600px] overflow-hidden bg-slate-900">
+    
+    {{-- Slides --}}
+    <div class="relative w-full h-full">
+        @foreach($sliders as $index => $slider)
+        <div x-show="currentSlide === {{ $index }}"
+             x-transition:enter="transition ease-out duration-700"
+             x-transition:enter-start="opacity-0 transform translate-x-full"
+             x-transition:enter-end="opacity-100 transform translate-x-0"
+             x-transition:leave="transition ease-in duration-700"
+             x-transition:leave-start="opacity-100 transform translate-x-0"
+             x-transition:leave-end="opacity-0 transform -translate-x-full"
+             class="absolute inset-0">
+            
+            {{-- Background Image --}}
+            @if($slider->image)
+            <img src="{{ Storage::url($slider->image) }}" 
+                 alt="{{ $slider->title }}"
+                 class="absolute inset-0 w-full h-full object-cover">
+            <div class="absolute inset-0 bg-gradient-to-r from-slate-900/70 via-slate-900/50 to-transparent"></div>
+            @else
+            <div class="absolute inset-0 bg-gradient-to-br from-brand-600 to-accent-600"></div>
+            @endif
+            
+            {{-- Content --}}
+            <div class="absolute inset-0 flex items-center">
+                <div class="container-custom">
+                    <div class="max-w-2xl space-y-4 lg:space-y-6 text-white">
+                        <h1 class="text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-bold leading-tight animate-slide-up">
+                            {{ $slider->title }}
+                        </h1>
+                        
+                        @if($slider->subtitle)
+                        <p class="text-lg sm:text-xl lg:text-2xl font-light opacity-90 animate-slide-up" style="animation-delay: 0.1s;">
+                            {{ $slider->subtitle }}
+                        </p>
+                        @endif
+                        
+                        @if($slider->description)
+                        <p class="text-base sm:text-lg opacity-75 animate-slide-up" style="animation-delay: 0.2s;">
+                            {{ $slider->description }}
+                        </p>
+                        @endif
+                        
+                        @if($slider->button_text && $slider->button_link)
+                        <div class="pt-4 animate-slide-up" style="animation-delay: 0.3s;">
+                            <a href="{{ $slider->button_link }}" class="btn-gradient-primary">
+                                {{ $slider->button_text }}
+                                <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                                </svg>
+                            </a>
+                        </div>
+                        @endif
+                    </div>
+                </div>
+            </div>
+        </div>
+        @endforeach
+    </div>
+    
+    {{-- Navigation Arrows - Hidden on small screens --}}
+    <button @click="prev()" 
+            class="hidden lg:flex absolute left-4 top-1/2 -translate-y-1/2 w-12 h-12 items-center justify-center rounded-full bg-white/10 backdrop-blur-sm hover:bg-white/20 transition-all text-white z-10">
+        <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+        </svg>
+    </button>
+    
+    <button @click="next()" 
+            class="hidden lg:flex absolute right-4 top-1/2 -translate-y-1/2 w-12 h-12 items-center justify-center rounded-full bg-white/10 backdrop-blur-sm hover:bg-white/20 transition-all text-white z-10">
+        <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+        </svg>
+    </button>
+    
+    {{-- Indicator Dots --}}
+    <div class="absolute bottom-6 left-1/2 -translate-x-1/2 flex gap-2 z-10">
+        @foreach($sliders as $index => $slider)
+        <button @click="goTo({{ $index }})"
+                class="w-2 h-2 sm:w-3 sm:h-3 rounded-full transition-all duration-300"
+                :class="currentSlide === {{ $index }} ? 'bg-white w-6 sm:w-8' : 'bg-white/50 hover:bg-white/75'">
+        </button>
+        @endforeach
+    </div>
+</div>
+@endif
+
 @foreach($sections as $section)
     @switch($section->type)
         @case('hero')

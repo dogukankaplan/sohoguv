@@ -9,6 +9,7 @@ use App\Models\Stat;
 use App\Models\Feature;
 use App\Models\HeroSection;
 use App\Models\Section;
+use App\Models\Slider;
 
 use Illuminate\Support\Facades\Log;
 
@@ -16,7 +17,15 @@ class HomeController extends Controller
 {
     public function index()
     {
-        // 1. Sections - Try DB first, fallback to hardcoded
+        // 1. Sliders - Fetch active sliders
+        $sliders = collect();
+        try {
+            $sliders = Slider::active()->get();
+        } catch (\Exception $e) {
+            Log::error('HomeController Error [Sliders]: ' . $e->getMessage());
+        }
+
+        // 2. Sections - Try DB first, fallback to hardcoded
         try {
             $sections = Section::where('is_active', true)->orderBy('order')->get();
 
@@ -44,7 +53,7 @@ class HomeController extends Controller
             ]);
         }
 
-        // 2. Auxiliary Data - Use try-catch for logging
+        // 3. Auxiliary Data - Use try-catch for logging
         $services = collect();
         try {
             $services = Service::where('is_active', true)->orderBy('order')->take(6)->get();
@@ -66,6 +75,6 @@ class HomeController extends Controller
             Log::error('HomeController Error [Testimonials]: ' . $e->getMessage());
         }
 
-        return view('home', compact('sections', 'services', 'clients', 'testimonials'));
+        return view('home', compact('sliders', 'sections', 'services', 'clients', 'testimonials'));
     }
 }
