@@ -40,7 +40,12 @@ class ClientResource extends Resource
                     ->disk('public')
                     ->visibility('public')
                     ->imageEditor()
-                    ->imageEditorAspectRatios(['16:9', '4:3', '1:1']),
+                    ->imageEditorAspectRatios(['16:9', '4:3', '1:1'])
+                    ->afterStateUpdated(function ($state, $record) {
+                        if ($record && $state) {
+                            $record->update(['logo' => $state]);
+                        }
+                    }),
 
                 Forms\Components\TextInput::make('website')
                     ->label('Website URL')

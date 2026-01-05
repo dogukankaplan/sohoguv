@@ -19,13 +19,24 @@ class EditClient extends EditRecord
 
     protected function mutateFormDataBeforeSave(array $data): array
     {
-        \Log::info('EditClient - Form Data Before Save:', $data);
+        // Log what we're receiving
+        \Log::info('EditClient - Before Save:', $data);
+
+        // Ensure logo is saved
+        if (isset($data['logo']) && !empty($data['logo'])) {
+            \Log::info('EditClient - Logo exists in data:', ['logo' => $data['logo']]);
+        } else {
+            \Log::info('EditClient - Logo is missing or empty in data');
+        }
+
         return $data;
     }
 
     protected function afterSave(): void
     {
-        \Log::info('EditClient - After Save - Logo value:', ['logo' => $this->record->logo]);
-        \Log::info('EditClient - Full Record:', $this->record->toArray());
+        \Log::info('EditClient - After Save:', [
+            'logo' => $this->record->logo,
+            'all_fields' => $this->record->toArray()
+        ]);
     }
 }
