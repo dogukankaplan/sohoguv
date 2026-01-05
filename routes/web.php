@@ -7,6 +7,7 @@ use App\Http\Controllers\NewsletterController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\RequestController;
 use App\Http\Controllers\ServiceController;
+use App\Http\Controllers\PartnerController;
 use App\Http\Controllers\QuoteController;
 use Illuminate\Support\Facades\Route;
 
@@ -46,7 +47,9 @@ Route::get('/cozumler', [ServiceController::class, 'solutions'])->name('solution
 Route::get('/hakkimizda', [AboutController::class, 'index'])->name('about');
 Route::get('/iletisim', [ContactController::class, 'index'])->name('contact');
 Route::post('/iletisim', [ContactController::class, 'store'])->name('contact.store');
-Route::get('/referanslar', [ReferenceController::class, 'index'])->name('references');
+Route::get('/referanslar', [ReferenceController::class, 'index'])->name('references.index');
+Route::get('/partnerler', [PartnerController::class, 'index'])->name('partners.index');
+Route::get('/cozum-ortaklari', [PartnerController::class, 'solutions'])->name('solution-partners.index');
 Route::get('/teklif', [QuoteController::class, 'index'])->name('quote');
 
 Route::post('/newsletter', [NewsletterController::class, 'subscribe'])->name('newsletter.subscribe');
