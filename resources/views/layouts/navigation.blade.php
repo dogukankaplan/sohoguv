@@ -23,16 +23,16 @@
             <!-- Desktop Navigation -->
             <div class="hidden lg:flex items-center gap-8">
                 <a href="{{ route('home') }}"
-                    class="text-sm font-medium text-gray-700 hover:text-cyan-500 transition">Ana Sayfa</a>
+                    class="text-sm font-medium text-gray-700 hover:text-brand-600 transition">Ana Sayfa</a>
                 <a href="{{ route('about') }}"
-                    class="text-sm font-medium text-gray-700 hover:text-cyan-500 transition">{{ setting('page_about', 'Hakkımızda') }}</a>
+                    class="text-sm font-medium text-gray-700 hover:text-brand-600 transition">{{ setting('page_about', 'Hakkımızda') }}</a>
                 <a href="{{ route('solutions.index') }}"
-                    class="text-sm font-medium text-gray-700 hover:text-cyan-500 transition">Çözümler</a>
+                    class="text-sm font-medium text-gray-700 hover:text-brand-600 transition">Çözümler</a>
 
                 <!-- Services Dropdown -->
                 <div x-data="{ open: false }" @mouseenter="open = true" @mouseleave="open = false" class="relative">
                     <button
-                        class="text-sm font-medium text-gray-700 hover:text-cyan-500 transition inline-flex items-center gap-1">
+                        class="text-sm font-medium text-gray-700 hover:text-brand-600 transition inline-flex items-center gap-1">
                         {{ setting('page_services', 'Hizmetler') }}
                         <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
@@ -49,7 +49,7 @@
                         style="display: none;">
                         @foreach($globalServices as $service)
                             <a href="{{ route('services.show', $service->slug) }}"
-                                class="block px-6 py-3 text-sm text-gray-700 hover:bg-gray-50hover:text-cyan-500 transition">
+                                class="block px-6 py-3 text-sm text-gray-700 hover:bg-gray-50hover:text-brand-600 transition">
                                 {{ $service->title }}
                             </a>
                         @endforeach
@@ -59,7 +59,7 @@
                 <!-- Support Dropdown -->
                 <div x-data="{ open: false }" @mouseenter="open = true" @mouseleave="open = false" class="relative">
                     <button
-                        class="text-sm font-medium text-gray-700 hover:text-cyan-500 transition inline-flex items-center gap-1">
+                        class="text-sm font-medium text-gray-700 hover:text-brand-600 transition inline-flex items-center gap-1">
                         Destek
                         <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
@@ -75,7 +75,7 @@
                         class="absolute left-0 mt-6 w-64 bg-white rounded-2xl shadow-strong border border-gray-100 py-4"
                         style="display: none;">
                         <a href="{{ route('requests.fault') }}"
-                            class="block px-6 py-3 text-sm text-gray-700 hover:bg-gray-50 hover:text-cyan-500 transition flex items-center gap-2">
+                            class="block px-6 py-3 text-sm text-gray-700 hover:bg-gray-50 hover:text-brand-600 transition flex items-center gap-2">
                             <svg class="w-4 h-4 text-cyan-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                     d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
@@ -102,9 +102,9 @@
                 </div>
 
                 <a href="{{ route('references') }}"
-                    class="text-sm font-medium text-gray-700 hover:text-cyan-500 transition">{{ setting('page_references', 'Referanslar') }}</a>
+                    class="text-sm font-medium text-gray-700 hover:text-brand-600 transition">{{ setting('page_references', 'Referanslar') }}</a>
                 <a href="{{ route('contact') }}"
-                    class="text-sm font-medium text-gray-700 hover:text-cyan-500 transition">{{ setting('page_contact', 'İletişim') }}</a>
+                    class="text-sm font-medium text-gray-700 hover:text-brand-600 transition">{{ setting('page_contact', 'İletişim') }}</a>
             </div>
 
             <!-- CTA Button (Desktop) -->
@@ -141,11 +141,11 @@
         style="display: none;">
         <div class="container-custom py-6 space-y-4">
             <a href="{{ route('home') }}"
-                class="block text-base font-medium text-gray-700 hover:text-cyan-500 transition">Ana Sayfa</a>
+                class="block text-base font-medium text-gray-700 hover:text-brand-600 transition">Ana Sayfa</a>
             <a href="{{ route('about') }}"
-                class="block text-base font-medium text-gray-700 hover:text-cyan-500 transition">{{ setting('page_about', 'Hakkımızda') }}</a>
+                class="block text-base font-medium text-gray-700 hover:text-brand-600 transition">{{ setting('page_about', 'Hakkımızda') }}</a>
             <a href="{{ route('solutions.index') }}"
-                class="block text-base font-medium text-gray-700 hover:text-cyan-500 transition">Çözümler</a>
+                class="block text-base font-medium text-gray-700 hover:text-brand-600 transition">Çözümler</a>
 
             <!-- Mobile Services -->
             <div>
@@ -155,7 +155,7 @@
                 <div class="pl-4 space-y-2">
                     @foreach($globalServices as $service)
                         <a href="{{ route('services.show', $service->slug) }}"
-                            class="block text-sm text-gray-600 hover:text-cyan-500 transition">
+                            class="block text-sm text-gray-600 hover:text-brand-600 transition">
                             {{ $service->title }}
                         </a>
                     @endforeach
@@ -167,7 +167,7 @@
                 <p class="text-sm font-bold text-gray-900 uppercase tracking-wider mb-2">Destek</p>
                 <div class="pl-4 space-y-2">
                     <a href="{{ route('requests.fault') }}"
-                        class="block text-sm text-gray-600 hover:text-cyan-500 transition flex items-center gap-2">
+                        class="block text-sm text-gray-600 hover:text-brand-600 transition flex items-center gap-2">
                         <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                 d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
@@ -194,9 +194,9 @@
             </div>
 
             <a href="{{ route('references') }}"
-                class="block text-base font-medium text-gray-700 hover:text-cyan-500 transition">{{ setting('page_references', 'Referanslar') }}</a>
+                class="block text-base font-medium text-gray-700 hover:text-brand-600 transition">{{ setting('page_references', 'Referanslar') }}</a>
             <a href="{{ route('contact') }}"
-                class="block text-base font-medium text-gray-700 hover:text-cyan-500 transition">{{ setting('page_contact', 'İletişim') }}</a>
+                class="block text-base font-medium text-gray-700 hover:text-brand-600 transition">{{ setting('page_contact', 'İletişim') }}</a>
 
             <a href="{{ route('contact') }}" class="btn-gradient-primary w-full justify-center mt-4">
                 Teklif Al

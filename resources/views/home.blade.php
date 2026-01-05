@@ -471,8 +471,8 @@ class="relative w-full h-[400px] sm:h-[500px] lg:h-[600px] overflow-hidden bg-sl
                                 @endphp
                                 @foreach($features as $feature)
                                 <div class="flex gap-6 group">
-                                    <div class="flex-shrink-0 w-12 h-12 rounded-full bg-white shadow-soft flex items-center justify-center border border-gray-100 group-hover:border-cyan-200 transition-colors">
-                                        <svg class="w-6 h-6 text-cyan-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <div class="flex-shrink-0 w-12 h-12 rounded-full bg-white shadow-soft flex items-center justify-center border border-gray-100 group-hover:border-brand-200 transition-colors">
+                                        <svg class="w-6 h-6 text-brand-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
                                         </svg>
                                     </div>
@@ -500,7 +500,7 @@ class="relative w-full h-[400px] sm:h-[500px] lg:h-[600px] overflow-hidden bg-sl
                                         <img src="https://images.unsplash.com/photo-1581092921461-eab62e97a782?q=80&w=2070&auto=format&fit=crop" class="w-full h-full object-cover" alt="Tech">
                                     </div>
                                     <div class="card-modern bg-white p-6 animate-float" style="animation-delay: -1s;">
-                                        <div class="text-4xl font-bold text-purple-500 mb-2">20+</div>
+                                        <div class="text-4xl font-bold text-accent-500 mb-2">20+</div>
                                         <div class="text-gray-600 text-sm font-medium">Global Marka Partneri</div>
                                     </div>
                                 </div>
