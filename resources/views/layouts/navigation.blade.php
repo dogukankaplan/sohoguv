@@ -101,8 +101,38 @@
                     </div>
                 </div>
 
-                <a href="{{ route('references.index') }}"
-                    class="text-sm font-medium text-gray-700 hover:text-brand-600 transition">{{ setting('page_references', 'Referanslar') }}</a>
+                <!-- References Dropdown -->
+                <div x-data="{ open: false }" @mouseenter="open = true" @mouseleave="open = false" class="relative">
+                    <button
+                        class="text-sm font-medium text-gray-700 hover:text-brand-600 transition inline-flex items-center gap-1">
+                        {{ setting('page_references', 'Referanslar') }}
+                        <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                        </svg>
+                    </button>
+
+                    <div x-show="open" x-transition:enter="transition ease-out duration-200"
+                        x-transition:enter-start="opacity-0 translate-y-4"
+                        x-transition:enter-end="opacity-100 translate-y-0"
+                        x-transition:leave="transition ease-in duration-150"
+                        x-transition:leave-start="opacity-100 translate-y-0"
+                        x-transition:leave-end="opacity-0 translate-y-4"
+                        class="absolute left-0 mt-6 w-56 bg-white rounded-2xl shadow-strong border border-gray-100 py-4"
+                        style="display: none;">
+                        <a href="{{ route('references.index') }}"
+                            class="block px-6 py-3 text-sm text-gray-700 hover:bg-gray-50 hover:text-brand-600 transition">
+                            Referanslarımız
+                        </a>
+                        <a href="{{ route('partners.index') }}"
+                            class="block px-6 py-3 text-sm text-gray-700 hover:bg-gray-50 hover:text-brand-600 transition">
+                            Partnerlerimiz
+                        </a>
+                        <a href="{{ route('solution-partners.index') }}"
+                            class="block px-6 py-3 text-sm text-gray-700 hover:bg-gray-50 hover:text-brand-600 transition">
+                            Çözüm Ortaklarımız
+                        </a>
+                    </div>
+                </div>
                 <a href="{{ route('contact') }}"
                     class="text-sm font-medium text-gray-700 hover:text-brand-600 transition">{{ setting('page_contact', 'İletişim') }}</a>
             </div>
@@ -193,8 +223,26 @@
                 </div>
             </div>
 
-            <a href="{{ route('references.index') }}"
-                class="block text-base font-medium text-gray-700 hover:text-brand-600 transition">{{ setting('page_references', 'Referanslar') }}</a>
+            <!-- Mobile References -->
+            <div>
+                <p class="text-sm font-bold text-gray-900 uppercase tracking-wider mb-2">
+                    {{ setting('page_references', 'Referanslar') }}
+                </p>
+                <div class="pl-4 space-y-2">
+                    <a href="{{ route('references.index') }}"
+                        class="block text-sm text-gray-600 hover:text-brand-600 transition">
+                        Referanslarımız
+                    </a>
+                    <a href="{{ route('partners.index') }}"
+                        class="block text-sm text-gray-600 hover:text-brand-600 transition">
+                        Partnerlerimiz
+                    </a>
+                    <a href="{{ route('solution-partners.index') }}"
+                        class="block text-sm text-gray-600 hover:text-brand-600 transition">
+                        Çözüm Ortaklarımız
+                    </a>
+                </div>
+            </div>
             <a href="{{ route('contact') }}"
                 class="block text-base font-medium text-gray-700 hover:text-brand-600 transition">{{ setting('page_contact', 'İletişim') }}</a>
 
