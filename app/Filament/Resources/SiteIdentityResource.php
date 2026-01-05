@@ -32,20 +32,16 @@ class SiteIdentityResource extends Resource
                             ->maxLength(255)
                             ->columnSpanFull(),
 
-                        Forms\Components\FileUpload::make('logo')
+                        Forms\Components\SpatieMediaLibraryFileUpload::make('logo')
                             ->label('Site Logosu')
+                            ->collection('logo')
                             ->image()
-                            ->directory('site-identity')
-                            ->disk('public')
-                            ->visibility('public')
                             ->columnSpanFull(),
 
-                        Forms\Components\FileUpload::make('favicon')
+                        Forms\Components\SpatieMediaLibraryFileUpload::make('favicon')
                             ->label('Favicon')
+                            ->collection('favicon')
                             ->image()
-                            ->directory('site-identity')
-                            ->disk('public')
-                            ->visibility('public')
                             ->columnSpanFull(),
                     ]),
             ]);
