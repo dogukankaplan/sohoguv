@@ -37,6 +37,8 @@ class ClientResource extends Resource
                     ->label('Logo')
                     ->image()
                     ->directory('clients')
+                    ->disk('public')
+                    ->visibility('public')
                     ->imageEditor()
                     ->imageEditorAspectRatios(['16:9', '4:3', '1:1']),
 

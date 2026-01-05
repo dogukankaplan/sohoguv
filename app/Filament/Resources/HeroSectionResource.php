@@ -64,7 +64,9 @@ class HeroSectionResource extends Resource
                 Forms\Components\FileUpload::make('background_image')
                     ->label('Arkaplan Görseli')
                     ->image()
-                    ->directory('hero-backgrounds'),
+                    ->directory('hero-backgrounds')
+                    ->disk('public')
+                    ->visibility('public'),
 
                 Forms\Components\Toggle::make('is_active')
                     ->label('Aktif')

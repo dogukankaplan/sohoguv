@@ -57,6 +57,8 @@ class TestimonialResource extends Resource
                     ->label('Fotoğraf')
                     ->image()
                     ->directory('testimonials')
+                    ->disk('public')
+                    ->visibility('public')
                     ->imageEditor()
                     ->avatar()
                     ->circleCropper(),

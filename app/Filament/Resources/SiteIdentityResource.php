@@ -36,12 +36,16 @@ class SiteIdentityResource extends Resource
                             ->label('Site Logosu')
                             ->image()
                             ->directory('site-identity')
+                            ->disk('public')
+                            ->visibility('public')
                             ->columnSpanFull(),
 
                         Forms\Components\FileUpload::make('favicon')
                             ->label('Favicon')
                             ->image()
                             ->directory('site-identity')
+                            ->disk('public')
+                            ->visibility('public')
                             ->columnSpanFull(),
                     ]),
             ]);

@@ -50,7 +50,9 @@ class SectionResource extends Resource
                         Forms\Components\FileUpload::make('image')
                             ->label('Görsel')
                             ->image()
-                            ->directory('sections'),
+                            ->directory('sections')
+                            ->disk('public')
+                            ->visibility('public'),
 
                         Forms\Components\RichEditor::make('content')
                             ->label('İçerik')

@@ -46,6 +46,8 @@ class ServiceResource extends Resource
                             ->label('Kapak Görseli')
                             ->image()
                             ->directory('services')
+                            ->disk('public')
+                            ->visibility('public')
                             ->columnSpanFull(),
                     ]),
 
