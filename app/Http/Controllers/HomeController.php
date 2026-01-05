@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Service;
 use App\Models\Client;
+use App\Models\Partner;
+use App\Models\SolutionPartner;
 use App\Models\Testimonial;
 use App\Models\Stat;
 use App\Models\Feature;
@@ -63,9 +65,23 @@ class HomeController extends Controller
 
         $clients = collect();
         try {
-            $clients = Client::orderBy('order')->get();
+            $clients = Client::where('is_active', true)->orderBy('order')->get();
         } catch (\Exception $e) {
             Log::error('HomeController Error [Clients]: ' . $e->getMessage());
+        }
+
+        $partners = collect();
+        try {
+            $partners = Partner::where('is_active', true)->orderBy('order')->get();
+        } catch (\Exception $e) {
+            Log::error('HomeController Error [Partners]: ' . $e->getMessage());
+        }
+
+        $solutionPartners = collect();
+        try {
+            $solutionPartners = SolutionPartner::where('is_active', true)->orderBy('order')->get();
+        } catch (\Exception $e) {
+            Log::error('HomeController Error [SolutionPartners]: ' . $e->getMessage());
         }
 
         $testimonials = collect();
@@ -75,6 +91,6 @@ class HomeController extends Controller
             Log::error('HomeController Error [Testimonials]: ' . $e->getMessage());
         }
 
-        return view('home', compact('sliders', 'sections', 'services', 'clients', 'testimonials'));
+        return view('home', compact('sliders', 'sections', 'services', 'clients', 'partners', 'solutionPartners', 'testimonials'));
     }
 }
