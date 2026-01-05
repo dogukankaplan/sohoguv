@@ -530,38 +530,97 @@ class="relative w-full h-[400px] sm:h-[500px] lg:h-[600px] overflow-hidden bg-sl
             @break
             
         @case('partners')
-            {{-- Partners Section - Premium Grid Design --}}
-            <section class="py-24 bg-slate-50 border-t border-slate-200 relative overflow-hidden">
-                {{-- Background Decoration --}}
-                <div class="absolute inset-0 bg-[linear-gradient(to_right,#8080800a_1px,transparent_1px),linear-gradient(to_bottom,#8080800a_1px,transparent_1px)] bg-[size:24px_24px]"></div>
+            {{-- Partners Section - Ultra Premium Design --}}
+            <section class="relative py-32 overflow-hidden bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900">
+                {{-- Animated Background Grid --}}
+                <div class="absolute inset-0 bg-[linear-gradient(to_right,#ffffff08_1px,transparent_1px),linear-gradient(to_bottom,#ffffff08_1px,transparent_1px)] bg-[size:40px_40px]"></div>
+                
+                {{-- Glow Orbs --}}
+                <div class="absolute top-0 left-1/4 w-96 h-96 bg-brand-500/20 rounded-full blur-[128px] animate-pulse"></div>
+                <div class="absolute bottom-0 right-1/4 w-96 h-96 bg-accent-500/20 rounded-full blur-[128px] animate-pulse" style="animation-delay: -2s;"></div>
                 
                 <div class="container-custom relative z-10">
-                    <div class="max-w-3xl mx-auto text-center mb-16">
-                        <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-brand-50 border border-brand-100 text-brand-700 text-sm font-medium mb-6">
+                    {{-- Premium Header --}}
+                    <div class="max-w-4xl mx-auto text-center mb-20">
+                        <div class="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-white/10 backdrop-blur-xl border border-white/20 text-white text-sm font-semibold mb-8 shadow-2xl">
                             <span class="relative flex h-2 w-2">
-                                <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-brand-400 opacity-75"></span>
-                                <span class="relative inline-flex rounded-full h-2 w-2 bg-brand-500"></span>
+                                <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-brand-400"></span>
+                                <span class="relative inline-flex rounded-full h-2 w-2 bg-brand-300"></span>
                             </span>
-                            <span>Güçlü İş Birlikleri</span>
+                            <span class="bg-gradient-to-r from-brand-300 to-accent-300 bg-clip-text text-transparent">TRUSTED PARTNERSHIPS</span>
                         </div>
-                        <h2 class="text-3xl md:text-4xl font-bold text-slate-900 mb-6 tracking-tight">Değerli <span class="text-transparent bg-clip-text bg-gradient-to-r from-brand-600 to-accent-600">Partnerlerimiz</span></h2>
-                        <p class="text-lg text-slate-600 leading-relaxed">Projelerimizde en kaliteli ürünleri ve teknolojileri kullanmak için sektörün lider markalarıyla çalışıyoruz.</p>
+                        
+                        <h2 class="text-4xl md:text-6xl lg:text-7xl font-black mb-8 leading-tight">
+                            <span class="block text-white">Güçlü</span>
+                            <span class="block bg-gradient-to-r from-brand-400 via-accent-400 to-brand-500 bg-clip-text text-transparent">İş Ortaklıkları</span>
+                        </h2>
+                        
+                        <p class="text-xl md:text-2xl text-slate-300 leading-relaxed max-w-3xl mx-auto font-light">
+                            Dünya standartlarında çözümler sunmak için <span class="text-white font-semibold">global liderlerle</span> omuz omuza çalışıyoruz
+                        </p>
                     </div>
 
-                    <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6 lg:gap-8">
-                        @foreach($partners as $partner)
-                        <div class="group relative bg-white p-6 rounded-2xl border border-slate-100 shadow-sm hover:shadow-xl hover:shadow-brand-500/10 hover:-translate-y-1 transition-all duration-300 flex items-center justify-center h-24 sm:h-32">
-                            <div class="absolute inset-0 bg-gradient-to-br from-brand-50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity rounded-2xl"></div>
-                            <img src="{{ Storage::url($partner->logo) }}" 
-                                 alt="{{ $partner->name }}" 
-                                 class="relative z-10 max-h-12 sm:max-h-16 w-auto grayscale group-hover:grayscale-0 opacity-60 group-hover:opacity-100 transition-all duration-300 transform group-hover:scale-110">
+                    {{-- Premium Partner Grid with Glassmorphism --}}
+                    <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 gap-6">
+                        @foreach($partners as $index => $partner)
+                        <div class="group relative" style="animation-delay: {{ $index * 0.05 }}s;">
+                            {{-- Glow Effect --}}
+                            <div class="absolute -inset-0.5 bg-gradient-to-r from-brand-500 to-accent-500 rounded-3xl opacity-0 group-hover:opacity-75 blur-lg transition-all duration-500"></div>
+                            
+                            {{-- Glass Card --}}
+                            <div class="relative h-32 sm:h-40 bg-white/10 backdrop-blur-xl border border-white/20 rounded-3xl p-6 
+                                        flex items-center justify-center
+                                        transform transition-all duration-500
+                                        group-hover:scale-105 group-hover:bg-white/20
+                                        shadow-2xl group-hover:shadow-brand-500/50">
+                                
+                                {{-- Logo --}}
+                                <img src="{{ Storage::url($partner->logo) }}" 
+                                     alt="{{ $partner->name }}" 
+                                     class="max-h-12 sm:max-h-16 w-auto
+                                            brightness-0 invert opacity-70
+                                            group-hover:brightness-100 group-hover:invert-0 group-hover:opacity-100
+                                            transform transition-all duration-700
+                                            group-hover:scale-110">
+                                
+                                {{-- Shine Effect --}}
+                                <div class="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000 rounded-3xl"></div>
+                                
+                                {{-- Corner Accent --}}
+                                <div class="absolute top-3 right-3 w-2 h-2 rounded-full bg-green-400 opacity-0 group-hover:opacity-100 transition-opacity shadow-lg shadow-green-400/50"></div>
+                            </div>
                         </div>
                         @endforeach
+                        
                         @if($partners->isEmpty())
-                        <div class="col-span-full py-12 text-center text-slate-400 italic">
-                            Partner logoları güncelleniyor...
+                        <div class="col-span-full py-16 text-center">
+                            <div class="inline-flex items-center gap-3 px-6 py-3 rounded-2xl bg-white/10 backdrop-blur-xl border border-white/20 text-slate-300">
+                                <svg class="w-5 h-5 animate-spin" fill="none" viewBox="0 0 24 24">
+                                    <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                                    <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                                </svg>
+                                <span class="font-medium">Partner verileri yükleniyor...</span>
+                            </div>
                         </div>
                         @endif
+                    </div>
+                    
+                    {{-- Stats Bar --}}
+                    <div class="mt-20 flex flex-wrap justify-center items-center gap-12 px-8 py-6 rounded-3xl bg-white/5 backdrop-blur-xl border border-white/10">
+                        <div class="text-center">
+                            <div class="text-4xl font-black text-white mb-2">{{ $partners->count() }}+</div>
+                            <div class="text-sm text-slate-400 uppercase tracking-wider">Güvenilir Partner</div>
+                        </div>
+                        <div class="w-px h-12 bg-white/10"></div>
+                        <div class="text-center">
+                            <div class="text-4xl font-black text-white mb-2">%99</div>
+                            <div class="text-sm text-slate-400 uppercase tracking-wider">Müşteri Memnuniyeti</div>
+                        </div>
+                        <div class="w-px h-12 bg-white/10"></div>
+                        <div class="text-center">
+                            <div class="text-4xl font-black text-white mb-2">7/24</div>
+                            <div class="text-sm text-slate-400 uppercase tracking-wider">Teknik Destek</div>
+                        </div>
                     </div>
                 </div>
             </section>
