@@ -48,6 +48,7 @@ class ServiceResource extends Resource
                             ->directory('services')
                             ->disk('public')
                             ->visibility('public')
+                            ->deferred(false)
                             ->columnSpanFull(),
                     ]),
 

@@ -61,7 +61,8 @@ class TestimonialResource extends Resource
                     ->visibility('public')
                     ->imageEditor()
                     ->avatar()
-                    ->circleCropper(),
+                    ->circleCropper()
+                    ->deferred(false),
 
                 Forms\Components\Toggle::make('is_featured')
                     ->label('Ana Sayfada Göster')
