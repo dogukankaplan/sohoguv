@@ -65,4 +65,45 @@ Route::get('/sitemap.xml', function () {
 
 // Legal Pages
 Route::view('/gizlilik-politikasi', 'legal.privacy')->name('privacy');
+Route::view('/gizlilik-politikasi', 'legal.privacy')->name('privacy');
 Route::view('/kullanim-kosullari', 'legal.terms')->name('terms');
+
+// SYSTEM DIAGNOSTICS - Use this to check DB on VPS
+Route::get('/db-test', function () {
+    $results = [];
+
+    // 1. Check Database Connection
+    try {
+        \Illuminate\Support\Facades\DB::connection()->getPdo();
+        $results['database_connection'] = 'SUCCESS: Connected to ' . \Illuminate\Support\Facades\DB::connection()->getDatabaseName();
+    } catch (\Exception $e) {
+        return response()->json([
+            'status' => 'ERROR',
+            'message' => 'Could not connect to the database. Please check your .env file.',
+            'details' => $e->getMessage()
+        ], 500);
+    }
+
+    // 2. Check Storage Link
+    $publicPath = public_path('storage');
+    $results['storage_link_exists'] = file_exists($publicPath) ? 'YES' : 'NO (Run php artisan storage:link)';
+    $results['app_url'] = config('app.url');
+
+    // 3. Check Image Paths in key tables
+    $tablesToCheck = ['sliders', 'partners', 'solution_partners', 'services'];
+    foreach ($tablesToCheck as $table) {
+        try {
+            $count = \Illuminate\Support\Facades\DB::table($table)->count();
+            $sample = \Illuminate\Support\Facades\DB::table($table)->whereNotNull('image')->take(3)->get(['id', 'image']);
+
+            $results['tables'][$table] = [
+                'count' => $count,
+                'sample_images' => $sample
+            ];
+        } catch (\Exception $e) {
+            $results['tables'][$table] = 'Error: ' . $e->getMessage();
+        }
+    }
+
+    return response()->json($results);
+});

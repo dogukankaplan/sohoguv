@@ -530,19 +530,37 @@ class="relative w-full h-[400px] sm:h-[500px] lg:h-[600px] overflow-hidden bg-sl
             @break
             
         @case('partners')
-            {{-- Partners Section --}}
-            <section class="py-20 bg-slate-50 border-t border-gray-100">
-                <div class="container-custom">
-                    <div class="text-center mb-12">
-                        <h2 class="text-3xl font-bold text-slate-900 mb-4">Partnerlerimiz</h2>
-                        <p class="text-slate-600">Birlikte çalıştığımız güvenilir iş ortakları</p>
+            {{-- Partners Section - Premium Grid Design --}}
+            <section class="py-24 bg-slate-50 border-t border-slate-200 relative overflow-hidden">
+                {{-- Background Decoration --}}
+                <div class="absolute inset-0 bg-[linear-gradient(to_right,#8080800a_1px,transparent_1px),linear-gradient(to_bottom,#8080800a_1px,transparent_1px)] bg-[size:24px_24px]"></div>
+                
+                <div class="container-custom relative z-10">
+                    <div class="max-w-3xl mx-auto text-center mb-16">
+                        <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-brand-50 border border-brand-100 text-brand-700 text-sm font-medium mb-6">
+                            <span class="relative flex h-2 w-2">
+                                <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-brand-400 opacity-75"></span>
+                                <span class="relative inline-flex rounded-full h-2 w-2 bg-brand-500"></span>
+                            </span>
+                            <span>Güçlü İş Birlikleri</span>
+                        </div>
+                        <h2 class="text-3xl md:text-4xl font-bold text-slate-900 mb-6 tracking-tight">Değerli <span class="text-transparent bg-clip-text bg-gradient-to-r from-brand-600 to-accent-600">Partnerlerimiz</span></h2>
+                        <p class="text-lg text-slate-600 leading-relaxed">Projelerimizde en kaliteli ürünleri ve teknolojileri kullanmak için sektörün lider markalarıyla çalışıyoruz.</p>
                     </div>
-                    <div class="flex flex-wrap justify-center items-center gap-12 opacity-60">
+
+                    <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6 lg:gap-8">
                         @foreach($partners as $partner)
-                            <img src="{{ Storage::url($partner->logo) }}" alt="{{ $partner->name }}" class="h-12 w-auto grayscale hover:grayscale-0 transition duration-300">
+                        <div class="group relative bg-white p-6 rounded-2xl border border-slate-100 shadow-sm hover:shadow-xl hover:shadow-brand-500/10 hover:-translate-y-1 transition-all duration-300 flex items-center justify-center h-24 sm:h-32">
+                            <div class="absolute inset-0 bg-gradient-to-br from-brand-50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity rounded-2xl"></div>
+                            <img src="{{ Storage::url($partner->logo) }}" 
+                                 alt="{{ $partner->name }}" 
+                                 class="relative z-10 max-h-12 sm:max-h-16 w-auto grayscale group-hover:grayscale-0 opacity-60 group-hover:opacity-100 transition-all duration-300 transform group-hover:scale-110">
+                        </div>
                         @endforeach
                         @if($partners->isEmpty())
-                            <div class="text-gray-300 italic text-sm">Partner logoları eklenecek...</div>
+                        <div class="col-span-full py-12 text-center text-slate-400 italic">
+                            Partner logoları güncelleniyor...
+                        </div>
                         @endif
                     </div>
                 </div>
@@ -550,19 +568,38 @@ class="relative w-full h-[400px] sm:h-[500px] lg:h-[600px] overflow-hidden bg-sl
             @break
 
         @case('solution_partners')
-            {{-- Solution Partners Section --}}
-            <section class="py-20 bg-white border-t border-gray-100">
-                <div class="container-custom">
-                    <div class="text-center mb-12">
-                        <h2 class="text-3xl font-bold text-slate-900 mb-4">Çözüm Ortaklarımız</h2>
-                        <p class="text-slate-600">Teknoloji ve çözüm ortağımız global markalar</p>
+            {{-- Solution Partners Section - Interactive Cards --}}
+            <section class="py-24 bg-white relative">
+                {{-- Decorative Blobs --}}
+                <div class="absolute top-0 right-0 w-[500px] h-[500px] bg-accent-50/50 rounded-full blur-3xl opacity-60 pointer-events-none"></div>
+                <div class="absolute bottom-0 left-0 w-[500px] h-[500px] bg-brand-50/50 rounded-full blur-3xl opacity-60 pointer-events-none"></div>
+
+                <div class="container-custom relative z-10">
+                    <div class="text-center mb-16">
+                        <h2 class="text-3xl md:text-4xl font-bold text-slate-900 mb-6">Global <span class="text-transparent bg-clip-text bg-gradient-to-r from-accent-600 to-brand-600">Çözüm Ortaklarımız</span></h2>
+                        <p class="text-lg text-slate-600 max-w-2xl mx-auto">Dünya standartlarında güvenlik teknolojilerini sizin için bir araya getiriyoruz.</p>
                     </div>
-                    <div class="flex flex-wrap justify-center items-center gap-12 opacity-60">
+
+                    <div class="grid grid-cols-2 md:grid-cols-4 gap-8">
                         @foreach($solutionPartners as $sp)
-                            <img src="{{ Storage::url($sp->logo) }}" alt="{{ $sp->name }}" class="h-16 w-auto grayscale hover:grayscale-0 transition duration-300">
+                        <div class="group relative">
+                            <div class="absolute -inset-0.5 bg-gradient-to-r from-brand-500 to-accent-500 rounded-2xl blur opacity-0 group-hover:opacity-25 transition duration-500"></div>
+                            <div class="relative bg-white rounded-2xl p-8 border border-slate-100 hover:border-transparent min-h-[160px] flex items-center justify-center transition-all duration-300">
+                                <img src="{{ Storage::url($sp->logo) }}" 
+                                     alt="{{ $sp->name }}" 
+                                     class="max-h-14 w-auto grayscale group-hover:grayscale-0 opacity-70 group-hover:opacity-100 transition-all duration-500 group-hover:scale-110">
+                                
+                                {{-- Hover Badge --}}
+                                <div class="absolute top-3 right-3 opacity-0 group-hover:opacity-100 transition-all duration-300 transform translate-y-2 group-hover:translate-y-0">
+                                    <div class="w-2 h-2 rounded-full bg-green-500"></div>
+                                </div>
+                            </div>
+                        </div>
                         @endforeach
                         @if($solutionPartners->isEmpty())
-                            <div class="text-gray-300 italic text-sm">Çözüm ortağı logoları eklenecek...</div>
+                        <div class="col-span-full py-12 text-center text-slate-400 italic">
+                            Çözüm ortağı verileri yükleniyor...
+                        </div>
                         @endif
                     </div>
                 </div>
