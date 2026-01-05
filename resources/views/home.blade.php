@@ -583,7 +583,7 @@ class="relative w-full h-[400px] sm:h-[500px] lg:h-[600px] overflow-hidden bg-sl
 
         @case('solution_partners')
             {{-- Solution Partners Section - Premium Interactive Cards --}}
-            <section class="py-24 bg-white relative">
+            <section class="py-24 bg-white relative overflow-hidden">
                 {{-- Decorative Blobs --}}
                 <div class="absolute top-0 right-0 w-[500px] h-[500px] bg-accent-50/50 rounded-full blur-3xl opacity-60 pointer-events-none"></div>
                 <div class="absolute bottom-0 left-0 w-[500px] h-[500px] bg-brand-50/50 rounded-full blur-3xl opacity-60 pointer-events-none"></div>
