@@ -57,6 +57,42 @@ class HomeController extends Controller
             ]);
         }
 
+        // Force-Inject Partners if missing (This fixes the empty DB issue)
+        if ($sections->isNotEmpty()) {
+            // Check if partners exists
+            if (!$sections->contains('type', 'partners')) {
+                // Find index of clients
+                $clientsIndex = $sections->search(function ($item) {
+                    return $item->type === 'clients';
+                });
+
+                $partnerSection = (object) ['type' => 'partners'];
+
+                if ($clientsIndex !== false) {
+                    $sections->splice($clientsIndex + 1, 0, [$partnerSection]);
+                } else {
+                    $sections->push($partnerSection);
+                }
+            }
+
+            // Check if solution_partners exists
+            if (!$sections->contains('type', 'solution_partners')) {
+                // Find index of partners (we just added it possibly)
+                $partnersIndex = $sections->search(function ($item) {
+                    return $item->type === 'partners';
+                });
+
+                $solutionSection = (object) ['type' => 'solution_partners'];
+
+                if ($partnersIndex !== false) {
+                    $sections->splice($partnersIndex + 1, 0, [$solutionSection]);
+                } else {
+                    $sections->push($solutionSection);
+                }
+            }
+        }
+
+
         // 3. Auxiliary Data - Use try-catch for logging
         $services = collect();
         try {
