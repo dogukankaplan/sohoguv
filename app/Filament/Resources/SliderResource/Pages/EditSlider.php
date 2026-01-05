@@ -5,6 +5,7 @@ namespace App\Filament\Resources\SliderResource\Pages;
 use App\Filament\Resources\SliderResource;
 use Filament\Actions;
 use Filament\Resources\Pages\EditRecord;
+use Livewire\Features\SupportFileUploads\TemporaryUploadedFile;
 
 class EditSlider extends EditRecord
 {
@@ -17,8 +18,11 @@ class EditSlider extends EditRecord
         ];
     }
 
-    protected function getRedirectUrl(): string
+    protected function mutateFormDataBeforeSave(array $data): array
     {
-        return $this->getResource()::getUrl('index');
+        if (isset($data['image']) && $data['image'] instanceof TemporaryUploadedFile) {
+            $data['image'] = $data['image']->store('sliders', 'public');
+        }
+        return $data;
     }
 }
