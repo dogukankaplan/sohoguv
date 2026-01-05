@@ -19,15 +19,11 @@ class EditClient extends EditRecord
 
     protected function handleRecordUpdate(\Illuminate\Database\Eloquent\Model $record, array $data): \Illuminate\Database\Eloquent\Model
     {
-        // Handle file upload manually
-        if ($this->form->getComponent('logo')->getState()) {
-            $uploadedFile = $this->form->getComponent('logo')->getState();
-
-            if ($uploadedFile && !is_string($uploadedFile)) {
-                // Store file
-                $filename = $uploadedFile->store('clients', 'public');
-                $data['logo'] = $filename;
-            }
+        // Check if there's an uploaded file in the request
+        if (request()->hasFile('logo')) {
+            $file = request()->file('logo');
+            $filename = $file->store('clients', 'public');
+            $data['logo'] = $filename;
         }
 
         $record->update($data);
