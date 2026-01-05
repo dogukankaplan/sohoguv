@@ -529,6 +529,46 @@ class="relative w-full h-[400px] sm:h-[500px] lg:h-[600px] overflow-hidden bg-sl
             </section>
             @break
             
+        @case('partners')
+            {{-- Partners Section --}}
+            <section class="py-20 bg-slate-50 border-t border-gray-100">
+                <div class="container-custom">
+                    <div class="text-center mb-12">
+                        <h2 class="text-3xl font-bold text-slate-900 mb-4">Partnerlerimiz</h2>
+                        <p class="text-slate-600">Birlikte çalıştığımız güvenilir iş ortakları</p>
+                    </div>
+                    <div class="flex flex-wrap justify-center items-center gap-12 opacity-60">
+                        @foreach($partners as $partner)
+                            <img src="{{ Storage::url($partner->logo) }}" alt="{{ $partner->name }}" class="h-12 w-auto grayscale hover:grayscale-0 transition duration-300">
+                        @endforeach
+                        @if($partners->isEmpty())
+                            <div class="text-gray-300 italic text-sm">Partner logoları eklenecek...</div>
+                        @endif
+                    </div>
+                </div>
+            </section>
+            @break
+
+        @case('solution_partners')
+            {{-- Solution Partners Section --}}
+            <section class="py-20 bg-white border-t border-gray-100">
+                <div class="container-custom">
+                    <div class="text-center mb-12">
+                        <h2 class="text-3xl font-bold text-slate-900 mb-4">Çözüm Ortaklarımız</h2>
+                        <p class="text-slate-600">Teknoloji ve çözüm ortağımız global markalar</p>
+                    </div>
+                    <div class="flex flex-wrap justify-center items-center gap-12 opacity-60">
+                        @foreach($solutionPartners as $sp)
+                            <img src="{{ Storage::url($sp->logo) }}" alt="{{ $sp->name }}" class="h-16 w-auto grayscale hover:grayscale-0 transition duration-300">
+                        @endforeach
+                        @if($solutionPartners->isEmpty())
+                            <div class="text-gray-300 italic text-sm">Çözüm ortağı logoları eklenecek...</div>
+                        @endif
+                    </div>
+                </div>
+            </section>
+            @break
+            
         @case('testimonials')
              {{-- Testimonials --}}
              <section class="section-padding bg-gray-50">
