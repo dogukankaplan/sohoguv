@@ -159,7 +159,7 @@
                         <li><a href="{{ route('about') }}"
                                 class="text-sm text-gray-600 hover:text-brand-600 transition">{{ setting('page_about', 'Hakkımızda') }}</a>
                         </li>
-                        <li><a href="{{ route('references') }}"
+                        <li><a href="{{ route('references.index') }}"
                                 class="text-sm text-gray-600 hover:text-brand-600 transition">{{ setting('page_references', 'Referanslar') }}</a>
                         </li>
                         <li><a href="{{ route('contact') }}"

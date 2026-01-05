@@ -20,7 +20,7 @@
     </url>
     @endforeach
     <url>
-        <loc>{{ route('references') }}</loc>
+        <loc>{{ route('references.index') }}</loc>
         <changefreq>monthly</changefreq>
         <priority>0.8</priority>
     </url>

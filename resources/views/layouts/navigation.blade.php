@@ -101,7 +101,7 @@
                     </div>
                 </div>
 
-                <a href="{{ route('references') }}"
+                <a href="{{ route('references.index') }}"
                     class="text-sm font-medium text-gray-700 hover:text-brand-600 transition">{{ setting('page_references', 'Referanslar') }}</a>
                 <a href="{{ route('contact') }}"
                     class="text-sm font-medium text-gray-700 hover:text-brand-600 transition">{{ setting('page_contact', 'İletişim') }}</a>
@@ -193,7 +193,7 @@
                 </div>
             </div>
 
-            <a href="{{ route('references') }}"
+            <a href="{{ route('references.index') }}"
                 class="block text-base font-medium text-gray-700 hover:text-brand-600 transition">{{ setting('page_references', 'Referanslar') }}</a>
             <a href="{{ route('contact') }}"
                 class="block text-base font-medium text-gray-700 hover:text-brand-600 transition">{{ setting('page_contact', 'İletişim') }}</a>
