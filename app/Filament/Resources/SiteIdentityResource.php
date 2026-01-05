@@ -38,7 +38,6 @@ class SiteIdentityResource extends Resource
                             ->directory('site-identity')
                             ->disk('public')
                             ->visibility('public')
-                            ->deferred(false)
                             ->columnSpanFull(),
 
                         Forms\Components\FileUpload::make('favicon')
@@ -47,7 +46,6 @@ class SiteIdentityResource extends Resource
                             ->directory('site-identity')
                             ->disk('public')
                             ->visibility('public')
-                            ->deferred(false)
                             ->columnSpanFull(),
                     ]),
             ]);

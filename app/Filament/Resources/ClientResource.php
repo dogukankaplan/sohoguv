@@ -39,7 +39,6 @@ class ClientResource extends Resource
                     ->directory('clients')
                     ->disk('public')
                     ->visibility('public')
-                    ->deferred(false)
                     ->imageEditor()
                     ->imageEditorAspectRatios(['16:9', '4:3', '1:1']),
 
