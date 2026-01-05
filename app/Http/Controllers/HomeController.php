@@ -50,6 +50,8 @@ class HomeController extends Controller
                 (object) ['type' => 'services'],
                 (object) ['type' => 'features'],
                 (object) ['type' => 'clients'],
+                (object) ['type' => 'partners'],
+                (object) ['type' => 'solution_partners'],
                 (object) ['type' => 'testimonials'],
                 (object) ['type' => 'cta'],
             ]);
