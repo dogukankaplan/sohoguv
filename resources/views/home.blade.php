@@ -333,7 +333,7 @@ class="relative w-full h-[400px] sm:h-[500px] lg:h-[600px] overflow-hidden bg-sl
             {{-- Stats Section --}}
             <div class="py-12 bg-gray-50 border-y border-gray-100">
                 <div class="container-custom">
-                    <div class="grid grid-cols-2 md:grid-cols-4 divide-x divide-gray-200/50">
+                    <div class="grid grid-cols-2 md:grid-cols-4 md:divide-x divide-gray-200/50">
                         @php
                             $stats = [
                                 ['value' => setting('stat_1_value', '15+'), 'label' => setting('stat_1_label', 'Yıllık Tecrübe')],
@@ -343,9 +343,9 @@ class="relative w-full h-[400px] sm:h-[500px] lg:h-[600px] overflow-hidden bg-sl
                             ];
                         @endphp
                         @foreach($stats as $stat)
-                        <div class="text-center px-4 group">
-                            <div class="stat-number group-hover:scale-110 transition-transform duration-300">{{ $stat['value'] }}</div>
-                            <div class="stat-label">{{ $stat['label'] }}</div>
+                        <div class="text-center px-4 py-6 md:py-0 group">
+                            <div class="stat-number text-3xl md:text-4xl lg:text-5xl group-hover:scale-110 transition-transform duration-300">{{ $stat['value'] }}</div>
+                            <div class="stat-label text-sm md:text-base">{{ $stat['label'] }}</div>
                         </div>
                         @endforeach
                     </div>
@@ -522,9 +522,9 @@ class="relative w-full h-[400px] sm:h-[500px] lg:h-[600px] overflow-hidden bg-sl
                         <h2 class="text-3xl font-bold text-slate-900 mb-4">Güvenle <span class="text-transparent bg-clip-text bg-gradient-to-r from-brand-600 to-accent-600">Hizmet Verdiğimiz</span> Markalar</h2>
                     </div>
 
-                    <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-8">
+                    <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-4 md:gap-8">
                          @foreach($clients as $index => $client)
-                            <div class="group relative bg-white p-8 rounded-3xl border border-slate-100 shadow-sm hover:shadow-2xl hover:shadow-brand-500/5 hover:-translate-y-1 transition-all duration-300 flex items-center justify-center h-32 md:h-40"
+                            <div class="group relative bg-white p-4 md:p-8 rounded-3xl border border-slate-100 shadow-sm hover:shadow-2xl hover:shadow-brand-500/5 hover:-translate-y-1 transition-all duration-300 flex items-center justify-center h-24 md:h-40"
                                  style="animation-delay: {{ $index * 0.05 }}s;">
                                 <div class="absolute inset-0 bg-gradient-to-br from-slate-50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity rounded-3xl"></div>
                                 @if($client->logo)
@@ -562,9 +562,9 @@ class="relative w-full h-[400px] sm:h-[500px] lg:h-[600px] overflow-hidden bg-sl
                         <p class="text-lg text-slate-600 leading-relaxed">Projelerimizde en kaliteli ürünleri ve teknolojileri kullanmak için sektörün lider markalarıyla çalışıyoruz.</p>
                     </div>
 
-                    <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6 lg:gap-8">
+                    <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4 lg:gap-8">
                         @foreach($partners as $partner)
-                        <div class="group relative bg-white p-6 rounded-2xl border border-slate-200/60 shadow-sm hover:shadow-xl hover:shadow-brand-500/10 transition-all duration-300 flex items-center justify-center h-24 sm:h-32">
+                        <div class="group relative bg-white p-4 md:p-6 rounded-2xl border border-slate-200/60 shadow-sm hover:shadow-xl hover:shadow-brand-500/10 transition-all duration-300 flex items-center justify-center h-20 sm:h-32">
                             <div class="absolute top-2 right-2 w-1.5 h-1.5 rounded-full bg-brand-500 opacity-0 group-hover:opacity-100 transition-opacity"></div>
                             <img src="{{ Storage::url($partner->logo) }}" 
                                  alt="{{ $partner->name }}" 
@@ -597,9 +597,9 @@ class="relative w-full h-[400px] sm:h-[500px] lg:h-[600px] overflow-hidden bg-sl
                         <p class="text-lg text-slate-600 max-w-2xl mx-auto">Dünya standartlarında güvenlik teknolojilerini sizin için bir araya getiriyoruz.</p>
                     </div>
 
-                    <div class="grid grid-cols-2 md:grid-cols-4 gap-8">
+                    <div class="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-8">
                         @foreach($solutionPartners as $sp)
-                        <div class="group relative bg-white rounded-3xl p-8 border border-slate-100 hover:border-brand-100 transition-all duration-300 hover:shadow-2xl hover:shadow-brand-900/5 min-h-[160px] flex items-center justify-center">
+                        <div class="group relative bg-white rounded-3xl p-4 md:p-8 border border-slate-100 hover:border-brand-100 transition-all duration-300 hover:shadow-2xl hover:shadow-brand-900/5 min-h-[120px] md:min-h-[160px] flex items-center justify-center">
                             <div class="absolute inset-0 bg-gradient-to-br from-transparent to-slate-50/50 opacity-0 group-hover:opacity-100 transition-opacity rounded-3xl pointer-events-none"></div>
                             <div class="relative z-10 flex items-center justify-center">
                                 <img src="{{ Storage::url($sp->logo) }}" 
