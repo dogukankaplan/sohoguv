@@ -8,7 +8,8 @@
 
     <title>
         {{ isset($title) ? $title . ' | ' : '' }}{{ $siteIdentity->site_name ?? setting('site_name', 'SOHO Güvenlik Sistemleri') }}
-        | Türkiye Geneli Güvenlik Çözümleri</title>
+        | Türkiye Geneli Güvenlik Çözümleri
+    </title>
     <meta name="description"
         content="{{ isset($description) ? $description : setting('meta_description', 'Türkiye genelinde güvenlik sistemleri, kamera sistemleri, hırsız alarmı ve yangın ihbar sistemleri. Profesyonel kurulum ve 7/24 teknik destek hizmeti.') }}">
     <meta name="keywords"
@@ -138,7 +139,8 @@
                 <!-- Services -->
                 <div>
                     <h3 class="text-sm font-bold text-gray-900 uppercase tracking-wider mb-6">
-                        {{ setting('page_services', 'Hizmetler') }}</h3>
+                        {{ setting('page_services', 'Hizmetler') }}
+                    </h3>
                     <ul class="space-y-3">
                         @if(isset($globalServices))
                             @foreach($globalServices->take(5) as $service)
@@ -168,16 +170,19 @@
                         <li><a href="{{ route('requests.inventory') }}"
                                 class="text-sm text-gray-600 hover:text-brand-600 transition">Envanter Talebi</a></li>
                         <li><a href="{{ route('privacy') }}"
-                                class="text-sm text-gray-600 hover:text-brand-600 transition">Gizlilik Politikası</a></li>
+                                class="text-sm text-gray-600 hover:text-brand-600 transition">Gizlilik Politikası</a>
+                        </li>
                         <li><a href="{{ route('terms') }}"
-                                class="text-sm text-gray-600 hover:text-brand-600 transition">Kullanım Koşulları</a></li>
+                                class="text-sm text-gray-600 hover:text-brand-600 transition">Kullanım Koşulları</a>
+                        </li>
                     </ul>
                 </div>
 
                 <!-- Contact -->
                 <div>
                     <h3 class="text-sm font-bold text-gray-900 uppercase tracking-wider mb-6">
-                        {{ setting('page_contact', 'İletişim') }}</h3>
+                        {{ setting('page_contact', 'İletişim') }}
+                    </h3>
                     <ul class="space-y-3">
                         <li class="flex items-start gap-2">
                             <svg class="w-5 h-5 text-cyan-500 mt-0.5 flex-shrink-0" fill="none" viewBox="0 0 24 24"
@@ -205,8 +210,10 @@
                     {{ str_replace('[YEAR]', date('Y'), setting('copyright', '© [YEAR] SOHO Güvenlik Sistemleri. Tüm hakları saklıdır.')) }}
                 </p>
                 <div class="flex gap-6">
-                    <a href="#" class="text-sm text-gray-500 hover:text-gray-900 transition">Gizlilik Politikası</a>
-                    <a href="#" class="text-sm text-gray-500 hover:text-gray-900 transition">Kullanım Koşulları</a>
+                    <a href="/gizlilik-politikasi" class="text-sm text-gray-500 hover:text-gray-900 transition">Gizlilik
+                        Politikası</a>
+                    <a href="/kullanim-kosullari" class="text-sm text-gray-500 hover:text-gray-900 transition">Kullanım
+                        Koşulları</a>
                 </div>
             </div>
         </div>
