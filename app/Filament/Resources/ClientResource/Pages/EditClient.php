@@ -16,4 +16,17 @@ class EditClient extends EditRecord
             Actions\DeleteAction::make(),
         ];
     }
+
+    protected function mutateFormDataBeforeSave(array $data): array
+    {
+        // Handle file upload
+        $logo = $this->data['logo'] ?? null;
+
+        if ($logo && is_string($logo)) {
+            // Already a valid path, keep it
+            $data['logo'] = $logo;
+        }
+
+        return $data;
+    }
 }

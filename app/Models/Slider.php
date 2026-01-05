@@ -3,17 +3,14 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use Spatie\MediaLibrary\HasMedia;
-use Spatie\MediaLibrary\InteractsWithMedia;
 
-class Slider extends Model implements HasMedia
+class Slider extends Model
 {
-    use InteractsWithMedia;
-
     protected $fillable = [
         'title',
         'subtitle',
         'description',
+        'image',
         'button_text',
         'button_link',
         'order',
@@ -24,15 +21,6 @@ class Slider extends Model implements HasMedia
         'is_active' => 'boolean',
     ];
 
-    public function registerMediaCollections(): void
-    {
-        $this->addMediaCollection('image')
-            ->singleFile();
-    }
-
-    /**
-     * Scope to get only active sliders ordered by order field
-     */
     public function scopeActive($query)
     {
         return $query->where('is_active', true)->orderBy('order');

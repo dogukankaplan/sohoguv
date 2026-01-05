@@ -66,7 +66,7 @@ class HeroSectionResource extends Resource
                     ->image()
                     ->directory('hero-backgrounds')
                     ->disk('public')
-                    ->visibility('public'),
+                    ->maxSize(10240),
 
                 Forms\Components\Toggle::make('is_active')
                     ->label('Aktif')

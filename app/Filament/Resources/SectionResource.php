@@ -52,7 +52,7 @@ class SectionResource extends Resource
                             ->image()
                             ->directory('sections')
                             ->disk('public')
-                            ->visibility('public'),
+                            ->maxSize(5120),
 
                         Forms\Components\RichEditor::make('content')
                             ->label('İçerik')

@@ -33,12 +33,13 @@ class ClientResource extends Resource
                     ->required()
                     ->maxLength(255),
 
-                Forms\Components\SpatieMediaLibraryFileUpload::make('logo')
+                Forms\Components\FileUpload::make('logo')
                     ->label('Logo')
-                    ->collection('logo')
                     ->image()
-                    ->imageEditor()
-                    ->imageEditorAspectRatios(['16:9', '4:3', '1:1']),
+                    ->directory('clients')
+                    ->disk('public')
+                    ->maxSize(5120)
+                    ->acceptedFileTypes(['image/jpeg', 'image/png', 'image/webp']),
 
                 Forms\Components\TextInput::make('website')
                     ->label('Website URL')

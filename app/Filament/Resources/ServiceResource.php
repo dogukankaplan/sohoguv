@@ -42,10 +42,12 @@ class ServiceResource extends Resource
                             ->required()
                             ->columnSpanFull(),
 
-                        Forms\Components\SpatieMediaLibraryFileUpload::make('image')
+                        Forms\Components\FileUpload::make('image')
                             ->label('Kapak Görseli')
-                            ->collection('image')
                             ->image()
+                            ->directory('services')
+                            ->disk('public')
+                            ->maxSize(5120)
                             ->columnSpanFull(),
                     ]),
 

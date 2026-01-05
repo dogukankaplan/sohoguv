@@ -40,11 +40,12 @@ class SliderResource extends Resource
                             ->rows(3)
                             ->columnSpanFull(),
 
-                        Forms\Components\SpatieMediaLibraryFileUpload::make('image')
+                        Forms\Components\FileUpload::make('image')
                             ->label('Slider Görseli')
-                            ->collection('image')
                             ->image()
-                            ->imageEditor()
+                            ->directory('sliders')
+                            ->disk('public')
+                            ->maxSize(5120)
                             ->columnSpanFull()
                             ->helperText('Önerilen boyut: 1920x800px. JPG, PNG veya WEBP formatında olabilir.'),
                     ]),

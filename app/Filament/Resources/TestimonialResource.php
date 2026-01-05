@@ -53,11 +53,12 @@ class TestimonialResource extends Resource
                     ->default(5)
                     ->required(),
 
-                Forms\Components\SpatieMediaLibraryFileUpload::make('photo')
+                Forms\Components\FileUpload::make('photo')
                     ->label('Fotoğraf')
-                    ->collection('photo')
                     ->image()
-                    ->imageEditor()
+                    ->directory('testimonials')
+                    ->disk('public')
+                    ->maxSize(2048)
                     ->avatar()
                     ->circleCropper(),
 
