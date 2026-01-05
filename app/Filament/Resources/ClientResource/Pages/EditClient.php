@@ -17,26 +17,21 @@ class EditClient extends EditRecord
         ];
     }
 
-    protected function mutateFormDataBeforeSave(array $data): array
+    protected function handleRecordUpdate(\Illuminate\Database\Eloquent\Model $record, array $data): \Illuminate\Database\Eloquent\Model
     {
-        // Log what we're receiving
-        \Log::info('EditClient - Before Save:', $data);
+        // Handle file upload manually
+        if ($this->form->getComponent('logo')->getState()) {
+            $uploadedFile = $this->form->getComponent('logo')->getState();
 
-        // Ensure logo is saved
-        if (isset($data['logo']) && !empty($data['logo'])) {
-            \Log::info('EditClient - Logo exists in data:', ['logo' => $data['logo']]);
-        } else {
-            \Log::info('EditClient - Logo is missing or empty in data');
+            if ($uploadedFile && !is_string($uploadedFile)) {
+                // Store file
+                $filename = $uploadedFile->store('clients', 'public');
+                $data['logo'] = $filename;
+            }
         }
 
-        return $data;
-    }
+        $record->update($data);
 
-    protected function afterSave(): void
-    {
-        \Log::info('EditClient - After Save:', [
-            'logo' => $this->record->logo,
-            'all_fields' => $this->record->toArray()
-        ]);
+        return $record;
     }
 }
