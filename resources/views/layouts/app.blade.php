@@ -155,18 +155,22 @@
                     <h3 class="text-sm font-bold text-gray-900 uppercase tracking-wider mb-6">Kurumsal</h3>
                     <ul class="space-y-3">
                         <li><a href="{{ route('about') }}"
-                                class="text-sm text-gray-600 hover:text-cyan-500 transition">{{ setting('page_about', 'Hakkımızda') }}</a>
+                                class="text-sm text-gray-600 hover:text-brand-600 transition">{{ setting('page_about', 'Hakkımızda') }}</a>
                         </li>
                         <li><a href="{{ route('references') }}"
-                                class="text-sm text-gray-600 hover:text-cyan-500 transition">{{ setting('page_references', 'Referanslar') }}</a>
+                                class="text-sm text-gray-600 hover:text-brand-600 transition">{{ setting('page_references', 'Referanslar') }}</a>
                         </li>
                         <li><a href="{{ route('contact') }}"
-                                class="text-sm text-gray-600 hover:text-cyan-500 transition">{{ setting('page_contact', 'İletişim') }}</a>
+                                class="text-sm text-gray-600 hover:text-brand-600 transition">{{ setting('page_contact', 'İletişim') }}</a>
                         </li>
                         <li><a href="{{ route('requests.fault') }}"
-                                class="text-sm text-gray-600 hover:text-cyan-500 transition">Arıza Talebi</a></li>
+                                class="text-sm text-gray-600 hover:text-brand-600 transition">Arıza Talebi</a></li>
                         <li><a href="{{ route('requests.inventory') }}"
-                                class="text-sm text-gray-600 hover:text-cyan-500 transition">Envanter Talebi</a></li>
+                                class="text-sm text-gray-600 hover:text-brand-600 transition">Envanter Talebi</a></li>
+                        <li><a href="{{ route('privacy') }}"
+                                class="text-sm text-gray-600 hover:text-brand-600 transition">Gizlilik Politikası</a></li>
+                        <li><a href="{{ route('terms') }}"
+                                class="text-sm text-gray-600 hover:text-brand-600 transition">Kullanım Koşulları</a></li>
                     </ul>
                 </div>
 

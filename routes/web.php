@@ -59,3 +59,7 @@ Route::get('/sitemap.xml', function () {
     $services = \App\Models\Service::all();
     return response()->view('sitemap', compact('services'))->header('Content-Type', 'text/xml');
 });
+
+// Legal Pages
+Route::view('/gizlilik-politikasi', 'legal.privacy')->name('privacy');
+Route::view('/kullanim-kosullari', 'legal.terms')->name('terms');
