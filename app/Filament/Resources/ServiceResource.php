@@ -24,39 +24,76 @@ class ServiceResource extends Resource
     {
         return $form
             ->schema([
-                Forms\Components\Section::make('İçerik Bilgileri')
+                Forms\Components\Grid::make(3)
                     ->schema([
-                        Forms\Components\TextInput::make('title')
-                            ->label('Başlık')
-                            ->required()
-                            ->live(onBlur: true)
-                            ->afterStateUpdated(fn(string $operation, $state, Forms\Set $set) => $operation === 'create' ? $set('slug', Str::slug($state)) : null),
+                        // Main Content (2 Columns)
+                        Forms\Components\Group::make()
+                            ->schema([
+                                Forms\Components\Section::make('İçerik Bilgileri')
+                                    ->schema([
+                                        Forms\Components\TextInput::make('title')
+                                            ->label('Başlık')
+                                            ->required()
+                                            ->live(onBlur: true)
+                                            ->afterStateUpdated(fn(string $operation, $state, Forms\Set $set) => $operation === 'create' ? $set('slug', Str::slug($state)) : null)
+                                            ->columnSpanFull(),
 
-                        Forms\Components\TextInput::make('slug')
-                            ->label('URL Yolu (Slug)')
-                            ->required()
-                            ->unique(ignoreRecord: true),
+                                        Forms\Components\TextInput::make('slug')
+                                            ->label('URL Yolu (Slug)')
+                                            ->required()
+                                            ->unique(ignoreRecord: true)
+                                            ->helperText('Bu alan otomatik oluşturulur, ancak manuel olarak düzenleyebilirsiniz.')
+                                            ->columnSpanFull(),
 
-                        Forms\Components\RichEditor::make('content')
-                            ->label('İçerik')
-                            ->required()
-                            ->columnSpanFull(),
+                                        Forms\Components\RichEditor::make('content')
+                                            ->label('İçerik Detayları')
+                                            ->required()
+                                            ->columnSpanFull()
+                                            ->extraAttributes(['style' => 'min-height: 400px;']),
+                                    ]),
+                            ])
+                            ->columnSpan(['lg' => 2]),
 
-                        Forms\Components\FileUpload::make('image')
-                            ->label('Kapak Görseli')
-                            ->image()
-                            ->directory('services')
-                            ->disk('public')
-                            ->maxSize(5120)
-                            ->columnSpanFull(),
-                    ]),
+                        // Sidebar (1 Column)
+                        Forms\Components\Group::make()
+                            ->schema([
+                                Forms\Components\Section::make('Medya')
+                                    ->schema([
+                                        Forms\Components\FileUpload::make('image')
+                                            ->label('Kapak Görseli')
+                                            ->image()
+                                            ->directory('services')
+                                            ->disk('public')
+                                            ->maxSize(5120)
+                                            ->columnSpanFull()
+                                            ->imageEditor(),
+                                    ]),
 
-                Forms\Components\Section::make('SEO Ayarları')
-                    ->schema([
-                        Forms\Components\TextInput::make('seo_title')
-                            ->label('SEO Başlığı'),
-                        Forms\Components\Textarea::make('seo_description')
-                            ->label('SEO Açıklaması'),
+                                Forms\Components\Section::make('SEO Ayarları')
+                                    ->schema([
+                                        Forms\Components\TextInput::make('seo_title')
+                                            ->label('SEO Başlığı')
+                                            ->placeholder('Google arama sonuçlarında görünecek başlık'),
+
+                                        Forms\Components\Textarea::make('seo_description')
+                                            ->label('SEO Açıklaması')
+                                            ->rows(3)
+                                            ->placeholder('Sayfa içeriğini özetleyen kısa açıklama'),
+                                    ]),
+
+                                Forms\Components\Section::make('Görünürlük')
+                                    ->schema([
+                                        Forms\Components\Placeholder::make('created_at')
+                                            ->label('Oluşturulma Tarihi')
+                                            ->content(fn($record) => $record?->created_at?->diffForHumans() ?? '-'),
+
+                                        Forms\Components\Placeholder::make('updated_at')
+                                            ->label('Son Güncelleme')
+                                            ->content(fn($record) => $record?->updated_at?->diffForHumans() ?? '-'),
+                                    ])
+                                    ->hidden(fn($record) => $record === null),
+                            ])
+                            ->columnSpan(['lg' => 1]),
                     ]),
             ]);
     }
