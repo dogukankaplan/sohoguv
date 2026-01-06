@@ -3,6 +3,7 @@
 @section('content')
 
 {{-- Modern Slider Section --}}
+{{-- ULTRA PREMIUM SLIDER SECTION --}}
 @if($sliders->isNotEmpty())
 <div x-data="{
     currentSlide: 0,
@@ -10,14 +11,16 @@
     autoplay: true,
     interval: null,
     init() {
-        if (this.autoplay) {
-            this.startAutoplay();
-        }
+        if (this.autoplay) this.startAutoplay();
+        // Preload images
+        @foreach($sliders as $slider)
+            new Image().src = '{{ Storage::url($slider->image) }}';
+        @endforeach
     },
     startAutoplay() {
         this.interval = setInterval(() => {
             this.next();
-        }, 5000);
+        }, 7000); // 7 seconds per slide
     },
     stopAutoplay() {
         clearInterval(this.interval);
@@ -34,93 +37,121 @@
         setTimeout(() => this.startAutoplay(), 10000);
     }
 }" 
-@mouseenter="stopAutoplay()" 
-@mouseleave="startAutoplay()"
-class="relative w-full h-[400px] sm:h-[500px] lg:h-[600px] overflow-hidden bg-slate-900">
-    
-    {{-- Slides --}}
-    <div class="relative w-full h-full">
-        @foreach($sliders as $index => $slider)
-        <div x-show="currentSlide === {{ $index }}"
-             x-transition:enter="transition ease-out duration-700"
-             x-transition:enter-start="opacity-0 transform translate-x-full"
-             x-transition:enter-end="opacity-100 transform translate-x-0"
-             x-transition:leave="transition ease-in duration-700"
-             x-transition:leave-start="opacity-100 transform translate-x-0"
-             x-transition:leave-end="opacity-0 transform -translate-x-full"
-             class="absolute inset-0">
-            
-            {{-- Background Image --}}
+class="relative min-h-screen flex items-center justify-center overflow-hidden bg-black group">
+
+    {{-- Slides Container --}}
+    @foreach($sliders as $index => $slider)
+    <div x-show="currentSlide === {{ $index }}"
+         x-transition:enter="transition ease-in-out duration-1000"
+         x-transition:enter-start="opacity-0"
+         x-transition:enter-end="opacity-100"
+         x-transition:leave="transition ease-in-out duration-1000"
+         x-transition:leave-start="opacity-100"
+         x-transition:leave-end="opacity-0"
+         class="absolute inset-0 z-0">
+        
+        {{-- Background Image with Ken Burns Effect --}}
+        <div class="absolute inset-0 overflow-hidden">
             @if($slider->image)
             <img src="{{ Storage::url($slider->image) }}" 
                  alt="{{ $slider->title }}"
-                 class="absolute inset-0 w-full h-full object-cover">
-            <div class="absolute inset-0 bg-gradient-to-r from-slate-900/70 via-slate-900/50 to-transparent"></div>
+                 class="w-full h-full object-cover transform origin-center transition-transform duration-[7000ms] ease-linear"
+                 :class="currentSlide === {{ $index }} ? 'scale-110' : 'scale-100'">
             @else
-            <div class="absolute inset-0 bg-gradient-to-br from-brand-600 to-accent-600"></div>
+            <div class="w-full h-full bg-gradient-to-br from-slate-900 to-black"></div>
             @endif
             
-            {{-- Content --}}
-            <div class="absolute inset-0 flex items-center">
-                <div class="container-custom">
-                    <div class="max-w-2xl space-y-4 lg:space-y-6 text-white">
-                        <h1 class="text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-bold leading-tight animate-slide-up">
-                            {{ $slider->title }}
-                        </h1>
-                        
-                        @if($slider->subtitle)
-                        <p class="text-lg sm:text-xl lg:text-2xl font-light opacity-90 animate-slide-up" style="animation-delay: 0.1s;">
-                            {{ $slider->subtitle }}
-                        </p>
-                        @endif
-                        
-                        @if($slider->description)
-                        <p class="text-base sm:text-lg opacity-75 animate-slide-up" style="animation-delay: 0.2s;">
-                            {{ $slider->description }}
-                        </p>
-                        @endif
-                        
-                        @if($slider->button_text && $slider->button_link)
-                        <div class="pt-4 animate-slide-up" style="animation-delay: 0.3s;">
-                            <a href="{{ $slider->button_link }}" class="btn-gradient-primary">
-                                {{ $slider->button_text }}
-                                <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                                </svg>
-                            </a>
-                        </div>
-                        @endif
-                    </div>
+            {{-- Cinematic Overlays --}}
+            <div class="absolute inset-0 bg-black/50"></div>
+            <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent"></div>
+            <div class="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-20 mix-blend-overlay"></div>
+        </div>
+
+        {{-- Slide Content --}}
+        <div class="absolute inset-0 flex items-center justify-center z-10 px-4">
+            <div class="container-custom flex flex-col items-center text-center mt-16 sm:mt-0">
+                
+                {{-- Badge/Subtitle --}}
+                @if($slider->subtitle)
+                <div x-show="currentSlide === {{ $index }}"
+                     x-transition:enter="transition ease-out duration-700 delay-300"
+                     x-transition:enter-start="opacity-0 translate-y-8"
+                     x-transition:enter-end="opacity-100 translate-y-0"
+                     class="inline-flex items-center gap-3 px-5 py-2.5 rounded-full bg-white/5 backdrop-blur-xl border border-white/10 text-white font-medium mb-8">
+                    <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+                    <span class="tracking-wide text-sm uppercase">{{ $slider->subtitle }}</span>
                 </div>
+                @endif
+
+                {{-- Main Title --}}
+                <h1 x-show="currentSlide === {{ $index }}"
+                    x-transition:enter="transition ease-out duration-700 delay-500"
+                    x-transition:enter-start="opacity-0 translate-y-8"
+                    x-transition:enter-end="opacity-100 translate-y-0"
+                    class="text-5xl md:text-7xl lg:text-8xl font-black text-white tracking-tighter leading-[1.1] mb-8 drop-shadow-2xl max-w-5xl">
+                    {{ $slider->title }}
+                </h1>
+
+                {{-- Description --}}
+                @if($slider->description)
+                <p x-show="currentSlide === {{ $index }}"
+                   x-transition:enter="transition ease-out duration-700 delay-700"
+                   x-transition:enter-start="opacity-0 translate-y-8"
+                   x-transition:enter-end="opacity-100 translate-y-0"
+                   class="text-xl md:text-2xl text-slate-300 mb-12 max-w-3xl mx-auto leading-relaxed font-light">
+                    {{ $slider->description }}
+                </p>
+                @endif
+
+                {{-- CTA Button --}}
+                @if($slider->button_text && $slider->button_link)
+                <div x-show="currentSlide === {{ $index }}"
+                     x-transition:enter="transition ease-out duration-700 delay-1000"
+                     x-transition:enter-start="opacity-0 translate-y-8"
+                     x-transition:enter-end="opacity-100 translate-y-0">
+                    <a href="{{ $slider->button_link }}" 
+                       class="group relative px-8 py-5 rounded-2xl bg-brand-600 text-white font-bold text-lg overflow-hidden shadow-2xl hover:scale-105 transition-all">
+                        <div class="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000"></div>
+                        <span class="relative flex items-center gap-2">
+                            {{ $slider->button_text }}
+                            <svg class="w-5 h-5 group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" /></svg>
+                        </span>
+                    </a>
+                </div>
+                @endif
             </div>
         </div>
-        @endforeach
     </div>
-    
-    {{-- Navigation Arrows - Hidden on small screens --}}
-    <button @click="prev()" 
-            class="hidden lg:flex absolute left-4 top-1/2 -translate-y-1/2 w-12 h-12 items-center justify-center rounded-full bg-white/10 backdrop-blur-sm hover:bg-white/20 transition-all text-white z-10">
-        <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
-        </svg>
+    @endforeach
+
+    {{-- Navigation Arrows --}}
+    <button @click="prev()" class="absolute left-4 top-1/2 -translate-y-1/2 w-14 h-14 hidden md:flex items-center justify-center rounded-full bg-white/5 hover:bg-white/10 backdrop-blur-md border border-white/10 text-white transition-all hover:scale-110 z-20 group">
+        <svg class="w-6 h-6 group-hover:-translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" /></svg>
     </button>
-    
-    <button @click="next()" 
-            class="hidden lg:flex absolute right-4 top-1/2 -translate-y-1/2 w-12 h-12 items-center justify-center rounded-full bg-white/10 backdrop-blur-sm hover:bg-white/20 transition-all text-white z-10">
-        <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
-        </svg>
+    <button @click="next()" class="absolute right-4 top-1/2 -translate-y-1/2 w-14 h-14 hidden md:flex items-center justify-center rounded-full bg-white/5 hover:bg-white/10 backdrop-blur-md border border-white/10 text-white transition-all hover:scale-110 z-20 group">
+        <svg class="w-6 h-6 group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" /></svg>
     </button>
-    
-    {{-- Indicator Dots --}}
-    <div class="absolute bottom-6 left-1/2 -translate-x-1/2 flex gap-2 z-10">
+
+    {{-- Indicators --}}
+    <div class="absolute bottom-32 sm:bottom-24 left-1/2 -translate-x-1/2 flex gap-3 z-20">
         @foreach($sliders as $index => $slider)
-        <button @click="goTo({{ $index }})"
-                class="w-2 h-2 sm:w-3 sm:h-3 rounded-full transition-all duration-300"
-                :class="currentSlide === {{ $index }} ? 'bg-white w-6 sm:w-8' : 'bg-white/50 hover:bg-white/75'">
+        <button @click="goTo({{ $index }})" 
+                class="transition-all duration-500 rounded-full h-1.5"
+                :class="currentSlide === {{ $index }} ? 'w-12 bg-brand-500' : 'w-4 bg-white/30 hover:bg-white/50'">
         </button>
         @endforeach
     </div>
+
+    {{-- Tech Strip at Bottom (Consistent) --}}
+    <div class="absolute bottom-0 left-0 right-0 border-t border-white/5 bg-black/40 backdrop-blur-md py-4 sm:py-6 overflow-hidden z-20">
+        <div class="flex flex-wrap justify-center gap-6 sm:gap-12 px-4">
+             <div class="flex items-center gap-2 text-white/80 font-mono text-xs sm:text-sm uppercase tracking-widest"><span class="w-2 h-2 rounded-full bg-brand-500"></span> 7/24 İzleme</div>
+             <div class="flex items-center gap-2 text-white/80 font-mono text-xs sm:text-sm uppercase tracking-widest"><span class="w-2 h-2 rounded-full bg-cyan-500"></span> AI Analiz</div>
+             <div class="flex items-center gap-2 text-white/80 font-mono text-xs sm:text-sm uppercase tracking-widest"><span class="w-2 h-2 rounded-full bg-emerald-500"></span> Bulut</div>
+             <div class="hidden sm:flex items-center gap-2 text-white/80 font-mono text-xs sm:text-sm uppercase tracking-widest"><span class="w-2 h-2 rounded-full bg-purple-500"></span> Mobil</div>
+        </div>
+    </div>
+
 </div>
 @endif
 
@@ -128,6 +159,8 @@ class="relative w-full h-[400px] sm:h-[500px] lg:h-[600px] overflow-hidden bg-sl
     @switch($section->type)
         @case('hero')
             {{-- ULTRA PREMIUM HERO SECTION - REDESIGNED --}}
+            {{-- Only show if Sliders are empty (Fallback) --}}
+            @if($sliders->isEmpty())
             <div class="relative min-h-screen flex items-center justify-center overflow-hidden group">
                 
                 {{-- 1. Background Image Wrapper --}}
