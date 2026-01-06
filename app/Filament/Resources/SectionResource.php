@@ -56,7 +56,17 @@ class SectionResource extends Resource
                             ->image()
                             ->directory('sections')
                             ->disk('public')
+                            ->directory('sections')
+                            ->disk('public')
                             ->maxSize(5120),
+
+                        Forms\Components\FileUpload::make('settings.bg_image')
+                            ->label('Arka Plan Görseli (Opsiyonel)')
+                            ->image()
+                            ->directory('backgrounds')
+                            ->disk('public')
+                            ->maxSize(10240) // Allow larger for BG
+                            ->visible(fn(Forms\Get $get) => in_array($get('type'), ['hero', 'cta', 'video'])),
 
                         Forms\Components\Textarea::make('content')
                             ->label(fn(Forms\Get $get) => $get('type') === 'video' ? 'Youtube Video Linki' : 'İçerik')

@@ -130,6 +130,14 @@ class="relative w-full h-[400px] sm:h-[500px] lg:h-[600px] overflow-hidden bg-sl
             {{-- Premium Hero Section - Expert Design --}}
             <div class="relative min-h-screen flex items-center overflow-hidden bg-gradient-to-br from-slate-50 via-white to-slate-50">
                 
+                {{-- Dynamic Background Image --}}
+                @if(isset($section->settings['bg_image']) && $section->settings['bg_image'])
+                    <div class="absolute inset-0 z-0">
+                        <img src="{{ Storage::url($section->settings['bg_image']) }}" alt="Background" class="w-full h-full object-cover">
+                        <div class="absolute inset-0 bg-white/80 backdrop-blur-[2px]"></div> {{-- Light Overlay for text readability --}}
+                    </div>
+                @endif
+
                 {{-- Animated Background Orbs - Subtle & Professional --}}
                 <div class="absolute inset-0 overflow-hidden pointer-events-none">
                     <div class="absolute top-20 right-[10%] w-96 h-96 bg-brand-400/10 rounded-full blur-3xl animate-float"></div>
