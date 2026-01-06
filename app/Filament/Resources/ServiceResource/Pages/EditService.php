@@ -18,11 +18,5 @@ class EditService extends EditRecord
         ];
     }
 
-    protected function mutateFormDataBeforeSave(array $data): array
-    {
-        if (isset($data['image']) && $data['image'] instanceof TemporaryUploadedFile) {
-            $data['image'] = $data['image']->store('services', 'public');
-        }
-        return $data;
-    }
+
 }

@@ -127,212 +127,91 @@ class="relative w-full h-[400px] sm:h-[500px] lg:h-[600px] overflow-hidden bg-sl
 @foreach($sections as $section)
     @switch($section->type)
         @case('hero')
-            {{-- Premium Hero Section - Expert Design --}}
-            <div class="relative min-h-screen flex items-center overflow-hidden bg-gradient-to-br from-slate-50 via-white to-slate-50">
+            {{-- ULTRA PREMIUM HERO SECTION - CINEMATIC TEXT OVER IMAGE --}}
+            <div class="relative min-h-[85vh] flex items-center justify-center overflow-hidden group">
                 
-                {{-- Dynamic Background Image --}}
-                @if(isset($section->settings['bg_image']) && $section->settings['bg_image'])
-                    <div class="absolute inset-0 z-0">
-                        <img src="{{ Storage::url($section->settings['bg_image']) }}" alt="Background" class="w-full h-full object-cover">
-                        {{-- Removed overlay to allow full visibility as requested --}}
-                    </div>
-                @endif
-
-                {{-- Animated Background Orbs - Subtle & Professional --}}
-                <div class="absolute inset-0 overflow-hidden pointer-events-none">
-                    <div class="absolute top-20 right-[10%] w-96 h-96 bg-brand-400/10 rounded-full blur-3xl animate-float"></div>
-                    <div class="absolute bottom-20 left-[15%] w-80 h-80 bg-accent-400/10 rounded-full blur-3xl animate-float" style="animation-delay: -2s; animation-duration: 8s;"></div>
-                    <div class="absolute top-1/2 right-[30%] w-64 h-64 bg-brand-300/5 rounded-full blur-2xl animate-float" style="animation-delay: -4s; animation-duration: 10s;"></div>
+                {{-- 1. Background Image Wrapper --}}
+                <div class="absolute inset-0 z-0">
+                    @if(isset($section->settings['bg_image']) && $section->settings['bg_image'])
+                        <img src="{{ Storage::url($section->settings['bg_image']) }}" 
+                             alt="Hero Background" 
+                             class="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-[20s] ease-linear">
+                    @else
+                        {{-- Fallback Gradient if no image --}}
+                        <div class="w-full h-full bg-gradient-to-br from-slate-900 to-slate-800"></div>
+                    @endif
+                    
+                    {{-- Cinematic Overlay: Dark gradient from bottom for text readability --}}
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-black/20"></div>
+                    
+                    {{-- Grain Overlay for Texture (Optional, adds premium feel) --}}
+                    <div class="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-10 mix-blend-overlay"></div>
                 </div>
 
-                {{-- Grid Pattern Overlay --}}
-                <div class="absolute inset-0 bg-[linear-gradient(to_right,#8080800a_1px,transparent_1px),linear-gradient(to_bottom,#8080800a_1px,transparent_1px)] bg-[size:14px_24px] pointer-events-none"></div>
-
-                <div class="container-custom relative z-10 py-20 lg:py-32">
-                    <div class="grid lg:grid-cols-12 gap-8 lg:gap-16 items-center">
+                {{-- 2. Content Container --}}
+                <div class="container-custom relative z-10 px-4">
+                    <div class="max-w-5xl mx-auto text-center">
                         
-                        {{-- Left Content - 7 columns --}}
-                        <div class="lg:col-span-7 space-y-8">
-                            
-                            {{-- Badge/Tag --}}
-                            <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-brand-50 border border-brand-100 text-brand-700 text-sm font-medium animate-slide-down">
-                                <div class="w-2 h-2 rounded-full bg-brand-500 animate-pulse"></div>
-                                <span>Türkiye'nin Güvenlik Lideri</span>
+                        {{-- Top Badge --}}
+                        <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-white/90 text-sm font-medium mb-8 animate-fade-in-down">
+                            <span class="relative flex h-2 w-2">
+                              <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
+                              <span class="relative inline-flex rounded-full h-2 w-2 bg-green-500"></span>
+                            </span>
+                            <span>Türkiye'nin Güvenlik Lideri</span>
+                        </div>
+
+                        {{-- Main Headline --}}
+                        <h1 class="text-4xl md:text-6xl lg:text-7xl font-bold text-white tracking-tight leading-tight mb-8 drop-shadow-2xl animate-title">
+                            {{ $section->title ?? setting('hero_title', 'Güvenliğiniz,') }}
+                            <span class="text-transparent bg-clip-text bg-gradient-to-r from-brand-400 to-accent-400">
+                                Bizim İşimiz
+                            </span>
+                        </h1>
+
+                        {{-- Subtitle --}}
+                        <p class="text-lg md:text-2xl text-slate-200 mb-10 max-w-3xl mx-auto leading-relaxed drop-shadow-md animate-fade-in-up">
+                            {{ $section->subtitle ?? setting('hero_subtitle', 'Yeni nesil güvenlik teknolojileri ile işletmenizi ve evinizi 7/24 koruma altına alın.') }}
+                        </p>
+
+                        {{-- CTA Buttons --}}
+                        <div class="flex flex-col sm:flex-row items-center justify-center gap-4 animate-fade-in-up" style="animation-delay: 200ms;">
+                            <a href="{{ route('contact') }}" class="min-w-[200px] px-8 py-4 rounded-xl bg-brand-600 hover:bg-brand-500 text-white font-semibold text-lg transition-all duration-300 transform hover:-translate-y-1 shadow-[0_0_20px_rgba(37,99,235,0.5)]">
+                                Ücretsiz Keşif
+                            </a>
+                            <a href="{{ route('services.index') }}" class="min-w-[200px] px-8 py-4 rounded-xl bg-white/10 backdrop-blur-md border border-white/20 hover:bg-white/20 text-white font-semibold text-lg transition-all duration-300 transform hover:-translate-y-1">
+                                Çözümlerimiz
+                            </a>
+                        </div>
+
+                        {{-- Stats / Trust Indicators --}}
+                        <div class="mt-16 pt-8 border-t border-white/10 grid grid-cols-2 md:grid-cols-4 gap-8 animate-fade-in-up" style="animation-delay: 400ms;">
+                            <div>
+                                <div class="text-3xl font-bold text-white mb-1">15+</div>
+                                <div class="text-sm text-slate-400">Yıllık Tecrübe</div>
                             </div>
-
-                            {{-- Main Headline - Bold & Impactful --}}
-                            <h1 class="text-2xl sm:text-3xl lg:text-4xl xl:text-5xl font-bold leading-[1.1] tracking-tight text-slate-900 animate-slide-up">
-                                <span class="block">{{ $section->title ?? setting('hero_title', 'Güvenliğiniz,') }}</span>
-                                <span class="block mt-2 bg-gradient-to-r from-brand-600 via-accent-600 to-brand-700 bg-clip-text text-transparent">
-                                    Bizim İşimiz
-                                </span>
-                            </h1>
-
-                            {{-- Subtitle - Large, Readable --}}
-                            <p class="text-lg sm:text-xl lg:text-2xl text-slate-600 leading-relaxed max-w-2xl animate-slide-up" style="animation-delay: 0.1s;">
-                                {{ $section->subtitle ?? setting('hero_subtitle', 'Yeni nesil güvenlik teknolojileri ile işletmenizi ve evinizi 7/24 koruma altına alın.') }}
-                            </p>
-
-                            {{-- Feature Pills --}}
-                            <div class="flex flex-wrap gap-3 animate-slide-up" style="animation-delay: 0.2s;">
-                                <div class="flex items-center gap-2 px-4 py-2 rounded-xl bg-white border border-slate-200 shadow-sm hover:shadow-md transition-all">
-                                    <svg class="w-5 h-5 text-green-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
-                                    </svg>
-                                    <span class="text-sm font-medium text-slate-700">24/7 Teknik Destek</span>
-                                </div>
-                                <div class="flex items-center gap-2 px-4 py-2 rounded-xl bg-white border border-slate-200 shadow-sm hover:shadow-md transition-all">
-                                    <svg class="w-5 h-5 text-green-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
-                                    </svg>
-                                    <span class="text-sm font-medium text-slate-700">81 İlde Hizmet</span>
-                                </div>
-                                <div class="flex items-center gap-2 px-4 py-2 rounded-xl bg-white border border-slate-200 shadow-sm hover:shadow-md transition-all">
-                                    <svg class="w-5 h-5 text-green-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
-                                    </svg>
-                                    <span class="text-sm font-medium text-slate-700">Garantili Kurulum</span>
-                                </div>
+                            <div>
+                                <div class="text-3xl font-bold text-white mb-1">81</div>
+                                <div class="text-sm text-slate-400">İlde Hizmet</div>
                             </div>
-
-                            {{-- CTA Buttons - Professional Spacing --}}
-                            <div class="flex flex-col sm:flex-row gap-4 pt-4 animate-slide-up" style="animation-delay: 0.3s;">
-                                <a href="{{ route('contact') }}" class="group inline-flex items-center justify-center gap-2 px-8 py-4 rounded-2xl bg-brand-600 text-white font-semibold text-base hover:bg-brand-700 active:bg-brand-800 transition-all duration-200 shadow-lg hover:shadow-xl hover:shadow-brand-600/20">
-                                    <span>Ücretsiz Keşif</span>
-                                    <svg class="w-5 h-5 group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                                    </svg>
-                                </a>
-                                <a href="{{ route('services.index') }}" class="group inline-flex items-center justify-center gap-2 px-8 py-4 rounded-2xl bg-white text-slate-900 font-semibold border border-slate-200 hover:border-slate-300 hover:bg-slate-50 transition-all duration-200 shadow-sm hover:shadow-md">
-                                    <span>Çözümlerimiz</span>
-                                    <svg class="w-5 h-5 text-brand-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
-                                    </svg>
-                                </a>
+                            <div>
+                                <div class="text-3xl font-bold text-white mb-1">5K+</div>
+                                <div class="text-sm text-slate-400">Mutlu Müşteri</div>
                             </div>
-
-                            {{-- Social Proof - Compact Stats --}}
-                            <div class="flex items-center gap-8 pt-8 border-t border-slate-200 animate-slide-up" style="animation-delay: 0.4s;">
-                                <div>
-                                    <div class="text-3xl font-bold text-slate-900">15+</div>
-                                    <div class="text-sm text-slate-600">Yıllık Tecrübe</div>
-                                </div>
-                                <div class="w-px h-12 bg-slate-200"></div>
-                                <div>
-                                    <div class="text-3xl font-bold text-slate-900">5K+</div>
-                                    <div class="text-sm text-slate-600">Mutlu Müşteri</div>
-                                </div>
-                                <div class="w-px h-12 bg-slate-200"></div>
-                                <div>
-                                    <div class="text-3xl font-bold text-slate-900">%99</div>
-                                    <div class="text-sm text-slate-600">Memnuniyet</div>
-                                </div>
+                            <div>
+                                <div class="text-3xl font-bold text-white mb-1">24/7</div>
+                                <div class="text-sm text-slate-400">Teknik Destek</div>
                             </div>
                         </div>
 
-                        {{-- Right Visual - 5 columns --}}
-                        <div class="lg:col-span-5 relative animate-scale-in" style="animation-delay: 0.2s;">
-                            <div class="relative">
-                                {{-- Main Image Container with Glassmorphism --}}
-                                <div class="relative rounded-3xl overflow-hidden shadow-2xl">
-                                    <div class="aspect-[4/5] bg-gradient-to-br from-brand-500 to-accent-500">
-                                        @if($section->image)
-                                        <img src="{{ Storage::url($section->image) }}" 
-                                             alt="Hero" 
-                                             class="w-full h-full object-cover mix-blend-overlay opacity-80">
-                                        @else
-                                        {{-- Default Pattern/Icon --}}
-                                        <div class="w-full h-full flex items-center justify-center">
-                                            <svg class="w-48 h-48 text-white/20" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="0.5" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
-                                            </svg>
-                                        </div>
-                                        @endif
-                                    </div>
-                                </div>
-
-                                {{-- Floating Stats Card --}}
-                                <div class="absolute -bottom-6 -left-6 bg-white rounded-2xl shadow-xl p-4 border border-slate-100 backdrop-blur-sm animate-float hidden lg:block">
-                                    <div class="flex items-center gap-3">
-                                        <div class="w-12 h-12 rounded-xl bg-green-100 flex items-center justify-center">
-                                            <svg class="w-6 h-6 text-green-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-                                            </svg>
-                                        </div>
-                                        <div>
-                                            <div class="text-sm font-semibold text-slate-900">7/24 Aktif</div>
-                                            <div class="text-xs text-slate-600">Kesintisiz Hizmet</div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                {{-- Floating Security Badge --}}
-                                <div class="absolute -top-6 -right-6 bg-white rounded-2xl shadow-xl p-4 border border-slate-100 backdrop-blur-sm animate-float hidden lg:block" style="animation-delay: -1s;">
-                                    <div class="flex items-center gap-3">
-                                        <div class="w-12 h-12 rounded-xl bg-brand-100 flex items-center justify-center">
-                                            <svg class="w-6 h-6 text-brand-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
-                                            </svg>
-                                        </div>
-                                        <div>
-                                            <div class="text-sm font-semibold text-slate-900">Güvenli</div>
-                                            <div class="text-xs text-slate-600">SSL Sertifikalı</div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
                     </div>
                 </div>
 
                 {{-- Scroll Indicator --}}
-                <div class="absolute bottom-8 left-1/2 -translate-x-1/2 hidden lg:flex flex-col items-center gap-2 animate-bounce">
-                    <span class="text-xs text-slate-400 uppercase tracking-wide">Keşfet</span>
-                    <svg class="w-6 h-6 text-slate-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3" />
+                <div class="absolute bottom-10 left-1/2 -translate-x-1/2 animate-bounce opacity-50">
+                    <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path>
                     </svg>
-                </div>
-            </div>
-            @break
-                                    <span class="text-sm font-medium text-gray-500">Uzman Teknik Destek</span>
-                                </div>
-                            </div>
-                        </div>
-
-                        {{-- Hero Image / Dashboard Mockup --}}
-                        <div class="relative lg:h-[700px] flex items-center justify-center animate-fade-in" style="animation-delay: 0.3s;">
-                            @if($section->image)
-                                <img src="{{ Storage::url($section->image) }}" alt="Hero Image" class="relative z-10 w-full rounded-3xl shadow-2xl border border-gray-100">
-                            @else
-                            <div class="relative z-10 w-full aspect-square max-w-[600px]">
-                                {{-- Main Circle Image --}}
-                                <div class="absolute inset-4 rounded-full overflow-hidden shadow-2xl border-8 border-white/50 backdrop-blur-sm">
-                                    <img src="https://images.unsplash.com/photo-1557597774-9d273605dfa9?q=80&w=2070&auto=format&fit=crop" class="w-full h-full object-cover scale-110 hover:scale-100 transition duration-1000" alt="Security Dashboard">
-                                    
-                                    {{-- Overlay Gradient --}}
-                                    <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"></div>
-                                    
-                                    {{-- Floating UI Card 1 --}}
-                                    <div class="absolute bottom-12 left-12 bg-white/90 backdrop-blur-xl p-4 rounded-2xl shadow-strong border border-white/50 animate-float">
-                                        <div class="flex items-center gap-3">
-                                            <div class="w-10 h-10 rounded-xl bg-green-100 flex items-center justify-center text-green-600">
-                                                <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
-                                            </div>
-                                            <div>
-                                                <div class="text-sm font-bold text-gray-900">Sistem Aktif</div>
-                                                <div class="text-xs text-gray-500">Tüm sensörler devrede</div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                {{-- Decorative Rings --}}
-                                <div class="absolute inset-0 rounded-full border border-cyan-500/10 scale-90 animate-pulse"></div>
-                                <div class="absolute inset-0 rounded-full border border-purple-500/10 scale-110 animate-pulse" style="animation-delay: 1s;"></div>
-                            </div>
-                            @endif
-                        </div>
-                    </div>
                 </div>
             </div>
             @break
