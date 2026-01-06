@@ -81,35 +81,63 @@
       x-data="{ pageLoaded: false }" 
       x-init="window.addEventListener('load', () => setTimeout(() => pageLoaded = true, 500))">
     
-    {{-- Preloader --}}
+    {{-- Expert Premium Preloader --}}
     <div x-show="!pageLoaded" 
-         x-transition:leave="transition ease-in duration-700"
-         x-transition:leave-start="opacity-100"
-         x-transition:leave-end="opacity-0"
-         class="fixed inset-0 z-[9999] bg-black flex items-center justify-center">
-        <div class="relative flex flex-col items-center">
-            @if(isset($siteIdentity->logo) && $siteIdentity->logo)
-                <img src="{{ Storage::url($siteIdentity->logo) }}" 
-                     alt="{{ $siteIdentity->site_name ?? 'SOHO' }}" 
-                     class="h-16 md:h-24 w-auto animate-pulse">
-            @else
-                <div class="text-4xl font-bold text-white animate-pulse">SOHO</div>
-            @endif
-            
-            {{-- Loading Spinner --}}
-            <div class="mt-8">
-                <div class="w-12 h-1 bg-white/20 rounded-full overflow-hidden">
-                    <div class="h-full bg-brand-500 w-1/2 animate-[loading_1s_ease-in-out_infinite]"></div>
+         x-transition:leave="transition ease-in duration-1000"
+         x-transition:leave-start="opacity-100 transform scale-100"
+         x-transition:leave-end="opacity-0 transform scale-105"
+         class="fixed inset-0 z-[9999] flex items-center justify-center overflow-hidden bg-[#0a0a0a]">
+        
+        {{-- Background Effects --}}
+        <div class="absolute inset-0 bg-[radial-gradient(circle_at_center,_#1a365d_0%,_#000000_70%)] opacity-40"></div>
+        <div class="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-5 mix-blend-overlay"></div>
+        
+        {{-- Animated Security Grid --}}
+        <div class="absolute inset-0 bg-[linear-gradient(rgba(14,165,233,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(14,165,233,0.03)_1px,transparent_1px)] bg-[size:40px_40px] [mask-image:radial-gradient(ellipse_at_center,black_40%,transparent_70%)]"></div>
+
+        <div class="relative z-10 flex flex-col items-center justify-center">
+            {{-- Logo Container --}}
+            <div class="relative mb-10 group">
+                {{-- Radar/Scanner Effect --}}
+                <div class="absolute -inset-8 bg-brand-500/20 rounded-full blur-xl animate-pulse"></div>
+                <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120px] h-[120px] rounded-full border border-brand-500/30 animate-[spin_4s_linear_infinite]"></div>
+                <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[100px] h-[100px] rounded-full border border-dashed border-cyan-400/40 animate-[spin_8s_linear_infinite_reverse]"></div>
+
+                @if(isset($siteIdentity->logo) && $siteIdentity->logo)
+                    <img src="{{ Storage::url($siteIdentity->logo) }}" 
+                         alt="{{ $siteIdentity->site_name ?? 'SOHO' }}" 
+                         class="relative h-16 md:h-20 w-auto drop-shadow-[0_0_15px_rgba(14,165,233,0.5)]">
+                @else
+                    <h1 class="relative text-5xl font-black tracking-tighter text-transparent bg-clip-text bg-gradient-to-br from-white via-cyan-100 to-brand-200 drop-shadow-2xl">
+                        SOHO
+                    </h1>
+                @endif
+            </div>
+
+            {{-- Text & Progress --}}
+            <div class="flex flex-col items-center gap-4">
+                <div class="flex items-center gap-2 text-brand-300 font-mono text-xs tracking-[0.2em] uppercase animate-pulse">
+                    <span class="w-2 h-2 rounded-full bg-cyan-500"></span>
+                    Sistem Yükleniyor...
+                </div>
+                
+                {{-- High-Tech Progress Bar --}}
+                <div class="w-64 h-1 bg-gray-800 rounded-full overflow-hidden relative">
+                    <div class="absolute inset-0 bg-gradient-to-r from-transparent via-cyan-500/50 to-transparent w-1/2 animate-[shimmer_1.5s_infinite] translate-x-[-100%]"></div>
+                    <div class="h-full bg-gradient-to-r from-brand-600 to-cyan-400 w-0 animate-[progress_1.5s_ease-out_forwards]"></div>
                 </div>
             </div>
-            
-            <style>
-                @keyframes loading {
-                    0% { transform: translateX(-100%); }
-                    100% { transform: translateX(200%); }
-                }
-            </style>
         </div>
+
+        <style>
+            @keyframes shimmer {
+                100% { transform: translateX(200%); }
+            }
+            @keyframes progress {
+                0% { width: 0%; }
+                100% { width: 100%; }
+            }
+        </style>
     </div>
     @include('layouts.navigation')
 
