@@ -77,7 +77,40 @@
 
 </head>
 
-<body class="min-h: -full flex flex-col bg-white text-gray-900">
+<body class="min-h-full flex flex-col bg-white text-gray-900" 
+      x-data="{ pageLoaded: false }" 
+      x-init="window.addEventListener('load', () => setTimeout(() => pageLoaded = true, 500))">
+    
+    {{-- Preloader --}}
+    <div x-show="!pageLoaded" 
+         x-transition:leave="transition ease-in duration-700"
+         x-transition:leave-start="opacity-100"
+         x-transition:leave-end="opacity-0"
+         class="fixed inset-0 z-[9999] bg-black flex items-center justify-center">
+        <div class="relative flex flex-col items-center">
+            @if(isset($siteIdentity->logo) && $siteIdentity->logo)
+                <img src="{{ Storage::url($siteIdentity->logo) }}" 
+                     alt="{{ $siteIdentity->site_name ?? 'SOHO' }}" 
+                     class="h-16 md:h-24 w-auto animate-pulse">
+            @else
+                <div class="text-4xl font-bold text-white animate-pulse">SOHO</div>
+            @endif
+            
+            {{-- Loading Spinner --}}
+            <div class="mt-8">
+                <div class="w-12 h-1 bg-white/20 rounded-full overflow-hidden">
+                    <div class="h-full bg-brand-500 w-1/2 animate-[loading_1s_ease-in-out_infinite]"></div>
+                </div>
+            </div>
+            
+            <style>
+                @keyframes loading {
+                    0% { transform: translateX(-100%); }
+                    100% { transform: translateX(200%); }
+                }
+            </style>
+        </div>
+    </div>
     @include('layouts.navigation')
 
     <main class="flex-grow">
