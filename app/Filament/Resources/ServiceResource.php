@@ -48,8 +48,7 @@ class ServiceResource extends Resource
                                         Forms\Components\RichEditor::make('content')
                                             ->label('İçerik Detayları')
                                             ->required()
-                                            ->columnSpanFull()
-                                            ->extraAttributes(['style' => 'min-height: 400px;']),
+                                            ->columnSpanFull(),
                                     ]),
                             ])
                             ->columnSpan(['lg' => 2]),
