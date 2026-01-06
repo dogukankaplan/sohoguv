@@ -127,91 +127,92 @@ class="relative w-full h-[400px] sm:h-[500px] lg:h-[600px] overflow-hidden bg-sl
 @foreach($sections as $section)
     @switch($section->type)
         @case('hero')
-            {{-- ULTRA PREMIUM HERO SECTION - CINEMATIC TEXT OVER IMAGE --}}
-            <div class="relative min-h-[85vh] flex items-center justify-center overflow-hidden group">
+            {{-- ULTRA PREMIUM HERO SECTION - REDESIGNED --}}
+            <div class="relative min-h-screen flex items-center justify-center overflow-hidden group">
                 
                 {{-- 1. Background Image Wrapper --}}
                 <div class="absolute inset-0 z-0">
-                    @if(isset($section->settings['bg_image']) && $section->settings['bg_image'])
+                    {{-- Priority: Main Image -> Settings BG Image -> Gradient Fallback --}}
+                    @if($section->image)
+                        <img src="{{ Storage::url($section->image) }}" 
+                             alt="Hero Background" 
+                             class="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-[30s] ease-linear">
+                    @elseif(isset($section->settings['bg_image']) && $section->settings['bg_image'])
                         <img src="{{ Storage::url($section->settings['bg_image']) }}" 
                              alt="Hero Background" 
-                             class="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-[20s] ease-linear">
+                             class="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-[30s] ease-linear">
                     @else
-                        {{-- Fallback Gradient if no image --}}
-                        <div class="w-full h-full bg-gradient-to-br from-slate-900 to-slate-800"></div>
+                        {{-- Fallback Gradient --}}
+                        <div class="w-full h-full bg-gradient-to-br from-slate-900 via-slate-800 to-black"></div>
                     @endif
                     
-                    {{-- Cinematic Overlay: Dark gradient from bottom for text readability --}}
-                    <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-black/20"></div>
+                    {{-- Cinematic Overlay: Stronger darkness for text readability --}}
+                    <div class="absolute inset-0 bg-black/60"></div>
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent"></div>
                     
-                    {{-- Grain Overlay for Texture (Optional, adds premium feel) --}}
-                    <div class="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-10 mix-blend-overlay"></div>
+                    {{-- Texture --}}
+                    <div class="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-20 mix-blend-overlay"></div>
                 </div>
 
                 {{-- 2. Content Container --}}
-                <div class="container-custom relative z-10 px-4">
-                    <div class="max-w-5xl mx-auto text-center">
-                        
-                        {{-- Top Badge --}}
-                        <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-white/90 text-sm font-medium mb-8 animate-fade-in-down">
-                            <span class="relative flex h-2 w-2">
-                              <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
-                              <span class="relative inline-flex rounded-full h-2 w-2 bg-green-500"></span>
-                            </span>
-                            <span>Türkiye'nin Güvenlik Lideri</span>
+                <div class="container-custom relative z-10 px-4 h-full flex flex-col justify-center items-center text-center mt-16 sm:mt-0">
+                    
+                    {{-- Animated Badge --}}
+                    <div class="inline-flex items-center gap-3 px-5 py-2.5 rounded-full bg-white/5 backdrop-blur-xl border border-white/10 text-white font-medium mb-10 animate-fade-in-down shadow-2xl ring-1 ring-white/20">
+                        <div class="relative flex h-3 w-3">
+                          <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+                          <span class="relative inline-flex rounded-full h-3 w-3 bg-emerald-500"></span>
                         </div>
+                        <span class="tracking-wide text-sm uppercase">Güvenlikte Yeni Standart</span>
+                    </div>
 
-                        {{-- Main Headline --}}
-                        <h1 class="text-4xl md:text-6xl lg:text-7xl font-bold text-white tracking-tight leading-tight mb-8 drop-shadow-2xl animate-title">
-                            {{ $section->title ?? setting('hero_title', 'Güvenliğiniz,') }}
-                            <span class="text-transparent bg-clip-text bg-gradient-to-r from-brand-400 to-accent-400">
-                                Bizim İşimiz
+                    {{-- Main Headline --}}
+                    <h1 class="text-5xl md:text-7xl lg:text-8xl font-black text-white tracking-tighter leading-[1.1] mb-8 drop-shadow-2xl animate-title max-w-5xl">
+                        {{ $section->title ?? setting('hero_title', 'Güvenliğiniz,') }}
+                        <span class="block text-transparent bg-clip-text bg-gradient-to-r from-brand-400 via-cyan-400 to-emerald-400 bg-300% animate-gradient">
+                             Bizim İşimiz
+                        </span>
+                    </h1>
+
+                    {{-- Subtitle --}}
+                    <p class="text-xl md:text-2xl text-slate-300 mb-12 max-w-3xl mx-auto leading-relaxed font-light animate-fade-in-up" style="animation-delay: 0.2s">
+                        {{ $section->subtitle ?? setting('hero_subtitle', 'Yeni nesil güvenlik teknolojileri ve yapay zeka destekli izleme sistemleri ile 7/24 tam koruma.') }}
+                    </p>
+
+                    {{-- CTA Buttons --}}
+                    <div class="flex flex-col sm:flex-row items-center justify-center gap-5 w-full sm:w-auto animate-fade-in-up" style="animation-delay: 0.4s">
+                        <a href="{{ route('contact') }}" class="group relative px-8 py-5 rounded-2xl bg-brand-600 text-white font-bold text-lg overflow-hidden shadow-[0_0_40px_-10px_rgba(37,99,235,0.5)] transition-all hover:scale-105 w-full sm:w-auto">
+                            <div class="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000"></div>
+                            <span class="relative flex items-center justify-center gap-2">
+                                Ücretsiz Keşif İste
+                                <svg class="w-5 h-5 group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" /></svg>
                             </span>
-                        </h1>
-
-                        {{-- Subtitle --}}
-                        <p class="text-lg md:text-2xl text-slate-200 mb-10 max-w-3xl mx-auto leading-relaxed drop-shadow-md animate-fade-in-up">
-                            {{ $section->subtitle ?? setting('hero_subtitle', 'Yeni nesil güvenlik teknolojileri ile işletmenizi ve evinizi 7/24 koruma altına alın.') }}
-                        </p>
-
-                        {{-- CTA Buttons --}}
-                        <div class="flex flex-col sm:flex-row items-center justify-center gap-4 animate-fade-in-up" style="animation-delay: 200ms;">
-                            <a href="{{ route('contact') }}" class="min-w-[200px] px-8 py-4 rounded-xl bg-brand-600 hover:bg-brand-500 text-white font-semibold text-lg transition-all duration-300 transform hover:-translate-y-1 shadow-[0_0_20px_rgba(37,99,235,0.5)]">
-                                Ücretsiz Keşif
-                            </a>
-                            <a href="{{ route('services.index') }}" class="min-w-[200px] px-8 py-4 rounded-xl bg-white/10 backdrop-blur-md border border-white/20 hover:bg-white/20 text-white font-semibold text-lg transition-all duration-300 transform hover:-translate-y-1">
+                        </a>
+                        <a href="{{ route('services.index') }}" class="group px-8 py-5 rounded-2xl bg-white/5 backdrop-blur-md border border-white/10 text-white font-bold text-lg hover:bg-white/10 transition-all hover:scale-105 w-full sm:w-auto">
+                            <span class="flex items-center justify-center gap-2">
                                 Çözümlerimiz
-                            </a>
-                        </div>
-
-                        {{-- Stats / Trust Indicators --}}
-                        <div class="mt-16 pt-8 border-t border-white/10 grid grid-cols-2 md:grid-cols-4 gap-8 animate-fade-in-up" style="animation-delay: 400ms;">
-                            <div>
-                                <div class="text-3xl font-bold text-white mb-1">15+</div>
-                                <div class="text-sm text-slate-400">Yıllık Tecrübe</div>
-                            </div>
-                            <div>
-                                <div class="text-3xl font-bold text-white mb-1">81</div>
-                                <div class="text-sm text-slate-400">İlde Hizmet</div>
-                            </div>
-                            <div>
-                                <div class="text-3xl font-bold text-white mb-1">5K+</div>
-                                <div class="text-sm text-slate-400">Mutlu Müşteri</div>
-                            </div>
-                            <div>
-                                <div class="text-3xl font-bold text-white mb-1">24/7</div>
-                                <div class="text-sm text-slate-400">Teknik Destek</div>
-                            </div>
-                        </div>
-
+                                <svg class="w-5 h-5 opacity-50 group-hover:opacity-100 transition-opacity" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" /></svg>
+                            </span>
+                        </a>
                     </div>
                 </div>
 
                 {{-- Scroll Indicator --}}
-                <div class="absolute bottom-10 left-1/2 -translate-x-1/2 animate-bounce opacity-50">
+                <div class="absolute bottom-24 left-1/2 -translate-x-1/2 animate-bounce opacity-50">
                     <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path>
                     </svg>
+                </div>
+
+                {{-- Tech Strip at Bottom --}}
+                <div class="absolute bottom-0 left-0 right-0 border-t border-white/5 bg-black/40 backdrop-blur-md py-4 sm:py-6 overflow-hidden z-20">
+                    <div class="flex flex-wrap justify-center gap-6 sm:gap-12 px-4">
+                         <div class="flex items-center gap-2 text-white/80 font-mono text-xs sm:text-sm uppercase tracking-widest"><span class="w-2 h-2 rounded-full bg-brand-500"></span> 7/24 İzleme</div>
+                         <div class="flex items-center gap-2 text-white/80 font-mono text-xs sm:text-sm uppercase tracking-widest"><span class="w-2 h-2 rounded-full bg-cyan-500"></span> AI Analiz</div>
+                         <div class="flex items-center gap-2 text-white/80 font-mono text-xs sm:text-sm uppercase tracking-widest"><span class="w-2 h-2 rounded-full bg-emerald-500"></span> Bulut</div>
+                         <div class="hidden sm:flex items-center gap-2 text-white/80 font-mono text-xs sm:text-sm uppercase tracking-widest"><span class="w-2 h-2 rounded-full bg-purple-500"></span> Mobil</div>
+                         <div class="hidden sm:flex items-center gap-2 text-white/80 font-mono text-xs sm:text-sm uppercase tracking-widest"><span class="w-2 h-2 rounded-full bg-orange-500"></span> Teknik Destek</div>
+                    </div>
                 </div>
             </div>
             @break
