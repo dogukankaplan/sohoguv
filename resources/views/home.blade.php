@@ -134,7 +134,8 @@ class="relative w-full h-[400px] sm:h-[500px] lg:h-[600px] overflow-hidden bg-sl
                 @if(isset($section->settings['bg_image']) && $section->settings['bg_image'])
                     <div class="absolute inset-0 z-0">
                         <img src="{{ Storage::url($section->settings['bg_image']) }}" alt="Background" class="w-full h-full object-cover">
-                        <div class="absolute inset-0 bg-white/80 backdrop-blur-[2px]"></div> {{-- Light Overlay for text readability --}}
+                        {{-- Gradient Overlay: Solid text area on left, transparent image area on right --}}
+                        <div class="absolute inset-0 bg-gradient-to-r from-white/95 via-white/70 to-transparent"></div>
                     </div>
                 @endif
 
