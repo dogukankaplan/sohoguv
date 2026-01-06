@@ -617,6 +617,72 @@ class="relative w-full h-[400px] sm:h-[500px] lg:h-[600px] overflow-hidden bg-sl
                 </div>
             </section>
             @break
+
+        @case('video')
+            {{-- Video Section --}}
+            <section class="py-24 bg-slate-900 relative overflow-hidden">
+                {{-- Background Pattern --}}
+                <div class="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-20"></div>
+                <div class="absolute inset-0 bg-gradient-to-b from-slate-900 via-slate-900/90 to-slate-900"></div>
+                
+                {{-- Glow Effects --}}
+                <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-brand-500/10 rounded-full blur-[120px] pointer-events-none"></div>
+
+                <div class="container-custom relative z-10">
+                    <div class="text-center max-w-3xl mx-auto mb-16">
+                        @if($section->subtitle)
+                        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/10 border border-white/20 text-white/80 text-xs font-bold uppercase tracking-wider mb-4 animate-fade-in">
+                            {{ $section->subtitle }}
+                        </div>
+                        @endif
+                        <h2 class="text-3xl md:text-5xl font-bold text-white mb-6 tracking-tight animate-slide-up">
+                            {{ $section->title ?? 'Tanıtım Videomuz' }}
+                        </h2>
+                        @if($section->content_rich)
+                             <div class="text-lg text-slate-400 max-w-2xl mx-auto prose prose-invert animate-slide-up" style="animation-delay: 0.1s;">
+                                 {!! $section->content_rich !!}
+                             </div>
+                        @endif
+                    </div>
+
+                    {{-- Dynamic Video Container --}}
+                    @php
+                        $videoUrl = $section->content; // Content holds the URL
+                        $videoId = '';
+                        if (preg_match('/(?:youtube\.com\/(?:[^\/]+\/.+\/|(?:v|e(?:mbed)?)\/|.*[?&]v=)|youtu\.be\/)([^"&?\/\s]{11})/i', $videoUrl, $match)) {
+                            $videoId = $match[1];
+                        }
+                    @endphp
+
+                    <div class="relative max-w-5xl mx-auto animate-scale-in" style="animation-delay: 0.2s;">
+                        {{-- Video Frame --}}
+                        <div class="relative bg-slate-800 rounded-3xl overflow-hidden shadow-2xl border border-white/10 aspect-video group">
+                            @if($videoId)
+                                <iframe class="absolute inset-0 w-full h-full" 
+                                        src="https://www.youtube.com/embed/{{ $videoId }}?rel=0&modestbranding=1" 
+                                        title="{{ $section->title }}" 
+                                        frameborder="0" 
+                                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                                        allowfullscreen>
+                                </iframe>
+                            @else
+                                {{-- Placeholder if no valid URL --}}
+                                <div class="absolute inset-0 flex flex-col items-center justify-center bg-slate-800 text-slate-500">
+                                    <svg class="w-16 h-16 mb-4 opacity-50" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8zm2 3h6v4H7v-4z" />
+                                    </svg>
+                                    <span>Video URL girilmedi veya geçersiz (Youtube)</span>
+                                </div>
+                            @endif
+                        </div>
+
+                        {{-- Decorative Elements --}}
+                        <div class="absolute -top-4 -right-4 w-24 h-24 bg-gradient-to-br from-brand-500 to-accent-500 rounded-full blur-2xl opacity-40 -z-10 animate-pulse"></div>
+                        <div class="absolute -bottom-4 -left-4 w-32 h-32 bg-gradient-to-tr from-accent-500 to-brand-500 rounded-full blur-2xl opacity-40 -z-10 animate-pulse" style="animation-delay: 1s;"></div>
+                    </div>
+                </div>
+            </section>
+            @break
             
         @case('testimonials')
              {{-- Testimonials --}}

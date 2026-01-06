@@ -90,6 +90,36 @@ class HomeController extends Controller
                     $sections->push($solutionSection);
                 }
             }
+
+            // Check if VIDEO exists, if not, we might want to inject it for demo purposes or if a setting exists
+            // For now, we only inject if explicitly requested, but since user asked for it, let's add it if not present
+            // AFTER Hero or Stats
+            if (!$sections->contains('type', 'video')) {
+                $heroIndex = $sections->search(function ($item) {
+                    return $item->type === 'hero';
+                });
+
+                $videoSection = (object) [
+                    'type' => 'video',
+                    'title' => 'Tanıtım Videomuz',
+                    'subtitle' => 'SOHO GÜVENLİK',
+                    // Default SOHO introduction or a clear placeholder
+                    'content' => 'https://www.youtube.com/watch?v=dQw4w9WgXcQ'
+                ];
+
+                if ($heroIndex !== false) {
+                    // Add after stats if stats exist after hero
+                    $statsIndex = $sections->search(function ($item) {
+                        return $item->type === 'stats';
+                    });
+
+                    if ($statsIndex !== false) {
+                        $sections->splice($statsIndex + 1, 0, [$videoSection]);
+                    } else {
+                        $sections->splice($heroIndex + 1, 0, [$videoSection]);
+                    }
+                }
+            }
         }
 
 

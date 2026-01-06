@@ -32,8 +32,12 @@ class SectionResource extends Resource
                                 'stats' => 'İstatistikler',
                                 'services' => 'Hizmetler',
                                 'features' => 'Özellikler',
+                                'video' => 'Tanıtım Videosu',
                                 'clients' => 'Referanslar',
+                                'partners' => 'Partnerler',
+                                'solution_partners' => 'Çözüm Ortakları',
                                 'testimonials' => 'Müşteri Yorumları',
+                                'cta' => 'CTA (Çağrı Alanı)',
                                 'custom' => 'Özel İçerik',
                             ])
                             ->required()
@@ -48,14 +52,22 @@ class SectionResource extends Resource
                             ->maxLength(255),
 
                         Forms\Components\FileUpload::make('image')
-                            ->label('Görsel')
+                            ->label(fn(Forms\Get $get) => $get('type') === 'video' ? 'Video Kapak Görseli (Opsiyonel)' : 'Görsel')
                             ->image()
                             ->directory('sections')
                             ->disk('public')
                             ->maxSize(5120),
 
-                        Forms\Components\RichEditor::make('content')
+                        Forms\Components\Textarea::make('content')
+                            ->label(fn(Forms\Get $get) => $get('type') === 'video' ? 'Youtube Video Linki' : 'İçerik')
+                            ->helperText(fn(Forms\Get $get) => $get('type') === 'video' ? 'Buraya Youtube video linkini yapıştırın (Örn: https://www.youtube.com/watch?v=dQw4w9WgXcQ). Sistem otomatik olarak algılayacaktır.' : null)
+                            ->visible(fn(Forms\Get $get) => $get('type') === 'video' || $get('type') === 'custom')
+                            ->columnSpanFull(),
+
+                        Forms\Components\RichEditor::make('content_rich')
                             ->label('İçerik')
+                            ->hidden(fn(Forms\Get $get) => $get('type') === 'video')
+                            ->visible(fn(Forms\Get $get) => $get('type') === 'custom')
                             ->columnSpanFull(),
 
                         Forms\Components\ColorPicker::make('bg_color')
