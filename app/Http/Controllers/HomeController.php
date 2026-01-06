@@ -104,7 +104,8 @@ class HomeController extends Controller
                     'title' => 'Tanıtım Videomuz',
                     'subtitle' => 'SOHO GÜVENLİK',
                     // Default SOHO introduction or a clear placeholder
-                    'content' => 'https://www.youtube.com/watch?v=dQw4w9WgXcQ'
+                    'content' => 'https://www.youtube.com/watch?v=dQw4w9WgXcQ',
+                    'content_rich' => null, // Add missing property to avoid undefined property error
                 ];
 
                 if ($heroIndex !== false) {
