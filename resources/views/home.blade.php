@@ -248,6 +248,7 @@ class="relative min-h-screen flex items-center justify-center overflow-hidden bg
                     </div>
                 </div>
             </div>
+            @endif
             @break
 
         @case('stats')
