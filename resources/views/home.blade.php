@@ -385,13 +385,16 @@ class="relative min-h-screen flex items-center justify-center overflow-hidden bg
                             <h2 class="heading-xl mb-8">Neden <span class="text-gradient">SOHO Güvenlik?</span></h2>
                             <div class="space-y-8">
                                 @php
-                                    $features = [
-                                        ['title' => 'Ulusal Hizmet Ağı', 'desc' => 'Türkiye\'nin 81 ilinde kurulum ve teknik servis desteği.'],
-                                        ['title' => 'Garantili İşçilik', 'desc' => 'Yapılan tüm montaj ve kurulumlarımız firma garantisi altındadır.'],
-                                        ['title' => 'Hızlı Müdahale', 'desc' => 'Arıza durumunda 24 saat içerisinde teknik ekip yönlendirmesi.'],
-                                    ];
+                                    $whySohoFeatures = $features->where('section', 'why_soho');
+                                    if($whySohoFeatures->isEmpty()) {
+                                        $whySohoFeatures = collect([
+                                            ['title' => 'Ulusal Hizmet Ağı', 'description' => 'Türkiye\'nin 81 ilinde kurulum ve teknik servis desteği.'],
+                                            ['title' => 'Garantili İşçilik', 'description' => 'Yapılan tüm montaj ve kurulumlarımız firma garantisi altındadır.'],
+                                            ['title' => 'Hızlı Müdahale', 'description' => 'Arıza durumunda 24 saat içerisinde teknik ekip yönlendirmesi.'],
+                                        ]);
+                                    }
                                 @endphp
-                                @foreach($features as $feature)
+                                @foreach($whySohoFeatures as $feature)
                                 <div class="flex gap-6 group">
                                     <div class="flex-shrink-0 w-12 h-12 rounded-full bg-white shadow-soft flex items-center justify-center border border-gray-100 group-hover:border-brand-200 transition-colors">
                                         <svg class="w-6 h-6 text-brand-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -400,7 +403,7 @@ class="relative min-h-screen flex items-center justify-center overflow-hidden bg
                                     </div>
                                     <div>
                                         <h4 class="text-xl font-bold text-gray-900 mb-2">{{ $feature['title'] }}</h4>
-                                        <p class="text-gray-600">{{ $feature['desc'] }}</p>
+                                        <div class="text-gray-600 prose prose-sm max-w-none">{!! $feature['description'] !!}</div>
                                     </div>
                                 </div>
                                 @endforeach
@@ -617,7 +620,7 @@ class="relative min-h-screen flex items-center justify-center overflow-hidden bg
                             <div class="flex gap-1 text-amber-400 mb-6">
                                 @for($i=0; $i<5; $i++) <svg class="w-5 h-5 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg> @endfor
                             </div>
-                            <p class="text-gray-600 mb-6 italic">"{{ $testimonial->content }}"</p>
+                            <p class="text-gray-600 mb-6 italic">"{!! $testimonial->content !!}"</p>
                             <div class="flex items-center gap-4">
                                 <div class="w-12 h-12 rounded-full bg-gray-200 overflow-hidden">
                                      <img src="{{ $testimonial->image ? Storage::url($testimonial->image) : 'https://ui-avatars.com/api/?name='.urlencode($testimonial->name) }}" class="w-full h-full object-cover">

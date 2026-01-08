@@ -160,6 +160,13 @@ class HomeController extends Controller
             Log::error('HomeController Error [Testimonials]: ' . $e->getMessage());
         }
 
-        return view('home', compact('sliders', 'sections', 'services', 'clients', 'partners', 'solutionPartners', 'testimonials'));
+        $features = collect();
+        try {
+            $features = Feature::where('is_active', true)->orderBy('order')->get();
+        } catch (\Exception $e) {
+            Log::error('HomeController Error [Features]: ' . $e->getMessage());
+        }
+
+        return view('home', compact('sliders', 'sections', 'services', 'clients', 'partners', 'solutionPartners', 'testimonials', 'features'));
     }
 }

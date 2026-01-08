@@ -36,10 +36,10 @@ class TestimonialResource extends Resource
                     ->label('Pozisyon')
                     ->maxLength(255),
 
-                Forms\Components\Textarea::make('content')
+                Forms\Components\RichEditor::make('content')
                     ->label('Yorum')
                     ->required()
-                    ->rows(4),
+                    ->columnSpanFull(),
 
                 Forms\Components\Select::make('rating')
                     ->label('Puan')

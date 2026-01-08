@@ -49,10 +49,10 @@ class FeatureResource extends Resource
                     ->required()
                     ->maxLength(255),
 
-                Forms\Components\Textarea::make('description')
+                Forms\Components\RichEditor::make('description')
                     ->label('Açıklama')
                     ->required()
-                    ->rows(3),
+                    ->columnSpanFull(),
 
                 Forms\Components\TextInput::make('order')
                     ->label('Sıra')

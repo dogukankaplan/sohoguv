@@ -45,9 +45,8 @@ class ServiceResource extends Resource
                                             ->helperText('Bu alan otomatik oluşturulur, ancak manuel olarak düzenleyebilirsiniz.')
                                             ->columnSpanFull(),
 
-                                        Forms\Components\ViewField::make('content')
+                                        Forms\Components\RichEditor::make('content')
                                             ->label('İçerik Detayları')
-                                            ->view('filament.forms.components.ckeditor')
                                             ->columnSpanFull(),
                                     ]),
                             ])
