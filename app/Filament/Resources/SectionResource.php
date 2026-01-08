@@ -78,6 +78,7 @@ class SectionResource extends Resource
                             ->label('İçerik')
                             ->hidden(fn(Forms\Get $get) => $get('type') === 'video')
                             ->visible(fn(Forms\Get $get) => $get('type') === 'custom')
+                            ->toolbar(['bold', 'italic', 'bulletList', 'orderedList', 'link', 'undo', 'redo'])
                             ->columnSpanFull(),
 
                         Forms\Components\ColorPicker::make('bg_color')

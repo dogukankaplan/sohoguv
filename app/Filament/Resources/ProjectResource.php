@@ -44,6 +44,7 @@ class ProjectResource extends Resource
 
                                 Forms\Components\RichEditor::make('content')
                                     ->label('Proje Detayları')
+                                    ->toolbar(['h2', 'h3', 'bold', 'italic', 'bulletList', 'orderedList', 'link', 'undo', 'redo'])
                                     ->columnSpanFull(),
                             ])->columns(2),
 

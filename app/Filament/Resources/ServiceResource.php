@@ -46,7 +46,8 @@ class ServiceResource extends Resource
                                             ->columnSpanFull(),
 
                                         Forms\Components\RichEditor::make('content')
-                                            ->label('İçerik Detayları')
+                                            ->label('İçerik')
+                                            ->toolbar(['bold', 'italic', 'bulletList', 'orderedList', 'link', 'undo', 'redo'])
                                             ->columnSpanFull(),
                                     ]),
                             ])
