@@ -63,7 +63,7 @@
 
                 {{-- Blog Link --}}
                 <a href="{{ route('blog.index') }}"
-                    class="text-sm font-medium text-gray-700 hover:text-brand-600 transition">Blog</a>
+                    class="text-sm font-medium text-gray-700 hover:text-brand-600 transition">Haberler</a>
 
                 <!-- Support Dropdown -->
                 <div x-data="{ open: false }" @mouseenter="open = true" @mouseleave="open = false" class="relative">
@@ -206,7 +206,7 @@
             </div>
 
             <a href="{{ route('blog.index') }}"
-                class="block text-base font-medium text-gray-700 hover:text-brand-600 transition">Blog</a>
+                class="block text-base font-medium text-gray-700 hover:text-brand-600 transition">Haberlers</a>
 
             <!-- Mobile Support -->
             <div>
