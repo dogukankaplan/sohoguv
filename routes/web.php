@@ -45,6 +45,15 @@ Route::get('/hizmetler', [ServiceController::class, 'index'])->name('services.in
 Route::get('/cozumler', [ServiceController::class, 'solutions'])->name('solutions.index');
 
 Route::get('/hakkimizda', [AboutController::class, 'index'])->name('about');
+// Projects
+Route::get('/projeler', [App\Http\Controllers\ProjectController::class, 'index'])->name('projects.index');
+Route::get('/projeler/{slug}', [App\Http\Controllers\ProjectController::class, 'show'])->name('projects.show');
+
+// Blog
+Route::get('/blog', [App\Http\Controllers\BlogController::class, 'index'])->name('blog.index');
+Route::get('/blog/{slug}', [App\Http\Controllers\BlogController::class, 'show'])->name('blog.show');
+
+// Contact
 Route::get('/iletisim', [ContactController::class, 'index'])->name('contact');
 Route::post('/iletisim', [ContactController::class, 'store'])->name('contact.store');
 Route::get('/referanslar', [ReferenceController::class, 'index'])->name('references.index');

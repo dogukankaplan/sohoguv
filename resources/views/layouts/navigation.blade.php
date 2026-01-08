@@ -26,6 +26,11 @@
                     class="text-sm font-medium text-gray-700 hover:text-brand-600 transition">Ana Sayfa</a>
                 <a href="{{ route('about') }}"
                     class="text-sm font-medium text-gray-700 hover:text-brand-600 transition">{{ setting('page_about', 'Hakkımızda') }}</a>
+
+                {{-- Projects Link --}}
+                <a href="{{ route('projects.index') }}"
+                    class="text-sm font-medium text-gray-700 hover:text-brand-600 transition">Projeler</a>
+
                 <a href="{{ route('solutions.index') }}"
                     class="text-sm font-medium text-gray-700 hover:text-brand-600 transition">Çözümler</a>
 
@@ -56,6 +61,10 @@
                     </div>
                 </div>
 
+                {{-- Blog Link --}}
+                <a href="{{ route('blog.index') }}"
+                    class="text-sm font-medium text-gray-700 hover:text-brand-600 transition">Blog</a>
+
                 <!-- Support Dropdown -->
                 <div x-data="{ open: false }" @mouseenter="open = true" @mouseleave="open = false" class="relative">
                     <button
@@ -83,7 +92,7 @@
                             Arıza Bildir
                         </a>
                         <a href="{{ route('requests.inventory') }}"
-                            class="block px-6 py-3 text-sm text-gray-700 hover:bg-gray-50 hover:text-amber-500 transition flex items-center gap-2">
+                            class="block px-6 py-3 text-sm text-700 hover:bg-gray-50 hover:text-amber-500 transition flex items-center gap-2">
                             <svg class="w-4 h-4 text-amber-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                     d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4" />
@@ -174,6 +183,10 @@
                 class="block text-base font-medium text-gray-700 hover:text-brand-600 transition">Ana Sayfa</a>
             <a href="{{ route('about') }}"
                 class="block text-base font-medium text-gray-700 hover:text-brand-600 transition">{{ setting('page_about', 'Hakkımızda') }}</a>
+
+            <a href="{{ route('projects.index') }}"
+                class="block text-base font-medium text-gray-700 hover:text-brand-600 transition">Projeler</a>
+
             <a href="{{ route('solutions.index') }}"
                 class="block text-base font-medium text-gray-700 hover:text-brand-600 transition">Çözümler</a>
 
@@ -191,6 +204,9 @@
                     @endforeach
                 </div>
             </div>
+
+            <a href="{{ route('blog.index') }}"
+                class="block text-base font-medium text-gray-700 hover:text-brand-600 transition">Blog</a>
 
             <!-- Mobile Support -->
             <div>
