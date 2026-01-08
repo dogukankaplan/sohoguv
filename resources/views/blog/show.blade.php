@@ -8,7 +8,7 @@
             <nav class="flex mb-8 text-sm text-slate-500">
                 <a href="{{ route('home') }}" class="hover:text-brand-600 transition">Anasayfa</a>
                 <span class="mx-2">/</span>
-                <a href="{{ route('blog.index') }}" class="hover:text-brand-600 transition">Blog</a>
+                <a href="{{ route('blog.index') }}" class="hover:text-brand-600 transition">Haberler</a>
                 <span class="mx-2">/</span>
                 <span class="text-slate-900 font-medium truncate max-w-[200px]">{{ $post->title }}</span>
             </nav>
