@@ -129,10 +129,7 @@ class ContactSubmissionResource extends Resource
     {
         return [
             'index' => Pages\ListContactSubmissions::route('/'),
-            // 'create' => Pages\CreateContactSubmission::route('/create'), // No create needed
-            // 'view' => Pages\ViewContactSubmission::route('/{record}'), // View page not strictly needed if using ViewAction with modal, but let's stick to standard if possible. 
-            // Actually, resource ViewAction is usually modal by default unless configured otherwise or if View page exists.
-            // Let's use simple resource approach or just ViewAction modal for now to minimize file creation.
+            'view' => Pages\ViewContactSubmission::route('/{record}'),
         ];
     }
 }
