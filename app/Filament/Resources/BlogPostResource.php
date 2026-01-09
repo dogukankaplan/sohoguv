@@ -44,7 +44,7 @@ class BlogPostResource extends Resource
 
                                 Forms\Components\RichEditor::make('content')
                                     ->label('İçerik')
-                                    ->toolbarButtons(['h2', 'h3', 'bold', 'italic', 'bulletList', 'orderedList', 'blockquote', 'link', 'undo', 'redo'])
+                                    // ->toolbarButtons(['h2', 'h3', 'bold', 'italic', 'bulletList', 'orderedList', 'blockquote', 'link', 'undo', 'redo'])
                                     ->columnSpanFull(),
                             ]),
                     ])->columnSpan(['lg' => 2]),

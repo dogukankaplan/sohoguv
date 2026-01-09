@@ -47,7 +47,7 @@ class ServiceResource extends Resource
 
                                         Forms\Components\RichEditor::make('content')
                                             ->label('İçerik')
-                                            ->toolbarButtons(['bold', 'italic', 'bulletList', 'orderedList', 'link', 'undo', 'redo'])
+                                            // ->toolbarButtons(['bold', 'italic', 'bulletList', 'orderedList', 'link', 'undo', 'redo'])
                                             ->columnSpanFull(),
                                     ]),
                             ])
