@@ -42,8 +42,9 @@ class BlogPostResource extends Resource
                                     ->label('Kısa Özet (SEO)')
                                     ->rows(3),
 
-                                Forms\Components\RichEditor::make('content')
-                                    ->label('İçerik')
+                                Forms\Components\Textarea::make('content')
+                                    ->label('İçerik (Geçici Düz Metin Modu)')
+                                    ->rows(10)
                                     ->columnSpanFull(),
                             ]),
                     ])->columnSpan(['lg' => 2]),
