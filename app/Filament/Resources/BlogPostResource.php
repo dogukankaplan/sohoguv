@@ -42,9 +42,8 @@ class BlogPostResource extends Resource
                                     ->label('Kısa Özet (SEO)')
                                     ->rows(3),
 
-                                Forms\Components\RichEditor::make('content')
+                                Forms\Components\MarkdownEditor::make('content')
                                     ->label('İçerik')
-                                    // ->toolbarButtons(['h2', 'h3', 'bold', 'italic', 'bulletList', 'orderedList', 'blockquote', 'link', 'undo', 'redo'])
                                     ->columnSpanFull(),
                             ]),
                     ])->columnSpan(['lg' => 2]),

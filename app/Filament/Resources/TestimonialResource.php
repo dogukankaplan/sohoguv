@@ -36,10 +36,9 @@ class TestimonialResource extends Resource
                     ->label('Pozisyon')
                     ->maxLength(255),
 
-                Forms\Components\RichEditor::make('content')
+                Forms\Components\MarkdownEditor::make('content')
                     ->label('Yorum')
                     ->required()
-                    // ->toolbarButtons(['bold', 'italic', 'link', 'undo', 'redo'])
                     ->columnSpanFull(),
 
                 Forms\Components\Select::make('rating')

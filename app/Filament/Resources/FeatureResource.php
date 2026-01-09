@@ -49,10 +49,9 @@ class FeatureResource extends Resource
                     ->required()
                     ->maxLength(255),
 
-                Forms\Components\RichEditor::make('description')
+                Forms\Components\MarkdownEditor::make('description')
                     ->label('Açıklama')
                     ->required()
-                    // ->toolbarButtons(['bold', 'italic', 'link', 'undo', 'redo'])
                     ->columnSpanFull(),
 
                 Forms\Components\TextInput::make('order')

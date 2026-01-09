@@ -74,11 +74,10 @@ class SectionResource extends Resource
                             ->visible(fn(Forms\Get $get) => $get('type') === 'video' || $get('type') === 'custom')
                             ->columnSpanFull(),
 
-                        Forms\Components\RichEditor::make('content_rich')
+                        Forms\Components\MarkdownEditor::make('content_rich')
                             ->label('İçerik')
                             ->hidden(fn(Forms\Get $get) => $get('type') === 'video')
                             ->visible(fn(Forms\Get $get) => $get('type') === 'custom')
-                            // ->toolbarButtons(['bold', 'italic', 'bulletList', 'orderedList', 'link', 'undo', 'redo'])
                             ->columnSpanFull(),
 
                         Forms\Components\ColorPicker::make('bg_color')
