@@ -36,7 +36,7 @@ class TestimonialResource extends Resource
                     ->label('Pozisyon')
                     ->maxLength(255),
 
-                Forms\Components\MarkdownEditor::make('content')
+                Forms\Components\RichEditor::make('content')
                     ->label('Yorum')
                     ->required()
                     ->columnSpanFull(),

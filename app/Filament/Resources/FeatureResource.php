@@ -49,7 +49,7 @@ class FeatureResource extends Resource
                     ->required()
                     ->maxLength(255),
 
-                Forms\Components\MarkdownEditor::make('description')
+                Forms\Components\RichEditor::make('description')
                     ->label('Açıklama')
                     ->required()
                     ->columnSpanFull(),
