@@ -56,7 +56,9 @@ class BlogPostResource extends Resource
                                 Forms\Components\FileUpload::make('image')
                                     ->label('Kapak Görseli')
                                     ->image()
+                                    ->disk('public')
                                     ->directory('blog')
+                                    ->visibility('public')
                                     ->required(),
 
                                 Forms\Components\DateTimePicker::make('published_at')

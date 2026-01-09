@@ -55,7 +55,9 @@ class BankAccountResource extends Resource
                         Forms\Components\FileUpload::make('logo')
                             ->label('Banka Logosu')
                             ->image()
-                            ->directory('banks'),
+                            ->disk('public')
+                            ->directory('banks')
+                            ->visibility('public'),
                         Forms\Components\Toggle::make('is_active')
                             ->label('Aktif')
                             ->default(true),

@@ -59,6 +59,7 @@ class TestimonialResource extends Resource
                     ->image()
                     ->directory('testimonials')
                     ->disk('public')
+                    ->visibility('public')
                     ->maxSize(2048)
                     ->avatar()
                     ->circleCropper(),

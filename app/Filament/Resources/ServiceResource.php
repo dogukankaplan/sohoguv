@@ -63,6 +63,7 @@ class ServiceResource extends Resource
                                             ->image()
                                             ->directory('services')
                                             ->disk('public')
+                                            ->visibility('public')
                                             ->maxSize(5120)
                                             ->columnSpanFull()
                                             ->imageEditor(),

@@ -53,13 +53,17 @@ class ProjectResource extends Resource
                                 Forms\Components\FileUpload::make('image')
                                     ->label('Kapak Görseli')
                                     ->image()
+                                    ->disk('public')
                                     ->directory('projects')
+                                    ->visibility('public')
                                     ->required(),
 
                                 Forms\Components\FileUpload::make('gallery')
                                     ->label('Proje Galerisi')
                                     ->image()
+                                    ->disk('public')
                                     ->directory('projects/gallery')
+                                    ->visibility('public')
                                     ->multiple()
                                     ->reorderable(),
                             ]),

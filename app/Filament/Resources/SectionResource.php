@@ -56,8 +56,7 @@ class SectionResource extends Resource
                             ->image()
                             ->directory('sections')
                             ->disk('public')
-                            ->directory('sections')
-                            ->disk('public')
+                            ->visibility('public')
                             ->maxSize(5120),
 
                         Forms\Components\FileUpload::make('settings.bg_image')
@@ -65,6 +64,7 @@ class SectionResource extends Resource
                             ->image()
                             ->directory('backgrounds')
                             ->disk('public')
+                            ->visibility('public')
                             ->maxSize(10240) // Allow larger for BG
                             ->visible(fn(Forms\Get $get) => in_array($get('type'), ['hero', 'cta', 'video'])),
 

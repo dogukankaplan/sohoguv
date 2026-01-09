@@ -38,6 +38,7 @@ class SolutionPartnerResource extends Resource
                     ->image()
                     ->directory('solution-partners')
                     ->disk('public')
+                    ->visibility('public')
                     ->maxSize(5120)
                     ->acceptedFileTypes(['image/jpeg', 'image/png', 'image/webp']),
 

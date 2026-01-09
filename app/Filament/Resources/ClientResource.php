@@ -38,6 +38,7 @@ class ClientResource extends Resource
                     ->image()
                     ->directory('clients')
                     ->disk('public')
+                    ->visibility('public')
                     ->maxSize(5120)
                     ->acceptedFileTypes(['image/jpeg', 'image/png', 'image/webp']),
 

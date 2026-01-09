@@ -45,6 +45,7 @@ class SliderResource extends Resource
                             ->image()
                             ->directory('sliders')
                             ->disk('public')
+                            ->visibility('public')
                             ->maxSize(5120)
                             ->columnSpanFull()
                             ->helperText('Önerilen boyut: 1920x800px. JPG, PNG veya WEBP formatında olabilir.'),

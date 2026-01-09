@@ -37,6 +37,7 @@ class SiteIdentityResource extends Resource
                             ->image()
                             ->directory('site-identity')
                             ->disk('public')
+                            ->visibility('public')
                             ->maxSize(5120)
                             ->columnSpanFull(),
 
@@ -45,6 +46,7 @@ class SiteIdentityResource extends Resource
                             ->image()
                             ->directory('site-identity')
                             ->disk('public')
+                            ->visibility('public')
                             ->maxSize(1024)
                             ->columnSpanFull(),
                     ]),
