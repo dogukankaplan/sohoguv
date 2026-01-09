@@ -1,249 +1,214 @@
 @extends('layouts.app')
 
 @section('content')
-    {{-- Modern Premium Contact Page --}}
-    <div class="min-h-screen bg-slate-50">
+{{-- "Tier-1 Enterprise" Clean Corporate Design --}}
+<div class="min-h-screen bg-white text-slate-800 selection:bg-brand-600 selection:text-white relative overflow-hidden">
 
-        {{-- Hero Section --}}
-        <section class="relative pt-32 pb-20 overflow-hidden bg-slate-900">
-            {{-- Background Pattern --}}
-            <div
-                class="absolute inset-0 opacity-20 bg-[linear-gradient(to_right,#8080800a_1px,transparent_1px),linear-gradient(to_bottom,#8080800a_1px,transparent_1px)] bg-[size:14px_24px] pointer-events-none">
-            </div>
-            <div class="absolute inset-0 bg-gradient-to-b from-transparent to-slate-950/50"></div>
+    {{-- Subtle Background Geometric Accents --}}
+    <div class="absolute top-0 right-0 -mr-20 -mt-20 w-[600px] h-[600px] bg-slate-50 rounded-full blur-3xl opacity-50 pointer-events-none"></div>
+    <div class="absolute bottom-0 left-0 -ml-20 -mb-20 w-[400px] h-[400px] bg-brand-50/50 rounded-full blur-3xl pointer-events-none"></div>
 
-            <div class="container-custom relative z-10">
-                <div class="max-w-3xl mx-auto text-center space-y-6">
-                    <div
-                        class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-brand-500/10 border border-brand-500/20 text-brand-400 text-sm font-medium backdrop-blur-sm">
-                        <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-                        </svg>
-                        <span>Bize Ulaşın</span>
+    {{-- Hero Header --}}
+    <section class="relative pt-32 pb-16 px-6 lg:px-12 border-b border-slate-100">
+        <div class="container-custom max-w-7xl mx-auto">
+            <div class="flex flex-col lg:flex-row lg:items-end justify-between gap-8">
+                <div class="space-y-6 max-w-3xl">
+                    <div class="inline-flex items-center gap-2 pl-1 pr-3 py-1 rounded-full bg-slate-100/80 border border-slate-200 text-slate-600 text-xs font-bold uppercase tracking-widest">
+                        <span class="w-1.5 h-1.5 rounded-full bg-green-500 animate-pulse"></span>
+                        İletişim
                     </div>
-                    <h1 class="text-3xl sm:text-4xl lg:text-5xl font-bold text-white">
-                        <span
-                            class="bg-gradient-to-r from-brand-400 via-accent-400 to-brand-500 bg-clip-text text-transparent">
-                            İletişime Geçin
-                        </span>
+                    <h1 class="text-5xl lg:text-7xl font-bold tracking-tight text-slate-900 leading-[1.1]">
+                        Bize <span class="text-transparent bg-clip-text bg-gradient-to-r from-brand-600 to-brand-800">Ulaşın.</span>
                     </h1>
-                    <p class="text-lg text-slate-400 leading-relaxed">
-                        Güvenlik çözümlerimiz hakkında detaylı bilgi almak veya teknik destek için bize her zaman
-                        ulaşabilirsiniz.
+                    <p class="text-xl text-slate-500 font-light max-w-2xl leading-relaxed">
+                        Projenizi dinlemek, sorularınızı yanıtlamak ve size en uygun güvenlik çözümlerini sunmak için buradayız.
                     </p>
                 </div>
+                {{-- Quick Stats / Contact Points --}}
+                <div class="flex gap-4 lg:gap-8">
+                    <a href="tel:{{ setting('phone') }}" class="group flex items-center gap-4 p-4 rounded-xl hover:bg-slate-50 transition-colors border border-transparent hover:border-slate-100">
+                        <div class="w-12 h-12 rounded-full bg-brand-600 text-white flex items-center justify-center shadow-lg shadow-brand-200 group-hover:scale-110 transition-transform">
+                            <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg>
+                        </div>
+                        <div>
+                            <div class="text-xs text-slate-400 font-bold uppercase tracking-wider">Bizi Arayın</div>
+                            <div class="font-semibold text-slate-900">{{ setting('phone') }}</div>
+                        </div>
+                    </a>
+                    <a href="mailto:{{ setting('email') }}" class="group flex items-center gap-4 p-4 rounded-xl hover:bg-slate-50 transition-colors border border-transparent hover:border-slate-100">
+                         <div class="w-12 h-12 rounded-full bg-slate-900 text-white flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform">
+                            <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+                        </div>
+                        <div>
+                            <div class="text-xs text-slate-400 font-bold uppercase tracking-wider">E-Posta</div>
+                            <div class="font-semibold text-slate-900">{{ setting('email') }}</div>
+                        </div>
+                    </a>
+                </div>
             </div>
-        </section>
+        </div>
+    </section>
 
-        {{-- Map Section --}}
-        @if(setting('contact_map_iframe'))
-            <section class="h-[400px] w-full relative z-0">
-                <div
-                    class="absolute inset-0 w-full h-full [&>iframe]:w-full [&>iframe]:h-full [&>iframe]:border-0 grayscale hover:grayscale-0 transition-all duration-700">
-                    {!! setting('contact_map_iframe') !!}
-                </div>
-            </section>
-        @endif
-
-        {{-- Main Content --}}
-        <section class="py-20 relative -mt-20 z-10">
-            <div class="container-custom">
-                {{-- Contact Cards Grid --}}
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-20">
-                    {{-- Corporate Address --}}
-                    <div
-                        class="bg-white rounded-2xl p-6 shadow-xl border border-slate-100 flex flex-col items-center text-center">
-                        <div
-                            class="w-14 h-14 rounded-full bg-brand-50 text-brand-600 flex items-center justify-center mb-4">
-                            <svg class="w-7 h-7" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                    d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
-                            </svg>
-                        </div>
-                        <h3 class="font-bold text-lg text-slate-900 mb-2">Kurumsal Hizmet ve Operasyon</h3>
-                        <div class="text-slate-600 text-sm leading-relaxed richness-text">
-                            {!! setting('address_corporate', 'Henüz girilmemiş.') !!}
-                        </div>
+    {{-- Main Layout: Grid System --}}
+    <section class="py-20 px-6 lg:px-12">
+        <div class="container-custom max-w-4xl mx-auto lg:max-w-7xl">
+            <div class="grid lg:grid-cols-12 gap-12 lg:gap-20">
+                
+                {{-- LEFT: Contact Form (7 cols) --}}
+                <div class="lg:col-span-7">
+                    <div class="mb-10">
+                        <h2 class="text-3xl font-bold text-slate-900 mb-4">İleti Gönderin</h2>
+                        <p class="text-slate-500">Formu doldurun, uzman ekibimiz en kısa sürede sizinle iletişime geçsin.</p>
                     </div>
 
-                    {{-- Technical Address --}}
-                    <div
-                        class="bg-white rounded-2xl p-6 shadow-xl border border-slate-100 flex flex-col items-center text-center">
-                        <div
-                            class="w-14 h-14 rounded-full bg-accent-50 text-accent-600 flex items-center justify-center mb-4">
-                            <svg class="w-7 h-7" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                    d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" />
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                    d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
-                            </svg>
+                    @if(session('success'))
+                        <div x-data="{ show: true }" x-show="show" class="mb-8 p-5 rounded-lg bg-green-50 border border-green-100 text-green-700 flex items-center justify-between shadow-sm">
+                            <div class="flex items-center gap-3">
+                                <svg class="w-5 h-5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>
+                                <span class="font-medium">{{ session('success') }}</span>
+                            </div>
+                            <button @click="show = false" class="hover:text-green-900"><svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg></button>
                         </div>
-                        <h3 class="font-bold text-lg text-slate-900 mb-2">Teknik Servis</h3>
-                        <div class="text-slate-600 text-sm leading-relaxed richness-text">
-                            {!! setting('address_technical', 'Henüz girilmemiş.') !!}
-                        </div>
-                    </div>
+                    @endif
 
-                    {{-- Phone --}}
-                    <div
-                        class="bg-white rounded-2xl p-6 shadow-xl border border-slate-100 flex flex-col items-center text-center">
-                        <div
-                            class="w-14 h-14 rounded-full bg-green-50 text-green-600 flex items-center justify-center mb-4">
-                            <svg class="w-7 h-7" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                    d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
-                            </svg>
+                    <form action="{{ route('contact.store') }}" method="POST" class="space-y-8">
+                        @csrf
+                        <div class="grid md:grid-cols-2 gap-8">
+                            <div class="group">
+                                <label class="block text-sm font-bold text-slate-700 mb-2 uppercase tracking-wide group-focus-within:text-brand-600 transition-colors">Ad Soyad</label>
+                                <input type="text" name="name" required class="w-full bg-slate-50 border-0 border-b-2 border-slate-200 px-0 py-3 text-slate-900 focus:ring-0 focus:border-brand-600 placeholder-slate-400 transition-all font-medium text-lg" placeholder="Adınız Soyadınız">
+                            </div>
+                            <div class="group">
+                                <label class="block text-sm font-bold text-slate-700 mb-2 uppercase tracking-wide group-focus-within:text-brand-600 transition-colors">Telefon</label>
+                                <input type="text" name="phone" required class="w-full bg-slate-50 border-0 border-b-2 border-slate-200 px-0 py-3 text-slate-900 focus:ring-0 focus:border-brand-600 placeholder-slate-400 transition-all font-medium text-lg" placeholder="05XX XXX XX XX">
+                            </div>
                         </div>
-                        <h3 class="font-bold text-lg text-slate-900 mb-2">Telefon & WhatsApp</h3>
-                        <a href="tel:{{ setting('phone') }}"
-                            class="text-slate-600 hover:text-brand-600 transition-colors block">{{ setting('phone') }}</a>
-                        <a href="mailto:{{ setting('email') }}"
-                            class="text-slate-500 hover:text-brand-600 text-sm mt-1 block">{{ setting('email') }}</a>
-                    </div>
+                        <div class="group">
+                            <label class="block text-sm font-bold text-slate-700 mb-2 uppercase tracking-wide group-focus-within:text-brand-600 transition-colors">E-Posta</label>
+                            <input type="email" name="email" required class="w-full bg-slate-50 border-0 border-b-2 border-slate-200 px-0 py-3 text-slate-900 focus:ring-0 focus:border-brand-600 placeholder-slate-400 transition-all font-medium text-lg" placeholder="ornek@sirket.com">
+                        </div>
+                        <div class="group">
+                            <label class="block text-sm font-bold text-slate-700 mb-2 uppercase tracking-wide group-focus-within:text-brand-600 transition-colors">Konu</label>
+                            <input type="text" name="subject" class="w-full bg-slate-50 border-0 border-b-2 border-slate-200 px-0 py-3 text-slate-900 focus:ring-0 focus:border-brand-600 placeholder-slate-400 transition-all font-medium text-lg" placeholder="Proje Talebi">
+                        </div>
+                        <div class="group">
+                            <label class="block text-sm font-bold text-slate-700 mb-2 uppercase tracking-wide group-focus-within:text-brand-600 transition-colors">Mesajınız</label>
+                            <textarea name="message" rows="3" required class="w-full bg-slate-50 border-0 border-b-2 border-slate-200 px-0 py-3 text-slate-900 focus:ring-0 focus:border-brand-600 placeholder-slate-400 transition-all font-medium text-lg resize-none" placeholder="Mesajınızı buraya yazınız..."></textarea>
+                        </div>
 
-                    {{-- Working Hours --}}
-                    <div
-                        class="bg-white rounded-2xl p-6 shadow-xl border border-slate-100 flex flex-col items-center text-center">
-                        <div
-                            class="w-14 h-14 rounded-full bg-orange-50 text-orange-600 flex items-center justify-center mb-4">
-                            <svg class="w-7 h-7" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                    d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
-                            </svg>
+                        <div class="pt-4">
+                            <button type="submit" class="inline-flex items-center gap-3 bg-slate-900 text-white px-8 py-4 rounded-full font-bold hover:bg-brand-600 transition-colors duration-300 shadow-xl hover:shadow-brand-200">
+                                <span>Gönder</span>
+                                <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
+                            </button>
                         </div>
-                        <h3 class="font-bold text-lg text-slate-900 mb-2">Çalışma Saatleri</h3>
-                        <div class="text-slate-600 text-sm space-y-1">
-                            <p>Hafta İçi: 09:00 - 18:00</p>
-                            <p>Cumartesi: 09:00 - 14:00</p>
-                        </div>
-                    </div>
+                    </form>
                 </div>
 
-                <div class="grid lg:grid-cols-5 gap-8 lg:gap-12">
-                    {{-- Contact Form --}}
-                    <div class="lg:col-span-3">
-                        <div class="bg-white rounded-3xl shadow-sm border border-slate-200 p-6 sm:p-8 lg:p-10">
-                            <h2 class="text-2xl font-bold text-slate-900 mb-6 flex items-center gap-3">
-                                <span class="w-1 h-8 rounded-full bg-brand-600"></span>
-                                Mesaj Gönderin
-                            </h2>
+                {{-- RIGHT: Info Sidebar (5 cols) --}}
+                <div class="lg:col-span-5 space-y-12">
+                    
+                    {{-- Addresses --}}
+                    <div class="space-y-8">
+                        {{-- Corporate --}}
+                        <div class="pl-6 border-l-4 border-slate-200 hover:border-brand-600 transition-colors group">
+                            <h3 class="text-sm font-bold text-slate-400 uppercase tracking-widest mb-3 group-hover:text-brand-600 transition-colors">Kurumsal Merkez</h3>
+                            <div class="richness-text text-slate-600 leading-relaxed font-normal">
+                                {!! setting('address_corporate', 'Adres bilgisi yükleniyor...') !!}
+                            </div>
+                        </div>
+                        
+                        {{-- Technical --}}
+                        <div class="pl-6 border-l-4 border-slate-200 hover:border-brand-600 transition-colors group">
+                            <h3 class="text-sm font-bold text-slate-400 uppercase tracking-widest mb-3 group-hover:text-brand-600 transition-colors">Teknik Servis</h3>
+                            <div class="richness-text text-slate-600 leading-relaxed font-normal">
+                                {!! setting('address_technical', 'Adres bilgisi yükleniyor...') !!}
+                            </div>
+                        </div>
+                    </div>
 
-                            @if(session('success'))
-                                <div class="mb-6 rounded-2xl bg-green-50 border border-green-200 p-4 flex items-start gap-3">
-                                    <svg class="w-5 h-5 text-green-600 mt-0.5 flex-shrink-0" fill="none" viewBox="0 0 24 24"
-                                        stroke="currentColor">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                            d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-                                    </svg>
-                                    <p class="text-green-700 text-sm font-medium">{{ session('success') }}</p>
+                    {{-- Map Preview --}}
+                    @if(setting('contact_map_iframe'))
+                    <div class="rounded-2xl overflow-hidden shadow-2xl border border-slate-200 aspect-video grayscale hover:grayscale-0 transition-all duration-500">
+                        <div class="w-full h-full [&>iframe]:w-full [&>iframe]:h-full [&>iframe]:border-0">
+                            {!! setting('contact_map_iframe') !!}
+                        </div>
+                    </div>
+                    @endif
+
+                    {{-- Bank Accounts: Clean Table Style --}}
+                    <div class="bg-slate-50 rounded-2xl p-6 border border-slate-100">
+                        <h3 class="font-bold text-slate-900 mb-6 flex items-center gap-2">
+                             <span class="p-1 bg-slate-200 rounded text-slate-600"><svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z"/></svg></span>
+                            Banka Hesapları
+                        </h3>
+                        
+                        <div class="space-y-4">
+                            @php
+                                $accounts = [];
+                                $error = null;
+                                try {
+                                    $accounts = \App\Models\BankAccount::where('is_active', true)->orderBy('order')->get();
+                                } catch (\Exception $e) {
+                                    $error = $e->getMessage();
+                                }
+                            @endphp
+
+                            @if($error)
+                                <div class="p-4 bg-amber-50 rounded-xl border border-amber-100 text-amber-700 text-sm">
+                                    <strong>Kurulum Gerekli:</strong> Veritabanı tabloları bulunamadı.<br>
+                                    Lütfen VPS panelinden <code>php artisan migrate</code> komutunu çalıştırın.
+                                </div>
+                            @elseif(count($accounts) > 0)
+                                @foreach($accounts as $account)
+                                    <div class="bg-white p-4 rounded-xl border border-slate-200 hover:border-brand-200 hover:shadow-md transition-all group">
+                                        <div class="flex justify-between items-start mb-3">
+                                            <div class="flex items-center gap-3">
+                                                 @if($account->logo)
+                                                    <img src="{{ Storage::url($account->logo) }}" class="h-6 w-auto object-contain" alt="">
+                                                @else
+                                                   <span class="text-slate-400 font-bold">{{ $account->bank_name }}</span>
+                                                @endif
+                                                <span class="text-xs font-bold text-slate-400 py-0.5 px-2 bg-slate-100 rounded">{{ $account->currency }}</span>
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="space-y-2">
+                                            <div class="flex flex-col">
+                                                <span class="text-[10px] uppercase text-slate-400 font-bold tracking-wider">IBAN</span>
+                                                <span class="font-mono text-sm text-slate-700 select-all">{{ $account->iban }}</span>
+                                            </div>
+                                            <div class="grid grid-cols-2 gap-4">
+                                                 <div>
+                                                    <span class="text-[10px] uppercase text-slate-400 font-bold tracking-wider block">Alıcı</span>
+                                                    <span class="text-xs font-medium text-slate-900 truncate block">{{ $account->account_holder }}</span>
+                                                </div>
+                                                @if($account->branch_name)
+                                                <div class="text-right">
+                                                    <span class="text-[10px] uppercase text-slate-400 font-bold tracking-wider block">Şube</span>
+                                                    <span class="text-xs font-medium text-slate-900">{{ $account->branch_name }}</span>
+                                                </div>
+                                                @endif
+                                            </div>
+                                        </div>
+                                    </div>
+                                @endforeach
+                            @else
+                                <div class="text-center py-4 text-slate-400 text-sm italic">
+                                    Henüz banka hesabı eklenmemiş.
                                 </div>
                             @endif
-
-                            <form action="{{ route('contact.store') }}" method="POST" class="space-y-5">
-                                @csrf
-                                <div class="grid sm:grid-cols-2 gap-5">
-                                    <div>
-                                        <label class="block text-sm font-semibold text-slate-700 mb-2">Ad Soyad *</label>
-                                        <input type="text" name="name" required
-                                            class="form-input w-full rounded-xl border-slate-200 focus:border-brand-500 focus:ring-brand-500">
-                                    </div>
-                                    <div>
-                                        <label class="block text-sm font-semibold text-slate-700 mb-2">Telefon *</label>
-                                        <input type="text" name="phone" required
-                                            class="form-input w-full rounded-xl border-slate-200 focus:border-brand-500 focus:ring-brand-500">
-                                    </div>
-                                </div>
-                                <div>
-                                    <label class="block text-sm font-semibold text-slate-700 mb-2">E-posta *</label>
-                                    <input type="email" name="email" required
-                                        class="form-input w-full rounded-xl border-slate-200 focus:border-brand-500 focus:ring-brand-500">
-                                </div>
-                                <div>
-                                    <label class="block text-sm font-semibold text-slate-700 mb-2">Konu</label>
-                                    <input type="text" name="subject"
-                                        class="form-input w-full rounded-xl border-slate-200 focus:border-brand-500 focus:ring-brand-500">
-                                </div>
-                                <div>
-                                    <label class="block text-sm font-semibold text-slate-700 mb-2">Mesajınız *</label>
-                                    <textarea name="message" rows="4" required
-                                        class="form-textarea w-full rounded-xl border-slate-200 focus:border-brand-500 focus:ring-brand-500"></textarea>
-                                </div>
-                                <button type="submit" class="btn btn-primary w-full py-3 text-lg">Mesajı Gönder</button>
-                            </form>
                         </div>
                     </div>
 
-                    {{-- Bank Accounts --}}
-                    <div class="lg:col-span-2">
-                        <div class="bg-white rounded-3xl shadow-sm border border-slate-200 overflow-hidden">
-                            <div class="p-6 border-b border-slate-100 bg-slate-50/50">
-                                <h2 class="text-xl font-bold text-slate-900 flex items-center gap-3">
-                                    <span class="w-1 h-6 rounded-full bg-accent-600"></span>
-                                    Banka Hesap Bilgileri
-                                </h2>
-                            </div>
-                            <div class="divide-y divide-slate-100">
-                                @php
-                                    $accounts = \App\Models\BankAccount::where('is_active', true)->orderBy('order')->get();
-                                @endphp
-
-                                @forelse($accounts as $account)
-                                    <div class="p-6 hover:bg-slate-50 transition-colors">
-                                        <div class="flex items-center gap-4 mb-3">
-                                            @if($account->logo)
-                                                <img src="{{ Storage::url($account->logo) }}" alt="{{ $account->bank_name }}"
-                                                    class="w-12 h-12 object-contain bg-white rounded-lg border border-slate-100 p-1">
-                                            @else
-                                                <div
-                                                    class="w-12 h-12 rounded-lg bg-slate-100 flex items-center justify-center text-slate-400">
-                                                    <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                                            d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
-                                                    </svg>
-                                                </div>
-                                            @endif
-                                            <div>
-                                                <h3 class="font-bold text-slate-900">{{ $account->bank_name }}</h3>
-                                                <p class="text-sm text-slate-500">{{ $account->currency }} Hesabı</p>
-                                            </div>
-                                        </div>
-                                        <div class="space-y-2 text-sm">
-                                            <div class="flex justify-between py-1 border-b border-slate-50 group">
-                                                <span class="text-slate-500">Şube:</span>
-                                                <span
-                                                    class="font-medium text-slate-900 select-all">{{ $account->branch_name }}</span>
-                                            </div>
-                                            <div class="flex justify-between py-1 border-b border-slate-50 group">
-                                                <span class="text-slate-500">Alıcı:</span>
-                                                <span
-                                                    class="font-medium text-slate-900 select-all text-right">{{ $account->account_holder }}</span>
-                                            </div>
-                                            <div class="pt-2">
-                                                <span class="text-xs text-slate-400 block mb-1">IBAN:</span>
-                                                <div
-                                                    class="font-mono font-medium text-slate-900 bg-slate-50 p-2 rounded border border-slate-100 select-all tracking-wide break-all">
-                                                    {{ $account->iban }}
-                                                </div>
-                                            </div>
-                                            @if($account->swift_code)
-                                                <div class="pt-1">
-                                                    <span class="text-xs text-slate-400 text-right">SWIFT:
-                                                        {{ $account->swift_code }}</span>
-                                                </div>
-                                            @endif
-                                        </div>
-                                    </div>
-                                @empty
-                                    <div class="p-8 text-center text-slate-500">
-                                        Henüz banka hesabı eklenmemiş.
-                                    </div>
-                                @endforelse
-                            </div>
-                        </div>
-                    </div>
                 </div>
             </div>
-        </section>
-    </div>
+        </div>
+    </section>
+</div>
+
+<style>
+    .richness-text p { margin-bottom: 0.5rem; }
+    .richness-text strong { color: #0f172a; font-weight: 700; }
+</style>
 @endsection
