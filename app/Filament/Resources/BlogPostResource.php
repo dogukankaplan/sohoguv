@@ -42,8 +42,9 @@ class BlogPostResource extends Resource
                                     ->label('Kısa Özet (SEO)')
                                     ->rows(3),
 
-                                Forms\Components\MarkdownEditor::make('content')
+                                Forms\Components\Textarea::make('content')
                                     ->label('İçerik')
+                                    ->rows(10)
                                     ->columnSpanFull(),
                             ]),
                     ])->columnSpan(['lg' => 2]),

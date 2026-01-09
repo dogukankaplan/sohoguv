@@ -74,8 +74,9 @@ class SectionResource extends Resource
                             ->visible(fn(Forms\Get $get) => $get('type') === 'video' || $get('type') === 'custom')
                             ->columnSpanFull(),
 
-                        Forms\Components\MarkdownEditor::make('content_rich')
+                        Forms\Components\Textarea::make('content_rich')
                             ->label('İçerik')
+                            ->rows(10)
                             ->hidden(fn(Forms\Get $get) => $get('type') === 'video')
                             ->visible(fn(Forms\Get $get) => $get('type') === 'custom')
                             ->columnSpanFull(),

@@ -42,8 +42,9 @@ class ProjectResource extends Resource
                                     ->label('Kısa Açıklama')
                                     ->columnSpanFull(),
 
-                                Forms\Components\MarkdownEditor::make('content')
+                                Forms\Components\Textarea::make('content')
                                     ->label('Proje Detayları')
+                                    ->rows(10)
                                     ->columnSpanFull(),
                             ])->columns(2),
 

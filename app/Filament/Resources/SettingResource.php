@@ -36,8 +36,9 @@ class SettingResource extends Resource
                             ->label('Değer')
                             ->rows(3)
                             ->hidden(fn($get) => str_contains($get('key'), 'address') || str_contains($get('key'), 'content')),
-                        Forms\Components\MarkdownEditor::make('value_rich')
+                        Forms\Components\Textarea::make('value_rich')
                             ->label('Değer (İçerik)')
+                            ->rows(10)
                             ->statePath('value')
                             ->visible(fn($get) => str_contains($get('key'), 'address') || str_contains($get('key'), 'content')),
                     ])->columnSpanFull(),

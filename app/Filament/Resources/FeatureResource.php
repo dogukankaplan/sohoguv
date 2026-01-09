@@ -49,9 +49,10 @@ class FeatureResource extends Resource
                     ->required()
                     ->maxLength(255),
 
-                Forms\Components\MarkdownEditor::make('description')
+                Forms\Components\Textarea::make('description')
                     ->label('Açıklama')
                     ->required()
+                    ->rows(5)
                     ->columnSpanFull(),
 
                 Forms\Components\TextInput::make('order')
