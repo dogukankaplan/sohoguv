@@ -30,10 +30,17 @@ class SettingResource extends Resource
                     ->unique(ignoreRecord: true)
                     ->maxLength(255),
 
-                Forms\Components\Textarea::make('value')
-                    ->label('Değer')
-                    ->rows(3)
-                    ->columnSpanFull(),
+                Forms\Components\Group::make()
+                    ->schema([
+                        Forms\Components\Textarea::make('value')
+                            ->label('Değer')
+                            ->rows(3)
+                            ->hidden(fn($get) => str_contains($get('key'), 'address') || str_contains($get('key'), 'content')),
+                        Forms\Components\RichEditor::make('value_rich')
+                            ->label('Değer (HTML)')
+                            ->statePath('value')
+                            ->visible(fn($get) => str_contains($get('key'), 'address') || str_contains($get('key'), 'content')),
+                    ])->columnSpanFull(),
             ]);
     }
 
