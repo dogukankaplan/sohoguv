@@ -52,7 +52,7 @@ class FeatureResource extends Resource
                 Forms\Components\RichEditor::make('description')
                     ->label('Açıklama')
                     ->required()
-                    ->toolbar(['bold', 'italic', 'link', 'undo', 'redo'])
+                    ->toolbarButtons(['bold', 'italic', 'link', 'undo', 'redo'])
                     ->columnSpanFull(),
 
                 Forms\Components\TextInput::make('order')

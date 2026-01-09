@@ -39,7 +39,7 @@ class TestimonialResource extends Resource
                 Forms\Components\RichEditor::make('content')
                     ->label('Yorum')
                     ->required()
-                    ->toolbar(['bold', 'italic', 'link', 'undo', 'redo'])
+                    ->toolbarButtons(['bold', 'italic', 'link', 'undo', 'redo'])
                     ->columnSpanFull(),
 
                 Forms\Components\Select::make('rating')
