@@ -1,4 +1,3 @@
-<?php echo '<?xml version="1.0" encoding="UTF-8"?>'; ?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
         <loc>{{ url('/') }}</loc>
@@ -12,12 +11,12 @@
         <priority>0.8</priority>
     </url>
     @foreach ($services as $service)
-    <url>
-        <loc>{{ route('services.show', $service->slug) }}</loc>
-        <lastmod>{{ $service->updated_at->toAtomString() }}</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.9</priority>
-    </url>
+        <url>
+            <loc>{{ route('services.show', $service->slug) }}</loc>
+            <lastmod>{{ $service->updated_at->toAtomString() }}</lastmod>
+            <changefreq>weekly</changefreq>
+            <priority>0.9</priority>
+        </url>
     @endforeach
     <url>
         <loc>{{ route('references.index') }}</loc>
