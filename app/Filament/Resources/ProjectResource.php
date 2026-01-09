@@ -55,8 +55,7 @@ class ProjectResource extends Resource
                                     ->image()
                                     ->disk('public')
                                     ->directory('projects')
-                                    ->visibility('public')
-                                    ->required(),
+                                    ->visibility('public'),
 
                                 Forms\Components\FileUpload::make('gallery')
                                     ->label('Proje Galerisi')

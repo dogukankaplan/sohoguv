@@ -58,8 +58,7 @@ class BlogPostResource extends Resource
                                     ->image()
                                     ->disk('public')
                                     ->directory('blog')
-                                    ->visibility('public')
-                                    ->required(),
+                                    ->visibility('public'),
 
                                 Forms\Components\DateTimePicker::make('published_at')
                                     ->label('Yayınlanma Tarihi')
