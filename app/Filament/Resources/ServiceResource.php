@@ -45,7 +45,7 @@ class ServiceResource extends Resource
                                             ->helperText('Bu alan otomatik oluşturulur, ancak manuel olarak düzenleyebilirsiniz.')
                                             ->columnSpanFull(),
 
-                                        Forms\Components\RichEditor::make('content')
+                                        Forms\Components\MarkdownEditor::make('content')
                                             ->label('İçerik')
                                             ->columnSpanFull(),
                                     ]),

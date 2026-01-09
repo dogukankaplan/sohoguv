@@ -42,7 +42,7 @@ class ProjectResource extends Resource
                                     ->label('Kısa Açıklama')
                                     ->columnSpanFull(),
 
-                                Forms\Components\RichEditor::make('content')
+                                Forms\Components\MarkdownEditor::make('content')
                                     ->label('Proje Detayları')
                                     ->columnSpanFull(),
                             ])->columns(2),
