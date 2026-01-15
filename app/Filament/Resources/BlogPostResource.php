@@ -58,6 +58,7 @@ class BlogPostResource extends Resource
                                     ->image()
                                     ->disk('public')
                                     ->directory('blogs')
+                                    ->preserveFilenames()
                                     ->visibility('public'),
 
                                 Forms\Components\DateTimePicker::make('published_at')
@@ -81,6 +82,7 @@ class BlogPostResource extends Resource
         return $table
             ->columns([
                 Tables\Columns\ImageColumn::make('image')
+                    ->disk('public')
                     ->label('Kapak'),
 
                 Tables\Columns\TextColumn::make('title')

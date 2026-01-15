@@ -9,6 +9,15 @@ class BlogPost extends Model
 {
     use HasFactory;
 
+    protected static function boot()
+    {
+        parent::boot();
+
+        static::saving(function ($model) {
+            \Illuminate\Support\Facades\Log::info('BlogPost Saving:', $model->toArray());
+        });
+    }
+
     protected $fillable = [
         'title',
         'slug',
