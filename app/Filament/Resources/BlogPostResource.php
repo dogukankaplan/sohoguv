@@ -59,6 +59,8 @@ class BlogPostResource extends Resource
                                     ->disk('public')
                                     ->directory('blogs')
                                     ->preserveFilenames()
+                                    ->maxSize(10240) // 10MB
+                                    ->acceptedFileTypes(['image/jpeg', 'image/png', 'image/webp'])
                                     ->visibility('public'),
 
                                 Forms\Components\DateTimePicker::make('published_at')
